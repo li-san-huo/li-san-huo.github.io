@@ -212,9 +212,7 @@ html {
 
 body {
     position: relative;
-    background-image: url(../images/cover7.jpg);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    background-color: #fff;
     font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, 微软雅黑, Arial, sans-serif;
     font-size: 1.4rem;
     line-height: 1.7;
@@ -508,13 +506,7 @@ button {
     position: absolute;
     z-index: 999;
     top: 0;
-    right: 0;
-    opacity: 0;
-    transition: linear 2s;
-}
-
-.cover .forkMe:hover {
-    opacity: 1;
+    right: 0
 }
 
 .content.anim,
@@ -1044,7 +1036,7 @@ button {
 }
 
 .article .sea-center:after {
-    border-bottom: 2px dashed #84C7C3;
+    border-bottom: 2px dashed #cce5ff;
     content: "";
     width: 100px;
     display: block;
@@ -1692,7 +1684,7 @@ a.toc-link {
 .articles .article-entry {
     margin-top: 1rem;
     padding: 0 2rem 2rem;
-    border: 2px dashed #c9c9c9
+    border: 1px dashed #dfdede
 }
 
 .articles .article-entry .article-more-link {
@@ -1873,7 +1865,7 @@ a.toc-link {
 }
 
 .footer {
-    border-top: 2px solid #c9c9c99c;
+    border-top: 2px solid #f6f6f6;
     padding: 3rem 0;
     font-size: 115%
 }
@@ -2786,12 +2778,10 @@ pre .id {
     width: 3.2rem;
     height: 3.2rem;
     border-radius: 3.2rem;
-    background-color: #ffffff;
+    background-color: #efefef;
     line-height: 3rem;
-    opacity: .4;
-    transition: opacity 1s ease;
-    border: 2px solid #d3d3d3;
-    line-height: 28px;
+    opacity: .6;
+    transition: opacity 1s ease
 }
 
 .todark:hover,

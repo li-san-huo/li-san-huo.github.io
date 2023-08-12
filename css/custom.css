@@ -1,6 +1,9 @@
 .vpower.txt-right {
   display: none;
 }
+body {
+  cursor: url("/images/mouse.cur"), auto;
+}
 .sidebar {
   left: -8rem;
   width: 8rem;
