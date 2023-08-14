@@ -214,6 +214,65 @@
 </tbody></table>
 </li>
 </ul>
+<h1 id="html基本标签2"><a href="#html基本标签2" class="headerlink" title="html基本标签2"></a>html基本标签2</h1><h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><ul>
+<li><p>无序列表-列表项没有先后的顺序的列表</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">属性：</span><br><span class="line">项目符号类型：type: disc实心圆	circle空心圆	square实心方块</span><br><span class="line"></span><br><span class="line">1、li不能单独存在，必须包裹在ul里面。</span><br><span class="line">2、ul的子元素只能是li</span><br><span class="line">3、<span class="tag">&lt;<span class="name">li</span>&gt;</span>与<span class="tag">&lt;/<span class="name">li</span>&gt;</span> 之间相当于一个容器，可以容纳所有元素。</span><br><span class="line">4、ul、li快元素</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有序列表-列表项有先后顺序的列表</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"></span><br><span class="line">属性：</span><br><span class="line">项目符号类型：type:1 A a I i</span><br><span class="line">从第几项开始: start:数字</span><br><span class="line">指定列表倒序显示：reversed=&quot;reversed&quot;</span><br><span class="line"></span><br><span class="line">1、li不能单独存在，必须包裹在ol里面。</span><br><span class="line">2、ol的子元素只能是li</span><br><span class="line">3、<span class="tag">&lt;<span class="name">li</span>&gt;</span>与<span class="tag">&lt;/<span class="name">li</span>&gt;</span>之间相当于一个容器，可以容纳所有元素。</span><br><span class="line">4、ol、li块元素</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义列表-项目和注释的组合</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>定义项<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>描述项<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>描述项<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line">1、dl自定义列表，dt定义项，dd描述项</span><br><span class="line">2、<span class="tag">&lt;<span class="name">dl</span>&gt;</span><span class="tag">&lt;/<span class="name">dl</span>&gt;</span> 里面只能包含 <span class="tag">&lt;<span class="name">dt</span>&gt;</span> 和 <span class="tag">&lt;<span class="name">dd</span>&gt;</span></span><br><span class="line">3、<span class="tag">&lt;<span class="name">dt</span>&gt;</span> 和 <span class="tag">&lt;<span class="name">dd</span>&gt;</span>个数没有限制，经常是一个<span class="tag">&lt;<span class="name">dt</span>&gt;</span> 对应多个<span class="tag">&lt;<span class="name">dd</span>&gt;</span>。</span><br><span class="line">4、dl、dt、dd块元素</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="超链接标签"><a href="#超链接标签" class="headerlink" title="超链接标签"></a>超链接标签</h2><ul>
+<li><p><code>&lt;a&gt;</code>标签用于定义超链接，作用是从一个页面链接到另一个页面。行内元素</p>
+</li>
+<li><p>语法格式：<code>&lt;a href=&quot;跳转目标&quot; target=&quot;目标窗口的弹出方式&quot;&gt;</code> 文本或图像 <code>&lt;/a&gt;</code></p>
+</li>
+<li><p>属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>href</td>
+<td>用于指定连接目标的url地址</td>
+</tr>
+<tr>
+<td>target</td>
+<td>指定页面的打开方式，<code>_self</code> 在原窗口打开(默认值)，<code>_blank</code> 在新窗口中打开</td>
+</tr>
+<tr>
+<td>titile</td>
+<td>提示属性</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>超链接的分类</p>
+<ul>
+<li><p>内部链接:网站内部页面之间的相互链接.直接链接内部页面名称即可，例如<code>&lt; a href=&quot;index.html&quot;&gt; 首页&lt;/a&gt;</code>。</p>
+</li>
+<li><p>外部链接：例如<code>&lt; a href=&quot;http:// www.baidu.com &quot;&gt; 百度&lt;/a&gt;</code>。</p>
+</li>
+<li><p>空连接：如果当时没有确定链接目标时，<code>&lt; a href=&quot;#&quot;&gt; 首页 &lt;/a&gt;</code>。</p>
+</li>
+<li><p>下载链接：如果href里面地址是一个文件或者压缩包，会下载这个文件。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;.exe&quot;</span>&gt;</span>软件下载<span class="tag">&lt;/<span class="name">a</span>&gt;</span>		可执行文件 EXE	压缩文件	.zip	.rar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>锚点链接：</p>
+<ul>
+<li><p>锚点命名<code>id=&quot;p1&quot;</code></p>
+<p>链接到锚点<code>&lt;a href=&quot;#p1&quot;&gt;&lt;/a&gt;</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>记录</category>
