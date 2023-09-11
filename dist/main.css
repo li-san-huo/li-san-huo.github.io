@@ -2025,7 +2025,8 @@ a.toc-link {
 
 .article-entry code,
 .article-entry pre {
-    font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace
+    font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
+    font-size: 15px;
 }
 
 .article-entry code {
