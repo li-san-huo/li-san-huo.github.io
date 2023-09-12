@@ -3,7 +3,7 @@
   <entry>
     <title>CSS</title>
     <url>/2023/09/11/CSS/</url>
-    <content><![CDATA[<h1 id="初识css"><a href="#初识css" class="headerlink" title="初识css"></a>初识css</h1><ul>
+    <content><![CDATA[<h1 id="初识CSS"><a href="#初识CSS" class="headerlink" title="初识CSS"></a>初识CSS</h1><ul>
 <li>CSS:层叠样式表， Cascading style sheet.</li>
 <li>作用:控制网页的外观(修饰和美化html)</li>
 <li>语法：选择器{属性1：属性值1；属性值2；属性值3；…}</li>
@@ -11,7 +11,7 @@
 <span id="more"></span>
 
 <h2 id="样式表的种类"><a href="#样式表的种类" class="headerlink" title="样式表的种类"></a>样式表的种类</h2><ul>
-<li><p>行内样式表</p>
+<li><p>行CSS内样式表</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;color:red&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">特点：</span><br><span class="line">1. 行内样式只对当前标签起作用</span><br><span class="line">2.一般很少用，只有当临时修改样式，或者规则较少时使用</span><br></pre></td></tr></table></figure>
 
 <hr>
@@ -85,7 +85,7 @@
 </ul>
 </li>
 </ol>
-<h1 id="css2"><a href="#css2" class="headerlink" title="css2"></a>css2</h1><h2 id="复合选择器"><a href="#复合选择器" class="headerlink" title="复合选择器"></a>复合选择器</h2><ul>
+<h1 id="CSS2"><a href="#CSS2" class="headerlink" title="CSS2"></a>CSS2</h1><h2 id="复合选择器"><a href="#复合选择器" class="headerlink" title="复合选择器"></a>复合选择器</h2><ul>
 <li><p>相邻选择器</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line">E+F:选择紧贴在E元素后的F元素</span><br><span class="line">相邻选择器只会命中符合条件的相邻的兄弟元素，不能选中被隔开的</span><br></pre></td></tr></table></figure>
 
@@ -107,7 +107,7 @@
 <hr>
 </li>
 </ul>
-<h2 id="css特性"><a href="#css特性" class="headerlink" title="css特性"></a>css特性</h2><ul>
+<h2 id="CSS特性"><a href="#CSS特性" class="headerlink" title="CSS特性"></a>CSS特性</h2><ul>
 <li><p>层叠性</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line">指当一个标签被设置了多个重复的样式的时候，一个属性会覆盖另外一个属性。</span><br><span class="line"></span><br><span class="line">层叠性主要遵循的原则是就近原则，在不考虑优先级的情况下，在多个样式中最终生效的样式是离标签最近的样式。</span><br></pre></td></tr></table></figure>
 
@@ -124,7 +124,7 @@
 <hr>
 </li>
 </ul>
-<h2 id="css文字属性"><a href="#css文字属性" class="headerlink" title="css文字属性"></a>css文字属性</h2><ul>
+<h2 id="CSS文字属性"><a href="#CSS文字属性" class="headerlink" title="CSS文字属性"></a>CSS文字属性</h2><ul>
 <li><p>文字大小</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-size</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span>、px(像素)大小是我们网页的最常用的单位</span><br><span class="line"><span class="number">2</span>、chrome默认<span class="number">16px</span>,常用<span class="number">14px</span>	较小<span class="number">12px</span></span><br><span class="line"><span class="number">3</span>、不同浏览器可能默认显示的字号大小不一致，我们尽量给一个明确值大小，不要默认大小</span><br><span class="line"><span class="number">4</span>、可以给<span class="selector-tag">body</span>指定整个页面文字的大小</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">长度单位：</span><br><span class="line">相对长度单位：所谓相对就是要有一个参照标准，相对于该参照基础来设置尺度单位。</span><br><span class="line">	px:相对于显示器屏幕分辨率而言的。</span><br><span class="line">	em:相对于当前对象内文本的字体尺寸。</span><br><span class="line">绝对长度单位：就是无论显示设备的分辨率是多少，都代表相同的长度。</span><br></pre></td></tr></table></figure>
 </li>
@@ -215,7 +215,7 @@
 <hr>
 </li>
 </ul>
-<h2 id="css文本属性"><a href="#css文本属性" class="headerlink" title="css文本属性"></a>css文本属性</h2><ul>
+<h2 id="CSS文本属性"><a href="#CSS文本属性" class="headerlink" title="CSS文本属性"></a>CSS文本属性</h2><ul>
 <li><p>文本颜色</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">color</span></span><br><span class="line"></span><br><span class="line">颜色的表示方法</span><br><span class="line">颜色值：red green blue</span><br><span class="line">十六进制：<span class="selector-id">#f00</span></span><br><span class="line">RGB代码：rgb(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>)	rgb(<span class="number">100%</span>,<span class="number">0%</span>,<span class="number">0%</span>)</span><br></pre></td></tr></table></figure>
 
@@ -227,6 +227,62 @@
 <hr>
 </li>
 </ul>
+<h1 id="文本属性、背景属性"><a href="#文本属性、背景属性" class="headerlink" title="文本属性、背景属性"></a>文本属性、背景属性</h1><h2 id="css文本属性"><a href="#css文本属性" class="headerlink" title="css文本属性"></a>css文本属性</h2><ul>
+<li><p>文本修饰</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">text-decoration</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">none</span>没有</span><br><span class="line">underline下划线</span><br><span class="line">overline上划线</span><br><span class="line">line-through删除线</span><br></pre></td></tr></table></figure>
+
+<hr>
+</li>
+<li><p>文本缩进-设置文本的缩进</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">text-indent</span></span><br><span class="line"></span><br><span class="line">ps</span><br><span class="line">%</span><br><span class="line"><span class="selector-tag">em</span></span><br><span class="line">可设置为负值</span><br></pre></td></tr></table></figure>
+
+<hr>
+</li>
+<li><p>文本对齐-设置文本内容的水平对齐</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">text-align</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">left</span>左对齐</span><br><span class="line">center居中对齐</span><br><span class="line"><span class="attribute">right</span>右对齐</span><br><span class="line">justify两端对齐</span><br></pre></td></tr></table></figure>
+
+<hr>
+</li>
+<li><p>字符间距-设置字符之间的间距</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">letter-spacing</span>:<span class="number">10px</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>单词间距-设置单词之间的间距</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">word-spacing</span>:<span class="number">10px</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol>
+<li><p>背景属性</p>
+<ul>
+<li><p>背景颜色</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-color</span></span><br><span class="line"></span><br><span class="line">red</span><br><span class="line"><span class="selector-id">#ff0000</span></span><br><span class="line">rgb(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">rgba(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.5</span>)</span><br><span class="line"><span class="selector-tag">a</span>不透明度	<span class="number">0</span>——<span class="number">1</span>之间的小数	<span class="number">0</span>全透明	<span class="number">1</span>不透明	<span class="number">0.1</span>	一般写小数.<span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+</li>
+<li><p>背景图片</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-image</span>:<span class="built_in">url</span>(<span class="string">图片地址</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>背景重复</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-repeat</span></span><br><span class="line"></span><br><span class="line">repeat重复 默认值</span><br><span class="line">no-repeat不重复</span><br><span class="line">repeat-x水平修复</span><br><span class="line">repeat-y垂直修复</span><br></pre></td></tr></table></figure>
+
+<hr>
+</li>
+<li><p>背景位置</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-position</span>:x坐标 y坐标;</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>）精确值：<span class="number">100px</span> <span class="number">200px</span>	可以取负值</span><br><span class="line">		% <span class="number">0%</span> <span class="number">0%</span>		<span class="number">100%</span> <span class="number">100%</span>	<span class="number">50%</span> <span class="number">50%</span></span><br><span class="line"><span class="number">2</span>）方位词：</span><br><span class="line">		水平<span class="attribute">left</span> center <span class="attribute">right</span></span><br><span class="line">		垂直<span class="attribute">top</span> center <span class="attribute">bottom</span></span><br><span class="line">注：</span><br><span class="line">	<span class="number">1</span>、如果只设置第一个值，第二个值默认居中</span><br><span class="line">	<span class="number">2</span>、如果是方位词，前后顺序可颠倒，如果是准确数字，第一个是x坐标，第二个y坐标</span><br><span class="line">	<span class="number">3</span>、精确值和方位词混合使用，第一个是x坐标，第二个y坐标</span><br></pre></td></tr></table></figure>
+
+<hr>
+</li>
+<li><p>背景附件</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background-attachment</span>:<span class="built_in">fixed</span>(固定)/<span class="built_in">scroll</span>(滚动，默认);</span><br></pre></td></tr></table></figure>
+
+<hr>
+</li>
+<li><p>背景复合属性</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background</span>:	<span class="number">#fff</span>	<span class="built_in">url</span>(<span class="string">图片地址</span>)	no-repeat	fixed	left	top;属性值的顺序可调换</span><br></pre></td></tr></table></figure>
+
+<hr>
+</li>
+</ul>
+</li>
+</ol>
 <h1 id="填写中。。。"><a href="#填写中。。。" class="headerlink" title="填写中。。。"></a>填写中。。。</h1>]]></content>
       <categories>
         <category>记录</category>
