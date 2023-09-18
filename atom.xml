@@ -6,7 +6,7 @@
   <link href="https://li-san-huo.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://li-san-huo.gitee.io/"/>
-  <updated>2023-09-15T03:50:10.050Z</updated>
+  <updated>2023-09-18T03:06:02.220Z</updated>
   <id>https://li-san-huo.gitee.io/</id>
   
   <author>
@@ -15,6 +15,76 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSS3</title>
+    <link href="https://li-san-huo.gitee.io/2023/09/18/CSS3/"/>
+    <id>https://li-san-huo.gitee.io/2023/09/18/CSS3/</id>
+    <published>2023-09-18T02:12:38.000Z</published>
+    <updated>2023-09-18T03:06:02.220Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="CSS3-这里3指第三代CSS"><a href="#CSS3-这里3指第三代CSS" class="headerlink" title="CSS3(这里3指第三代CSS)"></a>CSS3(这里3指第三代CSS)</h1><h2 id="一、css3属性选择器"><a href="#一、css3属性选择器" class="headerlink" title="一、css3属性选择器"></a>一、css3属性选择器</h2><ol><li><p>什么是css3</p><ul><li>在css2的基础上拓展、新增的样式</li></ul></li><li><p>css3发展现状</p><ul><li>移动端支持优于pc端</li><li>css3目前还在不断改进中</li><li>css3相对H5，应用非常广泛</li></ul></li><li><p>属性选择器列表</p><table><thead><tr><th align="center">选择符</th><th align="center">简介</th></tr></thead><tbody><tr><td align="center">E[att]</td><td align="center">选择具有att属性的E元素</td></tr><tr><td align="center">E[att&#x3D;“val”]</td><td align="center">选择具有att属性且属性值等于val的E元素</td></tr><tr><td align="center">E[att^&#x3D;“val”]</td><td align="center">匹配具有att属性、且值以val开头的E元素</td></tr><tr><td align="center">E[att$&#x3D;“val”]</td><td align="center">匹配具有att属性、且值以val结尾的E元素</td></tr><tr><td align="center">E[att*&#x3D;“val”]</td><td align="center">匹配具有att属性、且值中含有val的E元素</td></tr></tbody></table><span id="more"></span></li><li><p>代码演示</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=text]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span><span class="selector-attr">[class^=img]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span><span class="selector-attr">[class$=data]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">img</span><span class="selector-attr">[class*=img1]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><h2 id="二、结构伪类选择器"><a href="#二、结构伪类选择器" class="headerlink" title="二、结构伪类选择器"></a>二、结构伪类选择器</h2><ol><li><p>结构伪类选择器列表</p><table><thead><tr><th align="center">选择符</th><th align="center">简介</th></tr></thead><tbody><tr><td align="center">E:first-child</td><td align="center">匹配父元素中的第一个子元素E</td></tr><tr><td align="center">E:last-child</td><td align="center">匹配父元素中最后一个E元素</td></tr><tr><td align="center">E:nth-child(n)</td><td align="center">匹配父元素中的第n个子元素E</td></tr><tr><td align="center">E:first-of-type</td><td align="center">指定类型E的第一个</td></tr><tr><td align="center">E:last-of-type</td><td align="center">指定类型E的最后一个</td></tr><tr><td align="center">E:nth-of-type(n)</td><td align="center">指定类型E的第n个</td></tr></tbody></table></li><li><p>代码演示</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:first</span>-child &#123;</span><br><span class="line">    <span class="attribute">background-color</span>:red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">    <span class="attribute">background-color</span>:pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>nth-child 详解</p><ul><li><p>注意：本质上就是选中第几个子元素</p></li><li><p>n可以是数字、关键字、公式</p></li><li><p>n如果是数字，就是选中第几个</p></li><li><p>常见的关键字有even偶数、odd奇数</p></li><li><p>常见的公式如下（如果n是公式，则从0开始计算）</p></li><li><p>但是第0个元素或者超出了元素的个数会被忽略</p><table><thead><tr><th>公式</th><th>取值</th></tr></thead><tbody><tr><td>2n</td><td>偶数</td></tr><tr><td>2n+1</td><td>奇数</td></tr><tr><td>5n</td><td>5 10 15…</td></tr><tr><td>n+5</td><td>从第5个开始（包含第五个）到最后</td></tr><tr><td>-n+5</td><td>前5个（包含第5个）…</td></tr></tbody></table></li></ul></li><li><p>nth-child 和 nt-of-type 的区别</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. nth-child 对父元素里面所有孩子排序选择（序号是固定的）先找到第n个孩子，然后看看是否和E匹配</span><br><span class="line"><span class="number">2</span>. nth-of-fype 对父元素里面指定子元素进行排序选择。先去匹配E，然后再根据E 找第n个孩子</span><br></pre></td></tr></table></figure></li></ol><h2 id="三、伪元素选择器"><a href="#三、伪元素选择器" class="headerlink" title="三、伪元素选择器"></a>三、伪元素选择器</h2><ol><li><p>伪类选择器</p><table><thead><tr><th>选择符</th><th>简介</th></tr></thead><tbody><tr><td>::before</td><td>在元素内部的前面插入内容</td></tr><tr><td>::after</td><td>在元素内部的后面插入内容</td></tr></tbody></table></li><li><p>伪类选择器注意事项</p><ul><li>before 和 after 必须有 content 属性</li><li>before 在内容前面，after在内容后面</li><li>before 和 after 创建的是一个元素，但是属于行内元素</li><li>创建出来的元素在 Dom 中查找不到，所以称为伪元素</li><li>伪元素和标签选择器一样，权重为 1</li></ul></li></ol><h2 id="四、伪元素的案例"><a href="#四、伪元素的案例" class="headerlink" title="四、伪元素的案例"></a>四、伪元素的案例</h2><ol><li><p>添加字体图标</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid lightseagreen;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&#x27;\e665&#x27;</span>;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&#x27;iconfont&#x27;</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><h2 id="五、其他特性"><a href="#五、其他特性" class="headerlink" title="五、其他特性"></a>五、其他特性</h2><ol><li><p>滤镜：filter CSS属性将模糊或颜色偏移等图形效果应用于元素。</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">10px</span>);</span><br><span class="line">设置图片模糊</span><br></pre></td></tr></table></figure></li><li><p>calc() 此CSS函数让你在声明CSS属性值时执行一些计算。</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">calc(<span class="number">50%</span> + <span class="number">30px</span>)</span><br><span class="line">可以进行+ - * / 计算，符号两边加空格</span><br></pre></td></tr></table></figure></li><li><p>css过渡属性</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transition</span>: 要过渡的属性花费时间 运动曲线 何时开始；</span><br><span class="line"><span class="number">1</span>.属性：想要变化的 css 属性，宽度高度背景颜色 内外边距都可以。如果想要所有的属性都变化过渡，写一个all就可以。</span><br><span class="line"><span class="number">2</span>.花费时间：单位是 秒（必须写单位）比如 <span class="number">0.5s</span></span><br><span class="line"><span class="number">3</span>.运动曲线：默认是 ease（可以省略）</span><br><span class="line"><span class="number">4</span>.何时开始：单位是 秒（必须写单位）可以设置延迟触发时间 默认是 <span class="number">0s</span>（可以省略）</span><br><span class="line"></span><br><span class="line">记住过渡的使用口诀：谁做过渡给谁加</span><br></pre></td></tr></table></figure></li></ol><h1 id="填写中。。。"><a href="#填写中。。。" class="headerlink" title="填写中。。。"></a>填写中。。。</h1>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;CSS3-这里3指第三代CSS&quot;&gt;&lt;a href=&quot;#CSS3-这里3指第三代CSS&quot; class=&quot;headerlink&quot; title=&quot;CSS3(这里3指第三代CSS)&quot;&gt;&lt;/a&gt;CSS3(这里3指第三代CSS)&lt;/h1&gt;&lt;h2 id=&quot;一、css3属性选择器&quot;&gt;&lt;a href=&quot;#一、css3属性选择器&quot; class=&quot;headerlink&quot; title=&quot;一、css3属性选择器&quot;&gt;&lt;/a&gt;一、css3属性选择器&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;什么是css3&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在css2的基础上拓展、新增的样式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;css3发展现状&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;移动端支持优于pc端&lt;/li&gt;
+&lt;li&gt;css3目前还在不断改进中&lt;/li&gt;
+&lt;li&gt;css3相对H5，应用非常广泛&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;属性选择器列表&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;选择符&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;简介&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;E[att]&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;选择具有att属性的E元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;E[att&amp;#x3D;“val”]&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;选择具有att属性且属性值等于val的E元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;E[att^&amp;#x3D;“val”]&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;匹配具有att属性、且值以val开头的E元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;E[att$&amp;#x3D;“val”]&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;匹配具有att属性、且值以val结尾的E元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;E[att*&amp;#x3D;“val”]&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;匹配具有att属性、且值中含有val的E元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;&lt;/li&gt;&lt;/ol&gt;</summary>
+    
+    
+    
+    <category term="记录" scheme="https://li-san-huo.gitee.io/categories/%E8%AE%B0%E5%BD%95/"/>
+    
+    <category term="学习" scheme="https://li-san-huo.gitee.io/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="网页" scheme="https://li-san-huo.gitee.io/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/"/>
+    
+    <category term="CSS3" scheme="https://li-san-huo.gitee.io/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/CSS3/"/>
+    
+    
+    <category term="网页" scheme="https://li-san-huo.gitee.io/tags/%E7%BD%91%E9%A1%B5/"/>
+    
+    <category term="CSS3" scheme="https://li-san-huo.gitee.io/tags/CSS3/"/>
+    
+  </entry>
   
   <entry>
     <title>移动端</title>
