@@ -1197,6 +1197,9 @@
 </ul>
 </li>
 </ol>
+<span id="more"></span>
+
+<hr>
 <h2 id="二、分层思想"><a href="#二、分层思想" class="headerlink" title="二、分层思想"></a>二、分层思想</h2><ol>
 <li>网络划分使用分层思想目的：<ul>
 <li>方便定位问题，进而高效解决问题</li>
@@ -1204,7 +1207,8 @@
 </ul>
 </li>
 </ol>
-<h2 id="三、如何对网络进行分层——OSI七层参考模型（-textcolor-red-下一层是为-上一层提供服务的-）"><a href="#三、如何对网络进行分层——OSI七层参考模型（-textcolor-red-下一层是为-上一层提供服务的-）" class="headerlink" title="三、如何对网络进行分层——OSI七层参考模型（$\textcolor{red}{下一层是为 上一层提供服务的}$）"></a>三、如何对网络进行分层——OSI七层参考模型（$\textcolor{red}{下一层是为 上一层提供服务的}$）</h2><ol>
+<hr>
+<h2 id="三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）"><a href="#三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）" class="headerlink" title="三、如何对网络进行分层——OSI七层参考模型（下一层是为 上一层提供服务的）"></a>三、如何对网络进行分层——OSI七层参考模型（<font color="red">下一层是为 上一层提供服务的</font>）</h2><ol>
 <li>物理层（第一层，也称为最底层）<ul>
 <li>用于建立、断开、维护物理连接</li>
 <li>以比特流的方式进行数据传输，传输信号使用0和1表示</li>
@@ -1246,11 +1250,13 @@
 </ul>
 </li>
 </ol>
+<hr>
 <h2 id="四、OSI七层参考模型与TCP-IP模型的关系"><a href="#四、OSI七层参考模型与TCP-IP模型的关系" class="headerlink" title="四、OSI七层参考模型与TCP&#x2F;IP模型的关系"></a>四、OSI七层参考模型与TCP&#x2F;IP模型的关系</h2><ol>
 <li>OSI七层参考模型，是一种理论参考模型，也成为“经典模型”。</li>
 <li>实际使用中，采用是TCP&#x2F;IP五层模型，即把会话层、表示层、应用层合并为一层“应用层”。</li>
 <li>OSI七层参考模型是由TCP&#x2F;IP五层模型演进而来的。</li>
 </ol>
+<hr>
 <h2 id="五、TCP-IP每层对应的协议"><a href="#五、TCP-IP每层对应的协议" class="headerlink" title="五、TCP&#x2F;IP每层对应的协议"></a>五、TCP&#x2F;IP每层对应的协议</h2><p><img src="https://s2.loli.net/2023/09/19/VJbN9jCsYGuPfWy.png" alt="TCP每层协议.png"></p>
 <ol>
 <li>物理层<ul>
@@ -1274,6 +1280,7 @@
 </ul>
 </li>
 </ol>
+<hr>
 <h2 id="六、数据封装与解封装过程（主机A向主机B发送数据）"><a href="#六、数据封装与解封装过程（主机A向主机B发送数据）" class="headerlink" title="六、数据封装与解封装过程（主机A向主机B发送数据）"></a>六、数据封装与解封装过程（主机A向主机B发送数据）</h2><p><img src="https://s2.loli.net/2023/09/19/KS48RLEGxaDjWN1.png" alt="数据封装过程.jpg"></p>
 <blockquote>
 <p>发送方（主机A）向接收方（主机B）发送数据前，要进行封装过程如下：</p>
@@ -1297,6 +1304,7 @@
 <li>到传输层后去掉，TCP头部</li>
 <li>到应用层后，还原上传数据。</li>
 </ol>
+<hr>
 <h2 id="七、PDU（协议数据单元）"><a href="#七、PDU（协议数据单元）" class="headerlink" title="七、PDU（协议数据单元）"></a>七、PDU（协议数据单元）</h2><ol>
 <li>名称解释：PDU是定义TCP&#x2F;IP的五层模型，每层传输数据的名称<ul>
 <li>物理层传输的数据：比特流</li>
@@ -1306,6 +1314,7 @@
 </ul>
 </li>
 </ol>
+<hr>
 <h2 id="八、TCP-IP五层模型每层对应的硬件设备"><a href="#八、TCP-IP五层模型每层对应的硬件设备" class="headerlink" title="八、TCP&#x2F;IP五层模型每层对应的硬件设备"></a>八、TCP&#x2F;IP五层模型每层对应的硬件设备</h2><ol>
 <li>物理层——网卡、传输介质（双绞线，也叫“网线”）</li>
 <li>数据链路层——交换机</li>
@@ -1313,6 +1322,17 @@
 <li>传输层——防火墙</li>
 <li>应用层——计算机软件</li>
 </ol>
-]]></content>
+<hr>
+<h1 id="填写中。。。"><a href="#填写中。。。" class="headerlink" title="填写中。。。"></a>填写中。。。</h1>]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>网络参考模型</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>网络参考模型</tag>
+      </tags>
   </entry>
 </search>
