@@ -330,6 +330,7 @@
 </ul>
 </li>
 </ol>
+<hr>
 <h2 id="二、传输介质的连接与布线"><a href="#二、传输介质的连接与布线" class="headerlink" title="二、传输介质的连接与布线"></a>二、传输介质的连接与布线</h2><ol>
 <li><p>双绞线</p>
 <ul>
@@ -395,6 +396,7 @@
 </ul>
 </li>
 </ol>
+<hr>
 <h2 id="三、以太网接口"><a href="#三、以太网接口" class="headerlink" title="三、以太网接口"></a>三、以太网接口</h2><ul>
 <li>RJ-45 接口（又称为水晶头）</li>
 <li>光纤接口：<ul>
@@ -406,22 +408,26 @@
 </ul>
 </li>
 </ul>
+<hr>
 <h2 id="四、双绞线的连接规范"><a href="#四、双绞线的连接规范" class="headerlink" title="四、双绞线的连接规范"></a>四、双绞线的连接规范</h2><ul>
 <li>国际通用的双绞线的标准规范 T568A&#x2F;T568B（默认使用T568B线序）</li>
 <li>T568B 线序：橙白、橙、白绿、蓝、白蓝、绿、白棕、棕</li>
 <li>T568A 线序：1和3，2和6对调即可</li>
 </ul>
+<hr>
 <h2 id="五、双绞线（又称网线）的类型"><a href="#五、双绞线（又称网线）的类型" class="headerlink" title="五、双绞线（又称网线）的类型"></a>五、双绞线（又称网线）的类型</h2><ul>
 <li>标准网线——两端均是 <font color="red">T568B</font> 或两端均是 T568A（又称为直通线）</li>
 <li>交叉网线—— 一端用 T568A，另一端用 T568B</li>
 <li>全反线—— 一端是 1-8，另一端 8-1（T568A 或 T568B）（又称为配置线）</li>
 </ul>
+<hr>
 <h2 id="六、网络设备的连线规则（常见的网络设备：PC-交换机-路由器）"><a href="#六、网络设备的连线规则（常见的网络设备：PC-交换机-路由器）" class="headerlink" title="六、网络设备的连线规则（常见的网络设备：PC&#x2F;交换机&#x2F;路由器）"></a>六、网络设备的连线规则（常见的网络设备：PC&#x2F;交换机&#x2F;路由器）</h2><ul>
 <li>相同的设备，用交叉线</li>
 <li>不同的设备，用直通线</li>
 <li>PC和路由器相连，用交叉线</li>
 </ul>
 <p><img src="https://s2.loli.net/2023/09/20/uwpFJIfsPUqhVaT.png" alt="网络设备连线规则.png"></p>
+<hr>
 <h2 id="七、制作双绞线的步骤"><a href="#七、制作双绞线的步骤" class="headerlink" title="七、制作双绞线的步骤"></a>七、制作双绞线的步骤</h2><ul>
 <li>截取适当的长度的网线（0.5M）</li>
 <li>用压线钳的剪线口将双绞线的外皮剥去适当的长度</li>
@@ -431,6 +437,7 @@
 <li>用压线钳将其压紧</li>
 <li>用测线仪测试双绞线的连通性</li>
 </ul>
+<hr>
 <h2 id="八、传输介质"><a href="#八、传输介质" class="headerlink" title="八、传输介质"></a>八、传输介质</h2><ul>
 <li>有线传输介质（重点掌握）<ul>
 <li>双绞线</li>
@@ -442,6 +449,7 @@
 </ul>
 </li>
 </ul>
+<hr>
 <h2 id="九、综合布线系统（PDS）"><a href="#九、综合布线系统（PDS）" class="headerlink" title="九、综合布线系统（PDS）"></a>九、综合布线系统（PDS）</h2><ul>
 <li>定义：用于传输语音、视频、数据、影像和其他信息标准化结构的综合布线系统。</li>
 <li>六大子系统<ol>
@@ -461,6 +469,7 @@
 </ul>
 </li>
 </ul>
+<hr>
 <h2 id="十、数制转换"><a href="#十、数制转换" class="headerlink" title="十、数制转换"></a>十、数制转换</h2><ul>
 <li>计算机数制的相关概念：<ul>
 <li>数制</li>
@@ -530,6 +539,7 @@
 </ul>
 </li>
 </ul>
+<hr>
 <h2 id="十一、计算机存储常使用的容量单位"><a href="#十一、计算机存储常使用的容量单位" class="headerlink" title="十一、计算机存储常使用的容量单位"></a>十一、计算机存储常使用的容量单位</h2><ul>
 <li>理论计算机容量换算：<ul>
 <li>1汉字 &#x3D; 2 bytes（字节）</li>
@@ -552,6 +562,7 @@
 </ul>
 </li>
 </ul>
+<hr>
 ]]></content>
       <categories>
         <category>记录</category>
@@ -1596,7 +1607,7 @@
 <li>应用层——计算机软件</li>
 </ol>
 <hr>
-<h1 id="填写中。。。"><a href="#填写中。。。" class="headerlink" title="填写中。。。"></a>填写中。。。</h1>]]></content>
+]]></content>
       <categories>
         <category>记录</category>
         <category>学习</category>
