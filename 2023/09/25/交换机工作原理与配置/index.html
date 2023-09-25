@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>移动端网页 |  焱</title>
+      <title>交换机工作原理与配置 |  焱</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-移动端网页"
+  id="post-交换机工作原理与配置"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  移动端网页
+  交换机工作原理与配置
 </h1>
  
 
@@ -73,11 +73,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/09/21/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5/" class="article-date">
-  <time datetime="2023-09-21T11:02:06.000Z" itemprop="datePublished">2023-09-21</time>
+      <a href="/2023/09/25/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2023-09-25T04:19:28.000Z" itemprop="datePublished">2023-09-25</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/">网页</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">移动端</a>
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/">运维</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/">交换机原理与配置</a>
   </div>
   
 <div class="word_count">
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.1k</span>
+            <span class="post-count">1.8k</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">3 min</span>
+            <span class="post-count">6 min</span>
         </span>
     </span>
 </div>
@@ -109,117 +109,229 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="流式布局"><a href="#流式布局" class="headerlink" title="流式布局"></a>流式布局</h1><h2 id="一、移动端基础"><a href="#一、移动端基础" class="headerlink" title="一、移动端基础"></a>一、移动端基础</h2><h3 id="1-1常见移动端屏幕尺寸"><a href="#1-1常见移动端屏幕尺寸" class="headerlink" title="1.1常见移动端屏幕尺寸"></a>1.1常见移动端屏幕尺寸</h3><p><img src="https://s2.loli.net/2023/09/20/cNya9w5TdqEj3fp.png" alt="常见移动端屏幕尺寸.jpg"></p>
-<h3 id="1-2移动端调试方法"><a href="#1-2移动端调试方法" class="headerlink" title="1.2移动端调试方法"></a>1.2移动端调试方法</h3><ul>
-<li>Chrome DevTools（谷歌浏览器）的模拟手机调试<span id="more"></span></li>
-</ul>
-<hr>
-<h2 id="二、视口"><a href="#二、视口" class="headerlink" title="二、视口"></a>二、视口</h2><ul>
-<li>视口（viewport）就是浏览器显示页面内容的屏幕区域。</li>
-<li>视口可以分为布局视口、视觉视口和理想视口</li>
-</ul>
-<h3 id="2-1布局视口-layout-viewport"><a href="#2-1布局视口-layout-viewport" class="headerlink" title="2.1布局视口 layout viewport"></a>2.1布局视口 layout viewport</h3><ul>
-<li>一般移动设备的浏览器都默认设置了一个布局视口，用于解决早期的PC端页面在手机上显示的问题。</li>
-<li>IOS，Android基本都将这个视口分辨率设置为 980px，所以PC上的网页大多都能在手机上呈现，只不过元素看上去很小，一般默认可以通过手动缩放网页。</li>
-</ul>
-<p><img src="https://s2.loli.net/2023/09/20/bx6JqwicTU2MvjV.png" alt="布局视口.jpg"></p>
-<h3 id="2-2视觉视口-visual-viewport"><a href="#2-2视觉视口-visual-viewport" class="headerlink" title="2.2视觉视口 visual viewport"></a>2.2视觉视口 visual viewport</h3><ul>
-<li>字面意思，它是用户正在看到的网站的区域。注意：是网站的区域。</li>
-<li>我们可以通过缩放去操作视觉视口，但不会影响布局视口，布局视口仍保持原来的宽度。</li>
-</ul>
-<p><img src="https://s2.loli.net/2023/09/20/aeIzGJmHPbhMKOQ.png" alt="视觉视口.jpg"></p>
-<h3 id="2-3理想视口-ideal-viewport"><a href="#2-3理想视口-ideal-viewport" class="headerlink" title="2.3理想视口 ideal viewport"></a>2.3理想视口 ideal viewport</h3><ul>
-<li>为了使网站在移动端有最理想的浏览和阅读宽度而设定</li>
-<li>理想视口，对设备来讲，是最理想的视口尺寸</li>
-<li>需要手动添加meta视口标签通知浏览器操作</li>
-<li>meta视口标签的主要目的：网页宽度和设备宽度（分辨率）相同，简单理解就是设备有多宽，我们的布局的视口就多宽</li>
-</ul>
-<p><strong>总结：我们开发最终会用理想视口，而理想视口就是将布局视口的宽度修改为视觉视口</strong></p>
-<h3 id="2-4视口标签"><a href="#2-4视口标签" class="headerlink" title="2.4视口标签"></a>2.4视口标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="center">属性</th>
-<th align="center">解释说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">width</td>
-<td align="center">宽度设置的是viewport宽度，可以设置device-width特殊值</td>
-</tr>
-<tr>
-<td align="center">initial-scale</td>
-<td align="center">初始缩放比，大于0的数字</td>
-</tr>
-<tr>
-<td align="center">maximum-scale</td>
-<td align="center">最大缩放比，大于0的数字</td>
-</tr>
-<tr>
-<td align="center">minimum-scale</td>
-<td align="center">最小缩放比，大于0的数字</td>
-</tr>
-<tr>
-<td align="center">user-scalable</td>
-<td align="center">用户是否可以缩放，yes或no（1或0）</td>
-</tr>
-</tbody></table>
+  <h1 id="交换机工作原理与配置"><a href="#交换机工作原理与配置" class="headerlink" title="交换机工作原理与配置"></a>交换机工作原理与配置</h1><h2 id="一、知识回顾"><a href="#一、知识回顾" class="headerlink" title="一、知识回顾"></a>一、知识回顾</h2><ul>
+<li><p>数据链路层的作用</p>
+</li>
+<li><p>以太网的发展史</p>
 <ul>
-<li>最标准的viewport设置<ul>
-<li>视口宽度和设备保持一致</li>
-<li>视口的默认缩放比例1.0</li>
-<li>不允许用户自行缩放</li>
-<li>最大允许的缩放比例1.0</li>
-<li>最小允许的缩放比例1.0</li>
+<li>2.94M实验性以太网</li>
+<li>10M以太网</li>
+<li>100M以太网</li>
+<li>1000M以太网<span id="more"></span></li>
+</ul>
+</li>
+<li><p>以太网MAC地址组成</p>
+<ul>
+<li><p>定义：通过MAC地址识别以太网中的每个设备（PC）</p>
+</li>
+<li><p>以太网MAC地址是全球唯一</p>
+</li>
+<li><p>通过48个比特位表示（前24个比特位表示厂商；后24个比特位表示唯一编码）；其中前24个比特位中的第8位，若是0，表示单播地址；若是1，表示组播地址。</p>
+</li>
+<li><p>MAC地址，又称为“物理地址”。MAC地址焊接在网卡芯片上，用于以太网的数据传输，同时标识以太网中的每一台PC。</p>
+<p><img src="https://s2.loli.net/2023/09/22/CthNgxyXFj5mZDB.png" alt="MAC地址组成.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>以太网的帧格式</p>
+<ul>
+<li><p>以太网帧格式部分组成——目的地址（目前主机MAC地址）；源地址（源主机MAC地址）；数据（46~1500字节）；类型（上层对应的协议，一般指IP协议，即四个支撑协议（icmp&#x2F;igmp&#x2F;arp&#x2F;rarp）；帧校验序列。</p>
+<p><img src="https://s2.loli.net/2023/09/22/FHoSiIfX3VypRnd.jpg" alt="以太网帧格式.jpg"></p>
+</li>
 </ul>
 </li>
 </ul>
 <hr>
-<h2 id="三、二倍图"><a href="#三、二倍图" class="headerlink" title="三、二倍图"></a>三、二倍图</h2><h3 id="3-1物理分辨率-逻辑分辨率-物理像素比"><a href="#3-1物理分辨率-逻辑分辨率-物理像素比" class="headerlink" title="3.1物理分辨率&amp;逻辑分辨率&amp;物理像素比"></a>3.1物理分辨率&amp;逻辑分辨率&amp;物理像素比</h3><ul>
-<li>物理分辨率是生产屏幕时就固定的，它是不可改变的</li>
-<li>逻辑分辨率石油软件（驱动）决定的</li>
-<li>一个px的能显示的物理像素点的个数，称为物理像素比或屏幕像素比</li>
+<h2 id="二、交换机"><a href="#二、交换机" class="headerlink" title="二、交换机"></a>二、交换机</h2><ol>
+<li><p>交换机产品系列</p>
+<ul>
+<li>CISCO 2960（入门级交换机）</li>
+<li>CISCO 3560（企业级交换机）</li>
+<li>CISCO 4500（企业模块级交换机）</li>
+<li>CISCO 6500（大型企业、电信级交换机）</li>
 </ul>
-<h3 id="3-2背景缩放background-size"><a href="#3-2背景缩放background-size" class="headerlink" title="3.2背景缩放background-size"></a>3.2背景缩放background-size</h3><ul>
-<li><p>background-size 属性规定背景图像的尺寸</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-size</span>: 背景图片宽度 背景图片高度;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>单位：长度|百分比|cover|contain;</p>
+<li><p>交换机工作原理</p>
+<p><img src="https://s2.loli.net/2023/09/22/3dvcDLa5Vfo4hBC.png" alt="交换机工作原理.jpg"></p>
+<ul>
+<li>初始化（给交换机进行加电自检）</li>
+<li>学习MAC地址（A主机的源MAC地址）</li>
+<li>广播（广播B主机的MAC地址）</li>
+<li>再学习MAC地址（主机B回应的同时，交换机学习主机B的源MAC地址）</li>
+<li>单播（实现主机A到主机B的单播通信）</li>
+</ul>
 </li>
-<li><p>cover把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。</p>
+<li><p>交换机工作原理总结</p>
+<ul>
+<li>交换机始终学习的是各主机的源MAC地址</li>
+<li>交换机把学习到的MAC地址记录到MAC地址表中，记录的具体信息：MAC地址＋对应接口</li>
+<li>交换机MAC地址表中的信息不是永久存在的，是临时的，老化时间是３００秒（５分钟）。</li>
+</ul>
 </li>
-<li><p>contain把背景图像扩展至最大尺寸，以使其宽度和高度完全适应内容区域</p>
+<li><p>交换机以太网接口的工作模式</p>
+<ul>
+<li><p>单工——两个数据站之间只能进行单向数据传输（类似话筒与扬声器）</p>
+<p><img src="https://s2.loli.net/2023/09/23/bswMtKZi9gNPeDv.png" alt="单工数据传输.jpg"></p>
+</li>
+<li><p>半双工——两个数据站之间双向数据传输，但不能同时进行（类似于对讲机）</p>
+<p><img src="https://s2.loli.net/2023/09/23/BSJybgZNhXlfip7.png" alt="半双工数据传输.jpg"></p>
+</li>
+<li><p>全双工——两个数据站双向且同时进行数据传输（类似于电话或手机）</p>
+<p><img src="https://s2.loli.net/2023/09/23/r2FOEcGx8IXdRZs.png" alt="全双工数据传输.jpg"></p>
 </li>
 </ul>
+</li>
+<li><p>交换机以太网的接口速率</p>
+<ul>
+<li>接口速率——自动协商、10M、100M、1000M</li>
+<li>接口速率设置时，两端接口必须保持一样</li>
+<li>接口速率协商失败，导致网络链路无法正常通信</li>
+</ul>
+</li>
+<li><p>交换机的配置方法</p>
+<ul>
+<li><p>通过Console配置线链接PC的COM口实现对交换机的配置（传统配置方法）</p>
+<p><img src="https://s2.loli.net/2023/09/23/lj7a4UYnt32dDy8.png" alt="通过 Console 接口配置交换机.jpg"></p>
+</li>
+<li><p>直接通过交换机的CLI(Command line interface)命令行接口对交换机进行配置</p>
+</li>
+</ul>
+</li>
+<li><p>交换机命令行的工作模式</p>
+<ul>
+<li>用户模式——查看交换机相关信息</li>
+<li>特权模式——查看或修改相关信息</li>
+<li>全局模式——主要用于对交换机全局配置信息的修改</li>
+<li>接口模式——主要用于对交换机接口进行相关的配置</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/09/23/397FwypbisjYu4c.png" alt="Cisco 设备命令行模式关系图.jpg"></p>
+</li>
+<li><p>交换机命令行的帮助</p>
+<ul>
+<li>？显示当前工作模式下可以使用的命令列表及参数</li>
+<li>Tab 命令补齐或命令提示</li>
+<li>ctrl + A 将光标定位到命令行的开始位置</li>
+<li>ctrl + E 将光标定位到命令行的结束位置</li>
+</ul>
+</li>
+<li><p>交换机命令行工作模式的切换方式</p>
+<ul>
+<li><p>交换机的工作模式</p>
+<ul>
+<li>用户模式：Switch&gt;</li>
+<li>特权模式：Switch#</li>
+<li>全局模式：Switch(config)#</li>
+<li>接口模式：Switch(config-if)#</li>
+</ul>
+</li>
+<li><p>交换机工作模式的切换方式</p>
+<ul>
+<li><p>从用户模式进入或切换到特权模式的命令：enable可简写为en</p>
+</li>
+<li><p>从特权模式进入或切换到全局模式的命令：configure terminal可简写为 conf t</p>
+</li>
+<li><p>从全局模式进入或切换到接口模式的命令：interface fastEthernet 0&#x2F;1可简写为 int f0&#x2F;1，<font color="red">总结：从用户 模式进入到接口模式，必须一级一级的进行切换。</font></p>
+</li>
+<li><p>从接口模式退回到全局模式的命令：exit</p>
+</li>
+<li><p>从全局模式退回到特权模式的命令：exit 或 end 或 快捷方式：ctrl + z</p>
+</li>
+<li><p>从特权模式退回到用户模式的命令：exit（只适用于模拟器，真实交换机设备使用命令是disable）</p>
+</li>
+<li><p>从接口模式直接退回到特权模式的命令：end</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CISCO模拟器的使用</p>
+<ul>
+<li>绘制网络拓扑图与应用各种网络设备<ul>
+<li>选择对应的网络设备（交换机、路由器、防火墙、服务器、PC）</li>
+<li>选择链接对应网络设备的线缆（配置线、直通线、交叉线等）</li>
+<li>对网络设备进行逐一配置（配置IP地址、接口地址等）</li>
+<li>测试并验证最终的结果</li>
+</ul>
+</li>
+<li>模拟器网络设备的分类<ol>
+<li>交换机<ul>
+<li>二层交换机：cisco 2960（入门级交换机）</li>
+<li>三层交换机：cisco 3560（企业级交换机）</li>
+</ul>
+</li>
+<li>路由器<ul>
+<li>路由器型号：cisco 2811、2911等</li>
+</ul>
+</li>
+<li>防火墙<ul>
+<li>防火墙系列：cisco 5055</li>
+</ul>
+</li>
+<li>终端设备<ul>
+<li>个人PC：台式机、笔记本</li>
+<li>服务器：Server-PT</li>
+</ul>
+</li>
+<li>线缆分类<ul>
+<li>配置线</li>
+<li>直通线</li>
+<li>交叉线</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>模拟器的辅助功能<ul>
+<li>网络设备添加标识——place note</li>
+<li>删除网络设备图标</li>
+<li>放大与缩小网络设备图标</li>
+<li>选择网络设备或绘制拓扑图，进行移动操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>以太网中网络设备常用命令</p>
+<ul>
+<li>ping 测试网络的连通性</li>
+<li>ipconfig 查看windows系统中，对应网卡配置的ip地址信息</li>
+<li>ifconfig 查看linux系统中，对应网卡配置的ip地址信息</li>
+<li>show mac-address-table dynamic 查看交换机中MAC地址表的信息（特权模式）</li>
+</ul>
+</li>
+<li><p>网络设备查询注意事项</p>
+<ul>
+<li>在特权模式使用show命令，例如：Switch# show mac-address-table dynamic</li>
+<li>在全局模式使用show命令，例如：Switch(config)# do show mac-address-table</li>
+<li>在接口模式使用show命令，例如：Switch(config-if)#do show mac-address-table</li>
+</ul>
+</li>
+<li><p>交换机双工模式配置与速率配置</p>
+<ul>
+<li>以太网接口双工模式配置<ul>
+<li>交换机双工模式在配置时，若交换机两端对应接口的双工模式不一样时，会造成严重的丢包现象，导致 网络无法正常通信。</li>
+<li>实际配置交换机接口双工模式采用全双工，交换机两端接口双工模式必须配置一样，使用的命令： duplex full</li>
+</ul>
+</li>
+<li>以太网接口速率配置<ul>
+<li>交换机速率配置时，若交换机两端对应接口的速率不一样时，直接导致网络无法正常通信。</li>
+<li>实际配置交换机接口速率采用100&#x2F;1000速率，交换机两端接口速率必须配置一样，使用命令：speed 100&#x2F;1000</li>
+</ul>
+</li>
+<li>查看交换机接口详细信息使用的查询命令<ul>
+<li>show interface f0&#x2F;24 或者 sh int f0&#x2F;24（在特权模式执行命令）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>交换网络播的类型</p>
+<ul>
+<li>单播：一对一，传输效率最高，延迟最小</li>
+<li>组播：一对多，传输效率其次，延迟较小</li>
+<li>广播：一对多，传输效率最低，延迟最大</li>
+</ul>
+</li>
+</ol>
 <hr>
-<h2 id="四、移动开发选择和技术解决方案"><a href="#四、移动开发选择和技术解决方案" class="headerlink" title="四、移动开发选择和技术解决方案"></a>四、移动开发选择和技术解决方案</h2><h3 id="4-1移动端主流方案"><a href="#4-1移动端主流方案" class="headerlink" title="4.1移动端主流方案"></a>4.1移动端主流方案</h3><ul>
-<li>单独制作移动端页面（主流）<ul>
-<li>通常情况下，网址域名前面加 m(mobile)</li>
-<li>可以打开移动端。通过判断设备，如果是移动设备打开，则跳到移动端页面。</li>
-<li>PC端和移动端为两套网站，PC端是PC端的样式，移动端再写一套，专门针对移动端适配的一套网站</li>
-</ul>
-</li>
-</ul>
-<h3 id="4-2移动端技术解决方案"><a href="#4-2移动端技术解决方案" class="headerlink" title="4.2移动端技术解决方案"></a>4.2移动端技术解决方案</h3><ul>
-<li>移动端浏览器兼容问题<ul>
-<li>移动端浏览器基本以 webkit 内核为主，因此我们就考虑 webkit 兼容性问题。</li>
-<li>我们可以放心使用 H5 标签和 CSS3 样式。</li>
-<li>同时我们浏览器的私有前缀我们只需要考虑添加 webkit 即可</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="五、移动端常见布局-流式布局"><a href="#五、移动端常见布局-流式布局" class="headerlink" title="五、移动端常见布局-流式布局"></a>五、移动端常见布局-流式布局</h2><ul>
-<li>流式布局：<ul>
-<li>流式布局就是百分比布局，也称非固定像素布局。</li>
-<li>通过盒子的宽度设置成百分比来根据屏幕的宽度来进行伸缩，不受固定像素的限制，内容向两侧填充。</li>
-<li>流式布局方式是移动web开发使用的比较常见的布局方式。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h1 id="填写中。。。"><a href="#填写中。。。" class="headerlink" title="填写中。。。"></a>填写中。。。</h1> 
+ 
       <!-- reward -->
       
       <div id="reword-out">
@@ -289,12 +401,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/09/21/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/09/25/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" rel="tag">移动端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E9%A1%B5/" rel="tag">网页</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/" rel="tag">交换机原理与配置</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
 
     </footer>
   </div>
@@ -302,19 +414,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2023/09/25/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/" class="article-nav-link">
+      <a href="/2023/09/25/%E7%BD%91%E7%BB%9C%E5%B1%82%E5%8D%8F%E8%AE%AE/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            交换机工作原理与配置
+            网络层协议
           
         </div>
       </a>
     
     
-      <a href="/2023/09/20/%E7%BD%91%E7%BB%9C%E5%B8%83%E7%BA%BF%E4%B8%8E%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2/" class="article-nav-link">
+      <a href="/2023/09/21/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">网络布线与数制转换</div>
+        <div class="article-nav-title">移动端网页</div>
       </a>
     
   </nav>
