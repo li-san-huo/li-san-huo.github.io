@@ -1365,7 +1365,7 @@
 </li>
 </ul>
 <hr>
-<h1 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h1><h2 id="一、flex布局原理"><a href="#一、flex布局原理" class="headerlink" title="一、flex布局原理"></a>一、flex布局原理</h2><ul>
+<h1 id="flex-布局"><a href="#flex-布局" class="headerlink" title="flex 布局"></a>flex 布局</h1><h2 id="一、flex-布局原理"><a href="#一、flex-布局原理" class="headerlink" title="一、flex 布局原理"></a>一、flex 布局原理</h2><ul>
 <li>flex 是 flexible Box 的缩写，意为“弹性布局”。</li>
 <li>当我们为父盒子设为 flex 布局以后，子元素的 float、clear 和 vertical-align 属性将失效。</li>
 <li>flex布局又叫伸缩布局、弹性布局、伸缩盒布局、弹性盒布局</li>
@@ -1381,7 +1381,7 @@
 <li>align-items：设置恻轴上的子元素排列方式（单行）</li>
 <li>flex-flow：复合属性，相当于同时设置了 flex-direction 和 flex-wrap</li>
 </ul>
-<h3 id="2-1-flex-direction设置主轴的方向"><a href="#2-1-flex-direction设置主轴的方向" class="headerlink" title="2.1 flex-direction设置主轴的方向"></a>2.1 flex-direction设置主轴的方向</h3><ul>
+<h3 id="2-1-flex-direction-设置主轴的方向"><a href="#2-1-flex-direction-设置主轴的方向" class="headerlink" title="2.1 flex-direction 设置主轴的方向"></a>2.1 flex-direction 设置主轴的方向</h3><ul>
 <li>在 flex 布局中，是分为主轴和恻轴两个方向，同样的叫法有：行和列、x 轴和 y 轴</li>
 <li>默认主轴方向就是 x 轴方向，水平向右</li>
 <li>默认恻轴方向就是 y 轴方向，水平向下</li>
@@ -1435,7 +1435,7 @@
 <td align="center"><font color="red">先两边贴边 再平分剩余空间（重要）</font></td>
 </tr>
 </tbody></table>
-<h3 id="2-3-flex-wrap设置是否换行"><a href="#2-3-flex-wrap设置是否换行" class="headerlink" title="2.3 flex-wrap设置是否换行"></a>2.3 flex-wrap设置是否换行</h3><ul>
+<h3 id="2-3-flex-wrap-设置是否换行"><a href="#2-3-flex-wrap-设置是否换行" class="headerlink" title="2.3 flex-wrap 设置是否换行"></a>2.3 flex-wrap 设置是否换行</h3><ul>
 <li>默认情况下，项目都排在一条线（又称“轴线”）上。flex-wrap属性定义，flex布局中默认是不换行的。</li>
 <li>nowrap 不换行</li>
 <li>wrap 换行</li>
@@ -1475,7 +1475,7 @@
 </tbody></table>
 </li>
 </ul>
-<h3 id="2-3-flex-wrap设置是否换行-1"><a href="#2-3-flex-wrap设置是否换行-1" class="headerlink" title="2.3 flex-wrap设置是否换行"></a>2.3 flex-wrap设置是否换行</h3><ul>
+<h3 id="2-3-flex-wrap-设置是否换行-1"><a href="#2-3-flex-wrap-设置是否换行-1" class="headerlink" title="2.3 flex-wrap 设置是否换行"></a>2.3 flex-wrap 设置是否换行</h3><ul>
 <li>默认情况下，项目都排在一条线（又称“轴线”）上。flex-wrap 属性定义，flex 布局中默认是不换行的。</li>
 <li>nowrap 不换行</li>
 <li>wrap 换行</li>
@@ -1527,7 +1527,7 @@
 <h3 id="2-7-flex-flow-属性是-flex-direction-和-flex-wrap-属性的复合属性"><a href="#2-7-flex-flow-属性是-flex-direction-和-flex-wrap-属性的复合属性" class="headerlink" title="2.7 flex-flow 属性是 flex-direction 和 flex-wrap 属性的复合属性"></a>2.7 flex-flow 属性是 flex-direction 和 flex-wrap 属性的复合属性</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">flex-flow</span>: row wrap;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="三、flex布局子项常见属性"><a href="#三、flex布局子项常见属性" class="headerlink" title="三、flex布局子项常见属性"></a>三、flex布局子项常见属性</h2><ul>
+<h2 id="三、flex-布局子项常见属性"><a href="#三、flex-布局子项常见属性" class="headerlink" title="三、flex 布局子项常见属性"></a>三、flex 布局子项常见属性</h2><ul>
 <li>flex 子项目占的份数</li>
 <li>align-self 控制子项自己在恻轴的排列方式</li>
 <li>order 属性定义子项的排列顺序（前后顺序）</li>
