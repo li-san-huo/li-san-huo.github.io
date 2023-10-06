@@ -1,6 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>传输层协议</title>
+    <url>/2023/10/06/%E4%BC%A0%E8%BE%93%E5%B1%82%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h1 id="传输层协议介绍"><a href="#传输层协议介绍" class="headerlink" title="传输层协议介绍"></a>传输层协议介绍</h1><ul>
+<li>在 TCP&#x2F;IP 协议栈中，传输层有两个协议：<ul>
+<li>TCP（传输控制协议）：<ul>
+<li>稳定可靠。如：Web、邮箱等对可靠性要求高的服务</li>
+<li>速度相对较慢</li>
+<li>数据通信前，发送端与接收端要先建立连接；等数据发送结束后，双方再断开连接。</li>
+</ul>
+</li>
+<li>UDP（用户数据报协议）：<ul>
+<li>速度块，效率高。如：即时通讯、DHCP等要求快速完成信息传递的服务</li>
+<li>安全可靠性较差</li>
+<li>数据发送不建立连接，直接由发送端发送，不管接收方有没有接收到</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<hr>
+<h2 id="一、TCP-协议"><a href="#一、TCP-协议" class="headerlink" title="一、TCP 协议"></a>一、TCP 协议</h2><blockquote>
+<p>前言：<strong>TCP 是面向连接的、可靠的进程到进程通信的协议。</strong>TCP 提供全双工服务，即数据可在同一时间双向传输，每一个 TCP 都有发送缓存和接收缓存，用来临时存储数据。</p>
+</blockquote>
+<h3 id="TCP-报文段"><a href="#TCP-报文段" class="headerlink" title="TCP 报文段"></a>TCP 报文段</h3><ul>
+<li><p>TCP 将若干个字节构成一个分组，称为报文段（Segment）。TCP 报文段封装在 IP 数据报中，如图所示。</p>
+<p><img src="https://s2.loli.net/2023/09/27/a5uLQAhZpgHrOGR.png" alt="TCP报文段的封装.jpg"></p>
+</li>
+<li><p>TCP 报文段的首部格式如图所示。</p>
+<p><img src="https://s2.loli.net/2023/09/27/oNb1HwdZxMB6yuF.png" alt="TCP报文段的首部格式.jpg"></p>
+</li>
+<li><p>首部长度为 20～60 字节，以下是各字段的含义。</p>
+<ul>
+<li>源端口号：它是 16 位字段，为发送方进程对应的端口号。</li>
+<li>目标端口号：它是 16 位字段，对应的是接收端的进程，接收端收到数据段后，根据这个端口号来确定把数据送给哪个应用程序的进程。</li>
+<li>序号：当 TCP 从进程接收数据字节时，就把它们存储在发送缓存中，并对每一个字节进行编号。编号的特点如下。<ul>
+<li>编号不一定从 0 开始，一般会产生一个随机数作为第一个字节的编号，称为初始序号（ISN），范围是 0～2<sup>32</sup>－1。</li>
+<li>TCP 每个方向的编号是互相独立的。</li>
+<li>当字节都被编上号后，TCP 就给每个报文段指派一个序号，序号就是该报文段中第一个字节的编号。</li>
+<li>当数据到达目的地后，接收端会按照这个序号把数据重新排列，保证数据的正确性。</li>
+</ul>
+</li>
+<li>确认号：对发送端的确认信息，用它来告诉发送端这个序号之前的数据段都已经收到，如确认号是 X，就是表示前 X-1 个数据段都已经收到。</li>
+<li>首部长度：用它可以确定首部数据结构的字节长度。一般情况下 TCP 首部是 20 字节，但首部长度最大可以扩展为 60 字节。</li>
+<li>保留：这部分保留位供今后扩展功能用，现在还没有使用到。</li>
+<li><strong>控制位</strong>：<font color="red">这六位有很重要的作用，TCP 的连接、传输和断开都受这六个控制位的指挥</font>。各位含义如下。<ul>
+<li>URG：紧急指针有效位。设置为1时，首部中的紧急指针有效；为0时，紧急指针没有意义。无法指定紧急数据的长度。</li>
+<li>ACK：确认字符，表示接收到的字符无错误。只有当 ACK＝1 时，确认序列号字段才有效；当 ACK＝0 时，确认号字段无效。</li>
+<li>PSH：表示DATA数据传输。标志位为 1 时，表示有真正的TCP数据包内容被传递，要求接收方尽快将数据段送达应用层。</li>
+<li>RST：一般是在FIN之后才会出现为1的情况，当 RST 值为 1 时通知重新建立 TCP 连接。</li>
+<li>SYN：同步序号位，TCP 需要建立连接时将这个值设为 1。</li>
+<li>FIN：发送端完成发送任务位，当 TCP 完成数据传输需要断开连接时，提出断开连接的一方将这个值设为 1。</li>
+</ul>
+</li>
+<li>窗口大小：说明本地可接收数据段的数目，这个值的大小是可变的，当网络通畅时将这个窗口值变大以加快传输速度，当网络不稳定时减小这个值可保证网络数据的可靠传输，TCP 中的流量控制机制就是依靠变化窗口的大小实现的。</li>
+<li>校验和：用来做差错控制，与 IP 的校验和不同，TCP 校验和的计算包括 TCP 首部、数据和其他填充字节。在发送 TCP 数据段时，由发送端计算校验和，当到达目的地时又进行一次校验和计算。若这两次的校验和一致，则说明数据基本是正确的，否则将认为该数据已被破坏，接收端将丢弃该数据。</li>
+<li>紧急指针：和 URG 配合使用，当 URG＝1 时有效。</li>
+<li>选项：在 TCP 首部可以有多达 40 字节的可选信息。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二、TCP-连接（三次握手，四次挥手）"><a href="#二、TCP-连接（三次握手，四次挥手）" class="headerlink" title="二、TCP 连接（三次握手，四次挥手）"></a>二、TCP 连接（三次握手，四次挥手）</h2><blockquote>
+<p>前言：TCP 是面向连接的协议，它在源点和终点之间建立一条虚连接，而不是物理连接。TCP 报文段封装成 IP 数据报后，每一个 IP 数据报可以走不同的路径到达终点，因此收到的 IP 数据报可能不按顺序到达，甚至可能丢失或损坏。如果一个报文段没有按顺序到达，那么 TCP 保留它，然后等待它之前的报文段到达；如果一个报文段丢失或损坏，那么 TCP 就要重传。总之，TCP 保证报文段是有序的。</p>
+</blockquote>
+<ol>
+<li><p>连接建立</p>
+<p>TCP 建立连接的过程称为三次握手，过程如下图所示。后面通过 Sniffer 抓包来分析三次握手的过程。</p>
+<p><img src="https://s2.loli.net/2023/09/27/BWmd4Pnhc39UfZX.png" alt="TCP三次握手示意图.jpg"></p>
+<p>Seq 表示请求序列号，Ack 表示确认序列号，SYN 和 ACK 为控制位。</p>
+<p>SYN 控制位只有在请求建立连接时才被置为 1。</p>
+<ul>
+<li><p>第一次握手</p>
+<ul>
+<li><p>PC1 使用一个随机的端口号向 PC2 的 80 端口发送建立连接的请求，此过程的典型标志就是 TCP 的 SYN 控制位为 1，其他五个控制位全为 0。</p>
+<p><img src="https://s2.loli.net/2023/09/27/ngRE5D1kslrqMNm.png" alt="TCP三次握手（1）.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>第二次握手（由两部分完成）</p>
+<ul>
+<li><p>PC2 收到了PC1的请求，向 PC1 回复一个确认信息，此过程的典型标志就是 TCP 的 ACK 控制位为 1，其他五个控制位全为 0 ，而且确认序列号是 PC1 的初始序列号加 1。</p>
+</li>
+<li><p>PC2 也向 PC1 发送建立连接的请求，此过程的典型标志和第一次握手一样，即 TCP 的 SYN 控制位为 1，其他五个控制位全为 0。</p>
+</li>
+<li><p>为了提高效率，一般将这两部分合并在一个数据包里实现。</p>
+<p><img src="https://s2.loli.net/2023/09/29/DSG8TVJECzcRK6r.png" alt="TCP三次握手（2）.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>第三次握手</p>
+<ul>
+<li><p>PC1 收到了 PC2 的回复（包含请求和确认），也要向 PC2 回复一个确认消息，此过程的典型标志就是 TCP 的 ACK 控制位为 1，其他五个控制位全为 0，而且确认序列号是PC2 的初始序列号加 1。</p>
+<p><img src="https://s2.loli.net/2023/09/29/zRpAqmgDTaesJI2.png" alt="TCP三次握手（3）.jpg"></p>
+</li>
+<li><p>这样就完成了三次握手，PC1 与 PC2 之间建立了 TCP 连接。在 PC2 上的 CMD 窗口中运行 netstat -na 命令，可看到以下信息</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">Proto	Local Address	Foreign Address		State</span><br><span class="line">TCP 	<span class="number">192</span>.<span class="number">168</span>.<span class="number">0</span>.<span class="number">2</span>:<span class="number">80</span> 	<span class="number">192</span>.<span class="number">168</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1276</span> 	ESTABLISHED</span><br><span class="line"></span><br><span class="line">其中，状态（State）是 ESTABLISHED，表明 TCP 连接已成功建立</span><br><span class="line"></span><br><span class="line">netstat 命令可以显示协议统计信息和当前的 TCP/IP 网络连接。 </span><br><span class="line">参数 -a 显示所有连接和监听端口，-n 以数字形式显示地址和端口号。</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>连接终止</p>
+<p>参加交换数据的双方中的任何一方（客户或服务器）都可以关闭连接。TCP 断开连接分四步，也称为四次挥手。如下图所示</p>
+<p><img src="https://s2.loli.net/2023/09/29/lSeXryUEMf5jtwJ.png" alt="TCP断开连接示意图.jpg"></p>
+<p>过程步骤：</p>
+<ul>
+<li>服务器向客户端发送 FIN 和 ACK 位置 1 的 TCP 报文段。</li>
+<li>客户端向服务器返回 ACK 位置 1 的 TCP 报文段。</li>
+<li>客户端向服务器发送 FIN 和 ACK 位置 1 的 TCP 报文段。</li>
+<li>服务器向客户端返回 ACK 位置 1 的 TCP 报文段。</li>
+</ul>
+<blockquote>
+<p>在 TCP 断开连接过程中，有一个半关闭的概念。TCP 一方（通常是客户端）可以终止发送数据，但仍然可以接收数据，称为半关闭。具体描述如下：</p>
+</blockquote>
+<ul>
+<li>客户端发送 FIN 报文段，半关闭了这个连接，服务器发送 ACK 报文段接受半关闭。</li>
+<li>服务器继续发送数据，而客户端只发送 ACK 确认，不再发送任何数据。</li>
+<li>当服务器已经把所有数据发送完毕时，就发送 FIN 报文段，客户再发送 ACK 报文段，这样就关闭了 TCP 连接。</li>
+</ul>
+</li>
+<li><p>常用的 TCP 端口及其说明</p>
+<table>
+<thead>
+<tr>
+<th align="center">端口</th>
+<th align="center">协议</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">21</td>
+<td align="center">FTP</td>
+<td align="center">FTP 服务器所开放的控制端口</td>
+</tr>
+<tr>
+<td align="center">23</td>
+<td align="center">TELNET</td>
+<td align="center">用于远程登陆，可以远程控制管理目标计算机</td>
+</tr>
+<tr>
+<td align="center">25</td>
+<td align="center">SMTP</td>
+<td align="center">SMTP 服务器开放的端口，用于发送邮件</td>
+</tr>
+<tr>
+<td align="center">80</td>
+<td align="center">HTTP</td>
+<td align="center">超文本传输协议</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<hr>
+<h2 id="三、UDP-协议"><a href="#三、UDP-协议" class="headerlink" title="三、UDP 协议"></a>三、UDP 协议</h2><blockquote>
+<p>前言：相比 TCP 协议而言，<strong>UDP 是一个无连接、不保证可靠性的传输层协议</strong>，也就是说发送端不关心发送的数据是否到达目标主机、数据是否出错等，收到数据的主机也不会告诉发送方是否收到了数据，它的可靠性由上层协议来保障。在数据传输时能实现最小的开销，发送端和接收端之间的交互要比使用 TCP 时少得多。相比 TCP 协议，<strong>UDP 传输数据速度更快，效率更高。</strong></p>
+</blockquote>
+<ol>
+<li><p>UDP 首部格式：</p>
+<p><img src="https://s2.loli.net/2023/09/29/R7TZhs4XCK532aO.png" alt="UDP首部格式.jpg"></p>
+</li>
+<li><p>各字段的含义：</p>
+<ul>
+<li>源端口号：用来标识数据发送端的进程，和 TCP 协议的端口号类似。</li>
+<li>目的端口号：用来标识数据接收端的进程，和 TCP 协议的端口号类似。</li>
+<li>UDP 长度：用来指出 UDP 的总长度，为首部加上数据。</li>
+<li>校验和：用来完成对 UDP 数据的差错检验，它的计算与 TCP 校验和类似。这是 UDP 提供的唯一可靠机制。</li>
+</ul>
+</li>
+<li><p>UDP 使用的一些常见端口</p>
+<table>
+<thead>
+<tr>
+<th align="center">端口</th>
+<th align="center">协议</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">69</td>
+<td align="center">TFTP</td>
+<td align="center">简单文件传输协议</td>
+</tr>
+<tr>
+<td align="center">111</td>
+<td align="center">RPC</td>
+<td align="center">远程过程调用</td>
+</tr>
+<tr>
+<td align="center">123</td>
+<td align="center">NTP</td>
+<td align="center">网络时间协议</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>传输层协议</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>传输层协议</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS3</title>
     <url>/2023/09/18/CSS3/</url>
     <content><![CDATA[<h1 id="CSS3-这里3指第三代CSS"><a href="#CSS3-这里3指第三代CSS" class="headerlink" title="CSS3(这里3指第三代CSS)"></a>CSS3(这里3指第三代CSS)</h1><h2 id="一、css3属性选择器"><a href="#一、css3属性选择器" class="headerlink" title="一、css3属性选择器"></a>一、css3属性选择器</h2><ol>
@@ -538,243 +748,6 @@
       </tags>
   </entry>
   <entry>
-    <title>交换机工作原理与配置</title>
-    <url>/2023/09/25/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="交换机工作原理与配置"><a href="#交换机工作原理与配置" class="headerlink" title="交换机工作原理与配置"></a>交换机工作原理与配置</h1><h2 id="一、知识回顾"><a href="#一、知识回顾" class="headerlink" title="一、知识回顾"></a>一、知识回顾</h2><ul>
-<li><p>数据链路层的作用</p>
-</li>
-<li><p>以太网的发展史</p>
-<ul>
-<li>2.94M实验性以太网</li>
-<li>10M以太网</li>
-<li>100M以太网</li>
-<li>1000M以太网<span id="more"></span></li>
-</ul>
-</li>
-<li><p>以太网MAC地址组成</p>
-<ul>
-<li><p>定义：通过MAC地址识别以太网中的每个设备（PC）</p>
-</li>
-<li><p>以太网MAC地址是全球唯一</p>
-</li>
-<li><p>通过48个比特位表示（前24个比特位表示厂商；后24个比特位表示唯一编码）；其中前24个比特位中的第8位，若是0，表示单播地址；若是1，表示组播地址。</p>
-</li>
-<li><p>MAC地址，又称为“物理地址”。MAC地址焊接在网卡芯片上，用于以太网的数据传输，同时标识以太网中的每一台PC。</p>
-<p><img src="https://s2.loli.net/2023/09/22/CthNgxyXFj5mZDB.png" alt="MAC地址组成.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p>以太网的帧格式</p>
-<ul>
-<li><p>以太网帧格式部分组成——目的地址（目前主机MAC地址）；源地址（源主机MAC地址）；数据（46~1500字节）；类型（上层对应的协议，一般指IP协议，即四个支撑协议（icmp&#x2F;igmp&#x2F;arp&#x2F;rarp）；帧校验序列。</p>
-<p><img src="https://s2.loli.net/2023/09/22/FHoSiIfX3VypRnd.jpg" alt="以太网帧格式.jpg"></p>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="二、交换机"><a href="#二、交换机" class="headerlink" title="二、交换机"></a>二、交换机</h2><ol>
-<li><p>交换机产品系列</p>
-<ul>
-<li>CISCO 2960（入门级交换机）</li>
-<li>CISCO 3560（企业级交换机）</li>
-<li>CISCO 4500（企业模块级交换机）</li>
-<li>CISCO 6500（大型企业、电信级交换机）</li>
-</ul>
-</li>
-<li><p>交换机工作原理</p>
-<p><img src="https://s2.loli.net/2023/09/22/3dvcDLa5Vfo4hBC.png" alt="交换机工作原理.jpg"></p>
-<ul>
-<li>初始化（给交换机进行加电自检）</li>
-<li>学习MAC地址（A主机的源MAC地址）</li>
-<li>广播（广播B主机的MAC地址）</li>
-<li>再学习MAC地址（主机B回应的同时，交换机学习主机B的源MAC地址）</li>
-<li>单播（实现主机A到主机B的单播通信）</li>
-</ul>
-</li>
-<li><p>交换机工作原理总结</p>
-<ul>
-<li>交换机始终学习的是各主机的源MAC地址</li>
-<li>交换机把学习到的MAC地址记录到MAC地址表中，记录的具体信息：MAC地址＋对应接口</li>
-<li>交换机MAC地址表中的信息不是永久存在的，是临时的，老化时间是３００秒（５分钟）。</li>
-</ul>
-</li>
-<li><p>交换机以太网接口的工作模式</p>
-<ul>
-<li><p>单工——两个数据站之间只能进行单向数据传输（类似话筒与扬声器）</p>
-<p><img src="https://s2.loli.net/2023/09/23/bswMtKZi9gNPeDv.png" alt="单工数据传输.jpg"></p>
-</li>
-<li><p>半双工——两个数据站之间双向数据传输，但不能同时进行（类似于对讲机）</p>
-<p><img src="https://s2.loli.net/2023/09/23/BSJybgZNhXlfip7.png" alt="半双工数据传输.jpg"></p>
-</li>
-<li><p>全双工——两个数据站双向且同时进行数据传输（类似于电话或手机）</p>
-<p><img src="https://s2.loli.net/2023/09/23/r2FOEcGx8IXdRZs.png" alt="全双工数据传输.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p>交换机以太网的接口速率</p>
-<ul>
-<li>接口速率——自动协商、10M、100M、1000M</li>
-<li>接口速率设置时，两端接口必须保持一样</li>
-<li>接口速率协商失败，导致网络链路无法正常通信</li>
-</ul>
-</li>
-<li><p>交换机的配置方法</p>
-<ul>
-<li><p>通过Console配置线链接PC的COM口实现对交换机的配置（传统配置方法）</p>
-<p><img src="https://s2.loli.net/2023/09/23/lj7a4UYnt32dDy8.png" alt="通过 Console 接口配置交换机.jpg"></p>
-</li>
-<li><p>直接通过交换机的CLI(Command line interface)命令行接口对交换机进行配置</p>
-</li>
-</ul>
-</li>
-<li><p>交换机命令行的工作模式</p>
-<ul>
-<li>用户模式——查看交换机相关信息</li>
-<li>特权模式——查看或修改相关信息</li>
-<li>全局模式——主要用于对交换机全局配置信息的修改</li>
-<li>接口模式——主要用于对交换机接口进行相关的配置</li>
-</ul>
-<p><img src="https://s2.loli.net/2023/09/23/397FwypbisjYu4c.png" alt="Cisco 设备命令行模式关系图.jpg"></p>
-</li>
-<li><p>交换机命令行的帮助</p>
-<ul>
-<li>？显示当前工作模式下可以使用的命令列表及参数</li>
-<li>Tab 命令补齐或命令提示</li>
-<li>ctrl + A 将光标定位到命令行的开始位置</li>
-<li>ctrl + E 将光标定位到命令行的结束位置</li>
-</ul>
-</li>
-<li><p>交换机命令行工作模式的切换方式</p>
-<ul>
-<li><p>交换机的工作模式</p>
-<ul>
-<li>用户模式：Switch&gt;</li>
-<li>特权模式：Switch#</li>
-<li>全局模式：Switch(config)#</li>
-<li>接口模式：Switch(config-if)#</li>
-</ul>
-</li>
-<li><p>交换机工作模式的切换方式</p>
-<ul>
-<li><p>从用户模式进入或切换到特权模式的命令：enable可简写为en</p>
-</li>
-<li><p>从特权模式进入或切换到全局模式的命令：configure terminal可简写为 conf t</p>
-</li>
-<li><p>从全局模式进入或切换到接口模式的命令：interface fastEthernet 0&#x2F;1可简写为 int f0&#x2F;1，<font color="red">总结：从用户 模式进入到接口模式，必须一级一级的进行切换。</font></p>
-</li>
-<li><p>从接口模式退回到全局模式的命令：exit</p>
-</li>
-<li><p>从全局模式退回到特权模式的命令：exit 或 end 或 快捷方式：ctrl + z</p>
-</li>
-<li><p>从特权模式退回到用户模式的命令：exit（只适用于模拟器，真实交换机设备使用命令是disable）</p>
-</li>
-<li><p>从接口模式直接退回到特权模式的命令：end</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>CISCO模拟器的使用</p>
-<ul>
-<li>绘制网络拓扑图与应用各种网络设备<ul>
-<li>选择对应的网络设备（交换机、路由器、防火墙、服务器、PC）</li>
-<li>选择链接对应网络设备的线缆（配置线、直通线、交叉线等）</li>
-<li>对网络设备进行逐一配置（配置IP地址、接口地址等）</li>
-<li>测试并验证最终的结果</li>
-</ul>
-</li>
-<li>模拟器网络设备的分类<ol>
-<li>交换机<ul>
-<li>二层交换机：cisco 2960（入门级交换机）</li>
-<li>三层交换机：cisco 3560（企业级交换机）</li>
-</ul>
-</li>
-<li>路由器<ul>
-<li>路由器型号：cisco 2811、2911等</li>
-</ul>
-</li>
-<li>防火墙<ul>
-<li>防火墙系列：cisco 5055</li>
-</ul>
-</li>
-<li>终端设备<ul>
-<li>个人PC：台式机、笔记本</li>
-<li>服务器：Server-PT</li>
-</ul>
-</li>
-<li>线缆分类<ul>
-<li>配置线</li>
-<li>直通线</li>
-<li>交叉线</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>模拟器的辅助功能<ul>
-<li>网络设备添加标识——place note</li>
-<li>删除网络设备图标</li>
-<li>放大与缩小网络设备图标</li>
-<li>选择网络设备或绘制拓扑图，进行移动操作</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>以太网中网络设备常用命令</p>
-<ul>
-<li>ping 测试网络的连通性</li>
-<li>ipconfig 查看windows系统中，对应网卡配置的ip地址信息</li>
-<li>ifconfig 查看linux系统中，对应网卡配置的ip地址信息</li>
-<li>show mac-address-table dynamic 查看交换机中MAC地址表的信息（特权模式）</li>
-</ul>
-</li>
-<li><p>网络设备查询注意事项</p>
-<ul>
-<li>在特权模式使用show命令，例如：Switch# show mac-address-table dynamic</li>
-<li>在全局模式使用show命令，例如：Switch(config)# do show mac-address-table</li>
-<li>在接口模式使用show命令，例如：Switch(config-if)#do show mac-address-table</li>
-</ul>
-</li>
-<li><p>交换机双工模式配置与速率配置</p>
-<ul>
-<li>以太网接口双工模式配置<ul>
-<li>交换机双工模式在配置时，若交换机两端对应接口的双工模式不一样时，会造成严重的丢包现象，导致 网络无法正常通信。</li>
-<li>实际配置交换机接口双工模式采用全双工，交换机两端接口双工模式必须配置一样，使用的命令： duplex full</li>
-</ul>
-</li>
-<li>以太网接口速率配置<ul>
-<li>交换机速率配置时，若交换机两端对应接口的速率不一样时，直接导致网络无法正常通信。</li>
-<li>实际配置交换机接口速率采用100&#x2F;1000速率，交换机两端接口速率必须配置一样，使用命令：speed 100&#x2F;1000</li>
-</ul>
-</li>
-<li>查看交换机接口详细信息使用的查询命令<ul>
-<li>show interface f0&#x2F;24 或者 sh int f0&#x2F;24（在特权模式执行命令）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>交换网络播的类型</p>
-<ul>
-<li>单播：一对一，传输效率最高，延迟最小</li>
-<li>组播：一对多，传输效率其次，延迟较小</li>
-<li>广播：一对多，传输效率最低，延迟最大</li>
-</ul>
-</li>
-</ol>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>交换机原理与配置</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>交换机原理与配置</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>初识CSS</title>
     <url>/2023/09/11/%E5%88%9D%E8%AF%86CSS/</url>
     <content><![CDATA[<h1 id="初识CSS"><a href="#初识CSS" class="headerlink" title="初识CSS"></a>初识CSS</h1><ul>
@@ -1253,6 +1226,437 @@
       </tags>
   </entry>
   <entry>
+    <title>交换机工作原理与配置</title>
+    <url>/2023/09/25/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="交换机工作原理与配置"><a href="#交换机工作原理与配置" class="headerlink" title="交换机工作原理与配置"></a>交换机工作原理与配置</h1><h2 id="一、知识回顾"><a href="#一、知识回顾" class="headerlink" title="一、知识回顾"></a>一、知识回顾</h2><ul>
+<li><p>数据链路层的作用</p>
+</li>
+<li><p>以太网的发展史</p>
+<ul>
+<li>2.94M实验性以太网</li>
+<li>10M以太网</li>
+<li>100M以太网</li>
+<li>1000M以太网<span id="more"></span></li>
+</ul>
+</li>
+<li><p>以太网MAC地址组成</p>
+<ul>
+<li><p>定义：通过MAC地址识别以太网中的每个设备（PC）</p>
+</li>
+<li><p>以太网MAC地址是全球唯一</p>
+</li>
+<li><p>通过48个比特位表示（前24个比特位表示厂商；后24个比特位表示唯一编码）；其中前24个比特位中的第8位，若是0，表示单播地址；若是1，表示组播地址。</p>
+</li>
+<li><p>MAC地址，又称为“物理地址”。MAC地址焊接在网卡芯片上，用于以太网的数据传输，同时标识以太网中的每一台PC。</p>
+<p><img src="https://s2.loli.net/2023/09/22/CthNgxyXFj5mZDB.png" alt="MAC地址组成.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>以太网的帧格式</p>
+<ul>
+<li><p>以太网帧格式部分组成——目的地址（目前主机MAC地址）；源地址（源主机MAC地址）；数据（46~1500字节）；类型（上层对应的协议，一般指IP协议，即四个支撑协议（icmp&#x2F;igmp&#x2F;arp&#x2F;rarp）；帧校验序列。</p>
+<p><img src="https://s2.loli.net/2023/09/22/FHoSiIfX3VypRnd.jpg" alt="以太网帧格式.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二、交换机"><a href="#二、交换机" class="headerlink" title="二、交换机"></a>二、交换机</h2><ol>
+<li><p>交换机产品系列</p>
+<ul>
+<li>CISCO 2960（入门级交换机）</li>
+<li>CISCO 3560（企业级交换机）</li>
+<li>CISCO 4500（企业模块级交换机）</li>
+<li>CISCO 6500（大型企业、电信级交换机）</li>
+</ul>
+</li>
+<li><p>交换机工作原理</p>
+<p><img src="https://s2.loli.net/2023/09/22/3dvcDLa5Vfo4hBC.png" alt="交换机工作原理.jpg"></p>
+<ul>
+<li>初始化（给交换机进行加电自检）</li>
+<li>学习MAC地址（A主机的源MAC地址）</li>
+<li>广播（广播B主机的MAC地址）</li>
+<li>再学习MAC地址（主机B回应的同时，交换机学习主机B的源MAC地址）</li>
+<li>单播（实现主机A到主机B的单播通信）</li>
+</ul>
+</li>
+<li><p>交换机工作原理总结</p>
+<ul>
+<li>交换机始终学习的是各主机的源MAC地址</li>
+<li>交换机把学习到的MAC地址记录到MAC地址表中，记录的具体信息：MAC地址＋对应接口</li>
+<li>交换机MAC地址表中的信息不是永久存在的，是临时的，老化时间是３００秒（５分钟）。</li>
+</ul>
+</li>
+<li><p>交换机以太网接口的工作模式</p>
+<ul>
+<li><p>单工——两个数据站之间只能进行单向数据传输（类似话筒与扬声器）</p>
+<p><img src="https://s2.loli.net/2023/09/23/bswMtKZi9gNPeDv.png" alt="单工数据传输.jpg"></p>
+</li>
+<li><p>半双工——两个数据站之间双向数据传输，但不能同时进行（类似于对讲机）</p>
+<p><img src="https://s2.loli.net/2023/09/23/BSJybgZNhXlfip7.png" alt="半双工数据传输.jpg"></p>
+</li>
+<li><p>全双工——两个数据站双向且同时进行数据传输（类似于电话或手机）</p>
+<p><img src="https://s2.loli.net/2023/09/23/r2FOEcGx8IXdRZs.png" alt="全双工数据传输.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>交换机以太网的接口速率</p>
+<ul>
+<li>接口速率——自动协商、10M、100M、1000M</li>
+<li>接口速率设置时，两端接口必须保持一样</li>
+<li>接口速率协商失败，导致网络链路无法正常通信</li>
+</ul>
+</li>
+<li><p>交换机的配置方法</p>
+<ul>
+<li><p>通过Console配置线链接PC的COM口实现对交换机的配置（传统配置方法）</p>
+<p><img src="https://s2.loli.net/2023/09/23/lj7a4UYnt32dDy8.png" alt="通过 Console 接口配置交换机.jpg"></p>
+</li>
+<li><p>直接通过交换机的CLI(Command line interface)命令行接口对交换机进行配置</p>
+</li>
+</ul>
+</li>
+<li><p>交换机命令行的工作模式</p>
+<ul>
+<li>用户模式——查看交换机相关信息</li>
+<li>特权模式——查看或修改相关信息</li>
+<li>全局模式——主要用于对交换机全局配置信息的修改</li>
+<li>接口模式——主要用于对交换机接口进行相关的配置</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/09/23/397FwypbisjYu4c.png" alt="Cisco 设备命令行模式关系图.jpg"></p>
+</li>
+<li><p>交换机命令行的帮助</p>
+<ul>
+<li>？显示当前工作模式下可以使用的命令列表及参数</li>
+<li>Tab 命令补齐或命令提示</li>
+<li>ctrl + A 将光标定位到命令行的开始位置</li>
+<li>ctrl + E 将光标定位到命令行的结束位置</li>
+</ul>
+</li>
+<li><p>交换机命令行工作模式的切换方式</p>
+<ul>
+<li><p>交换机的工作模式</p>
+<ul>
+<li>用户模式：Switch&gt;</li>
+<li>特权模式：Switch#</li>
+<li>全局模式：Switch(config)#</li>
+<li>接口模式：Switch(config-if)#</li>
+</ul>
+</li>
+<li><p>交换机工作模式的切换方式</p>
+<ul>
+<li><p>从用户模式进入或切换到特权模式的命令：enable可简写为en</p>
+</li>
+<li><p>从特权模式进入或切换到全局模式的命令：configure terminal可简写为 conf t</p>
+</li>
+<li><p>从全局模式进入或切换到接口模式的命令：interface fastEthernet 0&#x2F;1可简写为 int f0&#x2F;1，<font color="red">总结：从用户 模式进入到接口模式，必须一级一级的进行切换。</font></p>
+</li>
+<li><p>从接口模式退回到全局模式的命令：exit</p>
+</li>
+<li><p>从全局模式退回到特权模式的命令：exit 或 end 或 快捷方式：ctrl + z</p>
+</li>
+<li><p>从特权模式退回到用户模式的命令：exit（只适用于模拟器，真实交换机设备使用命令是disable）</p>
+</li>
+<li><p>从接口模式直接退回到特权模式的命令：end</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CISCO模拟器的使用</p>
+<ul>
+<li>绘制网络拓扑图与应用各种网络设备<ul>
+<li>选择对应的网络设备（交换机、路由器、防火墙、服务器、PC）</li>
+<li>选择链接对应网络设备的线缆（配置线、直通线、交叉线等）</li>
+<li>对网络设备进行逐一配置（配置IP地址、接口地址等）</li>
+<li>测试并验证最终的结果</li>
+</ul>
+</li>
+<li>模拟器网络设备的分类<ol>
+<li>交换机<ul>
+<li>二层交换机：cisco 2960（入门级交换机）</li>
+<li>三层交换机：cisco 3560（企业级交换机）</li>
+</ul>
+</li>
+<li>路由器<ul>
+<li>路由器型号：cisco 2811、2911等</li>
+</ul>
+</li>
+<li>防火墙<ul>
+<li>防火墙系列：cisco 5055</li>
+</ul>
+</li>
+<li>终端设备<ul>
+<li>个人PC：台式机、笔记本</li>
+<li>服务器：Server-PT</li>
+</ul>
+</li>
+<li>线缆分类<ul>
+<li>配置线</li>
+<li>直通线</li>
+<li>交叉线</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>模拟器的辅助功能<ul>
+<li>网络设备添加标识——place note</li>
+<li>删除网络设备图标</li>
+<li>放大与缩小网络设备图标</li>
+<li>选择网络设备或绘制拓扑图，进行移动操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>以太网中网络设备常用命令</p>
+<ul>
+<li>ping 测试网络的连通性</li>
+<li>ipconfig 查看windows系统中，对应网卡配置的ip地址信息</li>
+<li>ifconfig 查看linux系统中，对应网卡配置的ip地址信息</li>
+<li>show mac-address-table dynamic 查看交换机中MAC地址表的信息（特权模式）</li>
+</ul>
+</li>
+<li><p>网络设备查询注意事项</p>
+<ul>
+<li>在特权模式使用show命令，例如：Switch# show mac-address-table dynamic</li>
+<li>在全局模式使用show命令，例如：Switch(config)# do show mac-address-table</li>
+<li>在接口模式使用show命令，例如：Switch(config-if)#do show mac-address-table</li>
+</ul>
+</li>
+<li><p>交换机双工模式配置与速率配置</p>
+<ul>
+<li>以太网接口双工模式配置<ul>
+<li>交换机双工模式在配置时，若交换机两端对应接口的双工模式不一样时，会造成严重的丢包现象，导致 网络无法正常通信。</li>
+<li>实际配置交换机接口双工模式采用全双工，交换机两端接口双工模式必须配置一样，使用的命令： duplex full</li>
+</ul>
+</li>
+<li>以太网接口速率配置<ul>
+<li>交换机速率配置时，若交换机两端对应接口的速率不一样时，直接导致网络无法正常通信。</li>
+<li>实际配置交换机接口速率采用100&#x2F;1000速率，交换机两端接口速率必须配置一样，使用命令：speed 100&#x2F;1000</li>
+</ul>
+</li>
+<li>查看交换机接口详细信息使用的查询命令<ul>
+<li>show interface f0&#x2F;24 或者 sh int f0&#x2F;24（在特权模式执行命令）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>交换网络播的类型</p>
+<ul>
+<li>单播：一对一，传输效率最高，延迟最小</li>
+<li>组播：一对多，传输效率其次，延迟较小</li>
+<li>广播：一对多，传输效率最低，延迟最大</li>
+</ul>
+</li>
+</ol>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>交换机原理与配置</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>交换机原理与配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网络层协议</title>
+    <url>/2023/09/25/%E7%BD%91%E7%BB%9C%E5%B1%82%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h1 id="网络层协议"><a href="#网络层协议" class="headerlink" title="网络层协议"></a>网络层协议</h1><h2 id="一、IP地址概述与应用"><a href="#一、IP地址概述与应用" class="headerlink" title="一、IP地址概述与应用"></a>一、IP地址概述与应用</h2><ol>
+<li><p>IP地址概述</p>
+<ul>
+<li>定义：是主机的唯一表示，也是一种网络编码，保证计算机在网络中能够正常通信。</li>
+<li>特点：<ul>
+<li>表示形式：点分十进制，例如：192.168.10.10</li>
+<li>IP地址组成：32位的二进制组成，分为两部分：其一，网络部分（network）；其二，主机部分 （host）。<span id="more"></span></li>
+</ul>
+</li>
+<li>IP地址分类：<ul>
+<li>A类、B类、C类、D类、E类。但常用有三类地址：A类、B类和C类。<ol>
+<li>A类地址：<ul>
+<li>范围：1~126（0 ~ 127，其中排除0，一般代表子网网段，127,一般代表本机地址）</li>
+<li>组成：ClassA &#x3D; 网络部分+主机部分+主机部分+主机部分</li>
+<li>应用场景：一般用于大型网络规划使用的IP地址</li>
+</ul>
+</li>
+<li>B类地址：<ul>
+<li>范围：128~191</li>
+<li>组成：ClassB &#x3D; 网络部分+网络部分+主机部分+主机部分</li>
+<li>应用场景：一般用于中型网络规划使用的IP地址</li>
+</ul>
+</li>
+<li>C类地址：<ul>
+<li>范围：192~223</li>
+<li>组成：ClassC &#x3D; 网络部分+网络部分+网络部分+主机部分</li>
+<li>应用场景：一般用于小型网络规划使用的IP地址</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>IP地址分类之二（企业应用的付费方式上划分）<ul>
+<li>公网地址（公有地址），企业付费使用，一般用于企业外网的互联网。属于A&#x2F;B&#x2F;C类</li>
+<li>私网地址（私有地址），企业免费使用，一般用于企业内部的局域网。<ol>
+<li>A类私网地址范围：10.0.0.0~10.255.255.255</li>
+<li>B类私网地址范围：172.16.0.0~172.31.255.255</li>
+<li>C类私网地址范围：192.168.0.0~192.168.255.255<ul>
+<li>C类私网地址可用主机IP地址的范围，例如：192.168.10.0</li>
+<li>总IP地址范围：192.168.10.0~192.168.10.255</li>
+<li>192.168.10.0代表网络地址，不能作为主机IP地址使用</li>
+<li>192.168.10.255代表广播地址，也不能作为主机IP地址使用</li>
+<li>可用主机IP地址范围：192.168.10.1~192.168.10.254</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>子网掩码</p>
+<ul>
+<li>子网掩码作用——用于确定IP地址的网络通讯（网络地址也称为“网段”）</li>
+<li>子网掩码：<ul>
+<li>32个二进制位组成</li>
+<li>IP地址的网络部分用1表示</li>
+<li>IP地址的主机部分用0表示</li>
+</ul>
+</li>
+<li>表示形式：点分十进制</li>
+<li>子网掩码分类<ul>
+<li>A类IP地址默认子网掩码：255.0.0.0</li>
+<li>B类IP地址默认子网掩码：255.255.0.0</li>
+<li>C类IP地址默认子网掩码：255.255.255.0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>IP地址应用</p>
+<ul>
+<li>配置网卡信息时，必须配置内容：IP地址和子网掩码。（网关地址和DNS服务器地址是可选项）</li>
+<li>查看windows主机网卡的地址信息<ul>
+<li>ipconfig (查看简要信息)</li>
+<li>ipconfig &#x2F;all（查看详细信息）</li>
+</ul>
+</li>
+<li>将IP地址和子网掩码，同时转换为二进制，且做与运算，可得到该IP地址所处的网络地址，也称“网段”。</li>
+<li>网络测试命令<ul>
+<li>ipconfig（用于windows操作系统）</li>
+<li>ifconfig （用于linux操作系统）</li>
+<li>ping （测试网络或主机的联通性）<ul>
+<li>ping 127.0.0.1 测试本机主机是否正确的配置了TCP&#x2F;IP信息。</li>
+<li>ping 192.168.10.10 测试与本地主机是否能正常通信</li>
+<li>ping 192.168.10.11 测试与其他主机是否能正常通信</li>
+<li>ping 192.168.10.1 测试与默认网关地址是否能正常通信</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>路由器基本配置</p>
+<ul>
+<li><p>路由器初始化配置-1（环境准备）</p>
+<p><img src="https://s2.loli.net/2023/09/25/TPgpD5fZndMiWU2.png" alt="路由器初始化配置1.jpg"></p>
+</li>
+<li><p>路由器初始化配置-2（环境准备）</p>
+<p><img src="https://s2.loli.net/2023/09/25/dzFW1f5ogJZ8wUL.png" alt="路由器初始化配置2.jpg"></p>
+</li>
+<li><p>路由器的接口配置（路由器默认情况下，接口是关闭状态）</p>
+<ul>
+<li>命令格式：<ul>
+<li>Router(config-if)# ip address 192.168.10.1 255.255.255.0</li>
+<li>Router(config-if)# no shutdown（激活接口）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>路由器的查询命令</p>
+<ul>
+<li>查看命令：<ul>
+<li>Router# show ip interface brief (查看路由器接口概要信息)</li>
+<li>Router# show interface f0&#x2F;1 (查看路由f0&#x2F;1接口的详细信息)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、IP数据包格式"><a href="#二、IP数据包格式" class="headerlink" title="二、IP数据包格式"></a>二、IP数据包格式</h2><ul>
+<li>TTL值——表示IP数据包在网络传输的生命周期，每经过一个路由器TTL值减1，若TTL&#x3D;0，则路由器直接丢 弃该数据包。</li>
+<li>TTL值——测试目标主机操作系统的类型<ul>
+<li>通过ping命令测试，若TTL&#x3D;128，代表目标主机为Windows操作系统；</li>
+<li>通过ping命令测试，若TTL&#x3D;64，代表目标主机为Linux操作系统；</li>
+<li>通过ping命令测试，若TTL&#x3D;255，代表目标为网络设备（路由器或三层交换机）；</li>
+</ul>
+</li>
+<li>源IP地址——标识数据包来源主机IP地址（逻辑地址）</li>
+<li>目标地址——标识数据包目标主机IP地址（逻辑地址）</li>
+</ul>
+<hr>
+<h2 id="三、ICMP协议介绍"><a href="#三、ICMP协议介绍" class="headerlink" title="三、ICMP协议介绍"></a>三、ICMP协议介绍</h2><ul>
+<li>ICMP协议定义：是一种错误侦测与回馈机制</li>
+<li>ICMP协议的对应的命令：基于windows操作系统的Ping命令用法如下：<ul>
+<li>ping -t 192.168.10.12 一直ping目标主机192.168.10.12</li>
+<li>ping -n 6 192.168.10.12 指定目标主机192.168.10.12回应次数</li>
+<li>ping -l 65500 192.168.10.12 指定目标主机每次ping包大小（字节）</li>
+<li>ping -a 192.168.10.12 显示目标主机192.168.10.12的主机名称</li>
+</ul>
+</li>
+<li>利用ICMP协议，发起攻击（Ping命令，发起泪滴攻击）<ul>
+<li>ping -a -t -l 65500 192.168.10.12</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、ARP协议介绍"><a href="#四、ARP协议介绍" class="headerlink" title="四、ARP协议介绍"></a>四、ARP协议介绍</h2><ul>
+<li>定义：arp：(地址解析协议)，将一个已知的IP地址解析为MAC地址</li>
+<li>arp协议应用——通过arp广播获取目标主机IP地址对应的MAC地址，并将其保存到源主机的arp缓存表里。 主机arp缓存表记录内容的老化时间为120秒。</li>
+</ul>
+<hr>
+<h2 id="五、ARP攻击原理"><a href="#五、ARP攻击原理" class="headerlink" title="五、ARP攻击原理"></a>五、ARP攻击原理</h2><ul>
+<li><p>arp攻击——导致网络无法正常通信，公司内部PC无法正常访问外网（Internet）。</p>
+</li>
+<li><p>arp欺骗：</p>
+<ul>
+<li>欺骗网关</li>
+<li>欺骗主机</li>
+</ul>
+</li>
+<li><p>arp欺骗——在不影响公司网络正常通信的前提，通过攻击主机获取公司网络内部信息，导致信息泄 密，造成严重损失。</p>
+</li>
+<li><p>arp攻击和arp欺骗实现提前及实现基础</p>
+<ul>
+<li>均是通过arp应答来实现的</li>
+<li>缺陷——无法对应答的主机提前进行合法身份验证</li>
+</ul>
+</li>
+<li><p>防御措施</p>
+<ul>
+<li>在公司主机上部署安装ARP防火墙软件。</li>
+<li>在公司的主机和网关路由器上均进行IP-MAC地址的静态绑定。</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>网络层协议</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>网络层协议</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>移动端网页</title>
     <url>/2023/09/21/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5/</url>
     <content><![CDATA[<h1 id="流式布局"><a href="#流式布局" class="headerlink" title="流式布局"></a>流式布局</h1><h2 id="一、移动端基础"><a href="#一、移动端基础" class="headerlink" title="一、移动端基础"></a>一、移动端基础</h2><h3 id="1-1常见移动端屏幕尺寸"><a href="#1-1常见移动端屏幕尺寸" class="headerlink" title="1.1常见移动端屏幕尺寸"></a>1.1常见移动端屏幕尺寸</h3><p><img src="https://s2.loli.net/2023/09/20/cNya9w5TdqEj3fp.png" alt="常见移动端屏幕尺寸.jpg"></p>
@@ -1649,200 +2053,6 @@
       <tags>
         <tag>网页</tag>
         <tag>移动端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网络层协议</title>
-    <url>/2023/09/25/%E7%BD%91%E7%BB%9C%E5%B1%82%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h1 id="网络层协议"><a href="#网络层协议" class="headerlink" title="网络层协议"></a>网络层协议</h1><h2 id="一、IP地址概述与应用"><a href="#一、IP地址概述与应用" class="headerlink" title="一、IP地址概述与应用"></a>一、IP地址概述与应用</h2><ol>
-<li><p>IP地址概述</p>
-<ul>
-<li>定义：是主机的唯一表示，也是一种网络编码，保证计算机在网络中能够正常通信。</li>
-<li>特点：<ul>
-<li>表示形式：点分十进制，例如：192.168.10.10</li>
-<li>IP地址组成：32位的二进制组成，分为两部分：其一，网络部分（network）；其二，主机部分 （host）。<span id="more"></span></li>
-</ul>
-</li>
-<li>IP地址分类：<ul>
-<li>A类、B类、C类、D类、E类。但常用有三类地址：A类、B类和C类。<ol>
-<li>A类地址：<ul>
-<li>范围：1~126（0 ~ 127，其中排除0，一般代表子网网段，127,一般代表本机地址）</li>
-<li>组成：ClassA &#x3D; 网络部分+主机部分+主机部分+主机部分</li>
-<li>应用场景：一般用于大型网络规划使用的IP地址</li>
-</ul>
-</li>
-<li>B类地址：<ul>
-<li>范围：128~191</li>
-<li>组成：ClassB &#x3D; 网络部分+网络部分+主机部分+主机部分</li>
-<li>应用场景：一般用于中型网络规划使用的IP地址</li>
-</ul>
-</li>
-<li>C类地址：<ul>
-<li>范围：192~223</li>
-<li>组成：ClassC &#x3D; 网络部分+网络部分+网络部分+主机部分</li>
-<li>应用场景：一般用于小型网络规划使用的IP地址</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>IP地址分类之二（企业应用的付费方式上划分）<ul>
-<li>公网地址（公有地址），企业付费使用，一般用于企业外网的互联网。属于A&#x2F;B&#x2F;C类</li>
-<li>私网地址（私有地址），企业免费使用，一般用于企业内部的局域网。<ol>
-<li>A类私网地址范围：10.0.0.0~10.255.255.255</li>
-<li>B类私网地址范围：172.16.0.0~172.31.255.255</li>
-<li>C类私网地址范围：192.168.0.0~192.168.255.255<ul>
-<li>C类私网地址可用主机IP地址的范围，例如：192.168.10.0</li>
-<li>总IP地址范围：192.168.10.0~192.168.10.255</li>
-<li>192.168.10.0代表网络地址，不能作为主机IP地址使用</li>
-<li>192.168.10.255代表广播地址，也不能作为主机IP地址使用</li>
-<li>可用主机IP地址范围：192.168.10.1~192.168.10.254</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>子网掩码</p>
-<ul>
-<li>子网掩码作用——用于确定IP地址的网络通讯（网络地址也称为“网段”）</li>
-<li>子网掩码：<ul>
-<li>32个二进制位组成</li>
-<li>IP地址的网络部分用1表示</li>
-<li>IP地址的主机部分用0表示</li>
-</ul>
-</li>
-<li>表示形式：点分十进制</li>
-<li>子网掩码分类<ul>
-<li>A类IP地址默认子网掩码：255.0.0.0</li>
-<li>B类IP地址默认子网掩码：255.255.0.0</li>
-<li>C类IP地址默认子网掩码：255.255.255.0</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>IP地址应用</p>
-<ul>
-<li>配置网卡信息时，必须配置内容：IP地址和子网掩码。（网关地址和DNS服务器地址是可选项）</li>
-<li>查看windows主机网卡的地址信息<ul>
-<li>ipconfig (查看简要信息)</li>
-<li>ipconfig &#x2F;all（查看详细信息）</li>
-</ul>
-</li>
-<li>将IP地址和子网掩码，同时转换为二进制，且做与运算，可得到该IP地址所处的网络地址，也称“网段”。</li>
-<li>网络测试命令<ul>
-<li>ipconfig（用于windows操作系统）</li>
-<li>ifconfig （用于linux操作系统）</li>
-<li>ping （测试网络或主机的联通性）<ul>
-<li>ping 127.0.0.1 测试本机主机是否正确的配置了TCP&#x2F;IP信息。</li>
-<li>ping 192.168.10.10 测试与本地主机是否能正常通信</li>
-<li>ping 192.168.10.11 测试与其他主机是否能正常通信</li>
-<li>ping 192.168.10.1 测试与默认网关地址是否能正常通信</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>路由器基本配置</p>
-<ul>
-<li><p>路由器初始化配置-1（环境准备）</p>
-<p><img src="https://s2.loli.net/2023/09/25/TPgpD5fZndMiWU2.png" alt="路由器初始化配置1.jpg"></p>
-</li>
-<li><p>路由器初始化配置-2（环境准备）</p>
-<p><img src="https://s2.loli.net/2023/09/25/dzFW1f5ogJZ8wUL.png" alt="路由器初始化配置2.jpg"></p>
-</li>
-<li><p>路由器的接口配置（路由器默认情况下，接口是关闭状态）</p>
-<ul>
-<li>命令格式：<ul>
-<li>Router(config-if)# ip address 192.168.10.1 255.255.255.0</li>
-<li>Router(config-if)# no shutdown（激活接口）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>路由器的查询命令</p>
-<ul>
-<li>查看命令：<ul>
-<li>Router# show ip interface brief (查看路由器接口概要信息)</li>
-<li>Router# show interface f0&#x2F;1 (查看路由f0&#x2F;1接口的详细信息)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="二、IP数据包格式"><a href="#二、IP数据包格式" class="headerlink" title="二、IP数据包格式"></a>二、IP数据包格式</h2><ul>
-<li>TTL值——表示IP数据包在网络传输的生命周期，每经过一个路由器TTL值减1，若TTL&#x3D;0，则路由器直接丢 弃该数据包。</li>
-<li>TTL值——测试目标主机操作系统的类型<ul>
-<li>通过ping命令测试，若TTL&#x3D;128，代表目标主机为Windows操作系统；</li>
-<li>通过ping命令测试，若TTL&#x3D;64，代表目标主机为Linux操作系统；</li>
-<li>通过ping命令测试，若TTL&#x3D;255，代表目标为网络设备（路由器或三层交换机）；</li>
-</ul>
-</li>
-<li>源IP地址——标识数据包来源主机IP地址（逻辑地址）</li>
-<li>目标地址——标识数据包目标主机IP地址（逻辑地址）</li>
-</ul>
-<hr>
-<h2 id="三、ICMP协议介绍"><a href="#三、ICMP协议介绍" class="headerlink" title="三、ICMP协议介绍"></a>三、ICMP协议介绍</h2><ul>
-<li>ICMP协议定义：是一种错误侦测与回馈机制</li>
-<li>ICMP协议的对应的命令：基于windows操作系统的Ping命令用法如下：<ul>
-<li>ping -t 192.168.10.12 一直ping目标主机192.168.10.12</li>
-<li>ping -n 6 192.168.10.12 指定目标主机192.168.10.12回应次数</li>
-<li>ping -l 65500 192.168.10.12 指定目标主机每次ping包大小（字节）</li>
-<li>ping -a 192.168.10.12 显示目标主机192.168.10.12的主机名称</li>
-</ul>
-</li>
-<li>利用ICMP协议，发起攻击（Ping命令，发起泪滴攻击）<ul>
-<li>ping -a -t -l 65500 192.168.10.12</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="四、ARP协议介绍"><a href="#四、ARP协议介绍" class="headerlink" title="四、ARP协议介绍"></a>四、ARP协议介绍</h2><ul>
-<li>定义：arp：(地址解析协议)，将一个已知的IP地址解析为MAC地址</li>
-<li>arp协议应用——通过arp广播获取目标主机IP地址对应的MAC地址，并将其保存到源主机的arp缓存表里。 主机arp缓存表记录内容的老化时间为120秒。</li>
-</ul>
-<hr>
-<h2 id="五、ARP攻击原理"><a href="#五、ARP攻击原理" class="headerlink" title="五、ARP攻击原理"></a>五、ARP攻击原理</h2><ul>
-<li><p>arp攻击——导致网络无法正常通信，公司内部PC无法正常访问外网（Internet）。</p>
-</li>
-<li><p>arp欺骗：</p>
-<ul>
-<li>欺骗网关</li>
-<li>欺骗主机</li>
-</ul>
-</li>
-<li><p>arp欺骗——在不影响公司网络正常通信的前提，通过攻击主机获取公司网络内部信息，导致信息泄 密，造成严重损失。</p>
-</li>
-<li><p>arp攻击和arp欺骗实现提前及实现基础</p>
-<ul>
-<li>均是通过arp应答来实现的</li>
-<li>缺陷——无法对应答的主机提前进行合法身份验证</li>
-</ul>
-</li>
-<li><p>防御措施</p>
-<ul>
-<li>在公司主机上部署安装ARP防火墙软件。</li>
-<li>在公司的主机和网关路由器上均进行IP-MAC地址的静态绑定。</li>
-</ul>
-</li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>网络层协议</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>网络层协议</tag>
       </tags>
   </entry>
   <entry>
@@ -2693,6 +2903,151 @@
       <tags>
         <tag>运维</tag>
         <tag>网络参考模型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>静态路由的原理与配置</title>
+    <url>/2023/10/06/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="静态路由的原理与配置"><a href="#静态路由的原理与配置" class="headerlink" title="静态路由的原理与配置"></a>静态路由的原理与配置</h1><h2 id="一、路由器的转发原理"><a href="#一、路由器的转发原理" class="headerlink" title="一、路由器的转发原理"></a>一、路由器的转发原理</h2><ul>
+<li><p>路由的定义：从源主机到目标主机转发数据包的过程为路由。</p>
+</li>
+<li><p>路由器的定义：将数据包正确转发到目的地，并选择最佳路由进行转发的网络设备称为路由器</p>
+</li>
+<li><p>路由器的工作原理（路由器转发数据包的过程）</p>
+<p><img src="https://s2.loli.net/2023/09/29/rtVinsK5vX8INPz.png" alt="路由器转发数据过程.jpg"><span id="more"></span></p>
+<ol>
+<li>主机1.1要发送数据包给主机4.1，因为IP地址不在同一网段，主机会将数据包发送给本网段的网关路由器A。</li>
+<li>路由器A接收到数据包，查看数据包IP首部中的目标IP地址，再查找自己的路由表。数据包的目标IP地址是4.1，属于4.0网段，路由器A在路由表中查到4.0网段转发的接口是S0接口。于是，路由器A将数据包从S0接口转发出去。</li>
+<li>网络中的每个路由器都是按这样的步骤取转发数据，直到到达了路由器B，用同样的方法，从E0口转发出去，4.1主机接收到这个数据包。</li>
+</ol>
+</li>
+<li><p><strong><font color="red">总结：</font>接收数据包→查看目的地址→与路由表进行匹配找到转发端口→转发到该端口。</strong></p>
+</li>
+</ul>
+<hr>
+<h2 id="二、路由表的形成"><a href="#二、路由表的形成" class="headerlink" title="二、路由表的形成"></a>二、路由表的形成</h2><ul>
+<li><p>路由表的作用</p>
+<ul>
+<li><p>路由器根据路由表做路径选择，路由表是各路由条目的集合。</p>
+</li>
+<li><p>路径选择——最佳路径（不等于最短路径）</p>
+</li>
+<li><p>路由条目包括：直连路由条目（直连网段），非直连路由条目（非直连网段），动态路由条目（RIP&#x2F;OSPF等动态路由协议产生目标网段）</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="三、静态路由和默认路由"><a href="#三、静态路由和默认路由" class="headerlink" title="三、静态路由和默认路由"></a>三、静态路由和默认路由</h2><ul>
+<li>静态路由<ul>
+<li>为什么配置静态路由<ul>
+<li>配置路由表中的非直连网段路由条目时，需要通过配置静态路由来实现</li>
+</ul>
+</li>
+<li>静态路由的特点<ul>
+<li>由管理员手工配置，是单向路由</li>
+<li>缺乏灵活性（例如：更新网络地址或IP地址时，需要重新配置静态路由）</li>
+</ul>
+</li>
+<li>默认路由<ul>
+<li>默认路由与静态路由的关系<ul>
+<li>默认路由是一种特殊的静态路由。</li>
+</ul>
+</li>
+<li>默认路由的配置场景<ul>
+<li>一般配置在末梢网络或末节网络，即只有唯一条路径（路由器）与外部网络进行通信。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、路由器转发数据包的封装过程"><a href="#四、路由器转发数据包的封装过程" class="headerlink" title="四、路由器转发数据包的封装过程"></a>四、路由器转发数据包的封装过程</h2><ul>
+<li>路由器在转发数据包的过程中，一直在进行封装与解封装。</li>
+<li>路由器在封装的过程中，MAC头部中的源MAC地址（SA）和目标MAC地址（DA）一直在变。</li>
+<li>路由器在封装的过程中，IP头部中的源IP地址（SA）和目标IP地址（DA）一直不变。</li>
+</ul>
+<hr>
+<h2 id="五、静态路由和默认路由的配置"><a href="#五、静态路由和默认路由的配置" class="headerlink" title="五、静态路由和默认路由的配置"></a>五、静态路由和默认路由的配置</h2><ul>
+<li><p>静态路由配置</p>
+<ul>
+<li><p>Route(config)# ip route network netmask address（静态路由命令格式）</p>
+</li>
+<li><p>Route(config)# ip route 192.168.30.0 255.255.255.0 192.168.20.2 （静态路由配置命令）</p>
+</li>
+<li><p>Route# show ip route（查看路由器的路由表命令）</p>
+</li>
+<li><p>详解路由表中的信息，如下图所示：</p>
+<p><img src="https://s2.loli.net/2023/09/29/TZRsYCaHjefBUdy.png" alt="详解路由表信息.jpg"></p>
+</li>
+<li><p>直连路由——表示字符是<strong>C</strong>；静态路由——表示字符是<strong>S</strong>；默认路由——表示字符是<strong>S<sup>*</sup></strong></p>
+</li>
+<li><p>动态路由——表示字符是R（表示的是 rip 动态路由）</p>
+</li>
+<li><p>动态路由——表示字符O（表示的是 ospf 动态路由）</p>
+</li>
+<li><p>Route# ping 192.168.20.2（在路由器上使用ping命令，Ping通的情况下会出现5个感叹号，Ping不通的情况下会出现5个英文实点）</p>
+</li>
+</ul>
+</li>
+<li><p>默认路由器</p>
+<ul>
+<li>Route(config)# ip route 0.0.0.0 0.0.0.0 address（默认路由命令格式）</li>
+<li>Route(config)# ip route 0.0.0.0 0.0.0.0 192.168.20.2</li>
+</ul>
+</li>
+<li><p>静态路由或默认路由配置错误的删除办法</p>
+<ul>
+<li><p>Route(config)# <font color="red">no</font> ip route 192.168.2.0 255.255.255.0 192.168.1.1（删除静态路由的命令）</p>
+<p><img src="https://s2.loli.net/2023/09/29/oAm7zSZRcMLe1Jw.png" alt="删除静态路由的配置.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>网络故障排查</p>
+<ul>
+<li>物理层排查<ul>
+<li>检查网络传输介质（双绞线–线缆问题、水晶头、光纤、光缆）</li>
+<li>检查PC网卡指示灯是否正常</li>
+</ul>
+</li>
+<li>数据链路层检查<ul>
+<li>查看交换机的接口指示灯是否正常</li>
+<li>使用查询命令检查交换机接口的状态<ol>
+<li>show running-config</li>
+<li>show ip interface brief</li>
+<li>show interface f0&#x2F;0</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>网络层检查<ul>
+<li>检查路由器接口IP地址是否配置正确<ol>
+<li>show ip interface brief</li>
+<li>show interface f0&#x2F;0</li>
+</ol>
+</li>
+<li>检查路由器的路由表是否配置正确<ol>
+<li>show ip route</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>静态路由的原理与配置</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>静态路由的原理与配置</tag>
       </tags>
   </entry>
 </search>
