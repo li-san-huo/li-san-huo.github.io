@@ -6,7 +6,7 @@
   <link href="https://li-san-huo.gitee.io/atom.xml" rel="self"/>
   
   <link href="https://li-san-huo.gitee.io/"/>
-  <updated>2023-10-09T10:48:16.150Z</updated>
+  <updated>2023-10-15T08:53:35.542Z</updated>
   <id>https://li-san-huo.gitee.io/</id>
   
   <author>
@@ -15,6 +15,97 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux文件和目录</title>
+    <link href="https://li-san-huo.gitee.io/2023/10/15/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"/>
+    <id>https://li-san-huo.gitee.io/2023/10/15/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/</id>
+    <published>2023-10-15T08:43:24.000Z</published>
+    <updated>2023-10-15T08:53:35.542Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="目录和文件管理"><a href="#目录和文件管理" class="headerlink" title="目录和文件管理"></a>目录和文件管理</h1><h2 id="一、目录结构"><a href="#一、目录结构" class="headerlink" title="一、目录结构"></a>一、目录结构</h2><blockquote><p>Linux操作系统中的目录和文件数据被组织为一个树形目录结构，所有分区、目录、文件等都具有一个相同的位置起点—-根目录</p></blockquote><ul><li><p>根目录</p><ul><li>所有分区、目录、文件等的位置起点</li><li>整个树形目录结构中，使用独立的一个“&#x2F;”表示</li></ul></li><li><p>常见的子目录及其作用</p><table><thead><tr><th>目录</th><th>作用</th></tr></thead><tbody><tr><td>&#x2F;boot</td><td>此目录是系统内核存放的目录，同时也是系统启动时所需文件的存放目录</td></tr><tr><td>&#x2F;bin</td><td>这一目录存放了所有用户都可执行的且经常使用的命令，如 cp、ls 等。</td></tr><tr><td>&#x2F;etc</td><td>系统主要的和服务产生的配置文件几乎都放置到这个目录内,例如人员的账号密码文件、各种服务的起始文件等。<span id="more"></span></td></tr><tr><td>&#x2F;home</td><td>存放所有普通系统用户的默认工作文件夹（即宿主目录、家目录）</td></tr><tr><td>&#x2F;root</td><td>该目录是管理员（超级用户）root 的宿主目录，默认情况下只有 root 用户的宿主目录在根目录下而不是在“&#x2F;home”目录下</td></tr><tr><td>&#x2F;sbin</td><td>存放 Linux 操作系统中最基本的管理命令，一般管理员用户才有权限执行。</td></tr><tr><td>&#x2F;usr</td><td>存放其他的用户应用程序，通常还被划分成很多子目录，用于存放不同类型的应用程序</td></tr><tr><td>&#x2F;var</td><td>存放系统中经常需要变化的一些文件，如系统日志文件、用户邮箱目录等</td></tr></tbody></table></li></ul><hr><h2 id="二、查看及检索文件"><a href="#二、查看及检索文件" class="headerlink" title="二、查看及检索文件"></a>二、查看及检索文件</h2><h3 id="cat-显示文件内容"><a href="#cat-显示文件内容" class="headerlink" title="cat 显示文件内容"></a>cat 显示文件内容</h3><blockquote><p>cat 命令本来用于连接（Concatenate）多个文件的内容，但在实际使用中更多地用于查看文件内容。cat 命令是应用最为广泛的文件内容查看命令。使用该命令时，只需要把要查看的文件路径作为参数即可。</p></blockquote><ul><li>cat 显示并连接文件的内容，输出文件的所有内容到屏幕</li><li>例子：<ul><li>cat &#x2F;etc&#x2F;hosts (hosts文件是linux主机中映射的文件)</li><li>cat &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33（网卡对应的配置文件）</li><li>cat &#x2F;etc&#x2F;redhat-release （liunx当前系统版本对应的配置文件）</li></ul></li></ul><h3 id="more-和-less-分页查看文件内容"><a href="#more-和-less-分页查看文件内容" class="headerlink" title="more 和 less 分页查看文件内容"></a>more 和 less 分页查看文件内容</h3><blockquote><p>使用 cat 命令可以非常简单地直接显示整个文件的内容，但是当文件中的内容较多时，很可能只能看到最后一部分信息，文件前面的大部分内容都来不及看到。而 more 和 less命令通过采用全屏的方式分页显示文件，便于我们从头到尾仔细地阅读文件内容。</p></blockquote><ol><li><p>more</p><blockquote><p>more 命令是较早出现的分页显示命令，表示文件内容还有更多（more）的意思，less命令是较晚出现的分页显示命令，提供了比早期 more 命令更多的一些扩展功能。两个命令的用法基本相同。</p></blockquote><ul><li>more查看文件内容，进入全屏模式，使用快捷键如下：<ul><li>Enter键，逐行滚动查看</li><li>Space键，向下翻屏键</li><li>字母b键，向上翻屏键</li><li>字母q建，退出全屏模式，返回命令行</li></ul></li></ul></li><li><p>less</p><blockquote><p>less 命令使用方法与 more 命令基本类似，但是比 more 更好的是，less 命令结合管道符号“|”分屏查看执行命令时输出的信息时，既可以向下翻页，也可以向上翻页。而 more 命令只能向下翻页，不能向上翻页。</p></blockquote><ul><li>less查看文件内容，进入全屏模式，使用快捷键如下：<ul><li>Enter键，逐行滚动查看</li><li>Space键，向下翻屏键</li><li>字母b键，向上翻屏键</li><li>字母q建，退出全屏模式，返回命令行</li><li>Page up键，向上翻屏键</li><li>Page down键，向下翻屏键</li><li>上下方向键，向上、向下逐行滚动查看</li><li>查找键“&#x2F;”</li></ul></li></ul></li></ol><h3 id="head-和-tail-查看文件开头或末尾的部分内容"><a href="#head-和-tail-查看文件开头或末尾的部分内容" class="headerlink" title="head 和 tail 查看文件开头或末尾的部分内容"></a>head 和 tail 查看文件开头或末尾的部分内容</h3><blockquote><p>head 和 tail 是一对作用相反的命令，前者用于显示文件开头的一部分内容，后者用于显示文件末尾的一部分内容。可以使用“-n”选项（n 为具体的行数）指定需要显示多少行的内容，若不指定行数，默认只显示十行。</p></blockquote><ol><li>head查看文件开头的内容<ul><li>head &#x2F;etc&#x2F;passwd （默认查看文件的前10行内容）</li><li>head -n 3 &#x2F;etc&#x2F;passwd （查看文件的前三行内容）</li><li>head -3 &#x2F;etc&#x2F;passwd （查看文件的前三行内容）</li></ul></li><li>tail命令的用法<ul><li>查看文件结尾的部分文件<ul><li>tail &#x2F;etc&#x2F;passwd （默认查看文件的后10行内容）</li><li>tail -n 3 &#x2F;etc&#x2F;passwd （查看文件的最后三行内容）</li><li>tail -3 &#x2F;etc&#x2F;passwd （查看文件的最后三行内容）</li></ul></li><li>跟踪文件尾部内容追加或更新的信息<ul><li>tail -f &#x2F;var&#x2F;log&#x2F;messages（跟踪linux系统日志文件结尾追加信息）</li></ul></li></ul></li></ol><h3 id="wc-和-grep-统计和检索文件内容"><a href="#wc-和-grep-统计和检索文件内容" class="headerlink" title="wc 和 grep 统计和检索文件内容"></a>wc 和 grep 统计和检索文件内容</h3><ol><li><p>wc统计文件内容（行数、单词、字节）</p><blockquote><p>wc 命令用于统计文件内容中包含的行数、单词数、字节数等信息，使用文件名作为参数，可以同时统计多个文件。较常用的选项如下:</p></blockquote><ul><li>wc &#x2F;etc&#x2F;passwd (统计出&#x2F;etc&#x2F;passwd文件的行数、单词总结、字节数)</li><li>wc -l &#x2F;etc&#x2F;passwd（单独统计出文件的行数）</li><li>wc -w &#x2F;etc&#x2F;passwd（单独统计出文件的单词数）（以空格或制表位作为分隔）</li><li>wc -c &#x2F;etc&#x2F;passwd（单独统计出文件的字节数）</li></ul></li><li><p>grep检索和过滤文件内容</p><blockquote><p>grep 命令用于在文件中查找并显示包含指定字符串的行，可以直接指定关键字符串作为查找条件，也可以使用复杂的条件表达式（例如,“^word”表示以 word 开头，“word<code>$</code>”表示以 word 结尾，“^<code>$</code>”表示空行）。</p></blockquote><ul><li>grep命令常用的选项<ul><li>-i查找时忽略大小写</li><li>-v翻转查找，输出与查找条件不相符的行</li></ul></li><li>grep 命令查找条件设置<ul><li>“”，使用双引号表示查找的字符串</li><li>“^…..”，表示以什么开头</li><li>“…..$”，表示以什么结尾</li><li>“^$”，表示空行</li></ul></li><li>举例<ul><li>grep“root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，包含root的行）</li><li>grep–v “root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，不包含root字符串的行）</li><li>grep–i“Root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，包含root字符串的行，不区分大小写）</li><li>grep“^root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，以root字符串开头的行）</li><li>grep“bash$” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，以bash字符串结尾的行）</li><li>grep“^$” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，包含空行）</li><li>grep -v “^$” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，除空行以外的所有行）</li></ul></li></ul></li></ol><hr><h2 id="三、备份及恢复文档"><a href="#三、备份及恢复文档" class="headerlink" title="三、备份及恢复文档"></a>三、备份及恢复文档</h2><ul><li>linux系统中常用的压缩文件<ul><li>gzip<ul><li>gzip -9 &#x2F;etc&#x2F;passwd（使用gzip高压缩比率压缩passwd文件，产生passwd.gz压缩文件，原文件会消失）</li><li>gzip -d passwd.gz（使用gzip -d选项解压passwd.gz文件，还原原文件）</li><li>gunzip passwd.gz（使用gunzip 解压passwd.gz文件）</li></ul></li><li>bzip2<ul><li>bzip -9 &#x2F;etc&#x2F;passwd（使用gzip高压缩比率压缩passwd文件，产生passwd.bz2压缩文件，原文件会消失）</li><li>bzip -d passwd.bz2（使用bzip -d选项解压passwd.bz2文件，还原原文件）</li><li>bunzip passwd.bz2（使用bunzip -d选项解压passwd.bz2文件）</li></ul></li><li>gzip与bzip2压缩工具比较<ul><li>gzip压缩比例更高，即压缩出的文件更小</li><li>两种压缩工具只能对文件进行压缩，不能对目录进行压缩</li><li>实际使用中，常使用gzip压缩工具</li></ul></li></ul></li><li>tar命令（可以对文件和目录进行归档压缩和归档解压缩）<ul><li>制作归档文件—–制作压缩文件</li><li>释放归档文件—-解压已归档的压缩文件</li><li>tar命令的选项<ul><li>-c创建以.tar结尾的压缩文件</li><li>-C解压时指定释放的目标位置（已存在目录）</li><li>-f表示使用归档文件</li><li>-j调用bzip2程序进行压缩或解压</li><li>-z调用gzip程序进行压缩或解压</li><li>-p打包时保留文件及目录的权限</li><li>-P打包时保留文件及目录的绝对路径</li><li>-t列表查看包内的文件</li><li>-v输出解压或压缩过程中的详细信息</li><li>-x解开.tar的压缩包</li></ul></li><li>举例<ul><li>制作归档文件（归档压缩tar格式的包文件）进行备份操作<ul><li>tar zvcf passwd.tar.gz &#x2F;etc&#x2F;passwd</li><li>tar jvcf passwd.tar.bz2 &#x2F;etc&#x2F;passwd</li></ul></li><li>释放归档文件（解压已打包tar格式的包文件）进行还原操作<ul><li>tar zvxf passwd.tar.gz</li><li>tar jvxf passwd.tar.bz2</li></ul></li><li>在不解压的情况下，查看归压缩.tar格式包文件的内容<ul><li>tar -tvf passwd.tar.gz</li><li>tar -tvf passwd.tar.bz2</li></ul></li><li>同时对多个目录进行归档压缩<ul><li>tar zvcf passwd.tar.gz &#x2F;etc&#x2F; &#x2F;boot</li><li>tar jvcf passwd.tar.gz &#x2F;etc&#x2F; &#x2F;boot</li></ul></li></ul></li></ul></li></ul><hr><h2 id="四、VI文本编辑器使用"><a href="#四、VI文本编辑器使用" class="headerlink" title="四、VI文本编辑器使用"></a>四、VI文本编辑器使用</h2><ul><li><p>vi是类Unix操作系统默认的文本编辑，其拥有强大的全屏编辑功能，多用于修改配置文件</p></li><li><p>vim是vi文本编辑器的增强版本，其也简称为vi编辑器</p></li><li><p>vim工作模式</p><ul><li>命令模式</li><li>未行模式</li><li>输入模式，也称为编辑模式</li></ul></li><li><p>工作模式之间的切换</p><p><img src="https://s2.loli.net/2023/10/15/TJOQpwU7sCNnuzF.png" alt="vi工作模式之间的切换.jpg"></p></li><li><p>命令模式基本模式</p><ul><li><h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><table><thead><tr><th>操作类型</th><th>操作键</th><th>功能</th></tr></thead><tbody><tr><td>方向移动</td><td>↑、↓、←、→</td><td>上、下、左、右</td></tr><tr><td>翻页</td><td>Page Down或Ctrl+F<br>Page Up或Ctrl+B</td><td>向下翻动一整页内容<br>向上翻动一整夜内容</td></tr><tr><td>行内快速跳转</td><td>Home键或”^”、数字”0“<br>End键或”$“键</td><td>跳转至行首<br>跳转到行尾</td></tr><tr><td>行间快速跳转</td><td>1G或者gg<br>G<br>#G</td><td>跳转到文件的首行<br>跳转到文件的末尾行<br>跳转到文件中的第#行</td></tr><tr><td>行号显示</td><td>:set nu<br>:set nonu</td><td>在编辑器中显示行号<br>取消编辑器中的行号显示</td></tr></tbody></table></li><li><h3 id="复制、粘贴、删除"><a href="#复制、粘贴、删除" class="headerlink" title="复制、粘贴、删除"></a>复制、粘贴、删除</h3><table><thead><tr><th>操作类型</th><th>操作键</th><th>功能</th></tr></thead><tbody><tr><td>删除</td><td>x或Del<br>dd<br>#dd<br>d^<br>d$</td><td>删除光标处的单个字符<br>删除当前光标所在行<br>删除从光标所在行开始的#行内容<br>删除当前光标之前到行首的所有字符<br>删除当前光标处到行尾的所有字符</td></tr><tr><td>复制</td><td>yy<br>#yy</td><td>复制当前行整行的内容到剪切板<br>复制从光标所在行开始的#行内容</td></tr><tr><td>粘贴</td><td>P（大写）<br>p（小写）</td><td>将缓冲区中的内容粘贴到光标位置处之后<br>粘贴到光标位置处之前</td></tr></tbody></table></li><li><h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><table><thead><tr><th>操作键</th><th>功能</th></tr></thead><tbody><tr><td>&#x2F;word</td><td>从上而下在文件中查找字符串”word“</td></tr><tr><td>?word</td><td>从下而上在文件中查找字符串”word“</td></tr><tr><td>n</td><td>定位下一个匹配的被查找字符串</td></tr><tr><td>N</td><td>定位上一个匹配的被查找字符串</td></tr></tbody></table></li><li><h3 id="撤销和退出"><a href="#撤销和退出" class="headerlink" title="撤销和退出"></a>撤销和退出</h3><table><thead><tr><th>操作键</th><th>功能</th></tr></thead><tbody><tr><td>u</td><td>按一次取消最近的一次操作；重复u键，恢复多部操作</td></tr><tr><td>U</td><td>用于取消对当前行所做的所有编辑</td></tr><tr><td>ZZ</td><td>保存当前的文件内容并退出vi编辑器</td></tr></tbody></table></li><li><h3 id="保存及退出vi编辑器"><a href="#保存及退出vi编辑器" class="headerlink" title="保存及退出vi编辑器"></a>保存及退出vi编辑器</h3><table><thead><tr><th>功能</th><th>命令</th><th>备注</th></tr></thead><tbody><tr><td>保存文件</td><td>:w<br>:w &#x2F;root&#x2F;newfile</td><td>保存修改的内容<br>另存为其他文件</td></tr><tr><td>退出vi</td><td>:q<br>:q!</td><td>未修改退出<br>放弃对文件内容的修改，并退出vi</td></tr><tr><td>保存文件退出vi</td><td>:wq或x</td><td>保存修改的内容并退出</td></tr></tbody></table></li><li><h3 id="打开新文件或读入其他文件内容"><a href="#打开新文件或读入其他文件内容" class="headerlink" title="打开新文件或读入其他文件内容"></a>打开新文件或读入其他文件内容</h3><table><thead><tr><th>命令</th><th>功能</th></tr></thead><tbody><tr><td>:e ~&#x2F;install.log</td><td>打开新的文件进行编辑</td></tr><tr><td>:r &#x2F;etc&#x2F;filesystems</td><td>在当前文件中读入其他文件内容</td></tr></tbody></table></li><li><h3 id="文件内容替换"><a href="#文件内容替换" class="headerlink" title="文件内容替换"></a>文件内容替换</h3><table><thead><tr><th>命令</th><th>功能</th></tr></thead><tbody><tr><td>:s &#x2F;old&#x2F;new</td><td>将当前行中查找到的第一个字符 “old” 串替换为 “new”</td></tr><tr><td>:s &#x2F;old&#x2F;new&#x2F;g</td><td>将当前行中查找到的所有字符串 “old” 替换为 “new”</td></tr><tr><td>:#,# s&#x2F;old&#x2F;new&#x2F;g</td><td>在行号 “#,#” 范围内替换所有的字符串 “old” 为 “new”</td></tr><tr><td>:% s&#x2F;old&#x2F;new&#x2F;g</td><td>在整个文件范围内替换所有的字符串 “old” 为 “new”</td></tr><tr><td>:s &#x2F;old&#x2F;new&#x2F;c</td><td>在替换命令末尾加入c命令，将对每个替换动作提示用户进行确认</td></tr></tbody></table></li></ul></li></ul><hr>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;目录和文件管理&quot;&gt;&lt;a href=&quot;#目录和文件管理&quot; class=&quot;headerlink&quot; title=&quot;目录和文件管理&quot;&gt;&lt;/a&gt;目录和文件管理&lt;/h1&gt;&lt;h2 id=&quot;一、目录结构&quot;&gt;&lt;a href=&quot;#一、目录结构&quot; class=&quot;headerlink&quot; title=&quot;一、目录结构&quot;&gt;&lt;/a&gt;一、目录结构&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Linux操作系统中的目录和文件数据被组织为一个树形目录结构，所有分区、目录、文件等都具有一个相同的位置起点—-根目录&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;根目录&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;所有分区、目录、文件等的位置起点&lt;/li&gt;
+&lt;li&gt;整个树形目录结构中，使用独立的一个“&amp;#x2F;”表示&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;常见的子目录及其作用&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;目录&lt;/th&gt;
+&lt;th&gt;作用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;&amp;#x2F;boot&lt;/td&gt;
+&lt;td&gt;此目录是系统内核存放的目录，同时也是系统启动时所需文件的存放目录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;#x2F;bin&lt;/td&gt;
+&lt;td&gt;这一目录存放了所有用户都可执行的且经常使用的命令，如 cp、ls 等。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;#x2F;etc&lt;/td&gt;
+&lt;td&gt;系统主要的和服务产生的配置文件几乎都放置到这个目录内,例如人员的账号密码文件、各种服务的起始文件等。&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="记录" scheme="https://li-san-huo.gitee.io/categories/%E8%AE%B0%E5%BD%95/"/>
+    
+    <category term="学习" scheme="https://li-san-huo.gitee.io/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="运维" scheme="https://li-san-huo.gitee.io/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/"/>
+    
+    <category term="Linux文件和目录" scheme="https://li-san-huo.gitee.io/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"/>
+    
+    
+    <category term="运维" scheme="https://li-san-huo.gitee.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+    <category term="Linux文件和目录" scheme="https://li-san-huo.gitee.io/tags/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux常用命令</title>
+    <link href="https://li-san-huo.gitee.io/2023/10/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>https://li-san-huo.gitee.io/2023/10/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</id>
+    <published>2023-10-15T08:42:46.000Z</published>
+    <updated>2023-10-15T08:54:10.332Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h1><h2 id="一、linux命令基础"><a href="#一、linux命令基础" class="headerlink" title="一、linux命令基础"></a>一、linux命令基础</h2><ul><li><p>shell程序</p><p><img src="https://s2.loli.net/2023/10/11/LClNcO62neoZ9kx.png" alt="shell程序.jpg"></p><ul><li>这是linux系统中运行的一种特殊程序，在用户与内核之间充当翻译官，当用户登陆系统时会自动加载一个shell程序。</li><li>linux系统默认使用shell程序对应的文件时 &#x2F;bin&#x2F;bash<span id="more"></span></li></ul></li><li><p>内部命令与外部命令的区别</p><table><thead><tr><th align="center">区分类型</th><th align="center">内部命令</th><th align="center">外部命令</th></tr></thead><tbody><tr><td align="center">定义</td><td align="center">集成于Shell解释器程序内部的一些特殊指令，也称为内建（Buit-in）指令</td><td align="center">在linux系统中，安装其他应用程序所生产的脚本文件或二进制文件</td></tr><tr><td align="center">组成</td><td align="center">属于shell解释器的一部分</td><td align="center">属于shell解释器之外的部分</td></tr><tr><td align="center">系统文件</td><td align="center">没有单独对应的文件系统</td><td align="center">每个外部命令在系统中都有一个对应的命令文件</td></tr><tr><td align="center">自动加载</td><td align="center">系统重启会自动加载如内存，直接使用</td><td align="center">必须找到对应的外部文件所在的位置，再加载到shell中</td></tr></tbody></table></li><li><p>linux系统通用命令格式</p><ul><li><p>命令字 选项 格式</p></li><li><p>严格区分大小写，即对大小写是敏感的</p></li><li><p>选项和参数是可以互换位置的</p></li><li><p>选项是多个，针对多个短格式选项可以合并使用</p></li><li><p>命令字后可以长格式+短格式混合使用</p></li><li><p>linux命令行的辅助操作</p><table><thead><tr><th align="center">按键</th><th align="center">作用</th></tr></thead><tbody><tr><td align="center">Tab</td><td align="center">自动补齐</td></tr><tr><td align="center">\</td><td align="center">强制换行</td></tr><tr><td align="center">Ctrl+U</td><td align="center">清空至行首</td></tr><tr><td align="center">Ctrl+K</td><td align="center">清空至行尾</td></tr><tr><td align="center">Ctrl+L</td><td align="center">清屏</td></tr><tr><td align="center">Ctrl+C</td><td align="center">取消本次命令编辑</td></tr><tr><td align="center">Ctrl+a</td><td align="center">快速将光标定位到行首</td></tr></tbody></table></li></ul></li></ul><hr><h2 id="二、linux命令帮助"><a href="#二、linux命令帮助" class="headerlink" title="二、linux命令帮助"></a>二、linux命令帮助</h2><ul><li>help（内部命令）</li><li>–help（外部命令）</li><li>man（可用于内部和外部命令）</li></ul><hr><h2 id="三、目录与文件的基本操作"><a href="#三、目录与文件的基本操作" class="headerlink" title="三、目录与文件的基本操作"></a>三、目录与文件的基本操作</h2><table><thead><tr><th align="center">命令</th><th align="center">作用</th></tr></thead><tbody><tr><td align="center">pwd</td><td align="center">查看系统当前用户工作目录所在的位置</td></tr><tr><td align="center">cd</td><td align="center">切换用户当前的工作目录</td></tr><tr><td align="center">cd ~</td><td align="center">切换到当前用户的宿主目录或家目录</td></tr><tr><td align="center">cd 目标位置</td><td align="center">系统已存在目录</td></tr><tr><td align="center">cd -</td><td align="center">返回到上次执行cd命令之前所在的目录</td></tr></tbody></table><ul><li><p>相对路径与绝对路径的区别</p><ul><li><p>相对路径：</p><table><thead><tr><th align="center">表现形式</th><th align="center">说明</th><th align="center">示例</th></tr></thead><tbody><tr><td align="center">直接使用目录名或文件名</td><td align="center">表示当前工作目录中的子目录、文件的位置</td><td align="center">grub.conf</td></tr><tr><td align="center">以一个点号”.”开头</td><td align="center">表示以当前的工作目录作为起点</td><td align="center">.&#x2F;grub.conf</td></tr><tr><td align="center">以两个点号”..”开头</td><td align="center">表示以当前目录的上一级目录（父目录）作为起点</td><td align="center">..&#x2F;vmlinuz</td></tr><tr><td align="center">以”~用户名”形式开头</td><td align="center">表示以指定用户的宿主目录作为起点</td><td align="center">~teacher</td></tr></tbody></table></li><li><p>绝对路径：</p><ul><li>以根目录”&#x2F;“作为起点，进行文件的查询或创建</li><li>以绝对路径表示文件路径时，比较繁琐，不够灵活</li><li>比较稳定，指定路径比较精确，但不方便迁移</li></ul></li></ul></li></ul><hr><h2 id="四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息"><a href="#四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息" class="headerlink" title="四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息"></a>四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息</h2><ul><li><p>使用的参数可以是目录名，也可以是文件名，允许在同一条命令中同时使用多个参数。ls命令选项种类非常多，这里只列出一些最常用的以供参考</p><table><thead><tr><th align="center">命令</th><th align="center">作用</th></tr></thead><tbody><tr><td align="center">ls</td><td align="center">显示当前目录中包含的子目录、文件列表信息（不包括隐藏目录、文件）</td></tr><tr><td align="center">ls -l</td><td align="center">以长格式（Long）显示文件和目录的列表，包括权限、大小、最后更新时间等</td></tr><tr><td align="center">ls -a</td><td align="center">显示所有（All）子目录和文件的信息，包括名称以点号“.”开头的隐藏目录和隐藏文件</td></tr><tr><td align="center">ls -A</td><td align="center">与-a 选项的作用基本类似，但有两个特殊隐藏目录不会显示，即表示当前目录的“.”和表示父目录的“..”</td></tr><tr><td align="center">ls -d</td><td align="center">显示目录（Directory）本身的属性，而不是显示目录中的内容</td></tr><tr><td align="center">ls -h</td><td align="center">以更人性化（Human）的方式显示目录或文件的大小，默认的大小单位为字节（B），使用-h 选项后将显示为 KB、MB 等单位。此选项需要结合-l 选项一起使用</td></tr><tr><td align="center">ls -R</td><td align="center">以递归（Recursive）的方式显示指定目录及其子目录中的所有内容</td></tr></tbody></table></li><li><p>ls常用组合键</p><table><thead><tr><th align="center">命令</th><th align="center">作用</th></tr></thead><tbody><tr><td align="center">ls -hl</td><td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息</td></tr><tr><td align="center">ls -ahl</td><td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，包含隐藏的文件和目录</td></tr><tr><td align="center">ls -Ahl</td><td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，包含隐藏的文件</td></tr><tr><td align="center">ls -hl –color</td><td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，显示属性信息时显示不同的 颜色</td></tr><tr><td align="center">ls -hl &#x2F;etc&#x2F;ns*.conf</td><td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以ns开头任意多个字符且以.conf结尾的文件</td></tr><tr><td align="center">ls -hl &#x2F;etc&#x2F;vi??</td><td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以文件名vi开头任意两个字符的文件</td></tr><tr><td align="center">ls -hl &#x2F;etc&#x2F;vi???</td><td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以文件名vi开头任意三个字符的文件</td></tr></tbody></table><ul><li>“*”匹配任意的多个字符，”?”匹配任意一个字符</li></ul></li></ul><hr><h2 id="五、alias设置别名"><a href="#五、alias设置别名" class="headerlink" title="五、alias设置别名"></a>五、alias设置别名</h2><ul><li>alias myls&#x3D;’ls -alh’</li><li>命令myls相当于执行ls -alh命令。别名设置的作用：对经常使用的命令做别名设置，提高命令输入的速度和效率</li><li>以命令的方式设置别名，是临时的，只在当前的字符终端生效，其他字符终端无法识别别名</li></ul><hr><h2 id="六、du统计目录和文件占用磁盘空间的情况"><a href="#六、du统计目录和文件占用磁盘空间的情况" class="headerlink" title="六、du统计目录和文件占用磁盘空间的情况"></a>六、du统计目录和文件占用磁盘空间的情况</h2><ul><li>du -sh &#x2F;boot (统计&#x2F;boot目录占用磁盘空间的总大小，不显示&#x2F;boot目录中文件和子文件占用磁盘空间的大小)</li><li>du -ah &#x2F;boot（只统计&#x2F;boot目录占用磁盘空间的总大小，显示&#x2F;boot目录中文件和子文件占用磁盘空间的大小）</li></ul><hr><h2 id="七、mkdir创建空目录"><a href="#七、mkdir创建空目录" class="headerlink" title="七、mkdir创建空目录"></a>七、mkdir创建空目录</h2><ul><li>mkdir &#x2F;kgc(在&#x2F;目录下创建目录kgc)</li><li>mkdir –p &#x2F;kgc&#x2F;kc32&#x2F;a1&#x2F;a2（在kgc下创建kc32，在kc32中创建目录a1,在a1下创建目录a2）</li><li>mkdir –p &#x2F;beida&#x2F;kgc&#x2F;{a&#x2F;{a1,a2},b&#x2F;{b1,b2},c&#x2F;{c1,c2}} （递归创建&#x2F;beida&#x2F;目录创建的目录kgc，在kgc目录下创建了目录 a、b、c这三个目录，而目录a下创建了a1和a2，在目录b下创建b1、b2,在目录c下创建c1、c2）</li></ul><hr><h2 id="八、touch创建空文件"><a href="#八、touch创建空文件" class="headerlink" title="八、touch创建空文件"></a>八、touch创建空文件</h2><ul><li><p>touch命令的作用</p><ul><li>更新文件时间标记（针对已存在的文件）</li><li>创建空文件（一次可以创建多个）</li></ul><table><thead><tr><th>格式</th><th>作用</th></tr></thead><tbody><tr><td>touch a.txt</td><td>创建a.txt文件</td></tr><tr><td>touch a.txt b.txt</td><td>创建a.txt和b.txt两个文件</td></tr><tr><td>两次touch a.txt</td><td>更改a.txt文件的时间标记</td></tr></tbody></table></li></ul><hr><h2 id="九、In创建链接文件"><a href="#九、In创建链接文件" class="headerlink" title="九、In创建链接文件"></a>九、In创建链接文件</h2><ul><li><p>链接文件分类</p><ul><li>软连接文件，也称为“符号链接文件”</li><li>硬链接文件</li></ul></li><li><p>创建链接文件的命令格式</p><ul><li>In -s 源文件 目录位置（软链接）</li><li>In 源文件 目录位置（硬链接）</li></ul></li><li><p>例子</p><ul><li>软连接的创建：<ul><li>In -s &#x2F;bin&#x2F;mkdir &#x2F;home</li><li>In -s &#x2F;bin&#x2F; &#x2F;home</li></ul></li><li>硬链接的创建<ul><li>In &#x2F;bin&#x2F;mkdir &#x2F;home</li></ul></li></ul></li><li><p>软链接和硬链接的区别</p><table><thead><tr><th>类别</th><th>软链接文件</th><th>硬链接文件</th></tr></thead><tbody><tr><td>语法格式</td><td>ln -s &#x2F;bin&#x2F;mkdir &#x2F;home <br>ln -s &#x2F;bin&#x2F; &#x2F;home</td><td>ln &#x2F;bin&#x2F;mkdir &#x2F;home</td></tr><tr><td>创建对象要求</td><td>可基于文件创建软链接文件 也可基于目录创建软链接文件</td><td>只能基于文件创建硬链接文件</td></tr><tr><td>文件系统要求</td><td>源文件和创建的软链接文件可在 同一个文件系统，也可不在同一 个文件系统</td><td>源文件和创建的硬链接文件必须 在同一个文件系统内</td></tr><tr><td>删除源文件产生后果</td><td>删除源文件后，创建的软链接文 件不可正常使用</td><td>删除源文件后，创建的硬链接文 件可正常使用</td></tr></tbody></table></li></ul><hr><h2 id="十、cp复制文件或目录"><a href="#十、cp复制文件或目录" class="headerlink" title="十、cp复制文件或目录"></a>十、cp复制文件或目录</h2><ul><li><p>cp 命令用于复制文件或目录，将需要复制的文件或目录（源）重建一份并保存为新的文件或目录（可保存到其他目录中）</p></li><li><p>cp 命令基本格式</p><ul><li>cp 源文件或目录 目标文件或目录</li></ul><table><thead><tr><th align="center">命令选项</th><th align="center">作用</th></tr></thead><tbody><tr><td align="center">cp -f</td><td align="center">覆盖目标同名文件或目录时不进行提醒，直接强制复制</td></tr><tr><td align="center">cp -i</td><td align="center">覆盖目标同名文件或目录时提醒用户确认</td></tr><tr><td align="center">cp -p</td><td align="center">复制时保持源文件的权限、属主及时间标记等属性不变</td></tr><tr><td align="center">cp -r</td><td align="center">复制目录时必须使用此选项，表示递归复制所有文件及子目录</td></tr></tbody></table></li><li><p>例子：</p><ul><li>cp -i a.txt &#x2F;kgc：复制的目标位置中与源文件重名的文件进行提示是否覆盖，其是默认选项 </li><li>cp -p a.txt &#x2F;kgc：复制时保留源文件到目标位置的属性信息不变</li><li>cp -rf &#x2F;kgc&#x2F;kc32 &#x2F;home：复制到目标位置时强制进行覆盖操作，而不进行提示</li></ul></li></ul><hr><h2 id="十一、rm删除目录或文件"><a href="#十一、rm删除目录或文件" class="headerlink" title="十一、rm删除目录或文件"></a>十一、rm删除目录或文件</h2><ul><li>rm 命令用于删除指定的文件或目录，在 Linux 命令行界面中，删除的文件是难以恢复的，因此使用 rm 命令删除文件时需要格外小心。rm 命令使用要删除的文件或目录名作为参数。</li><li>例子：<ul><li>rm a.txt（提示是否删除a.txt）</li><li>rm -i a.txt（提示是否删除a.txt）</li><li>rm -rf &#x2F;kgc&#x2F;kc32（递归强制删除kc32目录，不进行提示）</li><li>rm -r &#x2F;kgc（递归强制删除kgc目录，进行提示）</li></ul></li></ul><hr><h2 id="十二、mv移动文件或目录"><a href="#十二、mv移动文件或目录" class="headerlink" title="十二、mv移动文件或目录"></a>十二、mv移动文件或目录</h2><ul><li>mv 命令用于将指定的文件或目录转移位置，如果目标位置与源位置相同，则效果相当于为文件或目录改名。mv命令的基本使用格式如下：<ul><li>mv 源文件或目录 目标文件或目录<ul><li>mv a.txt &#x2F;kgc</li><li>mv &#x2F;kgc&#x2F; &#x2F;home</li><li>mv a.txt aa.txt</li></ul></li></ul></li></ul><hr><h2 id="十三、which查找命令或文件存放目录"><a href="#十三、which查找命令或文件存放目录" class="headerlink" title="十三、which查找命令或文件存放目录"></a>十三、which查找命令或文件存放目录</h2><ul><li>which 命令用于查找 Linux 命令程序并显示所在的具体位置，其搜索范围主要由用户的环境变量 PATH 决定（可以执行“echo $PATH”命令查看），这个范围也是 Linux 操作系统在执行命令或程序时的默认搜索路径。</li><li>环境变量的定义：<ul><li>系统当前用户所拥有的工作环境，包括用户所有能执行的各种命令文件或脚本文件，即定义用户在系统中所拥有的权限<ul><li>which cd</li><li>which -a ls cd pwd</li></ul></li></ul></li></ul><hr><h2 id="十四、find命令查找文件或目录"><a href="#十四、find命令查找文件或目录" class="headerlink" title="十四、find命令查找文件或目录"></a>十四、find命令查找文件或目录</h2><ul><li><p>find根据不同查找类型（查找表达式）递归进行文件的精细化查找。功能更强大</p><table><thead><tr><th align="center">查找类型</th><th align="center">关键字</th><th align="center">说明</th></tr></thead><tbody><tr><td align="center">按名称查找</td><td align="center">-name</td><td align="center">根据目标文件的名称进行查找，允许使用 ”*“ 及 ”?” 通配符</td></tr><tr><td align="center">按文件大小查找</td><td align="center">-size</td><td align="center">根据目标文件的大小进行查找<br>一般使用 “+”、“-”号设置超过或小于指定的大小作为查找条件<br>常用的容量单位包括kB（注意k是小写）、MB、GB</td></tr><tr><td align="center">按文件属主查找</td><td align="center">-user</td><td align="center">根据文件是否属于目标用户进行查找</td></tr><tr><td align="center">按文件类型查找</td><td align="center">-type</td><td align="center">根据文件的类型进行查找<br>文件类型包括普通文件（f）、目录（d）、块设备文件（b）、字符设备文件（c）等</td></tr></tbody></table></li><li><p>举例：</p><ul><li>find &#x2F;etc -name *.conf</li><li>find &#x2F;etc -size +1024k</li><li>find &#x2F;etc -user root</li><li>find &#x2F;etc -type f</li></ul></li><li><p>使用find命令实现多个条件的查找，需要使用逻辑运算符</p><ul><li>逻辑与（查找时条件要同时满足），表示方法“-a”</li><li>逻辑或（查找时条件只有满足其一即可），表示方法”-o”</li></ul></li></ul><hr>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;linux常用命令&quot;&gt;&lt;a href=&quot;#linux常用命令&quot; class=&quot;headerlink&quot; title=&quot;linux常用命令&quot;&gt;&lt;/a&gt;linux常用命令&lt;/h1&gt;&lt;h2 id=&quot;一、linux命令基础&quot;&gt;&lt;a href=&quot;#一、linux命令基础&quot; class=&quot;headerlink&quot; title=&quot;一、linux命令基础&quot;&gt;&lt;/a&gt;一、linux命令基础&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;shell程序&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.loli.net/2023/10/11/LClNcO62neoZ9kx.png&quot; alt=&quot;shell程序.jpg&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这是linux系统中运行的一种特殊程序，在用户与内核之间充当翻译官，当用户登陆系统时会自动加载一个shell程序。&lt;/li&gt;
+&lt;li&gt;linux系统默认使用shell程序对应的文件时 &amp;#x2F;bin&amp;#x2F;bash&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="记录" scheme="https://li-san-huo.gitee.io/categories/%E8%AE%B0%E5%BD%95/"/>
+    
+    <category term="学习" scheme="https://li-san-huo.gitee.io/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="运维" scheme="https://li-san-huo.gitee.io/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/"/>
+    
+    <category term="linux常用命令" scheme="https://li-san-huo.gitee.io/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    
+    
+    <category term="运维" scheme="https://li-san-huo.gitee.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+    <category term="linux常用命令" scheme="https://li-san-huo.gitee.io/tags/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
   
   <entry>
     <title>VLAN与三层交换机</title>
@@ -229,8 +320,8 @@
   
   <entry>
     <title>移动端网页</title>
-    <link href="https://li-san-huo.gitee.io/2023/09/21/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5/"/>
-    <id>https://li-san-huo.gitee.io/2023/09/21/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5/</id>
+    <link href="https://li-san-huo.gitee.io/2023/09/21/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5/"/>
+    <id>https://li-san-huo.gitee.io/2023/09/21/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5/</id>
     <published>2023-09-21T11:02:06.000Z</published>
     <updated>2023-09-26T04:15:50.260Z</updated>
     
@@ -364,8 +455,8 @@
   
   <entry>
     <title>CSS3</title>
-    <link href="https://li-san-huo.gitee.io/2023/09/18/CSS3/"/>
-    <id>https://li-san-huo.gitee.io/2023/09/18/CSS3/</id>
+    <link href="https://li-san-huo.gitee.io/2023/09/18/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/CSS3/"/>
+    <id>https://li-san-huo.gitee.io/2023/09/18/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/CSS3/</id>
     <published>2023-09-18T02:12:38.000Z</published>
     <updated>2023-09-21T10:55:46.649Z</updated>
     
@@ -434,8 +525,8 @@
   
   <entry>
     <title>初识CSS</title>
-    <link href="https://li-san-huo.gitee.io/2023/09/11/%E5%88%9D%E8%AF%86CSS/"/>
-    <id>https://li-san-huo.gitee.io/2023/09/11/%E5%88%9D%E8%AF%86CSS/</id>
+    <link href="https://li-san-huo.gitee.io/2023/09/11/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E5%88%9D%E8%AF%86CSS/"/>
+    <id>https://li-san-huo.gitee.io/2023/09/11/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E5%88%9D%E8%AF%86CSS/</id>
     <published>2023-09-11T04:00:29.000Z</published>
     <updated>2023-09-18T02:08:26.001Z</updated>
     
@@ -467,8 +558,8 @@
   
   <entry>
     <title>网页基础</title>
-    <link href="https://li-san-huo.gitee.io/2023/08/10/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/"/>
-    <id>https://li-san-huo.gitee.io/2023/08/10/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/</id>
+    <link href="https://li-san-huo.gitee.io/2023/08/10/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/"/>
+    <id>https://li-san-huo.gitee.io/2023/08/10/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/</id>
     <published>2023-08-10T07:04:01.000Z</published>
     <updated>2023-09-11T04:09:20.841Z</updated>
     
