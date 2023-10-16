@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>VLAN与三层交换机 |  焱</title>
+      <title>Linux安装及管理程序 |  焱</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-网络应用与实验/VLAN与三层交换机"
+  id="post-Linux系统管理/Linux安装及管理程序"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  VLAN与三层交换机
+  Linux安装及管理程序
 </h1>
  
 
@@ -73,11 +73,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/10/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/VLAN%E4%B8%8E%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/" class="article-date">
-  <time datetime="2023-10-09T10:19:24.000Z" itemprop="datePublished">2023-10-09</time>
+      <a href="/2023/10/16/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/" class="article-date">
+  <time datetime="2023-10-16T10:34:35.000Z" itemprop="datePublished">2023-10-16</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/">运维</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/">网络应用与实验</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/VLAN%E4%B8%8E%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/">VLAN与三层交换机</a>
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/">运维</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">linux系统管理</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/">linux安装及管理程序</a>
   </div>
   
 <div class="word_count">
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.9k</span>
+            <span class="post-count">1.8k</span>
         </span>
     </span>
 
@@ -109,265 +109,234 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="VLAN与三层交换机"><a href="#VLAN与三层交换机" class="headerlink" title="VLAN与三层交换机"></a>VLAN与三层交换机</h1><h2 id="一、VLAN概念"><a href="#一、VLAN概念" class="headerlink" title="一、VLAN概念"></a>一、VLAN概念</h2><ul>
-<li>定义：是一种虚拟局域网，代表一种网络地址或网段（即可是公网，即Internet;也可以私网，即内网）。</li>
-<li>vlan作用<ul>
-<li>分割广播域<ul>
-<li>物理分割——通过多台交换机实现对广播域的分割，成本较高，不适用于生产环境。</li>
-<li>逻辑分割——通过在交换机上配置VLAN实现对广播域的分割，比较灵活，成本低，使用与生产环境。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-
-<hr>
-<h2 id="二、VLAN优势"><a href="#二、VLAN优势" class="headerlink" title="二、VLAN优势"></a>二、VLAN优势</h2><ol>
-<li>控制广播——PC只能在各自的vlan中接收广播，不能跨vlan接收广播</li>
-<li>提高网络安全性——默认情况下，各自vlan中的PC不能实现互相通信</li>
-<li>简化网络管理——对于管理员配置方便，提高网络管理工作效率。</li>
-</ol>
-<hr>
-<h2 id="三、VLAN种类"><a href="#三、VLAN种类" class="headerlink" title="三、VLAN种类"></a>三、VLAN种类</h2><ol>
-<li>静态vlan——基于交换机的接口或端口划分的vlan，称为静态vlan</li>
-<li>动态vlan——基于mac地址划分的vlan，称为动态vlan，不常用，配置成本太高。</li>
-</ol>
-<hr>
-<h2 id="四、静态VLAN配置"><a href="#四、静态VLAN配置" class="headerlink" title="四、静态VLAN配置"></a>四、静态VLAN配置</h2><ol>
-<li><p>cisco 2960交换机的vlan范围</p>
+  <h1 id="安装及管理程序"><a href="#安装及管理程序" class="headerlink" title="安装及管理程序"></a>安装及管理程序</h1><h2 id="一、Linux应用程序基础"><a href="#一、Linux应用程序基础" class="headerlink" title="一、Linux应用程序基础"></a>一、Linux应用程序基础</h2><blockquote>
+<p>名称解释：应用程序，又称为软件，通过安装应用程序，提供一种服务供用户去访问或使用</p>
+</blockquote>
+<ul>
+<li><p>应用程序与系统命令之间的关系</p>
 <table>
 <thead>
 <tr>
-<th align="center">VLAN ID 范围</th>
-<th align="center">范围</th>
-<th align="center">用途</th>
+<th align="center">角色</th>
+<th align="center">系统命令</th>
+<th align="center">应用程序</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">0，4095</td>
-<td align="center">保留</td>
-<td align="center">仅限系统使用<br>用户不能查看和使用这些VLAN</td>
+<td align="center">文件位置</td>
+<td align="center">一般在&#x2F;bin和&#x2F;sbin目录中，或为Shell内部指令</td>
+<td align="center">通常在&#x2F;usr&#x2F;bin和&#x2F;usr&#x2F;sbin目录中</td>
 </tr>
 <tr>
-<td align="center">1</td>
-<td align="center">正常</td>
-<td align="center">Cisco默认VLAN<br>用户能够使用该VLAN，但不能删除它</td>
+<td align="center">主要用途</td>
+<td align="center">一般只在字符操作界面中运行</td>
+<td align="center">根据实际需要，有些程序可在图形界面中运行</td>
 </tr>
 <tr>
-<td align="center">2-1001</td>
-<td align="center">正常</td>
-<td align="center">用于以太网的VLAN<br>用户可以创建、使用和删除这些VLAN</td>
+<td align="center">适用环境</td>
+<td align="center">一般只在字符操作界面中运行</td>
+<td align="center">根据实际需要，有些程序可在图形界面中运行</td>
 </tr>
 <tr>
-<td align="center">1002-1005</td>
-<td align="center">正常</td>
-<td align="center">用于FDDI和令牌环的Cisco默认VLAN</td>
-</tr>
-<tr>
-<td align="center">1006-1024</td>
-<td align="center">保留</td>
-<td align="center">仅限系统使用<br>用户不能查看和使用这些VLAN</td>
-</tr>
-<tr>
-<td align="center">1025-4094</td>
-<td align="center">扩展</td>
-<td align="center">仅用于以太网VLAN</td>
+<td align="center">运行格式</td>
+<td align="center">一般包括命令字、命令选项和命令参数</td>
+<td align="center">通常没有固定的执行格式<span id="more"></span></td>
 </tr>
 </tbody></table>
 </li>
-<li><p>vlan范围总结</p>
-<ul>
-<li>cisco系列交换机vlan范围：0~4095</li>
-<li>保留使用的vlan范围：0，4095（两个vlan）；1006<del>1024（不能查、不能使用、更不能删）</del></li>
-<li>默认vlan范围，vlan1；vlan1002~vlan1005（默认vlan可以使用vlan，但不能删除）</li>
-<li>正常使用的vlan范围：vlan2 ~ vlan1001（增删改查）</li>
-<li>扩展使用的vlan范围：vlan1049 ~ vlan4094（增删改查）</li>
-</ul>
+<li><p>经典应用程序的目录结构</p>
+<table>
+<thead>
+<tr>
+<th align="center">文件类型</th>
+<th align="center">保存目录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">普通执行程序文件</td>
+<td align="center">&#x2F;usr&#x2F;bin</td>
+</tr>
+<tr>
+<td align="center">服务器执行程序文件和管理程序文件</td>
+<td align="center">&#x2F;usr&#x2F;sbin</td>
+</tr>
+<tr>
+<td align="center">应用程序配置文件</td>
+<td align="center">&#x2F;etc</td>
+</tr>
+<tr>
+<td align="center">日志文件</td>
+<td align="center">&#x2F;var&#x2F;log</td>
+</tr>
+<tr>
+<td align="center">应用程序参考文档文件</td>
+<td align="center">&#x2F;usr&#x2F;share&#x2F;doc</td>
+</tr>
+<tr>
+<td align="center">应用程序手册页文件</td>
+<td align="center">&#x2F;usr&#x2F;share&#x2F;man</td>
+</tr>
+</tbody></table>
 </li>
-<li><p>静态vlan创建</p>
-<ul>
-<li>创建方法：<ul>
-<li>数据库配置模式（古老的配置方式）</li>
-<li>全局配置模式（通用配置方式）</li>
-</ul>
-</li>
-<li>配置步骤：<ol>
-<li>创建vlan<ul>
-<li><font color="cornflowerblue">vlan database（特权模式）</font></li>
-<li><font color="cornflowerblue">vlan 10 name mingzi</font></li>
-<li><font color="cornflowerblue">exit</font></li>
-<li><font color="cornflowerblue">valn 20（全局配置模式）</font></li>
-<li><font color="cornflowerblue">name mingzi</font></li>
-<li><font color="cornflowerblue">exit</font></li>
-<li><font color="red">no vlan vlan-id（在对应的模式下，不用加vlan的名称）</font></li>
-</ul>
-</li>
-<li>将交换机接口加入对应的vlan<ul>
-<li><font color="cornflowerblue">interface f0&#x2F;1（全局模式）</font></li>
-<li><font color="cornflowerblue">switchport mode access （定义链路类型为接入链路，也称为access链路）</font></li>
-<li><font color="cornflowerblue">switchport access vlan 10（将交换机接口或端口f0&#x2F;1加入vlan10）</font></li>
-<li><font color="red">no switchport access vlan 10（进入对应接口模式f0&#x2F;1）</font></li>
-</ul>
-</li>
-<li>验证vlan配置<ul>
-<li>show vlan brief（查看所有vlan配置的概要信息）</li>
-<li>show vlan id vlan-id（单独查看某个vlan的配置信息）</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="五、Trunk介绍与配置"><a href="#五、Trunk介绍与配置" class="headerlink" title="五、Trunk介绍与配置"></a>五、Trunk介绍与配置</h2><ul>
-<li><p>在交换网络中，链路的类型共分为两类</p>
-<ul>
-<li>接入链路，也称为Access链路<ul>
-<li>应用场景：PC与交换机相连接使用的链路</li>
-</ul>
-</li>
-<li>中继链路，也称为trunk链路<ul>
-<li>应用场景：交换机与交换机相连或交换机与路由器相连接的链路</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>trunk的作用：<font color="red">实现相同vlan跨交换机进行通信。</font></p>
-</li>
-<li><p>vlan跨交换机通信的过程</p>
-<ul>
-<li><p>通过交换机给往其他交换机的数据帧打上VLAN标识，用于区分传输不同VLAN的数据帧，最终实现跨交换机相同vlan下不同PC的相同通信。</p>
-</li>
-<li><p>VLAN标识两种封装协议类型</p>
-<ul>
-<li><p>ISL（Cisco的私有标准协议）</p>
-<p>应用场景：仅用于cisco系列的交换机产品，非cisco系列交换机产品不能使用该私有标准封装协议</p>
-</li>
-<li><p>IEEE 802.1Q（通用的标准协议）</p>
-<p>应用场景：即可是cisco系列的交换机产品，也可以是非cisco系列交换机，是一种通用的标准封装协议。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>配置trunk链路的步骤与命令</p>
-<ul>
-<li><p>进入接口模式</p>
-<ul>
-<li>switch(config)# interface f0&#x2F;24</li>
-</ul>
-</li>
-<li><p>选择协议的封装类型</p>
-<ul>
-<li>switch(config-if)# switchport trunk encapsulation dot1q（在三层交换机3560上需要配置，二层交换2960无需配置默认使用的是dot1q）</li>
-</ul>
-</li>
-<li><p>将接口配置为trunk模式</p>
-<ul>
-<li>switch(config-if)# switchport mode trunk</li>
-</ul>
-</li>
-<li><p>查看接口f0&#x2F;24配置的模式和状态</p>
-<ul>
-<li><p>switch# show interface f0&#x2F;24 switchport</p>
-<p><img src="https://s2.loli.net/2023/10/09/HKebsBljdLwmxIG.png" alt="查看接口f024配置.jpg"></p>
-</li>
-</ul>
-</li>
-</ul>
+<li><p>常见软件包的封装类型</p>
+<table>
+<thead>
+<tr>
+<th align="center">文件类型</th>
+<th align="center">保存目录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">RPM软件包</td>
+<td align="center">扩展名为 “.rpm”</td>
+</tr>
+<tr>
+<td align="center">DEB软件包</td>
+<td align="center">扩展名为 “.deb”</td>
+</tr>
+<tr>
+<td align="center">源代码软件包</td>
+<td align="center">一般为 “.tar.gz”、“.tar.bz2” 等格式的压缩包，包含程序的原始代码</td>
+</tr>
+<tr>
+<td align="center">绿色免安装的软件包</td>
+<td align="center">软件包的扩展名不一，，以TarBall格式的居多<br>在压缩包内提供已编译好的执行程序文件<br>解开压缩包后的文件即可直接使用</td>
+</tr>
+</tbody></table>
 </li>
 </ul>
 <hr>
-<h2 id="六、三层交换机"><a href="#六、三层交换机" class="headerlink" title="六、三层交换机"></a>六、三层交换机</h2><ul>
-<li><p>三层交换机的作用——使用三层交换技术实现跨VLAN通信</p>
-</li>
-<li><p>三层交换 &#x3D; 二层交换（二层交换机-数据帧）+ 三层转发（路由器转发-数据包）</p>
-</li>
-<li><p>三层交换机是复合产品（交换机+路由器）</p>
-</li>
-<li><p>三层交换机转发原理：</p>
-<ul>
-<li><p>传统的MLS2-1</p>
-<ul>
-<li>3层转发过程中要重新封装2层</li>
-<li>三层交换机上，第三层引擎处理数据流的第一个包，交换ASIC从3层引擎中获悉2层重写信息在硬件中创建一个MLS条目，负责重写和转发数据流中的后续数据包。</li>
+<h2 id="二、RPM包管理工具"><a href="#二、RPM包管理工具" class="headerlink" title="二、RPM包管理工具"></a>二、RPM包管理工具</h2><ul>
+<li>RPM软件包命名格式<ul>
+<li>软件名称-版本号-发布次数-硬件平台-后缀名.rpm</li>
+<li>获取rpm命令的详细帮助信息<ul>
+<li>man</li>
+<li>rpm</li>
 </ul>
 </li>
-<li><p>基于CEF的MLS</p>
-<ul>
-<li>CEF（CISCO快速转发）是一种基于拓扑转发的模型，包含两个转发用的信息表，一个是FIB（转发信息可以），另一个是邻接关系表。</li>
+<li>rpm命令可以实现几乎所有对rpm软件包的管理功能</li>
 </ul>
 </li>
-<li><p>三层交换机中的两个表</p>
-<ul>
-<li><p>转发信息库（FIB）——相当于路由表</p>
-<p>FIB：FIB类似于路由表，包含路由表中转发信息的镜像，当网络的拓扑发生变化时，路由表被更新，FIB也随之变化</p>
+<li>rpm命令常见的功能<ul>
+<li>安装、卸载、查询、更新、验证、维护等功能</li>
+</ul>
 </li>
-<li><p>邻接关系表——相当于MAC地址表</p>
-<p>邻接关系表：在网络中，两个节点之间在数据链路层只有一条，即彼此直接相连，则两个节点为邻接关系，邻接关系表就包含了与该节点直接相连的设备的第二层编址信息。</p>
+<li>rpm命令使用<ul>
+<li>查询已安装的RPM软件包<ul>
+<li>rpm -qa查询linux系统中系统已安装的所有rpm软件包</li>
+<li>rpm -qa |wc-l 统计出linux系统中已安装的所有rpm包的总数</li>
+<li>rpm -ql openssh查看openssh软件包在当前系统中安装的所有目录和文件</li>
+<li>rpm -qi openssh查看openssh软件包的详细信息，包括名称、版本、发布次数等</li>
+<li>rpm -qc openssh查看openssh软件包在当前系统中安装的配置文件</li>
+<li>rpm -qf &#x2F;usr&#x2F;bin&#x2F;pwd查看pwd这个命令是由哪个软件包安装的</li>
+<li>rpm -qd openssh 查看openssh软件包在当前系统中安装的帮助文档</li>
+</ul>
 </li>
+<li>查询未安装的RPM包<ul>
+<li>rpm –qp lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （查看未安装的软件包）</li>
+<li>rpm –qpi lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （查看未安装软件包的详细信息）</li>
+<li>rpm –qpl lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成哪些目录和文件）</li>
+<li>rpm –qpc lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成的配置文件）</li>
+<li>pm –qpd lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成的帮助文档</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>三层交换机虚接口概述</p>
-<ul>
-<li><font color="red">在三层交换机上配置的VLAN接口为虚接口——配置的虚接口的接口IP地址，即是各VLAN中主机的网关地址</font></li>
-<li>虚接口的引入使得应用更加灵活</li>
-<li><font color="red">最终实现跨VLAN通信</font></li>
+<li>安装RPM软件包<ul>
+<li>命令格式<ul>
+<li>rpm 选项 软件包名称</li>
+</ul>
+</li>
+<li>安装选项<ul>
+<li>-i在当前系统中，安装一个新的软件包</li>
+<li>-U检查并升级系统中的某个软件包，若该软件包未安装，则安装这个软件包，这时就相当于“-i”这个选项</li>
+<li>-F检查并更新系统中的某个软件包，若该软件未安装，则放弃更新升级安装操作。</li>
+<li>-e卸载已安装的软件包</li>
+<li>-v显示软件包安装过程中的详细信息</li>
+<li>-h在安装或升级软件包的过程中，以“#”的方式显示安装或升级的进度</li>
+<li>–force强制安装某个软件包，如安装一个比当前版本更低的一个版本时，会使用强制安装</li>
+<li>–nodeps可用于安装、升级、卸载一个软件包时，忽略软件包的依赖关系</li>
+</ul>
+</li>
+<li>举例<ul>
+<li>rpm -ivh lynx-2.8.8-0.3.dev15.el7.x86_64.rpm (安装全新的lynx软件包)</li>
+<li>rpm -e lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （卸载lynx软件包）</li>
+<li>rpm -q lynx （查看lynx软件包是否卸载）</li>
+<li>rpm -qpi elinks-0.12-0.37.pre6.el7.x86_64.rpm –nodeps （安装新的软件包，且忽略依赖关系）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>维护RPM数据库<ul>
+<li>重建RPM数据库<ul>
+<li>rpm –rebuilddb（执行效率低）</li>
+<li>rpm –initdb（执行效率高）</li>
+</ul>
+</li>
+<li>导入验证公钥<ul>
+<li>root@localhost~]# rpm –import&#x2F;media&#x2F;cdrom&#x2F;RPM-GPG-KEY-CentOS-7</li>
+<li>作用：导入公钥文件后，安装软件包时，不会提示警告信息，确保安装到系统的RPM包是安全的。</li>
+</ul>
+</li>
+<li>解决软件包依赖关系方法<ul>
+<li>安装有依赖关系的多软件包，被依赖的软件先安装，可以同时制定多个rpm包进行安装</li>
+<li>卸载有依赖关系的多个软件包时，被依赖的软件先卸载，可以同时制定多个rpm包进行卸载</li>
+<li>安装或卸载有依赖关系的软件包，不考虑其依赖关系进行安装或卸载使用“–nodeps”选项，忽略依赖关系，进行强制安装或卸载有依赖关系的软件包</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 <hr>
-<h2 id="七、三层交换机配置"><a href="#七、三层交换机配置" class="headerlink" title="七、三层交换机配置"></a>七、三层交换机配置</h2><ol>
-<li><p>在三层交换机启用路由功能</p>
-<ul>
-<li>Switch(config)# ip routing</li>
+<h2 id="三、源代码包编译安装程序"><a href="#三、源代码包编译安装程序" class="headerlink" title="三、源代码包编译安装程序"></a>三、源代码包编译安装程序</h2><ul>
+<li>源代码编译安装概述<ul>
+<li>使用源代码包安装软件的优点<ul>
+<li>获取较新软件版本，及时修改BUG</li>
+<li>根据用户需求，灵活定制软件功能模块</li>
 </ul>
 </li>
-<li><p>配置虚接口的IP</p>
-<ul>
-<li>Switch(config)# interface vlan-id</li>
-<li>Switch(config)# ip address ip_address netmask</li>
-<li>Switch(config-if)# no shutdown</li>
+<li>源代码使用场景<ul>
+<li>企业要求安装较新版本的软件包时</li>
+<li>企业业务需求无法及时满足时</li>
+<li>应用程序需要添加新的功能时</li>
 </ul>
 </li>
-<li><p>将三层交换机f0&#x2F;1接口配置成路由接口命令</p>
-<ul>
-<li>Switch(config-if)# no switchport</li>
+<li>源代码包格式<ul>
+<li>源代码包，又称为“Tarball”</li>
+<li>格式 tar.gz。tar.bz2</li>
 </ul>
 </li>
-<li><p>在三层交换机查看路由表</p>
-<ul>
-<li><p>Switch# show ip route</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line"> D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area</span><br><span class="line"> N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line"> E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP</span><br><span class="line"> i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line"> ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line"> o - ODR, P - periodic downloaded static route</span><br><span class="line">Gateway of last resort is not set</span><br><span class="line">C 192.168.10.0/24 is directly connected, Vlan1</span><br><span class="line">C 192.168.20.0/24 is directly connected, Vlan2</span><br><span class="line">C 192.168.30.0/24 is directly connected, Vlan3</span><br></pre></td></tr></table></figure></li>
+<li>校验源代码完整性的校验工具<ul>
+<li>md5sum https-2.4.50.tar.gz</li>
 </ul>
 </li>
-</ol>
-<hr>
-<h2 id="本章综合实验："><a href="#本章综合实验：" class="headerlink" title="本章综合实验："></a><font color="red">本章综合实验：</font></h2><p>实验要求：</p>
-<ol>
-<li><p>实验拓扑图：</p>
-<p><img src="https://s2.loli.net/2023/10/09/mqFKQPtEUlwBVGW.png" alt="VLAN实验拓扑图.jpg"></p>
-</li>
-<li><p>在两台cisco2960二层交换机上</p>
-<ul>
-<li>分别创建vlan（三个vlan10、vlan20、vlan30）</li>
-<li>分别将f0&#x2F;1 - f0&#x2F;5接口加入vlan10；将f0&#x2F;6-f0&#x2F;10接口加入vlan20；f0&#x2F;11-f0&#x2F;15 接口加入vlan30.</li>
-<li>两台二层交换机通过f0&#x2F;24连接，并做成中继链路，即trunk链路两台二层交换机通过f0&#x2F;24连接，并做成中继链路，即trunk链路</li>
-<li>二层交换机与三层交换机通过f0&#x2F;23链接，并做成中继链路，即trunk链路</li>
-<li>在三层交换机创建三个vlan（vlan10、vlan20、vlan30）</li>
-<li>在三层交换机上分别对三个vlan创建三个虚接口</li>
-<li>在三层交换机上将f0&#x2F;1二层交换口，转换成三层路由口，实现配置IP地址</li>
-<li>在三层交换机和路由器上配置静态路由，实现全网互通（各vlan中的PC均能ping通服务器 192.168.50.250，服务器也能ping通各PC）。</li>
+<li>确认源代码包编译环境<ul>
+<li>gcc编译工具</li>
+<li>验证gcc编译工具是否安装 gcc -version</li>
+<li>验证make编译工具是否安装 make –version</li>
+<li>提前安装apache的依赖包 yum install -y gcc gcc-c++ make apr apr-devel apr-until apr-until-devel pcre pcre-devel</li>
 </ul>
 </li>
-<li><p>实验过程：</p>
-<iframe src="https://easylink.cc/wye9ox" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
-</iframe></li>
-</ol>
+<li>源代码包编译安装的过程<ul>
+<li>下载源代码包并验证源代码包的安装性 md5sum httpd-2.4.50.tar.gz</li>
+<li>解包，使用tar tar zxvf httpd-2.4.50.tar.gz -C &#x2F;usr&#x2F;src</li>
+<li>配置，使用.&#x2F;configure脚本文件进行配置apache安装路径 cd &#x2F;usr&#x2F;src&#x2F;httpd-2.4.50 .&#x2F;configure –prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;apache</li>
+<li>编译，将源代码编译并生成二进制文件 make</li>
+<li>安装，将生成的二进制文件复制到系统对应的目录下 make install</li>
+<li>测试，应用及维护软件<ul>
+<li>修改apache配置文件&#x2F;usr&#x2F;local&#x2F;apache&#x2F;conf&#x2F; httpd.conf（194行的#去掉）</li>
+<li>启动apache服务命令&#x2F;usr&#x2F;local&#x2F;apache&#x2F;bin&#x2F;apachectl start</li>
+<li>验证apache服务是否启动 netstat -anpt |grep httpd</li>
+<li>yum insatll -y lynx elinks</li>
+<li>lynx 或lynx 127.0.0.1</li>
+<li>elinks 或elinks 127.0.0.1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <hr>
  
       <!-- reward -->
@@ -439,12 +408,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/10/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/VLAN%E4%B8%8E%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/10/16/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VLAN%E4%B8%8E%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/" rel="tag">VLAN与三层交换机</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/" rel="tag">网络应用与实验</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/" rel="tag">linux安装及管理程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" rel="tag">linux系统管理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
 
     </footer>
   </div>
@@ -452,19 +421,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Linux常用命令
-          
-        </div>
-      </a>
     
-    
-      <a href="/2023/10/06/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/" class="article-nav-link">
+      <a href="/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">静态路由的原理与配置</div>
+        <div class="article-nav-title">Linux文件和目录</div>
       </a>
     
   </nav>

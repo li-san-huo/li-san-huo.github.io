@@ -1,952 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Linux常用命令</title>
-    <url>/2023/10/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h1><h2 id="一、linux命令基础"><a href="#一、linux命令基础" class="headerlink" title="一、linux命令基础"></a>一、linux命令基础</h2><ul>
-<li><p>shell程序</p>
-<p><img src="https://s2.loli.net/2023/10/11/LClNcO62neoZ9kx.png" alt="shell程序.jpg"></p>
-<ul>
-<li>这是linux系统中运行的一种特殊程序，在用户与内核之间充当翻译官，当用户登陆系统时会自动加载一个shell程序。</li>
-<li>linux系统默认使用shell程序对应的文件时 &#x2F;bin&#x2F;bash<span id="more"></span></li>
-</ul>
-</li>
-<li><p>内部命令与外部命令的区别</p>
-<table>
-<thead>
-<tr>
-<th align="center">区分类型</th>
-<th align="center">内部命令</th>
-<th align="center">外部命令</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">定义</td>
-<td align="center">集成于Shell解释器程序内部的一些特殊指令，也称为内建（Buit-in）指令</td>
-<td align="center">在linux系统中，安装其他应用程序所生产的脚本文件或二进制文件</td>
-</tr>
-<tr>
-<td align="center">组成</td>
-<td align="center">属于shell解释器的一部分</td>
-<td align="center">属于shell解释器之外的部分</td>
-</tr>
-<tr>
-<td align="center">系统文件</td>
-<td align="center">没有单独对应的文件系统</td>
-<td align="center">每个外部命令在系统中都有一个对应的命令文件</td>
-</tr>
-<tr>
-<td align="center">自动加载</td>
-<td align="center">系统重启会自动加载如内存，直接使用</td>
-<td align="center">必须找到对应的外部文件所在的位置，再加载到shell中</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>linux系统通用命令格式</p>
-<ul>
-<li><p>命令字 选项 格式</p>
-</li>
-<li><p>严格区分大小写，即对大小写是敏感的</p>
-</li>
-<li><p>选项和参数是可以互换位置的</p>
-</li>
-<li><p>选项是多个，针对多个短格式选项可以合并使用</p>
-</li>
-<li><p>命令字后可以长格式+短格式混合使用</p>
-</li>
-<li><p>linux命令行的辅助操作</p>
-<table>
-<thead>
-<tr>
-<th align="center">按键</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Tab</td>
-<td align="center">自动补齐</td>
-</tr>
-<tr>
-<td align="center">\</td>
-<td align="center">强制换行</td>
-</tr>
-<tr>
-<td align="center">Ctrl+U</td>
-<td align="center">清空至行首</td>
-</tr>
-<tr>
-<td align="center">Ctrl+K</td>
-<td align="center">清空至行尾</td>
-</tr>
-<tr>
-<td align="center">Ctrl+L</td>
-<td align="center">清屏</td>
-</tr>
-<tr>
-<td align="center">Ctrl+C</td>
-<td align="center">取消本次命令编辑</td>
-</tr>
-<tr>
-<td align="center">Ctrl+a</td>
-<td align="center">快速将光标定位到行首</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="二、linux命令帮助"><a href="#二、linux命令帮助" class="headerlink" title="二、linux命令帮助"></a>二、linux命令帮助</h2><ul>
-<li>help（内部命令）</li>
-<li>–help（外部命令）</li>
-<li>man（可用于内部和外部命令）</li>
-</ul>
-<hr>
-<h2 id="三、目录与文件的基本操作"><a href="#三、目录与文件的基本操作" class="headerlink" title="三、目录与文件的基本操作"></a>三、目录与文件的基本操作</h2><table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">pwd</td>
-<td align="center">查看系统当前用户工作目录所在的位置</td>
-</tr>
-<tr>
-<td align="center">cd</td>
-<td align="center">切换用户当前的工作目录</td>
-</tr>
-<tr>
-<td align="center">cd ~</td>
-<td align="center">切换到当前用户的宿主目录或家目录</td>
-</tr>
-<tr>
-<td align="center">cd 目标位置</td>
-<td align="center">系统已存在目录</td>
-</tr>
-<tr>
-<td align="center">cd -</td>
-<td align="center">返回到上次执行cd命令之前所在的目录</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>相对路径与绝对路径的区别</p>
-<ul>
-<li><p>相对路径：</p>
-<table>
-<thead>
-<tr>
-<th align="center">表现形式</th>
-<th align="center">说明</th>
-<th align="center">示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">直接使用目录名或文件名</td>
-<td align="center">表示当前工作目录中的子目录、文件的位置</td>
-<td align="center">grub.conf</td>
-</tr>
-<tr>
-<td align="center">以一个点号”.”开头</td>
-<td align="center">表示以当前的工作目录作为起点</td>
-<td align="center">.&#x2F;grub.conf</td>
-</tr>
-<tr>
-<td align="center">以两个点号”..”开头</td>
-<td align="center">表示以当前目录的上一级目录（父目录）作为起点</td>
-<td align="center">..&#x2F;vmlinuz</td>
-</tr>
-<tr>
-<td align="center">以”~用户名”形式开头</td>
-<td align="center">表示以指定用户的宿主目录作为起点</td>
-<td align="center">~teacher</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>绝对路径：</p>
-<ul>
-<li>以根目录”&#x2F;“作为起点，进行文件的查询或创建</li>
-<li>以绝对路径表示文件路径时，比较繁琐，不够灵活</li>
-<li>比较稳定，指定路径比较精确，但不方便迁移</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息"><a href="#四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息" class="headerlink" title="四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息"></a>四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息</h2><ul>
-<li><p>使用的参数可以是目录名，也可以是文件名，允许在同一条命令中同时使用多个参数。ls命令选项种类非常多，这里只列出一些最常用的以供参考</p>
-<table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ls</td>
-<td align="center">显示当前目录中包含的子目录、文件列表信息（不包括隐藏目录、文件）</td>
-</tr>
-<tr>
-<td align="center">ls -l</td>
-<td align="center">以长格式（Long）显示文件和目录的列表，包括权限、大小、最后更新时间等</td>
-</tr>
-<tr>
-<td align="center">ls -a</td>
-<td align="center">显示所有（All）子目录和文件的信息，包括名称以点号“.”开头的隐藏目录和隐藏文件</td>
-</tr>
-<tr>
-<td align="center">ls -A</td>
-<td align="center">与-a 选项的作用基本类似，但有两个特殊隐藏目录不会显示，即表示当前目录的“.”和表示父目录的“..”</td>
-</tr>
-<tr>
-<td align="center">ls -d</td>
-<td align="center">显示目录（Directory）本身的属性，而不是显示目录中的内容</td>
-</tr>
-<tr>
-<td align="center">ls -h</td>
-<td align="center">以更人性化（Human）的方式显示目录或文件的大小，默认的大小单位为字节（B），使用-h 选项后将显示为 KB、MB 等单位。此选项需要结合-l 选项一起使用</td>
-</tr>
-<tr>
-<td align="center">ls -R</td>
-<td align="center">以递归（Recursive）的方式显示指定目录及其子目录中的所有内容</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>ls常用组合键</p>
-<table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ls -hl</td>
-<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息</td>
-</tr>
-<tr>
-<td align="center">ls -ahl</td>
-<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，包含隐藏的文件和目录</td>
-</tr>
-<tr>
-<td align="center">ls -Ahl</td>
-<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，包含隐藏的文件</td>
-</tr>
-<tr>
-<td align="center">ls -hl –color</td>
-<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，显示属性信息时显示不同的 颜色</td>
-</tr>
-<tr>
-<td align="center">ls -hl &#x2F;etc&#x2F;ns*.conf</td>
-<td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以ns开头任意多个字符且以.conf结尾的文件</td>
-</tr>
-<tr>
-<td align="center">ls -hl &#x2F;etc&#x2F;vi??</td>
-<td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以文件名vi开头任意两个字符的文件</td>
-</tr>
-<tr>
-<td align="center">ls -hl &#x2F;etc&#x2F;vi???</td>
-<td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以文件名vi开头任意三个字符的文件</td>
-</tr>
-</tbody></table>
-<ul>
-<li>“*”匹配任意的多个字符，”?”匹配任意一个字符</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="五、alias设置别名"><a href="#五、alias设置别名" class="headerlink" title="五、alias设置别名"></a>五、alias设置别名</h2><ul>
-<li>alias myls&#x3D;’ls -alh’</li>
-<li>命令myls相当于执行ls -alh命令。别名设置的作用：对经常使用的命令做别名设置，提高命令输入的速度和效率</li>
-<li>以命令的方式设置别名，是临时的，只在当前的字符终端生效，其他字符终端无法识别别名</li>
-</ul>
-<hr>
-<h2 id="六、du统计目录和文件占用磁盘空间的情况"><a href="#六、du统计目录和文件占用磁盘空间的情况" class="headerlink" title="六、du统计目录和文件占用磁盘空间的情况"></a>六、du统计目录和文件占用磁盘空间的情况</h2><ul>
-<li>du -sh &#x2F;boot (统计&#x2F;boot目录占用磁盘空间的总大小，不显示&#x2F;boot目录中文件和子文件占用磁盘空间的大小)</li>
-<li>du -ah &#x2F;boot（只统计&#x2F;boot目录占用磁盘空间的总大小，显示&#x2F;boot目录中文件和子文件占用磁盘空间的大小）</li>
-</ul>
-<hr>
-<h2 id="七、mkdir创建空目录"><a href="#七、mkdir创建空目录" class="headerlink" title="七、mkdir创建空目录"></a>七、mkdir创建空目录</h2><ul>
-<li>mkdir &#x2F;kgc(在&#x2F;目录下创建目录kgc)</li>
-<li>mkdir –p &#x2F;kgc&#x2F;kc32&#x2F;a1&#x2F;a2（在kgc下创建kc32，在kc32中创建目录a1,在a1下创建目录a2）</li>
-<li>mkdir –p &#x2F;beida&#x2F;kgc&#x2F;{a&#x2F;{a1,a2},b&#x2F;{b1,b2},c&#x2F;{c1,c2}} （递归创建&#x2F;beida&#x2F;目录创建的目录kgc，在kgc目录下创建了目录 a、b、c这三个目录，而目录a下创建了a1和a2，在目录b下创建b1、b2,在目录c下创建c1、c2）</li>
-</ul>
-<hr>
-<h2 id="八、touch创建空文件"><a href="#八、touch创建空文件" class="headerlink" title="八、touch创建空文件"></a>八、touch创建空文件</h2><ul>
-<li><p>touch命令的作用</p>
-<ul>
-<li>更新文件时间标记（针对已存在的文件）</li>
-<li>创建空文件（一次可以创建多个）</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>格式</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>touch a.txt</td>
-<td>创建a.txt文件</td>
-</tr>
-<tr>
-<td>touch a.txt b.txt</td>
-<td>创建a.txt和b.txt两个文件</td>
-</tr>
-<tr>
-<td>两次touch a.txt</td>
-<td>更改a.txt文件的时间标记</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<hr>
-<h2 id="九、In创建链接文件"><a href="#九、In创建链接文件" class="headerlink" title="九、In创建链接文件"></a>九、In创建链接文件</h2><ul>
-<li><p>链接文件分类</p>
-<ul>
-<li>软连接文件，也称为“符号链接文件”</li>
-<li>硬链接文件</li>
-</ul>
-</li>
-<li><p>创建链接文件的命令格式</p>
-<ul>
-<li>In -s 源文件 目录位置（软链接）</li>
-<li>In 源文件 目录位置（硬链接）</li>
-</ul>
-</li>
-<li><p>例子</p>
-<ul>
-<li>软连接的创建：<ul>
-<li>In -s &#x2F;bin&#x2F;mkdir &#x2F;home</li>
-<li>In -s &#x2F;bin&#x2F; &#x2F;home</li>
-</ul>
-</li>
-<li>硬链接的创建<ul>
-<li>In &#x2F;bin&#x2F;mkdir &#x2F;home</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>软链接和硬链接的区别</p>
-<table>
-<thead>
-<tr>
-<th>类别</th>
-<th>软链接文件</th>
-<th>硬链接文件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>语法格式</td>
-<td>ln -s &#x2F;bin&#x2F;mkdir &#x2F;home <br>ln -s &#x2F;bin&#x2F; &#x2F;home</td>
-<td>ln &#x2F;bin&#x2F;mkdir &#x2F;home</td>
-</tr>
-<tr>
-<td>创建对象要求</td>
-<td>可基于文件创建软链接文件 也可基于目录创建软链接文件</td>
-<td>只能基于文件创建硬链接文件</td>
-</tr>
-<tr>
-<td>文件系统要求</td>
-<td>源文件和创建的软链接文件可在 同一个文件系统，也可不在同一 个文件系统</td>
-<td>源文件和创建的硬链接文件必须 在同一个文件系统内</td>
-</tr>
-<tr>
-<td>删除源文件产生后果</td>
-<td>删除源文件后，创建的软链接文 件不可正常使用</td>
-<td>删除源文件后，创建的硬链接文 件可正常使用</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<hr>
-<h2 id="十、cp复制文件或目录"><a href="#十、cp复制文件或目录" class="headerlink" title="十、cp复制文件或目录"></a>十、cp复制文件或目录</h2><ul>
-<li><p>cp 命令用于复制文件或目录，将需要复制的文件或目录（源）重建一份并保存为新的文件或目录（可保存到其他目录中）</p>
-</li>
-<li><p>cp 命令基本格式</p>
-<ul>
-<li>cp 源文件或目录 目标文件或目录</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">命令选项</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">cp -f</td>
-<td align="center">覆盖目标同名文件或目录时不进行提醒，直接强制复制</td>
-</tr>
-<tr>
-<td align="center">cp -i</td>
-<td align="center">覆盖目标同名文件或目录时提醒用户确认</td>
-</tr>
-<tr>
-<td align="center">cp -p</td>
-<td align="center">复制时保持源文件的权限、属主及时间标记等属性不变</td>
-</tr>
-<tr>
-<td align="center">cp -r</td>
-<td align="center">复制目录时必须使用此选项，表示递归复制所有文件及子目录</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>例子：</p>
-<ul>
-<li>cp -i a.txt &#x2F;kgc：复制的目标位置中与源文件重名的文件进行提示是否覆盖，其是默认选项 </li>
-<li>cp -p a.txt &#x2F;kgc：复制时保留源文件到目标位置的属性信息不变</li>
-<li>cp -rf &#x2F;kgc&#x2F;kc32 &#x2F;home：复制到目标位置时强制进行覆盖操作，而不进行提示</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="十一、rm删除目录或文件"><a href="#十一、rm删除目录或文件" class="headerlink" title="十一、rm删除目录或文件"></a>十一、rm删除目录或文件</h2><ul>
-<li>rm 命令用于删除指定的文件或目录，在 Linux 命令行界面中，删除的文件是难以恢复的，因此使用 rm 命令删除文件时需要格外小心。rm 命令使用要删除的文件或目录名作为参数。</li>
-<li>例子：<ul>
-<li>rm a.txt（提示是否删除a.txt）</li>
-<li>rm -i a.txt（提示是否删除a.txt）</li>
-<li>rm -rf &#x2F;kgc&#x2F;kc32（递归强制删除kc32目录，不进行提示）</li>
-<li>rm -r &#x2F;kgc（递归强制删除kgc目录，进行提示）</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="十二、mv移动文件或目录"><a href="#十二、mv移动文件或目录" class="headerlink" title="十二、mv移动文件或目录"></a>十二、mv移动文件或目录</h2><ul>
-<li>mv 命令用于将指定的文件或目录转移位置，如果目标位置与源位置相同，则效果相当于为文件或目录改名。mv命令的基本使用格式如下：<ul>
-<li>mv 源文件或目录 目标文件或目录<ul>
-<li>mv a.txt &#x2F;kgc</li>
-<li>mv &#x2F;kgc&#x2F; &#x2F;home</li>
-<li>mv a.txt aa.txt</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="十三、which查找命令或文件存放目录"><a href="#十三、which查找命令或文件存放目录" class="headerlink" title="十三、which查找命令或文件存放目录"></a>十三、which查找命令或文件存放目录</h2><ul>
-<li>which 命令用于查找 Linux 命令程序并显示所在的具体位置，其搜索范围主要由用户的环境变量 PATH 决定（可以执行“echo $PATH”命令查看），这个范围也是 Linux 操作系统在执行命令或程序时的默认搜索路径。</li>
-<li>环境变量的定义：<ul>
-<li>系统当前用户所拥有的工作环境，包括用户所有能执行的各种命令文件或脚本文件，即定义用户在系统中所拥有的权限<ul>
-<li>which cd</li>
-<li>which -a ls cd pwd</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="十四、find命令查找文件或目录"><a href="#十四、find命令查找文件或目录" class="headerlink" title="十四、find命令查找文件或目录"></a>十四、find命令查找文件或目录</h2><ul>
-<li><p>find根据不同查找类型（查找表达式）递归进行文件的精细化查找。功能更强大</p>
-<table>
-<thead>
-<tr>
-<th align="center">查找类型</th>
-<th align="center">关键字</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">按名称查找</td>
-<td align="center">-name</td>
-<td align="center">根据目标文件的名称进行查找，允许使用 ”*“ 及 ”?” 通配符</td>
-</tr>
-<tr>
-<td align="center">按文件大小查找</td>
-<td align="center">-size</td>
-<td align="center">根据目标文件的大小进行查找<br>一般使用 “+”、“-”号设置超过或小于指定的大小作为查找条件<br>常用的容量单位包括kB（注意k是小写）、MB、GB</td>
-</tr>
-<tr>
-<td align="center">按文件属主查找</td>
-<td align="center">-user</td>
-<td align="center">根据文件是否属于目标用户进行查找</td>
-</tr>
-<tr>
-<td align="center">按文件类型查找</td>
-<td align="center">-type</td>
-<td align="center">根据文件的类型进行查找<br>文件类型包括普通文件（f）、目录（d）、块设备文件（b）、字符设备文件（c）等</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>举例：</p>
-<ul>
-<li>find &#x2F;etc -name *.conf</li>
-<li>find &#x2F;etc -size +1024k</li>
-<li>find &#x2F;etc -user root</li>
-<li>find &#x2F;etc -type f</li>
-</ul>
-</li>
-<li><p>使用find命令实现多个条件的查找，需要使用逻辑运算符</p>
-<ul>
-<li>逻辑与（查找时条件要同时满足），表示方法“-a”</li>
-<li>逻辑或（查找时条件只有满足其一即可），表示方法”-o”</li>
-</ul>
-</li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>linux常用命令</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>linux常用命令</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux文件和目录</title>
-    <url>/2023/10/15/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/</url>
-    <content><![CDATA[<h1 id="目录和文件管理"><a href="#目录和文件管理" class="headerlink" title="目录和文件管理"></a>目录和文件管理</h1><h2 id="一、目录结构"><a href="#一、目录结构" class="headerlink" title="一、目录结构"></a>一、目录结构</h2><blockquote>
-<p>Linux操作系统中的目录和文件数据被组织为一个树形目录结构，所有分区、目录、文件等都具有一个相同的位置起点—-根目录</p>
-</blockquote>
-<ul>
-<li><p>根目录</p>
-<ul>
-<li>所有分区、目录、文件等的位置起点</li>
-<li>整个树形目录结构中，使用独立的一个“&#x2F;”表示</li>
-</ul>
-</li>
-<li><p>常见的子目录及其作用</p>
-<table>
-<thead>
-<tr>
-<th>目录</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&#x2F;boot</td>
-<td>此目录是系统内核存放的目录，同时也是系统启动时所需文件的存放目录</td>
-</tr>
-<tr>
-<td>&#x2F;bin</td>
-<td>这一目录存放了所有用户都可执行的且经常使用的命令，如 cp、ls 等。</td>
-</tr>
-<tr>
-<td>&#x2F;etc</td>
-<td>系统主要的和服务产生的配置文件几乎都放置到这个目录内,例如人员的账号密码文件、各种服务的起始文件等。<span id="more"></span></td>
-</tr>
-<tr>
-<td>&#x2F;home</td>
-<td>存放所有普通系统用户的默认工作文件夹（即宿主目录、家目录）</td>
-</tr>
-<tr>
-<td>&#x2F;root</td>
-<td>该目录是管理员（超级用户）root 的宿主目录，默认情况下只有 root 用户的宿主目录在根目录下而不是在“&#x2F;home”目录下</td>
-</tr>
-<tr>
-<td>&#x2F;sbin</td>
-<td>存放 Linux 操作系统中最基本的管理命令，一般管理员用户才有权限执行。</td>
-</tr>
-<tr>
-<td>&#x2F;usr</td>
-<td>存放其他的用户应用程序，通常还被划分成很多子目录，用于存放不同类型的应用程序</td>
-</tr>
-<tr>
-<td>&#x2F;var</td>
-<td>存放系统中经常需要变化的一些文件，如系统日志文件、用户邮箱目录等</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<hr>
-<h2 id="二、查看及检索文件"><a href="#二、查看及检索文件" class="headerlink" title="二、查看及检索文件"></a>二、查看及检索文件</h2><h3 id="cat-显示文件内容"><a href="#cat-显示文件内容" class="headerlink" title="cat 显示文件内容"></a>cat 显示文件内容</h3><blockquote>
-<p>cat 命令本来用于连接（Concatenate）多个文件的内容，但在实际使用中更多地用于查看文件内容。cat 命令是应用最为广泛的文件内容查看命令。使用该命令时，只需要把要查看的文件路径作为参数即可。</p>
-</blockquote>
-<ul>
-<li>cat 显示并连接文件的内容，输出文件的所有内容到屏幕</li>
-<li>例子：<ul>
-<li>cat &#x2F;etc&#x2F;hosts (hosts文件是linux主机中映射的文件)</li>
-<li>cat &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33（网卡对应的配置文件）</li>
-<li>cat &#x2F;etc&#x2F;redhat-release （liunx当前系统版本对应的配置文件）</li>
-</ul>
-</li>
-</ul>
-<h3 id="more-和-less-分页查看文件内容"><a href="#more-和-less-分页查看文件内容" class="headerlink" title="more 和 less 分页查看文件内容"></a>more 和 less 分页查看文件内容</h3><blockquote>
-<p>使用 cat 命令可以非常简单地直接显示整个文件的内容，但是当文件中的内容较多时，很可能只能看到最后一部分信息，文件前面的大部分内容都来不及看到。而 more 和 less命令通过采用全屏的方式分页显示文件，便于我们从头到尾仔细地阅读文件内容。</p>
-</blockquote>
-<ol>
-<li><p>more</p>
-<blockquote>
-<p>more 命令是较早出现的分页显示命令，表示文件内容还有更多（more）的意思，less命令是较晚出现的分页显示命令，提供了比早期 more 命令更多的一些扩展功能。两个命令的用法基本相同。</p>
-</blockquote>
-<ul>
-<li>more查看文件内容，进入全屏模式，使用快捷键如下：<ul>
-<li>Enter键，逐行滚动查看</li>
-<li>Space键，向下翻屏键</li>
-<li>字母b键，向上翻屏键</li>
-<li>字母q建，退出全屏模式，返回命令行</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>less</p>
-<blockquote>
-<p>less 命令使用方法与 more 命令基本类似，但是比 more 更好的是，less 命令结合管道符号“|”分屏查看执行命令时输出的信息时，既可以向下翻页，也可以向上翻页。而 more 命令只能向下翻页，不能向上翻页。</p>
-</blockquote>
-<ul>
-<li>less查看文件内容，进入全屏模式，使用快捷键如下：<ul>
-<li>Enter键，逐行滚动查看</li>
-<li>Space键，向下翻屏键</li>
-<li>字母b键，向上翻屏键</li>
-<li>字母q建，退出全屏模式，返回命令行</li>
-<li>Page up键，向上翻屏键</li>
-<li>Page down键，向下翻屏键</li>
-<li>上下方向键，向上、向下逐行滚动查看</li>
-<li>查找键“&#x2F;”</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="head-和-tail-查看文件开头或末尾的部分内容"><a href="#head-和-tail-查看文件开头或末尾的部分内容" class="headerlink" title="head 和 tail 查看文件开头或末尾的部分内容"></a>head 和 tail 查看文件开头或末尾的部分内容</h3><blockquote>
-<p>head 和 tail 是一对作用相反的命令，前者用于显示文件开头的一部分内容，后者用于显示文件末尾的一部分内容。可以使用“-n”选项（n 为具体的行数）指定需要显示多少行的内容，若不指定行数，默认只显示十行。</p>
-</blockquote>
-<ol>
-<li>head查看文件开头的内容<ul>
-<li>head &#x2F;etc&#x2F;passwd （默认查看文件的前10行内容）</li>
-<li>head -n 3 &#x2F;etc&#x2F;passwd （查看文件的前三行内容）</li>
-<li>head -3 &#x2F;etc&#x2F;passwd （查看文件的前三行内容）</li>
-</ul>
-</li>
-<li>tail命令的用法<ul>
-<li>查看文件结尾的部分文件<ul>
-<li>tail &#x2F;etc&#x2F;passwd （默认查看文件的后10行内容）</li>
-<li>tail -n 3 &#x2F;etc&#x2F;passwd （查看文件的最后三行内容）</li>
-<li>tail -3 &#x2F;etc&#x2F;passwd （查看文件的最后三行内容）</li>
-</ul>
-</li>
-<li>跟踪文件尾部内容追加或更新的信息<ul>
-<li>tail -f &#x2F;var&#x2F;log&#x2F;messages（跟踪linux系统日志文件结尾追加信息）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="wc-和-grep-统计和检索文件内容"><a href="#wc-和-grep-统计和检索文件内容" class="headerlink" title="wc 和 grep 统计和检索文件内容"></a>wc 和 grep 统计和检索文件内容</h3><ol>
-<li><p>wc统计文件内容（行数、单词、字节）</p>
-<blockquote>
-<p>wc 命令用于统计文件内容中包含的行数、单词数、字节数等信息，使用文件名作为参数，可以同时统计多个文件。较常用的选项如下:</p>
-</blockquote>
-<ul>
-<li>wc &#x2F;etc&#x2F;passwd (统计出&#x2F;etc&#x2F;passwd文件的行数、单词总结、字节数)</li>
-<li>wc -l &#x2F;etc&#x2F;passwd（单独统计出文件的行数）</li>
-<li>wc -w &#x2F;etc&#x2F;passwd（单独统计出文件的单词数）（以空格或制表位作为分隔）</li>
-<li>wc -c &#x2F;etc&#x2F;passwd（单独统计出文件的字节数）</li>
-</ul>
-</li>
-<li><p>grep检索和过滤文件内容</p>
-<blockquote>
-<p>grep 命令用于在文件中查找并显示包含指定字符串的行，可以直接指定关键字符串作为查找条件，也可以使用复杂的条件表达式（例如,“^word”表示以 word 开头，“word<code>$</code>”表示以 word 结尾，“^<code>$</code>”表示空行）。</p>
-</blockquote>
-<ul>
-<li>grep命令常用的选项<ul>
-<li>-i查找时忽略大小写</li>
-<li>-v翻转查找，输出与查找条件不相符的行</li>
-</ul>
-</li>
-<li>grep 命令查找条件设置<ul>
-<li>“”，使用双引号表示查找的字符串</li>
-<li>“^…..”，表示以什么开头</li>
-<li>“…..$”，表示以什么结尾</li>
-<li>“^$”，表示空行</li>
-</ul>
-</li>
-<li>举例<ul>
-<li>grep“root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，包含root的行）</li>
-<li>grep–v “root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，不包含root字符串的行）</li>
-<li>grep–i“Root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，包含root字符串的行，不区分大小写）</li>
-<li>grep“^root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，以root字符串开头的行）</li>
-<li>grep“bash$” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，以bash字符串结尾的行）</li>
-<li>grep“^$” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，包含空行）</li>
-<li>grep -v “^$” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，除空行以外的所有行）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="三、备份及恢复文档"><a href="#三、备份及恢复文档" class="headerlink" title="三、备份及恢复文档"></a>三、备份及恢复文档</h2><ul>
-<li>linux系统中常用的压缩文件<ul>
-<li>gzip<ul>
-<li>gzip -9 &#x2F;etc&#x2F;passwd（使用gzip高压缩比率压缩passwd文件，产生passwd.gz压缩文件，原文件会消失）</li>
-<li>gzip -d passwd.gz（使用gzip -d选项解压passwd.gz文件，还原原文件）</li>
-<li>gunzip passwd.gz（使用gunzip 解压passwd.gz文件）</li>
-</ul>
-</li>
-<li>bzip2<ul>
-<li>bzip -9 &#x2F;etc&#x2F;passwd（使用gzip高压缩比率压缩passwd文件，产生passwd.bz2压缩文件，原文件会消失）</li>
-<li>bzip -d passwd.bz2（使用bzip -d选项解压passwd.bz2文件，还原原文件）</li>
-<li>bunzip passwd.bz2（使用bunzip -d选项解压passwd.bz2文件）</li>
-</ul>
-</li>
-<li>gzip与bzip2压缩工具比较<ul>
-<li>gzip压缩比例更高，即压缩出的文件更小</li>
-<li>两种压缩工具只能对文件进行压缩，不能对目录进行压缩</li>
-<li>实际使用中，常使用gzip压缩工具</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>tar命令（可以对文件和目录进行归档压缩和归档解压缩）<ul>
-<li>制作归档文件—–制作压缩文件</li>
-<li>释放归档文件—-解压已归档的压缩文件</li>
-<li>tar命令的选项<ul>
-<li>-c创建以.tar结尾的压缩文件</li>
-<li>-C解压时指定释放的目标位置（已存在目录）</li>
-<li>-f表示使用归档文件</li>
-<li>-j调用bzip2程序进行压缩或解压</li>
-<li>-z调用gzip程序进行压缩或解压</li>
-<li>-p打包时保留文件及目录的权限</li>
-<li>-P打包时保留文件及目录的绝对路径</li>
-<li>-t列表查看包内的文件</li>
-<li>-v输出解压或压缩过程中的详细信息</li>
-<li>-x解开.tar的压缩包</li>
-</ul>
-</li>
-<li>举例<ul>
-<li>制作归档文件（归档压缩tar格式的包文件）进行备份操作<ul>
-<li>tar zvcf passwd.tar.gz &#x2F;etc&#x2F;passwd</li>
-<li>tar jvcf passwd.tar.bz2 &#x2F;etc&#x2F;passwd</li>
-</ul>
-</li>
-<li>释放归档文件（解压已打包tar格式的包文件）进行还原操作<ul>
-<li>tar zvxf passwd.tar.gz</li>
-<li>tar jvxf passwd.tar.bz2</li>
-</ul>
-</li>
-<li>在不解压的情况下，查看归压缩.tar格式包文件的内容<ul>
-<li>tar -tvf passwd.tar.gz</li>
-<li>tar -tvf passwd.tar.bz2</li>
-</ul>
-</li>
-<li>同时对多个目录进行归档压缩<ul>
-<li>tar zvcf passwd.tar.gz &#x2F;etc&#x2F; &#x2F;boot</li>
-<li>tar jvcf passwd.tar.gz &#x2F;etc&#x2F; &#x2F;boot</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="四、VI文本编辑器使用"><a href="#四、VI文本编辑器使用" class="headerlink" title="四、VI文本编辑器使用"></a>四、VI文本编辑器使用</h2><ul>
-<li><p>vi是类Unix操作系统默认的文本编辑，其拥有强大的全屏编辑功能，多用于修改配置文件</p>
-</li>
-<li><p>vim是vi文本编辑器的增强版本，其也简称为vi编辑器</p>
-</li>
-<li><p>vim工作模式</p>
-<ul>
-<li>命令模式</li>
-<li>未行模式</li>
-<li>输入模式，也称为编辑模式</li>
-</ul>
-</li>
-<li><p>工作模式之间的切换</p>
-<p><img src="https://s2.loli.net/2023/10/15/TJOQpwU7sCNnuzF.png" alt="vi工作模式之间的切换.jpg"></p>
-</li>
-<li><p>命令模式基本模式</p>
-<ul>
-<li><h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><table>
-<thead>
-<tr>
-<th>操作类型</th>
-<th>操作键</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>方向移动</td>
-<td>↑、↓、←、→</td>
-<td>上、下、左、右</td>
-</tr>
-<tr>
-<td>翻页</td>
-<td>Page Down或Ctrl+F<br>Page Up或Ctrl+B</td>
-<td>向下翻动一整页内容<br>向上翻动一整夜内容</td>
-</tr>
-<tr>
-<td>行内快速跳转</td>
-<td>Home键或”^”、数字”0“<br>End键或”$“键</td>
-<td>跳转至行首<br>跳转到行尾</td>
-</tr>
-<tr>
-<td>行间快速跳转</td>
-<td>1G或者gg<br>G<br>#G</td>
-<td>跳转到文件的首行<br>跳转到文件的末尾行<br>跳转到文件中的第#行</td>
-</tr>
-<tr>
-<td>行号显示</td>
-<td>:set nu<br>:set nonu</td>
-<td>在编辑器中显示行号<br>取消编辑器中的行号显示</td>
-</tr>
-</tbody></table>
-</li>
-<li><h3 id="复制、粘贴、删除"><a href="#复制、粘贴、删除" class="headerlink" title="复制、粘贴、删除"></a>复制、粘贴、删除</h3><table>
-<thead>
-<tr>
-<th>操作类型</th>
-<th>操作键</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>删除</td>
-<td>x或Del<br>dd<br>#dd<br>d^<br>d$</td>
-<td>删除光标处的单个字符<br>删除当前光标所在行<br>删除从光标所在行开始的#行内容<br>删除当前光标之前到行首的所有字符<br>删除当前光标处到行尾的所有字符</td>
-</tr>
-<tr>
-<td>复制</td>
-<td>yy<br>#yy</td>
-<td>复制当前行整行的内容到剪切板<br>复制从光标所在行开始的#行内容</td>
-</tr>
-<tr>
-<td>粘贴</td>
-<td>P（大写）<br>p（小写）</td>
-<td>将缓冲区中的内容粘贴到光标位置处之后<br>粘贴到光标位置处之前</td>
-</tr>
-</tbody></table>
-</li>
-<li><h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><table>
-<thead>
-<tr>
-<th>操作键</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&#x2F;word</td>
-<td>从上而下在文件中查找字符串”word“</td>
-</tr>
-<tr>
-<td>?word</td>
-<td>从下而上在文件中查找字符串”word“</td>
-</tr>
-<tr>
-<td>n</td>
-<td>定位下一个匹配的被查找字符串</td>
-</tr>
-<tr>
-<td>N</td>
-<td>定位上一个匹配的被查找字符串</td>
-</tr>
-</tbody></table>
-</li>
-<li><h3 id="撤销和退出"><a href="#撤销和退出" class="headerlink" title="撤销和退出"></a>撤销和退出</h3><table>
-<thead>
-<tr>
-<th>操作键</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>u</td>
-<td>按一次取消最近的一次操作；重复u键，恢复多部操作</td>
-</tr>
-<tr>
-<td>U</td>
-<td>用于取消对当前行所做的所有编辑</td>
-</tr>
-<tr>
-<td>ZZ</td>
-<td>保存当前的文件内容并退出vi编辑器</td>
-</tr>
-</tbody></table>
-</li>
-<li><h3 id="保存及退出vi编辑器"><a href="#保存及退出vi编辑器" class="headerlink" title="保存及退出vi编辑器"></a>保存及退出vi编辑器</h3><table>
-<thead>
-<tr>
-<th>功能</th>
-<th>命令</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>保存文件</td>
-<td>:w<br>:w &#x2F;root&#x2F;newfile</td>
-<td>保存修改的内容<br>另存为其他文件</td>
-</tr>
-<tr>
-<td>退出vi</td>
-<td>:q<br>:q!</td>
-<td>未修改退出<br>放弃对文件内容的修改，并退出vi</td>
-</tr>
-<tr>
-<td>保存文件退出vi</td>
-<td>:wq或x</td>
-<td>保存修改的内容并退出</td>
-</tr>
-</tbody></table>
-</li>
-<li><h3 id="打开新文件或读入其他文件内容"><a href="#打开新文件或读入其他文件内容" class="headerlink" title="打开新文件或读入其他文件内容"></a>打开新文件或读入其他文件内容</h3><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>:e ~&#x2F;install.log</td>
-<td>打开新的文件进行编辑</td>
-</tr>
-<tr>
-<td>:r &#x2F;etc&#x2F;filesystems</td>
-<td>在当前文件中读入其他文件内容</td>
-</tr>
-</tbody></table>
-</li>
-<li><h3 id="文件内容替换"><a href="#文件内容替换" class="headerlink" title="文件内容替换"></a>文件内容替换</h3><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>:s &#x2F;old&#x2F;new</td>
-<td>将当前行中查找到的第一个字符 “old” 串替换为 “new”</td>
-</tr>
-<tr>
-<td>:s &#x2F;old&#x2F;new&#x2F;g</td>
-<td>将当前行中查找到的所有字符串 “old” 替换为 “new”</td>
-</tr>
-<tr>
-<td>:#,# s&#x2F;old&#x2F;new&#x2F;g</td>
-<td>在行号 “#,#” 范围内替换所有的字符串 “old” 为 “new”</td>
-</tr>
-<tr>
-<td>:% s&#x2F;old&#x2F;new&#x2F;g</td>
-<td>在整个文件范围内替换所有的字符串 “old” 为 “new”</td>
-</tr>
-<tr>
-<td>:s &#x2F;old&#x2F;new&#x2F;c</td>
-<td>在替换命令末尾加入c命令，将对每个替换动作提示用户进行确认</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>Linux文件和目录</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>Linux文件和目录</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VLAN与三层交换机</title>
     <url>/2023/10/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/VLAN%E4%B8%8E%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/</url>
     <content><![CDATA[<h1 id="VLAN与三层交换机"><a href="#VLAN与三层交换机" class="headerlink" title="VLAN与三层交换机"></a>VLAN与三层交换机</h1><h2 id="一、VLAN概念"><a href="#一、VLAN概念" class="headerlink" title="一、VLAN概念"></a>一、VLAN概念</h2><ul>
@@ -1871,6 +925,252 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux安装及管理程序</title>
+    <url>/2023/10/16/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<h1 id="安装及管理程序"><a href="#安装及管理程序" class="headerlink" title="安装及管理程序"></a>安装及管理程序</h1><h2 id="一、Linux应用程序基础"><a href="#一、Linux应用程序基础" class="headerlink" title="一、Linux应用程序基础"></a>一、Linux应用程序基础</h2><blockquote>
+<p>名称解释：应用程序，又称为软件，通过安装应用程序，提供一种服务供用户去访问或使用</p>
+</blockquote>
+<ul>
+<li><p>应用程序与系统命令之间的关系</p>
+<table>
+<thead>
+<tr>
+<th align="center">角色</th>
+<th align="center">系统命令</th>
+<th align="center">应用程序</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">文件位置</td>
+<td align="center">一般在&#x2F;bin和&#x2F;sbin目录中，或为Shell内部指令</td>
+<td align="center">通常在&#x2F;usr&#x2F;bin和&#x2F;usr&#x2F;sbin目录中</td>
+</tr>
+<tr>
+<td align="center">主要用途</td>
+<td align="center">一般只在字符操作界面中运行</td>
+<td align="center">根据实际需要，有些程序可在图形界面中运行</td>
+</tr>
+<tr>
+<td align="center">适用环境</td>
+<td align="center">一般只在字符操作界面中运行</td>
+<td align="center">根据实际需要，有些程序可在图形界面中运行</td>
+</tr>
+<tr>
+<td align="center">运行格式</td>
+<td align="center">一般包括命令字、命令选项和命令参数</td>
+<td align="center">通常没有固定的执行格式<span id="more"></span></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>经典应用程序的目录结构</p>
+<table>
+<thead>
+<tr>
+<th align="center">文件类型</th>
+<th align="center">保存目录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">普通执行程序文件</td>
+<td align="center">&#x2F;usr&#x2F;bin</td>
+</tr>
+<tr>
+<td align="center">服务器执行程序文件和管理程序文件</td>
+<td align="center">&#x2F;usr&#x2F;sbin</td>
+</tr>
+<tr>
+<td align="center">应用程序配置文件</td>
+<td align="center">&#x2F;etc</td>
+</tr>
+<tr>
+<td align="center">日志文件</td>
+<td align="center">&#x2F;var&#x2F;log</td>
+</tr>
+<tr>
+<td align="center">应用程序参考文档文件</td>
+<td align="center">&#x2F;usr&#x2F;share&#x2F;doc</td>
+</tr>
+<tr>
+<td align="center">应用程序手册页文件</td>
+<td align="center">&#x2F;usr&#x2F;share&#x2F;man</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>常见软件包的封装类型</p>
+<table>
+<thead>
+<tr>
+<th align="center">文件类型</th>
+<th align="center">保存目录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">RPM软件包</td>
+<td align="center">扩展名为 “.rpm”</td>
+</tr>
+<tr>
+<td align="center">DEB软件包</td>
+<td align="center">扩展名为 “.deb”</td>
+</tr>
+<tr>
+<td align="center">源代码软件包</td>
+<td align="center">一般为 “.tar.gz”、“.tar.bz2” 等格式的压缩包，包含程序的原始代码</td>
+</tr>
+<tr>
+<td align="center">绿色免安装的软件包</td>
+<td align="center">软件包的扩展名不一，，以TarBall格式的居多<br>在压缩包内提供已编译好的执行程序文件<br>解开压缩包后的文件即可直接使用</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<hr>
+<h2 id="二、RPM包管理工具"><a href="#二、RPM包管理工具" class="headerlink" title="二、RPM包管理工具"></a>二、RPM包管理工具</h2><ul>
+<li>RPM软件包命名格式<ul>
+<li>软件名称-版本号-发布次数-硬件平台-后缀名.rpm</li>
+<li>获取rpm命令的详细帮助信息<ul>
+<li>man</li>
+<li>rpm</li>
+</ul>
+</li>
+<li>rpm命令可以实现几乎所有对rpm软件包的管理功能</li>
+</ul>
+</li>
+<li>rpm命令常见的功能<ul>
+<li>安装、卸载、查询、更新、验证、维护等功能</li>
+</ul>
+</li>
+<li>rpm命令使用<ul>
+<li>查询已安装的RPM软件包<ul>
+<li>rpm -qa查询linux系统中系统已安装的所有rpm软件包</li>
+<li>rpm -qa |wc-l 统计出linux系统中已安装的所有rpm包的总数</li>
+<li>rpm -ql openssh查看openssh软件包在当前系统中安装的所有目录和文件</li>
+<li>rpm -qi openssh查看openssh软件包的详细信息，包括名称、版本、发布次数等</li>
+<li>rpm -qc openssh查看openssh软件包在当前系统中安装的配置文件</li>
+<li>rpm -qf &#x2F;usr&#x2F;bin&#x2F;pwd查看pwd这个命令是由哪个软件包安装的</li>
+<li>rpm -qd openssh 查看openssh软件包在当前系统中安装的帮助文档</li>
+</ul>
+</li>
+<li>查询未安装的RPM包<ul>
+<li>rpm –qp lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （查看未安装的软件包）</li>
+<li>rpm –qpi lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （查看未安装软件包的详细信息）</li>
+<li>rpm –qpl lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成哪些目录和文件）</li>
+<li>rpm –qpc lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成的配置文件）</li>
+<li>pm –qpd lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成的帮助文档</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>安装RPM软件包<ul>
+<li>命令格式<ul>
+<li>rpm 选项 软件包名称</li>
+</ul>
+</li>
+<li>安装选项<ul>
+<li>-i在当前系统中，安装一个新的软件包</li>
+<li>-U检查并升级系统中的某个软件包，若该软件包未安装，则安装这个软件包，这时就相当于“-i”这个选项</li>
+<li>-F检查并更新系统中的某个软件包，若该软件未安装，则放弃更新升级安装操作。</li>
+<li>-e卸载已安装的软件包</li>
+<li>-v显示软件包安装过程中的详细信息</li>
+<li>-h在安装或升级软件包的过程中，以“#”的方式显示安装或升级的进度</li>
+<li>–force强制安装某个软件包，如安装一个比当前版本更低的一个版本时，会使用强制安装</li>
+<li>–nodeps可用于安装、升级、卸载一个软件包时，忽略软件包的依赖关系</li>
+</ul>
+</li>
+<li>举例<ul>
+<li>rpm -ivh lynx-2.8.8-0.3.dev15.el7.x86_64.rpm (安装全新的lynx软件包)</li>
+<li>rpm -e lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （卸载lynx软件包）</li>
+<li>rpm -q lynx （查看lynx软件包是否卸载）</li>
+<li>rpm -qpi elinks-0.12-0.37.pre6.el7.x86_64.rpm –nodeps （安装新的软件包，且忽略依赖关系）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>维护RPM数据库<ul>
+<li>重建RPM数据库<ul>
+<li>rpm –rebuilddb（执行效率低）</li>
+<li>rpm –initdb（执行效率高）</li>
+</ul>
+</li>
+<li>导入验证公钥<ul>
+<li>root@localhost~]# rpm –import&#x2F;media&#x2F;cdrom&#x2F;RPM-GPG-KEY-CentOS-7</li>
+<li>作用：导入公钥文件后，安装软件包时，不会提示警告信息，确保安装到系统的RPM包是安全的。</li>
+</ul>
+</li>
+<li>解决软件包依赖关系方法<ul>
+<li>安装有依赖关系的多软件包，被依赖的软件先安装，可以同时制定多个rpm包进行安装</li>
+<li>卸载有依赖关系的多个软件包时，被依赖的软件先卸载，可以同时制定多个rpm包进行卸载</li>
+<li>安装或卸载有依赖关系的软件包，不考虑其依赖关系进行安装或卸载使用“–nodeps”选项，忽略依赖关系，进行强制安装或卸载有依赖关系的软件包</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="三、源代码包编译安装程序"><a href="#三、源代码包编译安装程序" class="headerlink" title="三、源代码包编译安装程序"></a>三、源代码包编译安装程序</h2><ul>
+<li>源代码编译安装概述<ul>
+<li>使用源代码包安装软件的优点<ul>
+<li>获取较新软件版本，及时修改BUG</li>
+<li>根据用户需求，灵活定制软件功能模块</li>
+</ul>
+</li>
+<li>源代码使用场景<ul>
+<li>企业要求安装较新版本的软件包时</li>
+<li>企业业务需求无法及时满足时</li>
+<li>应用程序需要添加新的功能时</li>
+</ul>
+</li>
+<li>源代码包格式<ul>
+<li>源代码包，又称为“Tarball”</li>
+<li>格式 tar.gz。tar.bz2</li>
+</ul>
+</li>
+<li>校验源代码完整性的校验工具<ul>
+<li>md5sum https-2.4.50.tar.gz</li>
+</ul>
+</li>
+<li>确认源代码包编译环境<ul>
+<li>gcc编译工具</li>
+<li>验证gcc编译工具是否安装 gcc -version</li>
+<li>验证make编译工具是否安装 make –version</li>
+<li>提前安装apache的依赖包 yum install -y gcc gcc-c++ make apr apr-devel apr-until apr-until-devel pcre pcre-devel</li>
+</ul>
+</li>
+<li>源代码包编译安装的过程<ul>
+<li>下载源代码包并验证源代码包的安装性 md5sum httpd-2.4.50.tar.gz</li>
+<li>解包，使用tar tar zxvf httpd-2.4.50.tar.gz -C &#x2F;usr&#x2F;src</li>
+<li>配置，使用.&#x2F;configure脚本文件进行配置apache安装路径 cd &#x2F;usr&#x2F;src&#x2F;httpd-2.4.50 .&#x2F;configure –prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;apache</li>
+<li>编译，将源代码编译并生成二进制文件 make</li>
+<li>安装，将生成的二进制文件复制到系统对应的目录下 make install</li>
+<li>测试，应用及维护软件<ul>
+<li>修改apache配置文件&#x2F;usr&#x2F;local&#x2F;apache&#x2F;conf&#x2F; httpd.conf（194行的#去掉）</li>
+<li>启动apache服务命令&#x2F;usr&#x2F;local&#x2F;apache&#x2F;bin&#x2F;apachectl start</li>
+<li>验证apache服务是否启动 netstat -anpt |grep httpd</li>
+<li>yum insatll -y lynx elinks</li>
+<li>lynx 或lynx 127.0.0.1</li>
+<li>elinks 或elinks 127.0.0.1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>linux系统管理</category>
+        <category>linux安装及管理程序</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>linux系统管理</tag>
+        <tag>linux安装及管理程序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>网络布线与数制转换</title>
     <url>/2023/09/20/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E5%B8%83%E7%BA%BF%E4%B8%8E%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2/</url>
     <content><![CDATA[<h1 id="网络布线与数制转换"><a href="#网络布线与数制转换" class="headerlink" title="网络布线与数制转换"></a>网络布线与数制转换</h1><h2 id="一、信号与传输介质"><a href="#一、信号与传输介质" class="headerlink" title="一、信号与传输介质"></a>一、信号与传输介质</h2><ol>
@@ -2157,168 +1457,953 @@
       </tags>
   </entry>
   <entry>
-    <title>计算机网络参考模型</title>
-    <url>/2023/09/19/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h1 id="计算机网络参考模型"><a href="#计算机网络参考模型" class="headerlink" title="计算机网络参考模型"></a>计算机网络参考模型</h1><h2 id="一、网络分类"><a href="#一、网络分类" class="headerlink" title="一、网络分类"></a>一、网络分类</h2><ol>
-<li>从地域的范围上划分<ul>
-<li>局域网</li>
-<li>广域网</li>
+    <title>Linux常用命令</title>
+    <url>/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h1><h2 id="一、linux命令基础"><a href="#一、linux命令基础" class="headerlink" title="一、linux命令基础"></a>一、linux命令基础</h2><ul>
+<li><p>shell程序</p>
+<p><img src="https://s2.loli.net/2023/10/11/LClNcO62neoZ9kx.png" alt="shell程序.jpg"></p>
+<ul>
+<li>这是linux系统中运行的一种特殊程序，在用户与内核之间充当翻译官，当用户登陆系统时会自动加载一个shell程序。</li>
+<li>linux系统默认使用shell程序对应的文件时 &#x2F;bin&#x2F;bash<span id="more"></span></li>
 </ul>
 </li>
-<li>从用户使用角度上划分<ul>
-<li>有线网络</li>
-<li>无线网络</li>
+<li><p>内部命令与外部命令的区别</p>
+<table>
+<thead>
+<tr>
+<th align="center">区分类型</th>
+<th align="center">内部命令</th>
+<th align="center">外部命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">定义</td>
+<td align="center">集成于Shell解释器程序内部的一些特殊指令，也称为内建（Buit-in）指令</td>
+<td align="center">在linux系统中，安装其他应用程序所生产的脚本文件或二进制文件</td>
+</tr>
+<tr>
+<td align="center">组成</td>
+<td align="center">属于shell解释器的一部分</td>
+<td align="center">属于shell解释器之外的部分</td>
+</tr>
+<tr>
+<td align="center">系统文件</td>
+<td align="center">没有单独对应的文件系统</td>
+<td align="center">每个外部命令在系统中都有一个对应的命令文件</td>
+</tr>
+<tr>
+<td align="center">自动加载</td>
+<td align="center">系统重启会自动加载如内存，直接使用</td>
+<td align="center">必须找到对应的外部文件所在的位置，再加载到shell中</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>linux系统通用命令格式</p>
+<ul>
+<li><p>命令字 选项 格式</p>
+</li>
+<li><p>严格区分大小写，即对大小写是敏感的</p>
+</li>
+<li><p>选项和参数是可以互换位置的</p>
+</li>
+<li><p>选项是多个，针对多个短格式选项可以合并使用</p>
+</li>
+<li><p>命令字后可以长格式+短格式混合使用</p>
+</li>
+<li><p>linux命令行的辅助操作</p>
+<table>
+<thead>
+<tr>
+<th align="center">按键</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Tab</td>
+<td align="center">自动补齐</td>
+</tr>
+<tr>
+<td align="center">\</td>
+<td align="center">强制换行</td>
+</tr>
+<tr>
+<td align="center">Ctrl+U</td>
+<td align="center">清空至行首</td>
+</tr>
+<tr>
+<td align="center">Ctrl+K</td>
+<td align="center">清空至行尾</td>
+</tr>
+<tr>
+<td align="center">Ctrl+L</td>
+<td align="center">清屏</td>
+</tr>
+<tr>
+<td align="center">Ctrl+C</td>
+<td align="center">取消本次命令编辑</td>
+</tr>
+<tr>
+<td align="center">Ctrl+a</td>
+<td align="center">快速将光标定位到行首</td>
+</tr>
+</tbody></table>
+</li>
 </ul>
 </li>
-<li>从传输速率上划分<ul>
-<li>普通网络</li>
-<li>高速网络</li>
 </ul>
-</li>
-<li>从企业业务划分<ul>
-<li>内部网络——私有网络</li>
-<li>外部网络——公有网络（internet）</li>
-</ul>
-</li>
-</ol>
-<span id="more"></span>
-
 <hr>
-<h2 id="二、分层思想"><a href="#二、分层思想" class="headerlink" title="二、分层思想"></a>二、分层思想</h2><ol>
-<li>网络划分使用分层思想目的：<ul>
-<li>方便定位问题，进而高效解决问题</li>
-<li>降低分析问题的难度，便于维护管理网络</li>
+<h2 id="二、linux命令帮助"><a href="#二、linux命令帮助" class="headerlink" title="二、linux命令帮助"></a>二、linux命令帮助</h2><ul>
+<li>help（内部命令）</li>
+<li>–help（外部命令）</li>
+<li>man（可用于内部和外部命令）</li>
 </ul>
-</li>
-</ol>
 <hr>
-<h2 id="三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）"><a href="#三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）" class="headerlink" title="三、如何对网络进行分层——OSI七层参考模型（下一层是为 上一层提供服务的）"></a>三、如何对网络进行分层——OSI七层参考模型（<font color="red">下一层是为 上一层提供服务的</font>）</h2><ol>
-<li>物理层（第一层，也称为最底层）<ul>
-<li>用于建立、断开、维护物理连接</li>
-<li>以比特流的方式进行数据传输，传输信号使用0和1表示</li>
-<li>可以数据双向传输（收发数据可以同时进行，即数据的双向传输）</li>
-<li>对应的设备——计算机、网卡、网线</li>
+<h2 id="三、目录与文件的基本操作"><a href="#三、目录与文件的基本操作" class="headerlink" title="三、目录与文件的基本操作"></a>三、目录与文件的基本操作</h2><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">pwd</td>
+<td align="center">查看系统当前用户工作目录所在的位置</td>
+</tr>
+<tr>
+<td align="center">cd</td>
+<td align="center">切换用户当前的工作目录</td>
+</tr>
+<tr>
+<td align="center">cd ~</td>
+<td align="center">切换到当前用户的宿主目录或家目录</td>
+</tr>
+<tr>
+<td align="center">cd 目标位置</td>
+<td align="center">系统已存在目录</td>
+</tr>
+<tr>
+<td align="center">cd -</td>
+<td align="center">返回到上次执行cd命令之前所在的目录</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>相对路径与绝对路径的区别</p>
+<ul>
+<li><p>相对路径：</p>
+<table>
+<thead>
+<tr>
+<th align="center">表现形式</th>
+<th align="center">说明</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">直接使用目录名或文件名</td>
+<td align="center">表示当前工作目录中的子目录、文件的位置</td>
+<td align="center">grub.conf</td>
+</tr>
+<tr>
+<td align="center">以一个点号”.”开头</td>
+<td align="center">表示以当前的工作目录作为起点</td>
+<td align="center">.&#x2F;grub.conf</td>
+</tr>
+<tr>
+<td align="center">以两个点号”..”开头</td>
+<td align="center">表示以当前目录的上一级目录（父目录）作为起点</td>
+<td align="center">..&#x2F;vmlinuz</td>
+</tr>
+<tr>
+<td align="center">以”~用户名”形式开头</td>
+<td align="center">表示以指定用户的宿主目录作为起点</td>
+<td align="center">~teacher</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>绝对路径：</p>
+<ul>
+<li>以根目录”&#x2F;“作为起点，进行文件的查询或创建</li>
+<li>以绝对路径表示文件路径时，比较繁琐，不够灵活</li>
+<li>比较稳定，指定路径比较精确，但不方便迁移</li>
 </ul>
 </li>
-<li>数据链路层（第二层）<ul>
-<li>把传输的数据帧进行封装和解封装，数据链路层传输的数据称为数据帧</li>
-<li>数据帧的地址——源MAC地址、目标MAC地址</li>
-<li>数据校验的功能</li>
-<li>对应的设备——交换机</li>
 </ul>
 </li>
-<li>网络层（第三层）<ul>
-<li>把传输的数据包进行封装和解封装，网络层传输的数据为数据包</li>
-<li>数据包的地址——源IP地址、目标IP地址</li>
-<li>根据包头字段中的地址进行选路（路由器中的路由表进行数据包的转发）</li>
-<li>对应设备——路由器</li>
 </ul>
-</li>
-<li>传输层（第四层）<ul>
-<li>实现用户进程间通信（如：在计算机上安装QQ进程）</li>
-<li>承上启下（乘上——对应的会话层或应用，启下——对应的网络层）</li>
-<li>对应的设备——防火墙</li>
-</ul>
-</li>
-<li>会话层（第五层）<ul>
-<li>建立用户间的会话关系</li>
-</ul>
-</li>
-<li>表示层（第六层）<ul>
-<li>定义传输数据的标准格式（语法和定义）</li>
-<li>对传输的数据进行压缩解压缩、加密解密、编码解码</li>
-</ul>
-</li>
-<li>应用层（第七层，也称为最高层）<ul>
-<li>提供与用户的接口（定义两端使用统一程序接口）</li>
-</ul>
-</li>
-</ol>
 <hr>
-<h2 id="四、OSI七层参考模型与TCP-IP模型的关系"><a href="#四、OSI七层参考模型与TCP-IP模型的关系" class="headerlink" title="四、OSI七层参考模型与TCP&#x2F;IP模型的关系"></a>四、OSI七层参考模型与TCP&#x2F;IP模型的关系</h2><ol>
-<li>OSI七层参考模型，是一种理论参考模型，也成为“经典模型”。</li>
-<li>实际使用中，采用是TCP&#x2F;IP五层模型，即把会话层、表示层、应用层合并为一层“应用层”。</li>
-<li>OSI七层参考模型是由TCP&#x2F;IP五层模型演进而来的。</li>
-</ol>
+<h2 id="四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息"><a href="#四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息" class="headerlink" title="四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息"></a>四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息</h2><ul>
+<li><p>使用的参数可以是目录名，也可以是文件名，允许在同一条命令中同时使用多个参数。ls命令选项种类非常多，这里只列出一些最常用的以供参考</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ls</td>
+<td align="center">显示当前目录中包含的子目录、文件列表信息（不包括隐藏目录、文件）</td>
+</tr>
+<tr>
+<td align="center">ls -l</td>
+<td align="center">以长格式（Long）显示文件和目录的列表，包括权限、大小、最后更新时间等</td>
+</tr>
+<tr>
+<td align="center">ls -a</td>
+<td align="center">显示所有（All）子目录和文件的信息，包括名称以点号“.”开头的隐藏目录和隐藏文件</td>
+</tr>
+<tr>
+<td align="center">ls -A</td>
+<td align="center">与-a 选项的作用基本类似，但有两个特殊隐藏目录不会显示，即表示当前目录的“.”和表示父目录的“..”</td>
+</tr>
+<tr>
+<td align="center">ls -d</td>
+<td align="center">显示目录（Directory）本身的属性，而不是显示目录中的内容</td>
+</tr>
+<tr>
+<td align="center">ls -h</td>
+<td align="center">以更人性化（Human）的方式显示目录或文件的大小，默认的大小单位为字节（B），使用-h 选项后将显示为 KB、MB 等单位。此选项需要结合-l 选项一起使用</td>
+</tr>
+<tr>
+<td align="center">ls -R</td>
+<td align="center">以递归（Recursive）的方式显示指定目录及其子目录中的所有内容</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>ls常用组合键</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ls -hl</td>
+<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息</td>
+</tr>
+<tr>
+<td align="center">ls -ahl</td>
+<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，包含隐藏的文件和目录</td>
+</tr>
+<tr>
+<td align="center">ls -Ahl</td>
+<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，包含隐藏的文件</td>
+</tr>
+<tr>
+<td align="center">ls -hl –color</td>
+<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，显示属性信息时显示不同的 颜色</td>
+</tr>
+<tr>
+<td align="center">ls -hl &#x2F;etc&#x2F;ns*.conf</td>
+<td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以ns开头任意多个字符且以.conf结尾的文件</td>
+</tr>
+<tr>
+<td align="center">ls -hl &#x2F;etc&#x2F;vi??</td>
+<td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以文件名vi开头任意两个字符的文件</td>
+</tr>
+<tr>
+<td align="center">ls -hl &#x2F;etc&#x2F;vi???</td>
+<td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以文件名vi开头任意三个字符的文件</td>
+</tr>
+</tbody></table>
+<ul>
+<li>“*”匹配任意的多个字符，”?”匹配任意一个字符</li>
+</ul>
+</li>
+</ul>
 <hr>
-<h2 id="五、TCP-IP每层对应的协议"><a href="#五、TCP-IP每层对应的协议" class="headerlink" title="五、TCP&#x2F;IP每层对应的协议"></a>五、TCP&#x2F;IP每层对应的协议</h2><p><img src="https://s2.loli.net/2023/09/21/ibB8VS7kolNpaUT.png" alt="TCP每层协议.png"></p>
-<ol>
-<li>物理层<ul>
-<li>底层网络定义的协议均支持</li>
+<h2 id="五、alias设置别名"><a href="#五、alias设置别名" class="headerlink" title="五、alias设置别名"></a>五、alias设置别名</h2><ul>
+<li>alias myls&#x3D;’ls -alh’</li>
+<li>命令myls相当于执行ls -alh命令。别名设置的作用：对经常使用的命令做别名设置，提高命令输入的速度和效率</li>
+<li>以命令的方式设置别名，是临时的，只在当前的字符终端生效，其他字符终端无法识别别名</li>
 </ul>
-</li>
-<li>数据链路层<ul>
-<li>标准网络定义的协议均支持</li>
-</ul>
-</li>
-<li>网络层<ul>
-<li>IP（ICMP&#x2F;IGMP&#x2F;ARP&#x2F;RARP）</li>
-</ul>
-</li>
-<li>传输层<ul>
-<li>TCP UDP</li>
-</ul>
-</li>
-<li>应用层<ul>
-<li>http&#x2F;https&#x2F;smtp&#x2F;<code>dns</code>&#x2F;ftp&#x2F;ssh&#x2F;tftp</li>
-</ul>
-</li>
-</ol>
 <hr>
-<h2 id="六、数据封装与解封装过程（主机A向主机B发送数据）"><a href="#六、数据封装与解封装过程（主机A向主机B发送数据）" class="headerlink" title="六、数据封装与解封装过程（主机A向主机B发送数据）"></a>六、数据封装与解封装过程（主机A向主机B发送数据）</h2><p><img src="https://s2.loli.net/2023/09/21/BDJpTfwXKdOSIvo.png" alt="数据封装过程.jpg"></p>
-<blockquote>
-<p>发送方（主机A）向接收方（主机B）发送数据前，要进行封装过程如下：</p>
-</blockquote>
-<ol>
-<li>发送方（主机A）对数据进行封装时，从高层往底层进行逐层封装</li>
-<li>从应用层到传输层，在上层数据的基础上封装TCP头部</li>
-<li>从传输层到网络层，在“TCP头部+上层数据”基础上封装IP头 部</li>
-<li>从网络层到数据链路层，在“IP头部+TCP头部+上层数据”基 础上封装MAC头部</li>
-<li>到最后的物理层，转换成比特流在网络中传输。</li>
-</ol>
-<p><img src="https://s2.loli.net/2023/09/21/GEzraBOVoRpidTk.png" alt="数据解封装过程.jpg"></p>
-<blockquote>
-<p>接收方（主机B）从发送方（主机A）接收数据前，要进行解封装的过程如下：</p>
-</blockquote>
-<ol>
-<li>接收方（主机B）对数据进行解封装时，从底层到高层逐层进行解封装</li>
-<li>通过物理层网络，传输比特流数据到数据链路层</li>
-<li>到数据链路层后去掉，MAC头部</li>
-<li>到网络层后去掉，IP头部</li>
-<li>到传输层后去掉，TCP头部</li>
-<li>到应用层后，还原上传数据。</li>
-</ol>
+<h2 id="六、du统计目录和文件占用磁盘空间的情况"><a href="#六、du统计目录和文件占用磁盘空间的情况" class="headerlink" title="六、du统计目录和文件占用磁盘空间的情况"></a>六、du统计目录和文件占用磁盘空间的情况</h2><ul>
+<li>du -sh &#x2F;boot (统计&#x2F;boot目录占用磁盘空间的总大小，不显示&#x2F;boot目录中文件和子文件占用磁盘空间的大小)</li>
+<li>du -ah &#x2F;boot（只统计&#x2F;boot目录占用磁盘空间的总大小，显示&#x2F;boot目录中文件和子文件占用磁盘空间的大小）</li>
+</ul>
 <hr>
-<h2 id="七、PDU（协议数据单元）"><a href="#七、PDU（协议数据单元）" class="headerlink" title="七、PDU（协议数据单元）"></a>七、PDU（协议数据单元）</h2><ol>
-<li>名称解释：PDU是定义TCP&#x2F;IP的五层模型，每层传输数据的名称<ul>
-<li>物理层传输的数据：比特流</li>
-<li>数据链路层传输的数据：数据帧</li>
-<li>网络层传输的数据：数据包</li>
-<li>传输层传输的数据：数据段</li>
+<h2 id="七、mkdir创建空目录"><a href="#七、mkdir创建空目录" class="headerlink" title="七、mkdir创建空目录"></a>七、mkdir创建空目录</h2><ul>
+<li>mkdir &#x2F;kgc(在&#x2F;目录下创建目录kgc)</li>
+<li>mkdir –p &#x2F;kgc&#x2F;kc32&#x2F;a1&#x2F;a2（在kgc下创建kc32，在kc32中创建目录a1,在a1下创建目录a2）</li>
+<li>mkdir –p &#x2F;beida&#x2F;kgc&#x2F;{a&#x2F;{a1,a2},b&#x2F;{b1,b2},c&#x2F;{c1,c2}} （递归创建&#x2F;beida&#x2F;目录创建的目录kgc，在kgc目录下创建了目录 a、b、c这三个目录，而目录a下创建了a1和a2，在目录b下创建b1、b2,在目录c下创建c1、c2）</li>
+</ul>
+<hr>
+<h2 id="八、touch创建空文件"><a href="#八、touch创建空文件" class="headerlink" title="八、touch创建空文件"></a>八、touch创建空文件</h2><ul>
+<li><p>touch命令的作用</p>
+<ul>
+<li>更新文件时间标记（针对已存在的文件）</li>
+<li>创建空文件（一次可以创建多个）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">格式</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">touch a.txt</td>
+<td align="center">创建a.txt文件</td>
+</tr>
+<tr>
+<td align="center">touch a.txt b.txt</td>
+<td align="center">创建a.txt和b.txt两个文件</td>
+</tr>
+<tr>
+<td align="center">两次touch a.txt</td>
+<td align="center">更改a.txt文件的时间标记</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<hr>
+<h2 id="九、In创建链接文件"><a href="#九、In创建链接文件" class="headerlink" title="九、In创建链接文件"></a>九、In创建链接文件</h2><ul>
+<li><p>链接文件分类</p>
+<ul>
+<li>软连接文件，也称为“符号链接文件”</li>
+<li>硬链接文件</li>
 </ul>
 </li>
-</ol>
+<li><p>创建链接文件的命令格式</p>
+<ul>
+<li>In -s 源文件 目录位置（软链接）</li>
+<li>In 源文件 目录位置（硬链接）</li>
+</ul>
+</li>
+<li><p>例子</p>
+<ul>
+<li>软连接的创建：<ul>
+<li>In -s &#x2F;bin&#x2F;mkdir &#x2F;home</li>
+<li>In -s &#x2F;bin&#x2F; &#x2F;home</li>
+</ul>
+</li>
+<li>硬链接的创建<ul>
+<li>In &#x2F;bin&#x2F;mkdir &#x2F;home</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>软链接和硬链接的区别</p>
+<table>
+<thead>
+<tr>
+<th align="center">类别</th>
+<th align="center">软链接文件</th>
+<th align="center">硬链接文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">语法格式</td>
+<td align="center">ln -s &#x2F;bin&#x2F;mkdir &#x2F;home <br>ln -s &#x2F;bin&#x2F; &#x2F;home</td>
+<td align="center">ln &#x2F;bin&#x2F;mkdir &#x2F;home</td>
+</tr>
+<tr>
+<td align="center">创建对象要求</td>
+<td align="center">可基于文件创建软链接文件 也可基于目录创建软链接文件</td>
+<td align="center">只能基于文件创建硬链接文件</td>
+</tr>
+<tr>
+<td align="center">文件系统要求</td>
+<td align="center">源文件和创建的软链接文件可在 同一个文件系统，也可不在同一 个文件系统</td>
+<td align="center">源文件和创建的硬链接文件必须 在同一个文件系统内</td>
+</tr>
+<tr>
+<td align="center">删除源文件产生后果</td>
+<td align="center">删除源文件后，创建的软链接文 件不可正常使用</td>
+<td align="center">删除源文件后，创建的硬链接文 件可正常使用</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
 <hr>
-<h2 id="八、TCP-IP五层模型每层对应的硬件设备"><a href="#八、TCP-IP五层模型每层对应的硬件设备" class="headerlink" title="八、TCP&#x2F;IP五层模型每层对应的硬件设备"></a>八、TCP&#x2F;IP五层模型每层对应的硬件设备</h2><ol>
-<li>物理层——网卡、传输介质（双绞线，也叫“网线”）</li>
-<li>数据链路层——交换机</li>
-<li>网络层——路由器</li>
-<li>传输层——防火墙</li>
-<li>应用层——计算机软件</li>
-</ol>
+<h2 id="十、cp复制文件或目录"><a href="#十、cp复制文件或目录" class="headerlink" title="十、cp复制文件或目录"></a>十、cp复制文件或目录</h2><ul>
+<li><p>cp 命令用于复制文件或目录，将需要复制的文件或目录（源）重建一份并保存为新的文件或目录（可保存到其他目录中）</p>
+</li>
+<li><p>cp 命令基本格式</p>
+<ul>
+<li>cp 源文件或目录 目标文件或目录</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">命令选项</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">cp -f</td>
+<td align="center">覆盖目标同名文件或目录时不进行提醒，直接强制复制</td>
+</tr>
+<tr>
+<td align="center">cp -i</td>
+<td align="center">覆盖目标同名文件或目录时提醒用户确认</td>
+</tr>
+<tr>
+<td align="center">cp -p</td>
+<td align="center">复制时保持源文件的权限、属主及时间标记等属性不变</td>
+</tr>
+<tr>
+<td align="center">cp -r</td>
+<td align="center">复制目录时必须使用此选项，表示递归复制所有文件及子目录</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>例子：</p>
+<ul>
+<li>cp -i a.txt &#x2F;kgc：复制的目标位置中与源文件重名的文件进行提示是否覆盖，其是默认选项 </li>
+<li>cp -p a.txt &#x2F;kgc：复制时保留源文件到目标位置的属性信息不变</li>
+<li>cp -rf &#x2F;kgc&#x2F;kc32 &#x2F;home：复制到目标位置时强制进行覆盖操作，而不进行提示</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="十一、rm删除目录或文件"><a href="#十一、rm删除目录或文件" class="headerlink" title="十一、rm删除目录或文件"></a>十一、rm删除目录或文件</h2><ul>
+<li>rm 命令用于删除指定的文件或目录，在 Linux 命令行界面中，删除的文件是难以恢复的，因此使用 rm 命令删除文件时需要格外小心。rm 命令使用要删除的文件或目录名作为参数。</li>
+<li>例子：<ul>
+<li>rm a.txt（提示是否删除a.txt）</li>
+<li>rm -i a.txt（提示是否删除a.txt）</li>
+<li>rm -rf &#x2F;kgc&#x2F;kc32（递归强制删除kc32目录，不进行提示）</li>
+<li>rm -r &#x2F;kgc（递归强制删除kgc目录，进行提示）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="十二、mv移动文件或目录"><a href="#十二、mv移动文件或目录" class="headerlink" title="十二、mv移动文件或目录"></a>十二、mv移动文件或目录</h2><ul>
+<li>mv 命令用于将指定的文件或目录转移位置，如果目标位置与源位置相同，则效果相当于为文件或目录改名。mv命令的基本使用格式如下：<ul>
+<li>mv 源文件或目录 目标文件或目录<ul>
+<li>mv a.txt &#x2F;kgc</li>
+<li>mv &#x2F;kgc&#x2F; &#x2F;home</li>
+<li>mv a.txt aa.txt</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="十三、which查找命令或文件存放目录"><a href="#十三、which查找命令或文件存放目录" class="headerlink" title="十三、which查找命令或文件存放目录"></a>十三、which查找命令或文件存放目录</h2><ul>
+<li>which 命令用于查找 Linux 命令程序并显示所在的具体位置，其搜索范围主要由用户的环境变量 PATH 决定（可以执行“echo $PATH”命令查看），这个范围也是 Linux 操作系统在执行命令或程序时的默认搜索路径。</li>
+<li>环境变量的定义：<ul>
+<li>系统当前用户所拥有的工作环境，包括用户所有能执行的各种命令文件或脚本文件，即定义用户在系统中所拥有的权限<ul>
+<li>which cd</li>
+<li>which -a ls cd pwd</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="十四、find命令查找文件或目录"><a href="#十四、find命令查找文件或目录" class="headerlink" title="十四、find命令查找文件或目录"></a>十四、find命令查找文件或目录</h2><ul>
+<li><p>find根据不同查找类型（查找表达式）递归进行文件的精细化查找。功能更强大</p>
+<table>
+<thead>
+<tr>
+<th align="center">查找类型</th>
+<th align="center">关键字</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">按名称查找</td>
+<td align="center">-name</td>
+<td align="center">根据目标文件的名称进行查找，允许使用 ”*“ 及 ”?” 通配符</td>
+</tr>
+<tr>
+<td align="center">按文件大小查找</td>
+<td align="center">-size</td>
+<td align="center">根据目标文件的大小进行查找<br>一般使用 “+”、“-”号设置超过或小于指定的大小作为查找条件<br>常用的容量单位包括kB（注意k是小写）、MB、GB</td>
+</tr>
+<tr>
+<td align="center">按文件属主查找</td>
+<td align="center">-user</td>
+<td align="center">根据文件是否属于目标用户进行查找</td>
+</tr>
+<tr>
+<td align="center">按文件类型查找</td>
+<td align="center">-type</td>
+<td align="center">根据文件的类型进行查找<br>文件类型包括普通文件（f）、目录（d）、块设备文件（b）、字符设备文件（c）等</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>举例：</p>
+<ul>
+<li>find &#x2F;etc -name *.conf</li>
+<li>find &#x2F;etc -size +1024k</li>
+<li>find &#x2F;etc -user root</li>
+<li>find &#x2F;etc -type f</li>
+</ul>
+</li>
+<li><p>使用find命令实现多个条件的查找，需要使用逻辑运算符</p>
+<ul>
+<li>逻辑与（查找时条件要同时满足），表示方法“-a”</li>
+<li>逻辑或（查找时条件只有满足其一即可），表示方法”-o”</li>
+</ul>
+</li>
+</ul>
 <hr>
 ]]></content>
       <categories>
         <category>记录</category>
         <category>学习</category>
         <category>运维</category>
-        <category>网络应用与实验</category>
-        <category>计算机网络参考模型</category>
+        <category>linux系统管理</category>
+        <category>linux常用命令</category>
       </categories>
       <tags>
         <tag>运维</tag>
-        <tag>网络应用与实验</tag>
-        <tag>计算机网络参考模型</tag>
+        <tag>linux系统管理</tag>
+        <tag>linux常用命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux文件和目录</title>
+    <url>/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="目录和文件管理"><a href="#目录和文件管理" class="headerlink" title="目录和文件管理"></a>目录和文件管理</h1><h2 id="一、目录结构"><a href="#一、目录结构" class="headerlink" title="一、目录结构"></a>一、目录结构</h2><blockquote>
+<p>Linux操作系统中的目录和文件数据被组织为一个树形目录结构，所有分区、目录、文件等都具有一个相同的位置起点—-根目录</p>
+</blockquote>
+<ul>
+<li><p>根目录</p>
+<ul>
+<li>所有分区、目录、文件等的位置起点</li>
+<li>整个树形目录结构中，使用独立的一个“&#x2F;”表示</li>
+</ul>
+</li>
+<li><p>常见的子目录及其作用</p>
+<table>
+<thead>
+<tr>
+<th align="center">目录</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&#x2F;boot</td>
+<td align="center">此目录是系统内核存放的目录，同时也是系统启动时所需文件的存放目录</td>
+</tr>
+<tr>
+<td align="center">&#x2F;bin</td>
+<td align="center">这一目录存放了所有用户都可执行的且经常使用的命令，如 cp、ls 等。</td>
+</tr>
+<tr>
+<td align="center">&#x2F;etc</td>
+<td align="center">系统主要的和服务产生的配置文件几乎都放置到这个目录内,例如人员的账号密码文件、各种服务的起始文件等。<span id="more"></span></td>
+</tr>
+<tr>
+<td align="center">&#x2F;home</td>
+<td align="center">存放所有普通系统用户的默认工作文件夹（即宿主目录、家目录）</td>
+</tr>
+<tr>
+<td align="center">&#x2F;root</td>
+<td align="center">该目录是管理员（超级用户）root 的宿主目录，默认情况下只有 root 用户的宿主目录在根目录下而不是在“&#x2F;home”目录下</td>
+</tr>
+<tr>
+<td align="center">&#x2F;sbin</td>
+<td align="center">存放 Linux 操作系统中最基本的管理命令，一般管理员用户才有权限执行。</td>
+</tr>
+<tr>
+<td align="center">&#x2F;usr</td>
+<td align="center">存放其他的用户应用程序，通常还被划分成很多子目录，用于存放不同类型的应用程序</td>
+</tr>
+<tr>
+<td align="center">&#x2F;var</td>
+<td align="center">存放系统中经常需要变化的一些文件，如系统日志文件、用户邮箱目录等</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<hr>
+<h2 id="二、查看及检索文件"><a href="#二、查看及检索文件" class="headerlink" title="二、查看及检索文件"></a>二、查看及检索文件</h2><h3 id="cat-显示文件内容"><a href="#cat-显示文件内容" class="headerlink" title="cat 显示文件内容"></a>cat 显示文件内容</h3><blockquote>
+<p>cat 命令本来用于连接（Concatenate）多个文件的内容，但在实际使用中更多地用于查看文件内容。cat 命令是应用最为广泛的文件内容查看命令。使用该命令时，只需要把要查看的文件路径作为参数即可。</p>
+</blockquote>
+<ul>
+<li>cat 显示并连接文件的内容，输出文件的所有内容到屏幕</li>
+<li>例子：<ul>
+<li>cat &#x2F;etc&#x2F;hosts (hosts文件是linux主机中映射的文件)</li>
+<li>cat &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33（网卡对应的配置文件）</li>
+<li>cat &#x2F;etc&#x2F;redhat-release （liunx当前系统版本对应的配置文件）</li>
+</ul>
+</li>
+</ul>
+<h3 id="more-和-less-分页查看文件内容"><a href="#more-和-less-分页查看文件内容" class="headerlink" title="more 和 less 分页查看文件内容"></a>more 和 less 分页查看文件内容</h3><blockquote>
+<p>使用 cat 命令可以非常简单地直接显示整个文件的内容，但是当文件中的内容较多时，很可能只能看到最后一部分信息，文件前面的大部分内容都来不及看到。而 more 和 less命令通过采用全屏的方式分页显示文件，便于我们从头到尾仔细地阅读文件内容。</p>
+</blockquote>
+<ol>
+<li><p>more</p>
+<blockquote>
+<p>more 命令是较早出现的分页显示命令，表示文件内容还有更多（more）的意思，less命令是较晚出现的分页显示命令，提供了比早期 more 命令更多的一些扩展功能。两个命令的用法基本相同。</p>
+</blockquote>
+<ul>
+<li>more查看文件内容，进入全屏模式，使用快捷键如下：<ul>
+<li>Enter键，逐行滚动查看</li>
+<li>Space键，向下翻屏键</li>
+<li>字母b键，向上翻屏键</li>
+<li>字母q建，退出全屏模式，返回命令行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>less</p>
+<blockquote>
+<p>less 命令使用方法与 more 命令基本类似，但是比 more 更好的是，less 命令结合管道符号“|”分屏查看执行命令时输出的信息时，既可以向下翻页，也可以向上翻页。而 more 命令只能向下翻页，不能向上翻页。</p>
+</blockquote>
+<ul>
+<li>less查看文件内容，进入全屏模式，使用快捷键如下：<ul>
+<li>Enter键，逐行滚动查看</li>
+<li>Space键，向下翻屏键</li>
+<li>字母b键，向上翻屏键</li>
+<li>字母q建，退出全屏模式，返回命令行</li>
+<li>Page up键，向上翻屏键</li>
+<li>Page down键，向下翻屏键</li>
+<li>上下方向键，向上、向下逐行滚动查看</li>
+<li>查找键“&#x2F;”</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="head-和-tail-查看文件开头或末尾的部分内容"><a href="#head-和-tail-查看文件开头或末尾的部分内容" class="headerlink" title="head 和 tail 查看文件开头或末尾的部分内容"></a>head 和 tail 查看文件开头或末尾的部分内容</h3><blockquote>
+<p>head 和 tail 是一对作用相反的命令，前者用于显示文件开头的一部分内容，后者用于显示文件末尾的一部分内容。可以使用“-n”选项（n 为具体的行数）指定需要显示多少行的内容，若不指定行数，默认只显示十行。</p>
+</blockquote>
+<ol>
+<li>head查看文件开头的内容<ul>
+<li>head &#x2F;etc&#x2F;passwd （默认查看文件的前10行内容）</li>
+<li>head -n 3 &#x2F;etc&#x2F;passwd （查看文件的前三行内容）</li>
+<li>head -3 &#x2F;etc&#x2F;passwd （查看文件的前三行内容）</li>
+</ul>
+</li>
+<li>tail命令的用法<ul>
+<li>查看文件结尾的部分文件<ul>
+<li>tail &#x2F;etc&#x2F;passwd （默认查看文件的后10行内容）</li>
+<li>tail -n 3 &#x2F;etc&#x2F;passwd （查看文件的最后三行内容）</li>
+<li>tail -3 &#x2F;etc&#x2F;passwd （查看文件的最后三行内容）</li>
+</ul>
+</li>
+<li>跟踪文件尾部内容追加或更新的信息<ul>
+<li>tail -f &#x2F;var&#x2F;log&#x2F;messages（跟踪linux系统日志文件结尾追加信息）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="wc-和-grep-统计和检索文件内容"><a href="#wc-和-grep-统计和检索文件内容" class="headerlink" title="wc 和 grep 统计和检索文件内容"></a>wc 和 grep 统计和检索文件内容</h3><ol>
+<li><p>wc统计文件内容（行数、单词、字节）</p>
+<blockquote>
+<p>wc 命令用于统计文件内容中包含的行数、单词数、字节数等信息，使用文件名作为参数，可以同时统计多个文件。较常用的选项如下:</p>
+</blockquote>
+<ul>
+<li>wc &#x2F;etc&#x2F;passwd (统计出&#x2F;etc&#x2F;passwd文件的行数、单词总结、字节数)</li>
+<li>wc -l &#x2F;etc&#x2F;passwd（单独统计出文件的行数）</li>
+<li>wc -w &#x2F;etc&#x2F;passwd（单独统计出文件的单词数）（以空格或制表位作为分隔）</li>
+<li>wc -c &#x2F;etc&#x2F;passwd（单独统计出文件的字节数）</li>
+</ul>
+</li>
+<li><p>grep检索和过滤文件内容</p>
+<blockquote>
+<p>grep 命令用于在文件中查找并显示包含指定字符串的行，可以直接指定关键字符串作为查找条件，也可以使用复杂的条件表达式（例如,“^word”表示以 word 开头，“word<code>$</code>”表示以 word 结尾，“^<code>$</code>”表示空行）。</p>
+</blockquote>
+<ul>
+<li>grep命令常用的选项<ul>
+<li>-i查找时忽略大小写</li>
+<li>-v翻转查找，输出与查找条件不相符的行</li>
+</ul>
+</li>
+<li>grep 命令查找条件设置<ul>
+<li>“”，使用双引号表示查找的字符串</li>
+<li>“^…..”，表示以什么开头</li>
+<li>“…..$”，表示以什么结尾</li>
+<li>“^$”，表示空行</li>
+</ul>
+</li>
+<li>举例<ul>
+<li>grep“root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，包含root的行）</li>
+<li>grep–v “root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，不包含root字符串的行）</li>
+<li>grep–i“Root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，包含root字符串的行，不区分大小写）</li>
+<li>grep“^root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，以root字符串开头的行）</li>
+<li>grep“bash$” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，以bash字符串结尾的行）</li>
+<li>grep“^$” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，包含空行）</li>
+<li>grep -v “^$” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，除空行以外的所有行）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="三、备份及恢复文档"><a href="#三、备份及恢复文档" class="headerlink" title="三、备份及恢复文档"></a>三、备份及恢复文档</h2><ul>
+<li>linux系统中常用的压缩文件<ul>
+<li>gzip<ul>
+<li>gzip -9 &#x2F;etc&#x2F;passwd（使用gzip高压缩比率压缩passwd文件，产生passwd.gz压缩文件，原文件会消失）</li>
+<li>gzip -d passwd.gz（使用gzip -d选项解压passwd.gz文件，还原原文件）</li>
+<li>gunzip passwd.gz（使用gunzip 解压passwd.gz文件）</li>
+</ul>
+</li>
+<li>bzip2<ul>
+<li>bzip -9 &#x2F;etc&#x2F;passwd（使用gzip高压缩比率压缩passwd文件，产生passwd.bz2压缩文件，原文件会消失）</li>
+<li>bzip -d passwd.bz2（使用bzip -d选项解压passwd.bz2文件，还原原文件）</li>
+<li>bunzip passwd.bz2（使用bunzip -d选项解压passwd.bz2文件）</li>
+</ul>
+</li>
+<li>gzip与bzip2压缩工具比较<ul>
+<li>gzip压缩比例更高，即压缩出的文件更小</li>
+<li>两种压缩工具只能对文件进行压缩，不能对目录进行压缩</li>
+<li>实际使用中，常使用gzip压缩工具</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>tar命令（可以对文件和目录进行归档压缩和归档解压缩）<ul>
+<li>制作归档文件—–制作压缩文件</li>
+<li>释放归档文件—-解压已归档的压缩文件</li>
+<li>tar命令的选项<ul>
+<li>-c创建以.tar结尾的压缩文件</li>
+<li>-C解压时指定释放的目标位置（已存在目录）</li>
+<li>-f表示使用归档文件</li>
+<li>-j调用bzip2程序进行压缩或解压</li>
+<li>-z调用gzip程序进行压缩或解压</li>
+<li>-p打包时保留文件及目录的权限</li>
+<li>-P打包时保留文件及目录的绝对路径</li>
+<li>-t列表查看包内的文件</li>
+<li>-v输出解压或压缩过程中的详细信息</li>
+<li>-x解开.tar的压缩包</li>
+</ul>
+</li>
+<li>举例<ul>
+<li>制作归档文件（归档压缩tar格式的包文件）进行备份操作<ul>
+<li>tar zvcf passwd.tar.gz &#x2F;etc&#x2F;passwd</li>
+<li>tar jvcf passwd.tar.bz2 &#x2F;etc&#x2F;passwd</li>
+</ul>
+</li>
+<li>释放归档文件（解压已打包tar格式的包文件）进行还原操作<ul>
+<li>tar zvxf passwd.tar.gz</li>
+<li>tar jvxf passwd.tar.bz2</li>
+</ul>
+</li>
+<li>在不解压的情况下，查看归压缩.tar格式包文件的内容<ul>
+<li>tar -tvf passwd.tar.gz</li>
+<li>tar -tvf passwd.tar.bz2</li>
+</ul>
+</li>
+<li>同时对多个目录进行归档压缩<ul>
+<li>tar zvcf passwd.tar.gz &#x2F;etc&#x2F; &#x2F;boot</li>
+<li>tar jvcf passwd.tar.gz &#x2F;etc&#x2F; &#x2F;boot</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、VI文本编辑器使用"><a href="#四、VI文本编辑器使用" class="headerlink" title="四、VI文本编辑器使用"></a>四、VI文本编辑器使用</h2><ul>
+<li><p>vi是类Unix操作系统默认的文本编辑，其拥有强大的全屏编辑功能，多用于修改配置文件</p>
+</li>
+<li><p>vim是vi文本编辑器的增强版本，其也简称为vi编辑器</p>
+</li>
+<li><p>vim工作模式</p>
+<ul>
+<li>命令模式</li>
+<li>未行模式</li>
+<li>输入模式，也称为编辑模式</li>
+</ul>
+</li>
+<li><p>工作模式之间的切换</p>
+<p><img src="https://s2.loli.net/2023/10/15/TJOQpwU7sCNnuzF.png" alt="vi工作模式之间的切换.jpg"></p>
+</li>
+<li><p>命令模式基本模式</p>
+<ul>
+<li><h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><table>
+<thead>
+<tr>
+<th align="center">操作类型</th>
+<th align="center">操作键</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">方向移动</td>
+<td align="center">↑、↓、←、→</td>
+<td align="center">上、下、左、右</td>
+</tr>
+<tr>
+<td align="center">翻页</td>
+<td align="center">Page Down或Ctrl+F<br>Page Up或Ctrl+B</td>
+<td align="center">向下翻动一整页内容<br>向上翻动一整夜内容</td>
+</tr>
+<tr>
+<td align="center">行内快速跳转</td>
+<td align="center">Home键或”^”、数字”0“<br>End键或”$“键</td>
+<td align="center">跳转至行首<br>跳转到行尾</td>
+</tr>
+<tr>
+<td align="center">行间快速跳转</td>
+<td align="center">1G或者gg<br>G<br>#G</td>
+<td align="center">跳转到文件的首行<br>跳转到文件的末尾行<br>跳转到文件中的第#行</td>
+</tr>
+<tr>
+<td align="center">行号显示</td>
+<td align="center">:set nu<br>:set nonu</td>
+<td align="center">在编辑器中显示行号<br>取消编辑器中的行号显示</td>
+</tr>
+</tbody></table>
+</li>
+<li><h3 id="复制、粘贴、删除"><a href="#复制、粘贴、删除" class="headerlink" title="复制、粘贴、删除"></a>复制、粘贴、删除</h3><table>
+<thead>
+<tr>
+<th align="center">操作类型</th>
+<th align="center">操作键</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">删除</td>
+<td align="center">x或Del<br>dd<br>#dd<br>d^<br>d$</td>
+<td align="center">删除光标处的单个字符<br>删除当前光标所在行<br>删除从光标所在行开始的#行内容<br>删除当前光标之前到行首的所有字符<br>删除当前光标处到行尾的所有字符</td>
+</tr>
+<tr>
+<td align="center">复制</td>
+<td align="center">yy<br>#yy</td>
+<td align="center">复制当前行整行的内容到剪切板<br>复制从光标所在行开始的#行内容</td>
+</tr>
+<tr>
+<td align="center">粘贴</td>
+<td align="center">P（大写）<br>p（小写）</td>
+<td align="center">将缓冲区中的内容粘贴到光标位置处之后<br>粘贴到光标位置处之前</td>
+</tr>
+</tbody></table>
+</li>
+<li><h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><table>
+<thead>
+<tr>
+<th align="center">操作键</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&#x2F;word</td>
+<td align="center">从上而下在文件中查找字符串”word“</td>
+</tr>
+<tr>
+<td align="center">?word</td>
+<td align="center">从下而上在文件中查找字符串”word“</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">定位下一个匹配的被查找字符串</td>
+</tr>
+<tr>
+<td align="center">N</td>
+<td align="center">定位上一个匹配的被查找字符串</td>
+</tr>
+</tbody></table>
+</li>
+<li><h3 id="撤销和退出"><a href="#撤销和退出" class="headerlink" title="撤销和退出"></a>撤销和退出</h3><table>
+<thead>
+<tr>
+<th align="center">操作键</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">u</td>
+<td align="center">按一次取消最近的一次操作；重复u键，恢复多部操作</td>
+</tr>
+<tr>
+<td align="center">U</td>
+<td align="center">用于取消对当前行所做的所有编辑</td>
+</tr>
+<tr>
+<td align="center">ZZ</td>
+<td align="center">保存当前的文件内容并退出vi编辑器</td>
+</tr>
+</tbody></table>
+</li>
+<li><h3 id="保存及退出vi编辑器"><a href="#保存及退出vi编辑器" class="headerlink" title="保存及退出vi编辑器"></a>保存及退出vi编辑器</h3><table>
+<thead>
+<tr>
+<th align="center">功能</th>
+<th align="center">命令</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">保存文件</td>
+<td align="center">:w<br>:w &#x2F;root&#x2F;newfile</td>
+<td align="center">保存修改的内容<br>另存为其他文件</td>
+</tr>
+<tr>
+<td align="center">退出vi</td>
+<td align="center">:q<br>:q!</td>
+<td align="center">未修改退出<br>放弃对文件内容的修改，并退出vi</td>
+</tr>
+<tr>
+<td align="center">保存文件退出vi</td>
+<td align="center">:wq或x</td>
+<td align="center">保存修改的内容并退出</td>
+</tr>
+</tbody></table>
+</li>
+<li><h3 id="打开新文件或读入其他文件内容"><a href="#打开新文件或读入其他文件内容" class="headerlink" title="打开新文件或读入其他文件内容"></a>打开新文件或读入其他文件内容</h3><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">:e ~&#x2F;install.log</td>
+<td align="center">打开新的文件进行编辑</td>
+</tr>
+<tr>
+<td align="center">:r &#x2F;etc&#x2F;filesystems</td>
+<td align="center">在当前文件中读入其他文件内容</td>
+</tr>
+</tbody></table>
+</li>
+<li><h3 id="文件内容替换"><a href="#文件内容替换" class="headerlink" title="文件内容替换"></a>文件内容替换</h3><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">:s &#x2F;old&#x2F;new</td>
+<td align="center">将当前行中查找到的第一个字符 “old” 串替换为 “new”</td>
+</tr>
+<tr>
+<td align="center">:s &#x2F;old&#x2F;new&#x2F;g</td>
+<td align="center">将当前行中查找到的所有字符串 “old” 替换为 “new”</td>
+</tr>
+<tr>
+<td align="center">:#,# s&#x2F;old&#x2F;new&#x2F;g</td>
+<td align="center">在行号 “#,#” 范围内替换所有的字符串 “old” 为 “new”</td>
+</tr>
+<tr>
+<td align="center">:% s&#x2F;old&#x2F;new&#x2F;g</td>
+<td align="center">在整个文件范围内替换所有的字符串 “old” 为 “new”</td>
+</tr>
+<tr>
+<td align="center">:s &#x2F;old&#x2F;new&#x2F;c</td>
+<td align="center">在替换命令末尾加入c命令，将对每个替换动作提示用户进行确认</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>linux系统管理</category>
+        <category>linux文件和目录</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>linux系统管理</tag>
+        <tag>linux文件和目录</tag>
       </tags>
   </entry>
   <entry>
@@ -2856,161 +2941,6 @@
       <tags>
         <tag>网页</tag>
         <tag>CSS3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>静态路由的原理与配置</title>
-    <url>/2023/10/06/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="静态路由的原理与配置"><a href="#静态路由的原理与配置" class="headerlink" title="静态路由的原理与配置"></a>静态路由的原理与配置</h1><h2 id="一、路由器的转发原理"><a href="#一、路由器的转发原理" class="headerlink" title="一、路由器的转发原理"></a>一、路由器的转发原理</h2><ul>
-<li><p>路由的定义：从源主机到目标主机转发数据包的过程为路由。</p>
-</li>
-<li><p>路由器的定义：将数据包正确转发到目的地，并选择最佳路由进行转发的网络设备称为路由器</p>
-</li>
-<li><p>路由器的工作原理（路由器转发数据包的过程）</p>
-<p><img src="https://s2.loli.net/2023/09/29/rtVinsK5vX8INPz.png" alt="路由器转发数据过程.jpg"><span id="more"></span></p>
-<ol>
-<li>主机1.1要发送数据包给主机4.1，因为IP地址不在同一网段，主机会将数据包发送给本网段的网关路由器A。</li>
-<li>路由器A接收到数据包，查看数据包IP首部中的目标IP地址，再查找自己的路由表。数据包的目标IP地址是4.1，属于4.0网段，路由器A在路由表中查到4.0网段转发的接口是S0接口。于是，路由器A将数据包从S0接口转发出去。</li>
-<li>网络中的每个路由器都是按这样的步骤取转发数据，直到到达了路由器B，用同样的方法，从E0口转发出去，4.1主机接收到这个数据包。</li>
-</ol>
-</li>
-<li><p><strong><font color="red">总结：</font>接收数据包→查看目的地址→与路由表进行匹配找到转发端口→转发到该端口。</strong></p>
-</li>
-</ul>
-<hr>
-<h2 id="二、路由表的形成"><a href="#二、路由表的形成" class="headerlink" title="二、路由表的形成"></a>二、路由表的形成</h2><ul>
-<li><p>路由表的作用</p>
-<ul>
-<li><p>路由器根据路由表做路径选择，路由表是各路由条目的集合。</p>
-</li>
-<li><p>路径选择——最佳路径（不等于最短路径）</p>
-</li>
-<li><p>路由条目包括：直连路由条目（直连网段），非直连路由条目（非直连网段），动态路由条目（RIP&#x2F;OSPF等动态路由协议产生目标网段）</p>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="三、静态路由和默认路由"><a href="#三、静态路由和默认路由" class="headerlink" title="三、静态路由和默认路由"></a>三、静态路由和默认路由</h2><ul>
-<li>静态路由<ul>
-<li>为什么配置静态路由<ul>
-<li>配置路由表中的非直连网段路由条目时，需要通过配置静态路由来实现</li>
-</ul>
-</li>
-<li>静态路由的特点<ul>
-<li>由管理员手工配置，是单向路由</li>
-<li>缺乏灵活性（例如：更新网络地址或IP地址时，需要重新配置静态路由）</li>
-</ul>
-</li>
-<li>默认路由<ul>
-<li>默认路由与静态路由的关系<ul>
-<li>默认路由是一种特殊的静态路由。</li>
-</ul>
-</li>
-<li>默认路由的配置场景<ul>
-<li>一般配置在末梢网络或末节网络，即只有唯一条路径（路由器）与外部网络进行通信。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="四、路由器转发数据包的封装过程"><a href="#四、路由器转发数据包的封装过程" class="headerlink" title="四、路由器转发数据包的封装过程"></a>四、路由器转发数据包的封装过程</h2><ul>
-<li>路由器在转发数据包的过程中，一直在进行封装与解封装。</li>
-<li>路由器在封装的过程中，MAC头部中的源MAC地址（SA）和目标MAC地址（DA）一直在变。</li>
-<li>路由器在封装的过程中，IP头部中的源IP地址（SA）和目标IP地址（DA）一直不变。</li>
-</ul>
-<hr>
-<h2 id="五、静态路由和默认路由的配置"><a href="#五、静态路由和默认路由的配置" class="headerlink" title="五、静态路由和默认路由的配置"></a>五、静态路由和默认路由的配置</h2><ul>
-<li><p>静态路由配置</p>
-<ul>
-<li><p>Route(config)# ip route network netmask address（静态路由命令格式）</p>
-</li>
-<li><p>Route(config)# ip route 192.168.30.0 255.255.255.0 192.168.20.2 （静态路由配置命令）</p>
-</li>
-<li><p>Route# show ip route（查看路由器的路由表命令）</p>
-</li>
-<li><p>详解路由表中的信息，如下图所示：</p>
-<p><img src="https://s2.loli.net/2023/09/29/TZRsYCaHjefBUdy.png" alt="详解路由表信息.jpg"></p>
-</li>
-<li><p>直连路由——表示字符是<strong>C</strong>；静态路由——表示字符是<strong>S</strong>；默认路由——表示字符是<strong>S<sup>*</sup></strong></p>
-</li>
-<li><p>动态路由——表示字符是R（表示的是 rip 动态路由）</p>
-</li>
-<li><p>动态路由——表示字符O（表示的是 ospf 动态路由）</p>
-</li>
-<li><p>Route# ping 192.168.20.2（在路由器上使用ping命令，Ping通的情况下会出现5个感叹号，Ping不通的情况下会出现5个英文实点）</p>
-</li>
-</ul>
-</li>
-<li><p>实验过程：</p>
-<iframe src="https://easylink.cc/xc6xwe" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
-</iframe>
-</li>
-<li><p>默认路由器</p>
-<ul>
-<li>Route(config)# ip route 0.0.0.0 0.0.0.0 address（默认路由命令格式）</li>
-<li>Route(config)# ip route 0.0.0.0 0.0.0.0 192.168.20.2</li>
-</ul>
-</li>
-<li><p>实验过程：（只看后面即可）</p>
-<iframe src="https://easylink.cc/mdj7j4" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
-</iframe>
-</li>
-<li><p>静态路由或默认路由配置错误的删除办法</p>
-<ul>
-<li><p>Route(config)# <font color="red">no</font> ip route 192.168.2.0 255.255.255.0 192.168.1.1（删除静态路由的命令）</p>
-<p><img src="https://s2.loli.net/2023/09/29/oAm7zSZRcMLe1Jw.png" alt="删除静态路由的配置.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p>网络故障排查</p>
-<ul>
-<li>物理层排查<ul>
-<li>检查网络传输介质（双绞线–线缆问题、水晶头、光纤、光缆）</li>
-<li>检查PC网卡指示灯是否正常</li>
-</ul>
-</li>
-<li>数据链路层检查<ul>
-<li>查看交换机的接口指示灯是否正常</li>
-<li>使用查询命令检查交换机接口的状态<ol>
-<li>show running-config</li>
-<li>show ip interface brief</li>
-<li>show interface f0&#x2F;0</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>网络层检查<ul>
-<li>检查路由器接口IP地址是否配置正确<ol>
-<li>show ip interface brief</li>
-<li>show interface f0&#x2F;0</li>
-</ol>
-</li>
-<li>检查路由器的路由表是否配置正确<ol>
-<li>show ip route</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>网络应用与实验</category>
-        <category>静态路由原理与配置</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>网络应用与实验</tag>
-        <tag>静态路由原理与配置</tag>
       </tags>
   </entry>
   <entry>
@@ -3888,6 +3818,326 @@
       <tags>
         <tag>网页</tag>
         <tag>移动端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络参考模型</title>
+    <url>/2023/09/19/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="计算机网络参考模型"><a href="#计算机网络参考模型" class="headerlink" title="计算机网络参考模型"></a>计算机网络参考模型</h1><h2 id="一、网络分类"><a href="#一、网络分类" class="headerlink" title="一、网络分类"></a>一、网络分类</h2><ol>
+<li>从地域的范围上划分<ul>
+<li>局域网</li>
+<li>广域网</li>
+</ul>
+</li>
+<li>从用户使用角度上划分<ul>
+<li>有线网络</li>
+<li>无线网络</li>
+</ul>
+</li>
+<li>从传输速率上划分<ul>
+<li>普通网络</li>
+<li>高速网络</li>
+</ul>
+</li>
+<li>从企业业务划分<ul>
+<li>内部网络——私有网络</li>
+<li>外部网络——公有网络（internet）</li>
+</ul>
+</li>
+</ol>
+<span id="more"></span>
+
+<hr>
+<h2 id="二、分层思想"><a href="#二、分层思想" class="headerlink" title="二、分层思想"></a>二、分层思想</h2><ol>
+<li>网络划分使用分层思想目的：<ul>
+<li>方便定位问题，进而高效解决问题</li>
+<li>降低分析问题的难度，便于维护管理网络</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）"><a href="#三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）" class="headerlink" title="三、如何对网络进行分层——OSI七层参考模型（下一层是为 上一层提供服务的）"></a>三、如何对网络进行分层——OSI七层参考模型（<font color="red">下一层是为 上一层提供服务的</font>）</h2><ol>
+<li>物理层（第一层，也称为最底层）<ul>
+<li>用于建立、断开、维护物理连接</li>
+<li>以比特流的方式进行数据传输，传输信号使用0和1表示</li>
+<li>可以数据双向传输（收发数据可以同时进行，即数据的双向传输）</li>
+<li>对应的设备——计算机、网卡、网线</li>
+</ul>
+</li>
+<li>数据链路层（第二层）<ul>
+<li>把传输的数据帧进行封装和解封装，数据链路层传输的数据称为数据帧</li>
+<li>数据帧的地址——源MAC地址、目标MAC地址</li>
+<li>数据校验的功能</li>
+<li>对应的设备——交换机</li>
+</ul>
+</li>
+<li>网络层（第三层）<ul>
+<li>把传输的数据包进行封装和解封装，网络层传输的数据为数据包</li>
+<li>数据包的地址——源IP地址、目标IP地址</li>
+<li>根据包头字段中的地址进行选路（路由器中的路由表进行数据包的转发）</li>
+<li>对应设备——路由器</li>
+</ul>
+</li>
+<li>传输层（第四层）<ul>
+<li>实现用户进程间通信（如：在计算机上安装QQ进程）</li>
+<li>承上启下（乘上——对应的会话层或应用，启下——对应的网络层）</li>
+<li>对应的设备——防火墙</li>
+</ul>
+</li>
+<li>会话层（第五层）<ul>
+<li>建立用户间的会话关系</li>
+</ul>
+</li>
+<li>表示层（第六层）<ul>
+<li>定义传输数据的标准格式（语法和定义）</li>
+<li>对传输的数据进行压缩解压缩、加密解密、编码解码</li>
+</ul>
+</li>
+<li>应用层（第七层，也称为最高层）<ul>
+<li>提供与用户的接口（定义两端使用统一程序接口）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="四、OSI七层参考模型与TCP-IP模型的关系"><a href="#四、OSI七层参考模型与TCP-IP模型的关系" class="headerlink" title="四、OSI七层参考模型与TCP&#x2F;IP模型的关系"></a>四、OSI七层参考模型与TCP&#x2F;IP模型的关系</h2><ol>
+<li>OSI七层参考模型，是一种理论参考模型，也成为“经典模型”。</li>
+<li>实际使用中，采用是TCP&#x2F;IP五层模型，即把会话层、表示层、应用层合并为一层“应用层”。</li>
+<li>OSI七层参考模型是由TCP&#x2F;IP五层模型演进而来的。</li>
+</ol>
+<hr>
+<h2 id="五、TCP-IP每层对应的协议"><a href="#五、TCP-IP每层对应的协议" class="headerlink" title="五、TCP&#x2F;IP每层对应的协议"></a>五、TCP&#x2F;IP每层对应的协议</h2><p><img src="https://s2.loli.net/2023/09/21/ibB8VS7kolNpaUT.png" alt="TCP每层协议.png"></p>
+<ol>
+<li>物理层<ul>
+<li>底层网络定义的协议均支持</li>
+</ul>
+</li>
+<li>数据链路层<ul>
+<li>标准网络定义的协议均支持</li>
+</ul>
+</li>
+<li>网络层<ul>
+<li>IP（ICMP&#x2F;IGMP&#x2F;ARP&#x2F;RARP）</li>
+</ul>
+</li>
+<li>传输层<ul>
+<li>TCP UDP</li>
+</ul>
+</li>
+<li>应用层<ul>
+<li>http&#x2F;https&#x2F;smtp&#x2F;<code>dns</code>&#x2F;ftp&#x2F;ssh&#x2F;tftp</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="六、数据封装与解封装过程（主机A向主机B发送数据）"><a href="#六、数据封装与解封装过程（主机A向主机B发送数据）" class="headerlink" title="六、数据封装与解封装过程（主机A向主机B发送数据）"></a>六、数据封装与解封装过程（主机A向主机B发送数据）</h2><p><img src="https://s2.loli.net/2023/09/21/BDJpTfwXKdOSIvo.png" alt="数据封装过程.jpg"></p>
+<blockquote>
+<p>发送方（主机A）向接收方（主机B）发送数据前，要进行封装过程如下：</p>
+</blockquote>
+<ol>
+<li>发送方（主机A）对数据进行封装时，从高层往底层进行逐层封装</li>
+<li>从应用层到传输层，在上层数据的基础上封装TCP头部</li>
+<li>从传输层到网络层，在“TCP头部+上层数据”基础上封装IP头 部</li>
+<li>从网络层到数据链路层，在“IP头部+TCP头部+上层数据”基 础上封装MAC头部</li>
+<li>到最后的物理层，转换成比特流在网络中传输。</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/09/21/GEzraBOVoRpidTk.png" alt="数据解封装过程.jpg"></p>
+<blockquote>
+<p>接收方（主机B）从发送方（主机A）接收数据前，要进行解封装的过程如下：</p>
+</blockquote>
+<ol>
+<li>接收方（主机B）对数据进行解封装时，从底层到高层逐层进行解封装</li>
+<li>通过物理层网络，传输比特流数据到数据链路层</li>
+<li>到数据链路层后去掉，MAC头部</li>
+<li>到网络层后去掉，IP头部</li>
+<li>到传输层后去掉，TCP头部</li>
+<li>到应用层后，还原上传数据。</li>
+</ol>
+<hr>
+<h2 id="七、PDU（协议数据单元）"><a href="#七、PDU（协议数据单元）" class="headerlink" title="七、PDU（协议数据单元）"></a>七、PDU（协议数据单元）</h2><ol>
+<li>名称解释：PDU是定义TCP&#x2F;IP的五层模型，每层传输数据的名称<ul>
+<li>物理层传输的数据：比特流</li>
+<li>数据链路层传输的数据：数据帧</li>
+<li>网络层传输的数据：数据包</li>
+<li>传输层传输的数据：数据段</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="八、TCP-IP五层模型每层对应的硬件设备"><a href="#八、TCP-IP五层模型每层对应的硬件设备" class="headerlink" title="八、TCP&#x2F;IP五层模型每层对应的硬件设备"></a>八、TCP&#x2F;IP五层模型每层对应的硬件设备</h2><ol>
+<li>物理层——网卡、传输介质（双绞线，也叫“网线”）</li>
+<li>数据链路层——交换机</li>
+<li>网络层——路由器</li>
+<li>传输层——防火墙</li>
+<li>应用层——计算机软件</li>
+</ol>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>网络应用与实验</category>
+        <category>计算机网络参考模型</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>网络应用与实验</tag>
+        <tag>计算机网络参考模型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>静态路由的原理与配置</title>
+    <url>/2023/10/06/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="静态路由的原理与配置"><a href="#静态路由的原理与配置" class="headerlink" title="静态路由的原理与配置"></a>静态路由的原理与配置</h1><h2 id="一、路由器的转发原理"><a href="#一、路由器的转发原理" class="headerlink" title="一、路由器的转发原理"></a>一、路由器的转发原理</h2><ul>
+<li><p>路由的定义：从源主机到目标主机转发数据包的过程为路由。</p>
+</li>
+<li><p>路由器的定义：将数据包正确转发到目的地，并选择最佳路由进行转发的网络设备称为路由器</p>
+</li>
+<li><p>路由器的工作原理（路由器转发数据包的过程）</p>
+<p><img src="https://s2.loli.net/2023/09/29/rtVinsK5vX8INPz.png" alt="路由器转发数据过程.jpg"><span id="more"></span></p>
+<ol>
+<li>主机1.1要发送数据包给主机4.1，因为IP地址不在同一网段，主机会将数据包发送给本网段的网关路由器A。</li>
+<li>路由器A接收到数据包，查看数据包IP首部中的目标IP地址，再查找自己的路由表。数据包的目标IP地址是4.1，属于4.0网段，路由器A在路由表中查到4.0网段转发的接口是S0接口。于是，路由器A将数据包从S0接口转发出去。</li>
+<li>网络中的每个路由器都是按这样的步骤取转发数据，直到到达了路由器B，用同样的方法，从E0口转发出去，4.1主机接收到这个数据包。</li>
+</ol>
+</li>
+<li><p><strong><font color="red">总结：</font>接收数据包→查看目的地址→与路由表进行匹配找到转发端口→转发到该端口。</strong></p>
+</li>
+</ul>
+<hr>
+<h2 id="二、路由表的形成"><a href="#二、路由表的形成" class="headerlink" title="二、路由表的形成"></a>二、路由表的形成</h2><ul>
+<li><p>路由表的作用</p>
+<ul>
+<li><p>路由器根据路由表做路径选择，路由表是各路由条目的集合。</p>
+</li>
+<li><p>路径选择——最佳路径（不等于最短路径）</p>
+</li>
+<li><p>路由条目包括：直连路由条目（直连网段），非直连路由条目（非直连网段），动态路由条目（RIP&#x2F;OSPF等动态路由协议产生目标网段）</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="三、静态路由和默认路由"><a href="#三、静态路由和默认路由" class="headerlink" title="三、静态路由和默认路由"></a>三、静态路由和默认路由</h2><ul>
+<li>静态路由<ul>
+<li>为什么配置静态路由<ul>
+<li>配置路由表中的非直连网段路由条目时，需要通过配置静态路由来实现</li>
+</ul>
+</li>
+<li>静态路由的特点<ul>
+<li>由管理员手工配置，是单向路由</li>
+<li>缺乏灵活性（例如：更新网络地址或IP地址时，需要重新配置静态路由）</li>
+</ul>
+</li>
+<li>默认路由<ul>
+<li>默认路由与静态路由的关系<ul>
+<li>默认路由是一种特殊的静态路由。</li>
+</ul>
+</li>
+<li>默认路由的配置场景<ul>
+<li>一般配置在末梢网络或末节网络，即只有唯一条路径（路由器）与外部网络进行通信。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、路由器转发数据包的封装过程"><a href="#四、路由器转发数据包的封装过程" class="headerlink" title="四、路由器转发数据包的封装过程"></a>四、路由器转发数据包的封装过程</h2><ul>
+<li>路由器在转发数据包的过程中，一直在进行封装与解封装。</li>
+<li>路由器在封装的过程中，MAC头部中的源MAC地址（SA）和目标MAC地址（DA）一直在变。</li>
+<li>路由器在封装的过程中，IP头部中的源IP地址（SA）和目标IP地址（DA）一直不变。</li>
+</ul>
+<hr>
+<h2 id="五、静态路由和默认路由的配置"><a href="#五、静态路由和默认路由的配置" class="headerlink" title="五、静态路由和默认路由的配置"></a>五、静态路由和默认路由的配置</h2><ul>
+<li><p>静态路由配置</p>
+<ul>
+<li><p>Route(config)# ip route network netmask address（静态路由命令格式）</p>
+</li>
+<li><p>Route(config)# ip route 192.168.30.0 255.255.255.0 192.168.20.2 （静态路由配置命令）</p>
+</li>
+<li><p>Route# show ip route（查看路由器的路由表命令）</p>
+</li>
+<li><p>详解路由表中的信息，如下图所示：</p>
+<p><img src="https://s2.loli.net/2023/09/29/TZRsYCaHjefBUdy.png" alt="详解路由表信息.jpg"></p>
+</li>
+<li><p>直连路由——表示字符是<strong>C</strong>；静态路由——表示字符是<strong>S</strong>；默认路由——表示字符是<strong>S<sup>*</sup></strong></p>
+</li>
+<li><p>动态路由——表示字符是R（表示的是 rip 动态路由）</p>
+</li>
+<li><p>动态路由——表示字符O（表示的是 ospf 动态路由）</p>
+</li>
+<li><p>Route# ping 192.168.20.2（在路由器上使用ping命令，Ping通的情况下会出现5个感叹号，Ping不通的情况下会出现5个英文实点）</p>
+</li>
+</ul>
+</li>
+<li><p>实验过程：</p>
+<iframe src="https://easylink.cc/xc6xwe" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
+</iframe>
+</li>
+<li><p>默认路由器</p>
+<ul>
+<li>Route(config)# ip route 0.0.0.0 0.0.0.0 address（默认路由命令格式）</li>
+<li>Route(config)# ip route 0.0.0.0 0.0.0.0 192.168.20.2</li>
+</ul>
+</li>
+<li><p>实验过程：（只看后面即可）</p>
+<iframe src="https://easylink.cc/mdj7j4" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
+</iframe>
+</li>
+<li><p>静态路由或默认路由配置错误的删除办法</p>
+<ul>
+<li><p>Route(config)# <font color="red">no</font> ip route 192.168.2.0 255.255.255.0 192.168.1.1（删除静态路由的命令）</p>
+<p><img src="https://s2.loli.net/2023/09/29/oAm7zSZRcMLe1Jw.png" alt="删除静态路由的配置.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>网络故障排查</p>
+<ul>
+<li>物理层排查<ul>
+<li>检查网络传输介质（双绞线–线缆问题、水晶头、光纤、光缆）</li>
+<li>检查PC网卡指示灯是否正常</li>
+</ul>
+</li>
+<li>数据链路层检查<ul>
+<li>查看交换机的接口指示灯是否正常</li>
+<li>使用查询命令检查交换机接口的状态<ol>
+<li>show running-config</li>
+<li>show ip interface brief</li>
+<li>show interface f0&#x2F;0</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>网络层检查<ul>
+<li>检查路由器接口IP地址是否配置正确<ol>
+<li>show ip interface brief</li>
+<li>show interface f0&#x2F;0</li>
+</ol>
+</li>
+<li>检查路由器的路由表是否配置正确<ol>
+<li>show ip route</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>网络应用与实验</category>
+        <category>静态路由原理与配置</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>网络应用与实验</tag>
+        <tag>静态路由原理与配置</tag>
       </tags>
   </entry>
   <entry>

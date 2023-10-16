@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-Linux常用命令"
+  id="post-Linux系统管理/Linux常用命令"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -73,11 +73,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2023/10/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+      <a href="/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
   <time datetime="2023-10-15T08:42:46.000Z" itemprop="datePublished">2023-10-15</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/">运维</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">linux常用命令</a>
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/">运维</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">linux系统管理</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">linux常用命令</a>
   </div>
   
 <div class="word_count">
@@ -389,21 +389,21 @@
 <table>
 <thead>
 <tr>
-<th>格式</th>
-<th>作用</th>
+<th align="center">格式</th>
+<th align="center">作用</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>touch a.txt</td>
-<td>创建a.txt文件</td>
+<td align="center">touch a.txt</td>
+<td align="center">创建a.txt文件</td>
 </tr>
 <tr>
-<td>touch a.txt b.txt</td>
-<td>创建a.txt和b.txt两个文件</td>
+<td align="center">touch a.txt b.txt</td>
+<td align="center">创建a.txt和b.txt两个文件</td>
 </tr>
 <tr>
-<td>两次touch a.txt</td>
-<td>更改a.txt文件的时间标记</td>
+<td align="center">两次touch a.txt</td>
+<td align="center">更改a.txt文件的时间标记</td>
 </tr>
 </tbody></table>
 </li>
@@ -439,30 +439,30 @@
 <table>
 <thead>
 <tr>
-<th>类别</th>
-<th>软链接文件</th>
-<th>硬链接文件</th>
+<th align="center">类别</th>
+<th align="center">软链接文件</th>
+<th align="center">硬链接文件</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>语法格式</td>
-<td>ln -s &#x2F;bin&#x2F;mkdir &#x2F;home <br>ln -s &#x2F;bin&#x2F; &#x2F;home</td>
-<td>ln &#x2F;bin&#x2F;mkdir &#x2F;home</td>
+<td align="center">语法格式</td>
+<td align="center">ln -s &#x2F;bin&#x2F;mkdir &#x2F;home <br>ln -s &#x2F;bin&#x2F; &#x2F;home</td>
+<td align="center">ln &#x2F;bin&#x2F;mkdir &#x2F;home</td>
 </tr>
 <tr>
-<td>创建对象要求</td>
-<td>可基于文件创建软链接文件 也可基于目录创建软链接文件</td>
-<td>只能基于文件创建硬链接文件</td>
+<td align="center">创建对象要求</td>
+<td align="center">可基于文件创建软链接文件 也可基于目录创建软链接文件</td>
+<td align="center">只能基于文件创建硬链接文件</td>
 </tr>
 <tr>
-<td>文件系统要求</td>
-<td>源文件和创建的软链接文件可在 同一个文件系统，也可不在同一 个文件系统</td>
-<td>源文件和创建的硬链接文件必须 在同一个文件系统内</td>
+<td align="center">文件系统要求</td>
+<td align="center">源文件和创建的软链接文件可在 同一个文件系统，也可不在同一 个文件系统</td>
+<td align="center">源文件和创建的硬链接文件必须 在同一个文件系统内</td>
 </tr>
 <tr>
-<td>删除源文件产生后果</td>
-<td>删除源文件后，创建的软链接文 件不可正常使用</td>
-<td>删除源文件后，创建的硬链接文 件可正常使用</td>
+<td align="center">删除源文件产生后果</td>
+<td align="center">删除源文件后，创建的软链接文 件不可正常使用</td>
+<td align="center">删除源文件后，创建的硬链接文 件可正常使用</td>
 </tr>
 </tbody></table>
 </li>
@@ -662,12 +662,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/10/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="tag">linux常用命令</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="tag">linux常用命令</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" rel="tag">linux系统管理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
 
     </footer>
   </div>
@@ -675,7 +675,7 @@
    
   <nav class="article-nav">
     
-      <a href="/2023/10/15/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/" class="article-nav-link">
+      <a href="/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
