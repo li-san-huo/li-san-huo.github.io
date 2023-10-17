@@ -1,6 +1,963 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Linux用户账户和权限管理</title>
+    <url>/2023/10/17/Linux%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="用户账户和权限管理"><a href="#用户账户和权限管理" class="headerlink" title="用户账户和权限管理"></a>用户账户和权限管理</h1><h2 id="一、管理用户账号和组账号"><a href="#一、管理用户账号和组账号" class="headerlink" title="一、管理用户账号和组账号"></a>一、管理用户账号和组账号</h2><ul>
+<li>linux系统是基于用户身份资源访问进行控制</li>
+</ul>
+<h3 id="用户账户"><a href="#用户账户" class="headerlink" title="用户账户"></a>用户账户</h3><ul>
+<li>超级用户，root用户账号，在系统中拥有最高权限，是linux系统的超级管理员</li>
+<li>普通用户，由管理员用户创建的，拥有一定的权限对系统资源进行访问控制</li>
+<li>程序用户，确保系统对应程序的正常运行，该类用户账号不允许登录系统</li>
+</ul>
+<h3 id="组账号"><a href="#组账号" class="headerlink" title="组账号"></a>组账号</h3><ul>
+<li>基本组（私有组）<ul>
+<li>定义，创建用户账号的同时，默认也会创建该用户账号对应的基本组（私有组），基本组的名字和 用户账号名字是一样的。</li>
+<li>每个用户账号有且只有一个基本组</li>
+<li>附加组（公共组）<ul>
+<li>定义，一个用户账号除了拥有一个基本组外，还可以加入其他组，加入的其他组对于该用户账号来 说，就称为附加组或公共组</li>
+<li>每个用户账号可以有多个附加组</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="用户标识号和组标识号"><a href="#用户标识号和组标识号" class="headerlink" title="用户标识号和组标识号"></a>用户标识号和组标识号</h3><ul>
+<li>UID（User IDentity，用户标识号)用于唯一区分每一个用户账号<ul>
+<li>基于centos7系统，创建普通用户默认分配的uid范围从1000~60000</li>
+</ul>
+</li>
+<li>GID（Group IDentify，组标识号)用于唯一区分每一个组账号<ul>
+<li>基于centos7系统，创建组账号默认分配的uid范围从1000~60000</li>
+</ul>
+</li>
+<li>root用户账号和组账号，uid和gid始终为0</li>
+</ul>
+<h3 id="用户账号的管理"><a href="#用户账号的管理" class="headerlink" title="用户账号的管理"></a>用户账号的管理</h3><ul>
+<li>用户账号文件</li>
+<li>添加、删除、修改用户账号</li>
+</ul>
+<h3 id="组账号管理"><a href="#组账号管理" class="headerlink" title="组账号管理"></a>组账号管理</h3><ul>
+<li>组账号文件</li>
+<li>添加、删除、修改组账号</li>
+</ul>
+<h3 id="查询账号信息"><a href="#查询账号信息" class="headerlink" title="查询账号信息"></a>查询账号信息</h3><ul>
+<li>用户账号对应的配置文件&#x2F;etc&#x2F;passwd</li>
+<li>用户配置文件中的每一行都表示一个用户账号的属性信息<ul>
+<li>字段1：用户帐号的名称</li>
+<li>字段2：用户密码字串或者密码占位符“<font color="red">x</font>”</li>
+<li>字段3：用户帐号的UID号</li>
+<li>所属基本组帐号的GID号</li>
+<li>用户全名</li>
+<li>宿主目录</li>
+<li>登录Shell环境</li>
+</ul>
+</li>
+<li>用户账号对应的密码信息配置文件<ul>
+<li>密码信息对应的配置文件，也叫“影子文件”，也称为shadow文件&#x2F;etc&#x2F;shadow</li>
+<li>shadow文件每一行对应一个用户账号的密码信息</li>
+<li>字段1：用户帐号的名称</li>
+<li>字段2：使用哈希加密算法生产的加密字符串</li>
+<li>字段3：上次修改密码的时间，从1970.1.1算起到最近一次修改密码时间的间隔天数</li>
+<li>字段4：密码的最短有效天数，默认值为0，表示不限制</li>
+<li>字段5：密码的最长有效天数，默认值为99999，表示不限制</li>
+<li>字段6：提前多少天警告用户密码将过期，默认值为7</li>
+<li>字段7：在密码过期之后多少天内禁用此用户</li>
+<li>字段8：帐号失效时间，默认值0表示用户账号永不失效</li>
+<li>字段9：保留字段（目前未使用）</li>
+</ul>
+</li>
+<li>添加、删除、修改用户账号<ul>
+<li>useradd命令：添加用户账号<ul>
+<li>useradd zhangsan （添加用户张三）</li>
+<li>useradd -u 1006 -s &#x2F;bin&#x2F;sh -e 2022-4-30 lisi（创建用户lisi给他指定uid是1006，有效时间是2022-4-30 登录的 shell）</li>
+<li>useradd -M xiaoming （添加小明这个用户时不创建他的家目录或属主目录）</li>
+<li>useradd -G zahngsan xiaoming（添加用户小明时指定该用户账号的附加组为张三）</li>
+</ul>
+</li>
+<li>passwd命令<ul>
+<li>passwd zhangsan （设置张三的密码）</li>
+<li>passwd -d zhangsan（清空或删除张三的密码，实现用户免密登录）</li>
+<li>passwd -l zhangsan（锁定张三用户，使其无法登录系统）</li>
+<li>passwd -u zhangsan（解锁张三用户，使其正常登录系统）</li>
+<li>passwd -S zhangsan （查看用户张三锁定解锁的状态）</li>
+</ul>
+</li>
+<li>usermod命令<ul>
+<li>usermod -l lisi zhangsan （把张三修改为李四）</li>
+<li>usermod -L zhangsan（锁定张三用户，使其无法登录系统）</li>
+<li>usermod -U zhangsan（解锁张三用户，使其正常登录系统）</li>
+<li>passwd -S zhangsan （查看用户张三锁定解锁的状态）</li>
+</ul>
+</li>
+<li>userdel命令<ul>
+<li>userdel zhangsan（删除用户张三）</li>
+<li>userdel -r zhangsan（删除用户张三并把其家目录一起删除）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>添加、删除组账号<ul>
+<li>groupadd命令<ul>
+<li>groupadd kc32（创建组账号kc32）</li>
+<li>cat &#x2F;etc&#x2F;group （查看组账号信息）</li>
+</ul>
+</li>
+<li>gpasswd命令<ul>
+<li>gpasswd -a zhangsan kc32（把用户张三添加到组kc32中）</li>
+<li>gpasswd -d zhangsan kc32（把用户张三组kc32中删除）</li>
+<li>gpasswd -M zhangsan,lisi,wangwu kc32（把用户张三、李四、王五添加到组kc32中，且会覆盖原有的用户）</li>
+</ul>
+</li>
+<li>groupdel命令<ul>
+<li>groupdel kc32（删除组kc32）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>查询账户<ul>
+<li>groups命令<ul>
+<li>groups （查看当前登录系统的用户的属组）</li>
+<li>groups zhangsan（查看张三用户的属组）</li>
+</ul>
+</li>
+<li>id命令<ul>
+<li>id （查看当前登录系统用户的身份标识）</li>
+<li>id zhangsan （查看张三的uid，gid以及组账号）</li>
+</ul>
+</li>
+<li>finger命令<ul>
+<li>finger（查询当前登录账号的详细信息）</li>
+<li>finger zhangsan（查询张三用户的详细信息）</li>
+</ul>
+</li>
+<li>w命令<ul>
+<li>w （查询当前登录账号的详细信息，包括负载，如CPU、内存等）</li>
+</ul>
+</li>
+<li>who命令<ul>
+<li>who（只显示用户名、终端、登录时间）</li>
+</ul>
+</li>
+<li>users命令<ul>
+<li>users（只显示用户名）</li>
+</ul>
+</li>
+<li>whoami命令<ul>
+<li>whoami（查询当前是哪个用户登录的）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、权限管理"><a href="#二、权限管理" class="headerlink" title="二、权限管理"></a>二、权限管理</h2><ul>
+<li><p>linux系统中文件和目录的权限分为：访问权和归属权</p>
+<ul>
+<li><p>访问权</p>
+<ul>
+<li>读取 r：允许查看文件内容、显示目录列表</li>
+<li>写入 w：允许修改文件内容，允许在目录中新建、移动、删除文件或子目录</li>
+<li>可执行 x：允许运行程序、切换目录</li>
+</ul>
+</li>
+<li><p>归属权</p>
+<ul>
+<li>定义：就是文件或目录是由哪个用户创建，所有者就是谁</li>
+<li>归属权分为属主,拥有该文件或目录的用户帐号（创建文件或目录的用户）、属组,拥有该文件或目录的组帐号（创 建文件或目录的用户的主账号）</li>
+</ul>
+</li>
+<li><p>权限的格式和含义</p>
+<p><img src="https://s2.loli.net/2023/10/17/OxM5FbtVA26grPm.png" alt="1697534815343.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="权限设置"><a href="#权限设置" class="headerlink" title="权限设置"></a>权限设置</h3><ul>
+<li>linux系统下普通文件的默认权限是666，普通目录默认的权限是777</li>
+<li>chmod命令<ul>
+<li>chmod u+x，g+x，o+x passwd （给文件passwd设置权限，给属主执行的权限，给属组设置执行的权限，给其他 用户设置执行的权限）</li>
+<li>chmod u-x，g-x，o-x passwd （给文件passwd设置权限，把属主的执行权限去掉，给属组设置的执行权限去掉， 给其他用户的执行权限也去掉）</li>
+<li>chmod a&#x3D;rwx passwd （给文件passwd的所有用户的属主、属组赋予读写执行的权限）</li>
+<li>chmod -R 777 &#x2F;kgc （给目录kgc以及其子目录和文件均赋予777的权限）</li>
+</ul>
+</li>
+<li>chown命令<ul>
+<li>chown zhangsan &#x2F;root&#x2F;passwd (把&#x2F;root&#x2F;passwd文件的属主改为张三)</li>
+<li>chown :zhangsan &#x2F;root&#x2F;passwd(把&#x2F;root&#x2F;passwd文件的属组改为张三)</li>
+<li>chown zhangsan:zhangsan &#x2F;root&#x2F;passwd(把&#x2F;root&#x2F;passwd文件的属主和属组均改为张三)</li>
+<li>chown -R zhangsan:zhangsan &#x2F;kgc (把&#x2F;kgc目录以及其子目录和文件的属主和属组均改为张三)</li>
+</ul>
+</li>
+<li>umask权限掩码<ul>
+<li>作用：控制新建的文件或者目录的权限、默认权限去除umask的权限为新建的文件或者目录的权限</li>
+<li>权限掩码的默认值：root用户的umask&#x3D;022、普通用户的umask&#x3D;002</li>
+<li>普通用户创建的文件为644&#x3D;linux系统中文件的默认权限是666-普通用户的umask是022</li>
+<li>普通用户创建的目录为755&#x3D;linux系统中目录的默认权限是777-普通用户的umask是022</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>linux系统管理</category>
+        <category>linux用户账户和权限管理</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>linux系统管理</tag>
+        <tag>linux用户账户和权限管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux安装及管理程序</title>
+    <url>/2023/10/16/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<h1 id="安装及管理程序"><a href="#安装及管理程序" class="headerlink" title="安装及管理程序"></a>安装及管理程序</h1><h2 id="一、Linux应用程序基础"><a href="#一、Linux应用程序基础" class="headerlink" title="一、Linux应用程序基础"></a>一、Linux应用程序基础</h2><blockquote>
+<p>名称解释：应用程序，又称为软件，通过安装应用程序，提供一种服务供用户去访问或使用</p>
+</blockquote>
+<ul>
+<li><p>应用程序与系统命令之间的关系</p>
+<table>
+<thead>
+<tr>
+<th align="center">角色</th>
+<th align="center">系统命令</th>
+<th align="center">应用程序</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">文件位置</td>
+<td align="center">一般在&#x2F;bin和&#x2F;sbin目录中，或为Shell内部指令</td>
+<td align="center">通常在&#x2F;usr&#x2F;bin和&#x2F;usr&#x2F;sbin目录中</td>
+</tr>
+<tr>
+<td align="center">主要用途</td>
+<td align="center">一般只在字符操作界面中运行</td>
+<td align="center">根据实际需要，有些程序可在图形界面中运行</td>
+</tr>
+<tr>
+<td align="center">适用环境</td>
+<td align="center">一般只在字符操作界面中运行</td>
+<td align="center">根据实际需要，有些程序可在图形界面中运行</td>
+</tr>
+<tr>
+<td align="center">运行格式</td>
+<td align="center">一般包括命令字、命令选项和命令参数</td>
+<td align="center">通常没有固定的执行格式<span id="more"></span></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>经典应用程序的目录结构</p>
+<table>
+<thead>
+<tr>
+<th align="center">文件类型</th>
+<th align="center">保存目录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">普通执行程序文件</td>
+<td align="center">&#x2F;usr&#x2F;bin</td>
+</tr>
+<tr>
+<td align="center">服务器执行程序文件和管理程序文件</td>
+<td align="center">&#x2F;usr&#x2F;sbin</td>
+</tr>
+<tr>
+<td align="center">应用程序配置文件</td>
+<td align="center">&#x2F;etc</td>
+</tr>
+<tr>
+<td align="center">日志文件</td>
+<td align="center">&#x2F;var&#x2F;log</td>
+</tr>
+<tr>
+<td align="center">应用程序参考文档文件</td>
+<td align="center">&#x2F;usr&#x2F;share&#x2F;doc</td>
+</tr>
+<tr>
+<td align="center">应用程序手册页文件</td>
+<td align="center">&#x2F;usr&#x2F;share&#x2F;man</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>常见软件包的封装类型</p>
+<table>
+<thead>
+<tr>
+<th align="center">文件类型</th>
+<th align="center">保存目录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">RPM软件包</td>
+<td align="center">扩展名为 “.rpm”</td>
+</tr>
+<tr>
+<td align="center">DEB软件包</td>
+<td align="center">扩展名为 “.deb”</td>
+</tr>
+<tr>
+<td align="center">源代码软件包</td>
+<td align="center">一般为 “.tar.gz”、“.tar.bz2” 等格式的压缩包，包含程序的原始代码</td>
+</tr>
+<tr>
+<td align="center">绿色免安装的软件包</td>
+<td align="center">软件包的扩展名不一，，以TarBall格式的居多<br>在压缩包内提供已编译好的执行程序文件<br>解开压缩包后的文件即可直接使用</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<hr>
+<h2 id="二、RPM包管理工具"><a href="#二、RPM包管理工具" class="headerlink" title="二、RPM包管理工具"></a>二、RPM包管理工具</h2><ul>
+<li>RPM软件包命名格式<ul>
+<li>软件名称-版本号-发布次数-硬件平台-后缀名.rpm</li>
+<li>获取rpm命令的详细帮助信息<ul>
+<li>man</li>
+<li>rpm</li>
+</ul>
+</li>
+<li>rpm命令可以实现几乎所有对rpm软件包的管理功能</li>
+</ul>
+</li>
+<li>rpm命令常见的功能<ul>
+<li>安装、卸载、查询、更新、验证、维护等功能</li>
+</ul>
+</li>
+<li>rpm命令使用<ul>
+<li>查询已安装的RPM软件包<ul>
+<li>rpm -qa查询linux系统中系统已安装的所有rpm软件包</li>
+<li>rpm -qa |wc-l 统计出linux系统中已安装的所有rpm包的总数</li>
+<li>rpm -ql openssh查看openssh软件包在当前系统中安装的所有目录和文件</li>
+<li>rpm -qi openssh查看openssh软件包的详细信息，包括名称、版本、发布次数等</li>
+<li>rpm -qc openssh查看openssh软件包在当前系统中安装的配置文件</li>
+<li>rpm -qf &#x2F;usr&#x2F;bin&#x2F;pwd查看pwd这个命令是由哪个软件包安装的</li>
+<li>rpm -qd openssh 查看openssh软件包在当前系统中安装的帮助文档</li>
+</ul>
+</li>
+<li>查询未安装的RPM包<ul>
+<li>rpm –qp lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （查看未安装的软件包）</li>
+<li>rpm –qpi lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （查看未安装软件包的详细信息）</li>
+<li>rpm –qpl lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成哪些目录和文件）</li>
+<li>rpm –qpc lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成的配置文件）</li>
+<li>pm –qpd lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成的帮助文档</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>安装RPM软件包<ul>
+<li>命令格式<ul>
+<li>rpm 选项 软件包名称</li>
+</ul>
+</li>
+<li>安装选项<ul>
+<li>-i在当前系统中，安装一个新的软件包</li>
+<li>-U检查并升级系统中的某个软件包，若该软件包未安装，则安装这个软件包，这时就相当于“-i”这个选项</li>
+<li>-F检查并更新系统中的某个软件包，若该软件未安装，则放弃更新升级安装操作。</li>
+<li>-e卸载已安装的软件包</li>
+<li>-v显示软件包安装过程中的详细信息</li>
+<li>-h在安装或升级软件包的过程中，以“#”的方式显示安装或升级的进度</li>
+<li>–force强制安装某个软件包，如安装一个比当前版本更低的一个版本时，会使用强制安装</li>
+<li>–nodeps可用于安装、升级、卸载一个软件包时，忽略软件包的依赖关系</li>
+</ul>
+</li>
+<li>举例<ul>
+<li>rpm -ivh lynx-2.8.8-0.3.dev15.el7.x86_64.rpm (安装全新的lynx软件包)</li>
+<li>rpm -e lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （卸载lynx软件包）</li>
+<li>rpm -q lynx （查看lynx软件包是否卸载）</li>
+<li>rpm -qpi elinks-0.12-0.37.pre6.el7.x86_64.rpm –nodeps （安装新的软件包，且忽略依赖关系）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>维护RPM数据库<ul>
+<li>重建RPM数据库<ul>
+<li>rpm –rebuilddb（执行效率低）</li>
+<li>rpm –initdb（执行效率高）</li>
+</ul>
+</li>
+<li>导入验证公钥<ul>
+<li>root@localhost~]# rpm –import&#x2F;media&#x2F;cdrom&#x2F;RPM-GPG-KEY-CentOS-7</li>
+<li>作用：导入公钥文件后，安装软件包时，不会提示警告信息，确保安装到系统的RPM包是安全的。</li>
+</ul>
+</li>
+<li>解决软件包依赖关系方法<ul>
+<li>安装有依赖关系的多软件包，被依赖的软件先安装，可以同时制定多个rpm包进行安装</li>
+<li>卸载有依赖关系的多个软件包时，被依赖的软件先卸载，可以同时制定多个rpm包进行卸载</li>
+<li>安装或卸载有依赖关系的软件包，不考虑其依赖关系进行安装或卸载使用“–nodeps”选项，忽略依赖关系，进行强制安装或卸载有依赖关系的软件包</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="三、源代码包编译安装程序"><a href="#三、源代码包编译安装程序" class="headerlink" title="三、源代码包编译安装程序"></a>三、源代码包编译安装程序</h2><ul>
+<li>源代码编译安装概述<ul>
+<li>使用源代码包安装软件的优点<ul>
+<li>获取较新软件版本，及时修改BUG</li>
+<li>根据用户需求，灵活定制软件功能模块</li>
+</ul>
+</li>
+<li>源代码使用场景<ul>
+<li>企业要求安装较新版本的软件包时</li>
+<li>企业业务需求无法及时满足时</li>
+<li>应用程序需要添加新的功能时</li>
+</ul>
+</li>
+<li>源代码包格式<ul>
+<li>源代码包，又称为“Tarball”</li>
+<li>格式 tar.gz。tar.bz2</li>
+</ul>
+</li>
+<li>校验源代码完整性的校验工具<ul>
+<li>md5sum https-2.4.50.tar.gz</li>
+</ul>
+</li>
+<li>确认源代码包编译环境<ul>
+<li>gcc编译工具</li>
+<li>验证gcc编译工具是否安装 gcc -version</li>
+<li>验证make编译工具是否安装 make –version</li>
+<li>提前安装apache的依赖包 yum install -y gcc gcc-c++ make apr apr-devel apr-until apr-until-devel pcre pcre-devel</li>
+</ul>
+</li>
+<li>源代码包编译安装的过程<ul>
+<li>下载源代码包并验证源代码包的安装性 md5sum httpd-2.4.50.tar.gz</li>
+<li>解包，使用tar tar zxvf httpd-2.4.50.tar.gz -C &#x2F;usr&#x2F;src</li>
+<li>配置，使用.&#x2F;configure脚本文件进行配置apache安装路径 cd &#x2F;usr&#x2F;src&#x2F;httpd-2.4.50 .&#x2F;configure –prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;apache</li>
+<li>编译，将源代码编译并生成二进制文件 make</li>
+<li>安装，将生成的二进制文件复制到系统对应的目录下 make install</li>
+<li>测试，应用及维护软件<ul>
+<li>修改apache配置文件&#x2F;usr&#x2F;local&#x2F;apache&#x2F;conf&#x2F; httpd.conf（194行的#去掉）</li>
+<li>启动apache服务命令&#x2F;usr&#x2F;local&#x2F;apache&#x2F;bin&#x2F;apachectl start</li>
+<li>验证apache服务是否启动 netstat -anpt |grep httpd</li>
+<li>yum insatll -y lynx elinks</li>
+<li>lynx 或lynx 127.0.0.1</li>
+<li>elinks 或elinks 127.0.0.1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>linux系统管理</category>
+        <category>linux安装及管理程序</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>linux系统管理</tag>
+        <tag>linux安装及管理程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux常用命令</title>
+    <url>/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h1><h2 id="一、linux命令基础"><a href="#一、linux命令基础" class="headerlink" title="一、linux命令基础"></a>一、linux命令基础</h2><ul>
+<li><p>shell程序</p>
+<p><img src="https://s2.loli.net/2023/10/11/LClNcO62neoZ9kx.png" alt="shell程序.jpg"></p>
+<ul>
+<li>这是linux系统中运行的一种特殊程序，在用户与内核之间充当翻译官，当用户登陆系统时会自动加载一个shell程序。</li>
+<li>linux系统默认使用shell程序对应的文件时 &#x2F;bin&#x2F;bash<span id="more"></span></li>
+</ul>
+</li>
+<li><p>内部命令与外部命令的区别</p>
+<table>
+<thead>
+<tr>
+<th align="center">区分类型</th>
+<th align="center">内部命令</th>
+<th align="center">外部命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">定义</td>
+<td align="center">集成于Shell解释器程序内部的一些特殊指令，也称为内建（Buit-in）指令</td>
+<td align="center">在linux系统中，安装其他应用程序所生产的脚本文件或二进制文件</td>
+</tr>
+<tr>
+<td align="center">组成</td>
+<td align="center">属于shell解释器的一部分</td>
+<td align="center">属于shell解释器之外的部分</td>
+</tr>
+<tr>
+<td align="center">系统文件</td>
+<td align="center">没有单独对应的文件系统</td>
+<td align="center">每个外部命令在系统中都有一个对应的命令文件</td>
+</tr>
+<tr>
+<td align="center">自动加载</td>
+<td align="center">系统重启会自动加载如内存，直接使用</td>
+<td align="center">必须找到对应的外部文件所在的位置，再加载到shell中</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>linux系统通用命令格式</p>
+<ul>
+<li><p>命令字 选项 格式</p>
+</li>
+<li><p>严格区分大小写，即对大小写是敏感的</p>
+</li>
+<li><p>选项和参数是可以互换位置的</p>
+</li>
+<li><p>选项是多个，针对多个短格式选项可以合并使用</p>
+</li>
+<li><p>命令字后可以长格式+短格式混合使用</p>
+</li>
+<li><p>linux命令行的辅助操作</p>
+<table>
+<thead>
+<tr>
+<th align="center">按键</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Tab</td>
+<td align="center">自动补齐</td>
+</tr>
+<tr>
+<td align="center">\</td>
+<td align="center">强制换行</td>
+</tr>
+<tr>
+<td align="center">Ctrl+U</td>
+<td align="center">清空至行首</td>
+</tr>
+<tr>
+<td align="center">Ctrl+K</td>
+<td align="center">清空至行尾</td>
+</tr>
+<tr>
+<td align="center">Ctrl+L</td>
+<td align="center">清屏</td>
+</tr>
+<tr>
+<td align="center">Ctrl+C</td>
+<td align="center">取消本次命令编辑</td>
+</tr>
+<tr>
+<td align="center">Ctrl+a</td>
+<td align="center">快速将光标定位到行首</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二、linux命令帮助"><a href="#二、linux命令帮助" class="headerlink" title="二、linux命令帮助"></a>二、linux命令帮助</h2><ul>
+<li>help（内部命令）</li>
+<li>–help（外部命令）</li>
+<li>man（可用于内部和外部命令）</li>
+</ul>
+<hr>
+<h2 id="三、目录与文件的基本操作"><a href="#三、目录与文件的基本操作" class="headerlink" title="三、目录与文件的基本操作"></a>三、目录与文件的基本操作</h2><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">pwd</td>
+<td align="center">查看系统当前用户工作目录所在的位置</td>
+</tr>
+<tr>
+<td align="center">cd</td>
+<td align="center">切换用户当前的工作目录</td>
+</tr>
+<tr>
+<td align="center">cd ~</td>
+<td align="center">切换到当前用户的宿主目录或家目录</td>
+</tr>
+<tr>
+<td align="center">cd 目标位置</td>
+<td align="center">系统已存在目录</td>
+</tr>
+<tr>
+<td align="center">cd -</td>
+<td align="center">返回到上次执行cd命令之前所在的目录</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>相对路径与绝对路径的区别</p>
+<ul>
+<li><p>相对路径：</p>
+<table>
+<thead>
+<tr>
+<th align="center">表现形式</th>
+<th align="center">说明</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">直接使用目录名或文件名</td>
+<td align="center">表示当前工作目录中的子目录、文件的位置</td>
+<td align="center">grub.conf</td>
+</tr>
+<tr>
+<td align="center">以一个点号”.”开头</td>
+<td align="center">表示以当前的工作目录作为起点</td>
+<td align="center">.&#x2F;grub.conf</td>
+</tr>
+<tr>
+<td align="center">以两个点号”..”开头</td>
+<td align="center">表示以当前目录的上一级目录（父目录）作为起点</td>
+<td align="center">..&#x2F;vmlinuz</td>
+</tr>
+<tr>
+<td align="center">以”~用户名”形式开头</td>
+<td align="center">表示以指定用户的宿主目录作为起点</td>
+<td align="center">~teacher</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>绝对路径：</p>
+<ul>
+<li>以根目录”&#x2F;“作为起点，进行文件的查询或创建</li>
+<li>以绝对路径表示文件路径时，比较繁琐，不够灵活</li>
+<li>比较稳定，指定路径比较精确，但不方便迁移</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息"><a href="#四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息" class="headerlink" title="四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息"></a>四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息</h2><ul>
+<li><p>使用的参数可以是目录名，也可以是文件名，允许在同一条命令中同时使用多个参数。ls命令选项种类非常多，这里只列出一些最常用的以供参考</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ls</td>
+<td align="center">显示当前目录中包含的子目录、文件列表信息（不包括隐藏目录、文件）</td>
+</tr>
+<tr>
+<td align="center">ls -l</td>
+<td align="center">以长格式（Long）显示文件和目录的列表，包括权限、大小、最后更新时间等</td>
+</tr>
+<tr>
+<td align="center">ls -a</td>
+<td align="center">显示所有（All）子目录和文件的信息，包括名称以点号“.”开头的隐藏目录和隐藏文件</td>
+</tr>
+<tr>
+<td align="center">ls -A</td>
+<td align="center">与-a 选项的作用基本类似，但有两个特殊隐藏目录不会显示，即表示当前目录的“.”和表示父目录的“..”</td>
+</tr>
+<tr>
+<td align="center">ls -d</td>
+<td align="center">显示目录（Directory）本身的属性，而不是显示目录中的内容</td>
+</tr>
+<tr>
+<td align="center">ls -h</td>
+<td align="center">以更人性化（Human）的方式显示目录或文件的大小，默认的大小单位为字节（B），使用-h 选项后将显示为 KB、MB 等单位。此选项需要结合-l 选项一起使用</td>
+</tr>
+<tr>
+<td align="center">ls -R</td>
+<td align="center">以递归（Recursive）的方式显示指定目录及其子目录中的所有内容</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>ls常用组合键</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ls -hl</td>
+<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息</td>
+</tr>
+<tr>
+<td align="center">ls -ahl</td>
+<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，包含隐藏的文件和目录</td>
+</tr>
+<tr>
+<td align="center">ls -Ahl</td>
+<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，包含隐藏的文件</td>
+</tr>
+<tr>
+<td align="center">ls -hl –color</td>
+<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，显示属性信息时显示不同的 颜色</td>
+</tr>
+<tr>
+<td align="center">ls -hl &#x2F;etc&#x2F;ns*.conf</td>
+<td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以ns开头任意多个字符且以.conf结尾的文件</td>
+</tr>
+<tr>
+<td align="center">ls -hl &#x2F;etc&#x2F;vi??</td>
+<td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以文件名vi开头任意两个字符的文件</td>
+</tr>
+<tr>
+<td align="center">ls -hl &#x2F;etc&#x2F;vi???</td>
+<td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以文件名vi开头任意三个字符的文件</td>
+</tr>
+</tbody></table>
+<ul>
+<li>“*”匹配任意的多个字符，”?”匹配任意一个字符</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="五、alias设置别名"><a href="#五、alias设置别名" class="headerlink" title="五、alias设置别名"></a>五、alias设置别名</h2><ul>
+<li>alias myls&#x3D;’ls -alh’</li>
+<li>命令myls相当于执行ls -alh命令。别名设置的作用：对经常使用的命令做别名设置，提高命令输入的速度和效率</li>
+<li>以命令的方式设置别名，是临时的，只在当前的字符终端生效，其他字符终端无法识别别名</li>
+</ul>
+<hr>
+<h2 id="六、du统计目录和文件占用磁盘空间的情况"><a href="#六、du统计目录和文件占用磁盘空间的情况" class="headerlink" title="六、du统计目录和文件占用磁盘空间的情况"></a>六、du统计目录和文件占用磁盘空间的情况</h2><ul>
+<li>du -sh &#x2F;boot (统计&#x2F;boot目录占用磁盘空间的总大小，不显示&#x2F;boot目录中文件和子文件占用磁盘空间的大小)</li>
+<li>du -ah &#x2F;boot（只统计&#x2F;boot目录占用磁盘空间的总大小，显示&#x2F;boot目录中文件和子文件占用磁盘空间的大小）</li>
+</ul>
+<hr>
+<h2 id="七、mkdir创建空目录"><a href="#七、mkdir创建空目录" class="headerlink" title="七、mkdir创建空目录"></a>七、mkdir创建空目录</h2><ul>
+<li>mkdir &#x2F;kgc(在&#x2F;目录下创建目录kgc)</li>
+<li>mkdir –p &#x2F;kgc&#x2F;kc32&#x2F;a1&#x2F;a2（在kgc下创建kc32，在kc32中创建目录a1,在a1下创建目录a2）</li>
+<li>mkdir –p &#x2F;beida&#x2F;kgc&#x2F;{a&#x2F;{a1,a2},b&#x2F;{b1,b2},c&#x2F;{c1,c2}} （递归创建&#x2F;beida&#x2F;目录创建的目录kgc，在kgc目录下创建了目录 a、b、c这三个目录，而目录a下创建了a1和a2，在目录b下创建b1、b2,在目录c下创建c1、c2）</li>
+</ul>
+<hr>
+<h2 id="八、touch创建空文件"><a href="#八、touch创建空文件" class="headerlink" title="八、touch创建空文件"></a>八、touch创建空文件</h2><ul>
+<li><p>touch命令的作用</p>
+<ul>
+<li>更新文件时间标记（针对已存在的文件）</li>
+<li>创建空文件（一次可以创建多个）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">格式</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">touch a.txt</td>
+<td align="center">创建a.txt文件</td>
+</tr>
+<tr>
+<td align="center">touch a.txt b.txt</td>
+<td align="center">创建a.txt和b.txt两个文件</td>
+</tr>
+<tr>
+<td align="center">两次touch a.txt</td>
+<td align="center">更改a.txt文件的时间标记</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<hr>
+<h2 id="九、In创建链接文件"><a href="#九、In创建链接文件" class="headerlink" title="九、In创建链接文件"></a>九、In创建链接文件</h2><ul>
+<li><p>链接文件分类</p>
+<ul>
+<li>软连接文件，也称为“符号链接文件”</li>
+<li>硬链接文件</li>
+</ul>
+</li>
+<li><p>创建链接文件的命令格式</p>
+<ul>
+<li>In -s 源文件 目录位置（软链接）</li>
+<li>In 源文件 目录位置（硬链接）</li>
+</ul>
+</li>
+<li><p>例子</p>
+<ul>
+<li>软连接的创建：<ul>
+<li>In -s &#x2F;bin&#x2F;mkdir &#x2F;home</li>
+<li>In -s &#x2F;bin&#x2F; &#x2F;home</li>
+</ul>
+</li>
+<li>硬链接的创建<ul>
+<li>In &#x2F;bin&#x2F;mkdir &#x2F;home</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>软链接和硬链接的区别</p>
+<table>
+<thead>
+<tr>
+<th align="center">类别</th>
+<th align="center">软链接文件</th>
+<th align="center">硬链接文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">语法格式</td>
+<td align="center">ln -s &#x2F;bin&#x2F;mkdir &#x2F;home <br>ln -s &#x2F;bin&#x2F; &#x2F;home</td>
+<td align="center">ln &#x2F;bin&#x2F;mkdir &#x2F;home</td>
+</tr>
+<tr>
+<td align="center">创建对象要求</td>
+<td align="center">可基于文件创建软链接文件 也可基于目录创建软链接文件</td>
+<td align="center">只能基于文件创建硬链接文件</td>
+</tr>
+<tr>
+<td align="center">文件系统要求</td>
+<td align="center">源文件和创建的软链接文件可在 同一个文件系统，也可不在同一 个文件系统</td>
+<td align="center">源文件和创建的硬链接文件必须 在同一个文件系统内</td>
+</tr>
+<tr>
+<td align="center">删除源文件产生后果</td>
+<td align="center">删除源文件后，创建的软链接文 件不可正常使用</td>
+<td align="center">删除源文件后，创建的硬链接文 件可正常使用</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<hr>
+<h2 id="十、cp复制文件或目录"><a href="#十、cp复制文件或目录" class="headerlink" title="十、cp复制文件或目录"></a>十、cp复制文件或目录</h2><ul>
+<li><p>cp 命令用于复制文件或目录，将需要复制的文件或目录（源）重建一份并保存为新的文件或目录（可保存到其他目录中）</p>
+</li>
+<li><p>cp 命令基本格式</p>
+<ul>
+<li>cp 源文件或目录 目标文件或目录</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">命令选项</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">cp -f</td>
+<td align="center">覆盖目标同名文件或目录时不进行提醒，直接强制复制</td>
+</tr>
+<tr>
+<td align="center">cp -i</td>
+<td align="center">覆盖目标同名文件或目录时提醒用户确认</td>
+</tr>
+<tr>
+<td align="center">cp -p</td>
+<td align="center">复制时保持源文件的权限、属主及时间标记等属性不变</td>
+</tr>
+<tr>
+<td align="center">cp -r</td>
+<td align="center">复制目录时必须使用此选项，表示递归复制所有文件及子目录</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>例子：</p>
+<ul>
+<li>cp -i a.txt &#x2F;kgc：复制的目标位置中与源文件重名的文件进行提示是否覆盖，其是默认选项 </li>
+<li>cp -p a.txt &#x2F;kgc：复制时保留源文件到目标位置的属性信息不变</li>
+<li>cp -rf &#x2F;kgc&#x2F;kc32 &#x2F;home：复制到目标位置时强制进行覆盖操作，而不进行提示</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="十一、rm删除目录或文件"><a href="#十一、rm删除目录或文件" class="headerlink" title="十一、rm删除目录或文件"></a>十一、rm删除目录或文件</h2><ul>
+<li>rm 命令用于删除指定的文件或目录，在 Linux 命令行界面中，删除的文件是难以恢复的，因此使用 rm 命令删除文件时需要格外小心。rm 命令使用要删除的文件或目录名作为参数。</li>
+<li>例子：<ul>
+<li>rm a.txt（提示是否删除a.txt）</li>
+<li>rm -i a.txt（提示是否删除a.txt）</li>
+<li>rm -rf &#x2F;kgc&#x2F;kc32（递归强制删除kc32目录，不进行提示）</li>
+<li>rm -r &#x2F;kgc（递归强制删除kgc目录，进行提示）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="十二、mv移动文件或目录"><a href="#十二、mv移动文件或目录" class="headerlink" title="十二、mv移动文件或目录"></a>十二、mv移动文件或目录</h2><ul>
+<li>mv 命令用于将指定的文件或目录转移位置，如果目标位置与源位置相同，则效果相当于为文件或目录改名。mv命令的基本使用格式如下：<ul>
+<li>mv 源文件或目录 目标文件或目录<ul>
+<li>mv a.txt &#x2F;kgc</li>
+<li>mv &#x2F;kgc&#x2F; &#x2F;home</li>
+<li>mv a.txt aa.txt</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="十三、which查找命令或文件存放目录"><a href="#十三、which查找命令或文件存放目录" class="headerlink" title="十三、which查找命令或文件存放目录"></a>十三、which查找命令或文件存放目录</h2><ul>
+<li>which 命令用于查找 Linux 命令程序并显示所在的具体位置，其搜索范围主要由用户的环境变量 PATH 决定（可以执行“echo $PATH”命令查看），这个范围也是 Linux 操作系统在执行命令或程序时的默认搜索路径。</li>
+<li>环境变量的定义：<ul>
+<li>系统当前用户所拥有的工作环境，包括用户所有能执行的各种命令文件或脚本文件，即定义用户在系统中所拥有的权限<ul>
+<li>which cd</li>
+<li>which -a ls cd pwd</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="十四、find命令查找文件或目录"><a href="#十四、find命令查找文件或目录" class="headerlink" title="十四、find命令查找文件或目录"></a>十四、find命令查找文件或目录</h2><ul>
+<li><p>find根据不同查找类型（查找表达式）递归进行文件的精细化查找。功能更强大</p>
+<table>
+<thead>
+<tr>
+<th align="center">查找类型</th>
+<th align="center">关键字</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">按名称查找</td>
+<td align="center">-name</td>
+<td align="center">根据目标文件的名称进行查找，允许使用 ”*“ 及 ”?” 通配符</td>
+</tr>
+<tr>
+<td align="center">按文件大小查找</td>
+<td align="center">-size</td>
+<td align="center">根据目标文件的大小进行查找<br>一般使用 “+”、“-”号设置超过或小于指定的大小作为查找条件<br>常用的容量单位包括kB（注意k是小写）、MB、GB</td>
+</tr>
+<tr>
+<td align="center">按文件属主查找</td>
+<td align="center">-user</td>
+<td align="center">根据文件是否属于目标用户进行查找</td>
+</tr>
+<tr>
+<td align="center">按文件类型查找</td>
+<td align="center">-type</td>
+<td align="center">根据文件的类型进行查找<br>文件类型包括普通文件（f）、目录（d）、块设备文件（b）、字符设备文件（c）等</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>举例：</p>
+<ul>
+<li>find &#x2F;etc -name *.conf</li>
+<li>find &#x2F;etc -size +1024k</li>
+<li>find &#x2F;etc -user root</li>
+<li>find &#x2F;etc -type f</li>
+</ul>
+</li>
+<li><p>使用find命令实现多个条件的查找，需要使用逻辑运算符</p>
+<ul>
+<li>逻辑与（查找时条件要同时满足），表示方法“-a”</li>
+<li>逻辑或（查找时条件只有满足其一即可），表示方法”-o”</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>linux系统管理</category>
+        <category>linux常用命令</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>linux系统管理</tag>
+        <tag>linux常用命令</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VLAN与三层交换机</title>
     <url>/2023/10/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/VLAN%E4%B8%8E%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/</url>
     <content><![CDATA[<h1 id="VLAN与三层交换机"><a href="#VLAN与三层交换机" class="headerlink" title="VLAN与三层交换机"></a>VLAN与三层交换机</h1><h2 id="一、VLAN概念"><a href="#一、VLAN概念" class="headerlink" title="一、VLAN概念"></a>一、VLAN概念</h2><ul>
@@ -517,1446 +1474,6 @@
       </tags>
   </entry>
   <entry>
-    <title>传输层协议</title>
-    <url>/2023/10/06/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E4%BC%A0%E8%BE%93%E5%B1%82%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h1 id="传输层协议介绍"><a href="#传输层协议介绍" class="headerlink" title="传输层协议介绍"></a>传输层协议介绍</h1><ul>
-<li>在 TCP&#x2F;IP 协议栈中，传输层有两个协议：<ul>
-<li>TCP（传输控制协议）：<ul>
-<li>稳定可靠。如：Web、邮箱等对可靠性要求高的服务</li>
-<li>速度相对较慢</li>
-<li>数据通信前，发送端与接收端要先建立连接；等数据发送结束后，双方再断开连接。</li>
-</ul>
-</li>
-<li>UDP（用户数据报协议）：<ul>
-<li>速度块，效率高。如：即时通讯、DHCP等要求快速完成信息传递的服务</li>
-<li>安全可靠性较差</li>
-<li>数据发送不建立连接，直接由发送端发送，不管接收方有没有接收到</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-
-<hr>
-<h2 id="一、TCP-协议"><a href="#一、TCP-协议" class="headerlink" title="一、TCP 协议"></a>一、TCP 协议</h2><blockquote>
-<p>前言：<strong>TCP 是面向连接的、可靠的进程到进程通信的协议。</strong>TCP 提供全双工服务，即数据可在同一时间双向传输，每一个 TCP 都有发送缓存和接收缓存，用来临时存储数据。</p>
-</blockquote>
-<h3 id="TCP-报文段"><a href="#TCP-报文段" class="headerlink" title="TCP 报文段"></a>TCP 报文段</h3><ul>
-<li><p>TCP 将若干个字节构成一个分组，称为报文段（Segment）。TCP 报文段封装在 IP 数据报中，如图所示。</p>
-<p><img src="https://s2.loli.net/2023/09/27/a5uLQAhZpgHrOGR.png" alt="TCP报文段的封装.jpg"></p>
-</li>
-<li><p>TCP 报文段的首部格式如图所示。</p>
-<p><img src="https://s2.loli.net/2023/09/27/oNb1HwdZxMB6yuF.png" alt="TCP报文段的首部格式.jpg"></p>
-</li>
-<li><p>首部长度为 20～60 字节，以下是各字段的含义。</p>
-<ul>
-<li>源端口号：它是 16 位字段，为发送方进程对应的端口号。</li>
-<li>目标端口号：它是 16 位字段，对应的是接收端的进程，接收端收到数据段后，根据这个端口号来确定把数据送给哪个应用程序的进程。</li>
-<li>序号：当 TCP 从进程接收数据字节时，就把它们存储在发送缓存中，并对每一个字节进行编号。编号的特点如下。<ul>
-<li>编号不一定从 0 开始，一般会产生一个随机数作为第一个字节的编号，称为初始序号（ISN），范围是 0～2<sup>32</sup>－1。</li>
-<li>TCP 每个方向的编号是互相独立的。</li>
-<li>当字节都被编上号后，TCP 就给每个报文段指派一个序号，序号就是该报文段中第一个字节的编号。</li>
-<li>当数据到达目的地后，接收端会按照这个序号把数据重新排列，保证数据的正确性。</li>
-</ul>
-</li>
-<li>确认号：对发送端的确认信息，用它来告诉发送端这个序号之前的数据段都已经收到，如确认号是 X，就是表示前 X-1 个数据段都已经收到。</li>
-<li>首部长度：用它可以确定首部数据结构的字节长度。一般情况下 TCP 首部是 20 字节，但首部长度最大可以扩展为 60 字节。</li>
-<li>保留：这部分保留位供今后扩展功能用，现在还没有使用到。</li>
-<li><strong>控制位</strong>：<font color="red">这六位有很重要的作用，TCP 的连接、传输和断开都受这六个控制位的指挥</font>。各位含义如下。<ul>
-<li>URG：紧急指针有效位。设置为1时，首部中的紧急指针有效；为0时，紧急指针没有意义。无法指定紧急数据的长度。</li>
-<li>ACK：确认字符，表示接收到的字符无错误。只有当 ACK＝1 时，确认序列号字段才有效；当 ACK＝0 时，确认号字段无效。</li>
-<li>PSH：表示DATA数据传输。标志位为 1 时，表示有真正的TCP数据包内容被传递，要求接收方尽快将数据段送达应用层。</li>
-<li>RST：一般是在FIN之后才会出现为1的情况，当 RST 值为 1 时通知重新建立 TCP 连接。</li>
-<li>SYN：同步序号位，TCP 需要建立连接时将这个值设为 1。</li>
-<li>FIN：发送端完成发送任务位，当 TCP 完成数据传输需要断开连接时，提出断开连接的一方将这个值设为 1。</li>
-</ul>
-</li>
-<li>窗口大小：说明本地可接收数据段的数目，这个值的大小是可变的，当网络通畅时将这个窗口值变大以加快传输速度，当网络不稳定时减小这个值可保证网络数据的可靠传输，TCP 中的流量控制机制就是依靠变化窗口的大小实现的。</li>
-<li>校验和：用来做差错控制，与 IP 的校验和不同，TCP 校验和的计算包括 TCP 首部、数据和其他填充字节。在发送 TCP 数据段时，由发送端计算校验和，当到达目的地时又进行一次校验和计算。若这两次的校验和一致，则说明数据基本是正确的，否则将认为该数据已被破坏，接收端将丢弃该数据。</li>
-<li>紧急指针：和 URG 配合使用，当 URG＝1 时有效。</li>
-<li>选项：在 TCP 首部可以有多达 40 字节的可选信息。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="二、TCP-连接（三次握手，四次挥手）"><a href="#二、TCP-连接（三次握手，四次挥手）" class="headerlink" title="二、TCP 连接（三次握手，四次挥手）"></a>二、TCP 连接（三次握手，四次挥手）</h2><blockquote>
-<p>前言：TCP 是面向连接的协议，它在源点和终点之间建立一条虚连接，而不是物理连接。TCP 报文段封装成 IP 数据报后，每一个 IP 数据报可以走不同的路径到达终点，因此收到的 IP 数据报可能不按顺序到达，甚至可能丢失或损坏。如果一个报文段没有按顺序到达，那么 TCP 保留它，然后等待它之前的报文段到达；如果一个报文段丢失或损坏，那么 TCP 就要重传。总之，TCP 保证报文段是有序的。</p>
-</blockquote>
-<ol>
-<li><p>连接建立</p>
-<p>TCP 建立连接的过程称为三次握手，过程如下图所示。后面通过 Sniffer 抓包来分析三次握手的过程。</p>
-<p><img src="https://s2.loli.net/2023/09/27/BWmd4Pnhc39UfZX.png" alt="TCP三次握手示意图.jpg"></p>
-<p>Seq 表示请求序列号，Ack 表示确认序列号，SYN 和 ACK 为控制位。</p>
-<p>SYN 控制位只有在请求建立连接时才被置为 1。</p>
-<ul>
-<li><p>第一次握手</p>
-<ul>
-<li><p>PC1 使用一个随机的端口号向 PC2 的 80 端口发送建立连接的请求，此过程的典型标志就是 TCP 的 SYN 控制位为 1，其他五个控制位全为 0。</p>
-<p><img src="https://s2.loli.net/2023/09/27/ngRE5D1kslrqMNm.png" alt="TCP三次握手（1）.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p>第二次握手（由两部分完成）</p>
-<ul>
-<li><p>PC2 收到了PC1的请求，向 PC1 回复一个确认信息，此过程的典型标志就是 TCP 的 ACK 控制位为 1，其他五个控制位全为 0 ，而且确认序列号是 PC1 的初始序列号加 1。</p>
-</li>
-<li><p>PC2 也向 PC1 发送建立连接的请求，此过程的典型标志和第一次握手一样，即 TCP 的 SYN 控制位为 1，其他五个控制位全为 0。</p>
-</li>
-<li><p>为了提高效率，一般将这两部分合并在一个数据包里实现。</p>
-<p><img src="https://s2.loli.net/2023/09/29/DSG8TVJECzcRK6r.png" alt="TCP三次握手（2）.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p>第三次握手</p>
-<ul>
-<li><p>PC1 收到了 PC2 的回复（包含请求和确认），也要向 PC2 回复一个确认消息，此过程的典型标志就是 TCP 的 ACK 控制位为 1，其他五个控制位全为 0，而且确认序列号是PC2 的初始序列号加 1。</p>
-<p><img src="https://s2.loli.net/2023/09/29/zRpAqmgDTaesJI2.png" alt="TCP三次握手（3）.jpg"></p>
-</li>
-<li><p>这样就完成了三次握手，PC1 与 PC2 之间建立了 TCP 连接。在 PC2 上的 CMD 窗口中运行 netstat -na 命令，可看到以下信息</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">Proto	Local Address	Foreign Address		State</span><br><span class="line">TCP 	<span class="number">192</span>.<span class="number">168</span>.<span class="number">0</span>.<span class="number">2</span>:<span class="number">80</span> 	<span class="number">192</span>.<span class="number">168</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1276</span> 	ESTABLISHED</span><br><span class="line"></span><br><span class="line">其中，状态（State）是 ESTABLISHED，表明 TCP 连接已成功建立</span><br><span class="line"></span><br><span class="line">netstat 命令可以显示协议统计信息和当前的 TCP/IP 网络连接。 </span><br><span class="line">参数 -a 显示所有连接和监听端口，-n 以数字形式显示地址和端口号。</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>连接终止</p>
-<p>参加交换数据的双方中的任何一方（客户或服务器）都可以关闭连接。TCP 断开连接分四步，也称为四次挥手。如下图所示</p>
-<p><img src="https://s2.loli.net/2023/09/29/lSeXryUEMf5jtwJ.png" alt="TCP断开连接示意图.jpg"></p>
-<p>过程步骤：</p>
-<ul>
-<li>服务器向客户端发送 FIN 和 ACK 位置 1 的 TCP 报文段。</li>
-<li>客户端向服务器返回 ACK 位置 1 的 TCP 报文段。</li>
-<li>客户端向服务器发送 FIN 和 ACK 位置 1 的 TCP 报文段。</li>
-<li>服务器向客户端返回 ACK 位置 1 的 TCP 报文段。</li>
-</ul>
-<blockquote>
-<p>在 TCP 断开连接过程中，有一个半关闭的概念。TCP 一方（通常是客户端）可以终止发送数据，但仍然可以接收数据，称为半关闭。具体描述如下：</p>
-</blockquote>
-<ul>
-<li>客户端发送 FIN 报文段，半关闭了这个连接，服务器发送 ACK 报文段接受半关闭。</li>
-<li>服务器继续发送数据，而客户端只发送 ACK 确认，不再发送任何数据。</li>
-<li>当服务器已经把所有数据发送完毕时，就发送 FIN 报文段，客户再发送 ACK 报文段，这样就关闭了 TCP 连接。</li>
-</ul>
-</li>
-<li><p>常用的 TCP 端口及其说明</p>
-<table>
-<thead>
-<tr>
-<th align="center">端口</th>
-<th align="center">协议</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">21</td>
-<td align="center">FTP</td>
-<td align="center">FTP 服务器所开放的控制端口</td>
-</tr>
-<tr>
-<td align="center">23</td>
-<td align="center">TELNET</td>
-<td align="center">用于远程登陆，可以远程控制管理目标计算机</td>
-</tr>
-<tr>
-<td align="center">25</td>
-<td align="center">SMTP</td>
-<td align="center">SMTP 服务器开放的端口，用于发送邮件</td>
-</tr>
-<tr>
-<td align="center">80</td>
-<td align="center">HTTP</td>
-<td align="center">超文本传输协议</td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-<hr>
-<h2 id="三、UDP-协议"><a href="#三、UDP-协议" class="headerlink" title="三、UDP 协议"></a>三、UDP 协议</h2><blockquote>
-<p>前言：相比 TCP 协议而言，<strong>UDP 是一个无连接、不保证可靠性的传输层协议</strong>，也就是说发送端不关心发送的数据是否到达目标主机、数据是否出错等，收到数据的主机也不会告诉发送方是否收到了数据，它的可靠性由上层协议来保障。在数据传输时能实现最小的开销，发送端和接收端之间的交互要比使用 TCP 时少得多。相比 TCP 协议，<strong>UDP 传输数据速度更快，效率更高。</strong></p>
-</blockquote>
-<ol>
-<li><p>UDP 首部格式：</p>
-<p><img src="https://s2.loli.net/2023/09/29/R7TZhs4XCK532aO.png" alt="UDP首部格式.jpg"></p>
-</li>
-<li><p>各字段的含义：</p>
-<ul>
-<li>源端口号：用来标识数据发送端的进程，和 TCP 协议的端口号类似。</li>
-<li>目的端口号：用来标识数据接收端的进程，和 TCP 协议的端口号类似。</li>
-<li>UDP 长度：用来指出 UDP 的总长度，为首部加上数据。</li>
-<li>校验和：用来完成对 UDP 数据的差错检验，它的计算与 TCP 校验和类似。这是 UDP 提供的唯一可靠机制。</li>
-</ul>
-</li>
-<li><p>UDP 使用的一些常见端口</p>
-<table>
-<thead>
-<tr>
-<th align="center">端口</th>
-<th align="center">协议</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">69</td>
-<td align="center">TFTP</td>
-<td align="center">简单文件传输协议</td>
-</tr>
-<tr>
-<td align="center">111</td>
-<td align="center">RPC</td>
-<td align="center">远程过程调用</td>
-</tr>
-<tr>
-<td align="center">123</td>
-<td align="center">NTP</td>
-<td align="center">网络时间协议</td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>网络应用与实验</category>
-        <category>传输层协议</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>网络应用与实验</tag>
-        <tag>传输层协议</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网络层协议</title>
-    <url>/2023/09/25/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E5%B1%82%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h1 id="网络层协议"><a href="#网络层协议" class="headerlink" title="网络层协议"></a>网络层协议</h1><h2 id="一、IP地址概述与应用"><a href="#一、IP地址概述与应用" class="headerlink" title="一、IP地址概述与应用"></a>一、IP地址概述与应用</h2><ol>
-<li><p>IP地址概述</p>
-<ul>
-<li>定义：是主机的唯一表示，也是一种网络编码，保证计算机在网络中能够正常通信。</li>
-<li>特点：<ul>
-<li>表示形式：点分十进制，例如：192.168.10.10</li>
-<li>IP地址组成：32位的二进制组成，分为两部分：其一，网络部分（network）；其二，主机部分 （host）。<span id="more"></span></li>
-</ul>
-</li>
-<li>IP地址分类：<ul>
-<li>A类、B类、C类、D类、E类。但常用有三类地址：A类、B类和C类。<ol>
-<li>A类地址：<ul>
-<li>范围：1~126（0 ~ 127，其中排除0，一般代表子网网段，127,一般代表本机地址）</li>
-<li>组成：ClassA &#x3D; 网络部分+主机部分+主机部分+主机部分</li>
-<li>应用场景：一般用于大型网络规划使用的IP地址</li>
-</ul>
-</li>
-<li>B类地址：<ul>
-<li>范围：128~191</li>
-<li>组成：ClassB &#x3D; 网络部分+网络部分+主机部分+主机部分</li>
-<li>应用场景：一般用于中型网络规划使用的IP地址</li>
-</ul>
-</li>
-<li>C类地址：<ul>
-<li>范围：192~223</li>
-<li>组成：ClassC &#x3D; 网络部分+网络部分+网络部分+主机部分</li>
-<li>应用场景：一般用于小型网络规划使用的IP地址</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>IP地址分类之二（企业应用的付费方式上划分）<ul>
-<li>公网地址（公有地址），企业付费使用，一般用于企业外网的互联网。属于A&#x2F;B&#x2F;C类</li>
-<li>私网地址（私有地址），企业免费使用，一般用于企业内部的局域网。<ol>
-<li>A类私网地址范围：10.0.0.0~10.255.255.255</li>
-<li>B类私网地址范围：172.16.0.0~172.31.255.255</li>
-<li>C类私网地址范围：192.168.0.0~192.168.255.255<ul>
-<li>C类私网地址可用主机IP地址的范围，例如：192.168.10.0</li>
-<li>总IP地址范围：192.168.10.0~192.168.10.255</li>
-<li>192.168.10.0代表网络地址，不能作为主机IP地址使用</li>
-<li>192.168.10.255代表广播地址，也不能作为主机IP地址使用</li>
-<li>可用主机IP地址范围：192.168.10.1~192.168.10.254</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>子网掩码</p>
-<ul>
-<li>子网掩码作用——用于确定IP地址的网络通讯（网络地址也称为“网段”）</li>
-<li>子网掩码：<ul>
-<li>32个二进制位组成</li>
-<li>IP地址的网络部分用1表示</li>
-<li>IP地址的主机部分用0表示</li>
-</ul>
-</li>
-<li>表示形式：点分十进制</li>
-<li>子网掩码分类<ul>
-<li>A类IP地址默认子网掩码：255.0.0.0</li>
-<li>B类IP地址默认子网掩码：255.255.0.0</li>
-<li>C类IP地址默认子网掩码：255.255.255.0</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>IP地址应用</p>
-<ul>
-<li>配置网卡信息时，必须配置内容：IP地址和子网掩码。（网关地址和DNS服务器地址是可选项）</li>
-<li>查看windows主机网卡的地址信息<ul>
-<li>ipconfig (查看简要信息)</li>
-<li>ipconfig &#x2F;all（查看详细信息）</li>
-</ul>
-</li>
-<li>将IP地址和子网掩码，同时转换为二进制，且做与运算，可得到该IP地址所处的网络地址，也称“网段”。</li>
-<li>网络测试命令<ul>
-<li>ipconfig（用于windows操作系统）</li>
-<li>ifconfig （用于linux操作系统）</li>
-<li>ping （测试网络或主机的联通性）<ul>
-<li>ping 127.0.0.1 测试本机主机是否正确的配置了TCP&#x2F;IP信息。</li>
-<li>ping 192.168.10.10 测试与本地主机是否能正常通信</li>
-<li>ping 192.168.10.11 测试与其他主机是否能正常通信</li>
-<li>ping 192.168.10.1 测试与默认网关地址是否能正常通信</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>路由器基本配置</p>
-<ul>
-<li><p>路由器初始化配置-1（环境准备）</p>
-<p><img src="https://s2.loli.net/2023/09/25/TPgpD5fZndMiWU2.png" alt="路由器初始化配置1.jpg"></p>
-</li>
-<li><p>路由器初始化配置-2（环境准备）</p>
-<p><img src="https://s2.loli.net/2023/09/25/dzFW1f5ogJZ8wUL.png" alt="路由器初始化配置2.jpg"></p>
-</li>
-<li><p>路由器的接口配置（路由器默认情况下，接口是关闭状态）</p>
-<ul>
-<li>命令格式：<ul>
-<li>Router(config-if)# ip address 192.168.10.1 255.255.255.0</li>
-<li>Router(config-if)# no shutdown（激活接口）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>路由器的查询命令</p>
-<ul>
-<li>查看命令：<ul>
-<li>Router# show ip interface brief (查看路由器接口概要信息)</li>
-<li>Router# show interface f0&#x2F;1 (查看路由f0&#x2F;1接口的详细信息)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="二、IP数据包格式"><a href="#二、IP数据包格式" class="headerlink" title="二、IP数据包格式"></a>二、IP数据包格式</h2><ul>
-<li>TTL值——表示IP数据包在网络传输的生命周期，每经过一个路由器TTL值减1，若TTL&#x3D;0，则路由器直接丢 弃该数据包。</li>
-<li>TTL值——测试目标主机操作系统的类型<ul>
-<li>通过ping命令测试，若TTL&#x3D;128，代表目标主机为Windows操作系统；</li>
-<li>通过ping命令测试，若TTL&#x3D;64，代表目标主机为Linux操作系统；</li>
-<li>通过ping命令测试，若TTL&#x3D;255，代表目标为网络设备（路由器或三层交换机）；</li>
-</ul>
-</li>
-<li>源IP地址——标识数据包来源主机IP地址（逻辑地址）</li>
-<li>目标地址——标识数据包目标主机IP地址（逻辑地址）</li>
-</ul>
-<hr>
-<h2 id="三、ICMP协议介绍"><a href="#三、ICMP协议介绍" class="headerlink" title="三、ICMP协议介绍"></a>三、ICMP协议介绍</h2><ul>
-<li>ICMP协议定义：是一种错误侦测与回馈机制</li>
-<li>ICMP协议的对应的命令：基于windows操作系统的Ping命令用法如下：<ul>
-<li>ping -t 192.168.10.12 一直ping目标主机192.168.10.12</li>
-<li>ping -n 6 192.168.10.12 指定目标主机192.168.10.12回应次数</li>
-<li>ping -l 65500 192.168.10.12 指定目标主机每次ping包大小（字节）</li>
-<li>ping -a 192.168.10.12 显示目标主机192.168.10.12的主机名称</li>
-</ul>
-</li>
-<li>利用ICMP协议，发起攻击（Ping命令，发起泪滴攻击）<ul>
-<li>ping -a -t -l 65500 192.168.10.12</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="四、ARP协议介绍"><a href="#四、ARP协议介绍" class="headerlink" title="四、ARP协议介绍"></a>四、ARP协议介绍</h2><ul>
-<li>定义：arp：(地址解析协议)，将一个已知的IP地址解析为MAC地址</li>
-<li>arp协议应用——通过arp广播获取目标主机IP地址对应的MAC地址，并将其保存到源主机的arp缓存表里。 主机arp缓存表记录内容的老化时间为120秒。</li>
-</ul>
-<hr>
-<h2 id="五、ARP攻击原理"><a href="#五、ARP攻击原理" class="headerlink" title="五、ARP攻击原理"></a>五、ARP攻击原理</h2><ul>
-<li><p>arp攻击——导致网络无法正常通信，公司内部PC无法正常访问外网（Internet）。</p>
-</li>
-<li><p>arp欺骗：</p>
-<ul>
-<li>欺骗网关</li>
-<li>欺骗主机</li>
-</ul>
-</li>
-<li><p>arp欺骗——在不影响公司网络正常通信的前提，通过攻击主机获取公司网络内部信息，导致信息泄 密，造成严重损失。</p>
-</li>
-<li><p>arp攻击和arp欺骗实现提前及实现基础</p>
-<ul>
-<li>均是通过arp应答来实现的</li>
-<li>缺陷——无法对应答的主机提前进行合法身份验证</li>
-</ul>
-</li>
-<li><p>防御措施</p>
-<ul>
-<li>在公司主机上部署安装ARP防火墙软件。</li>
-<li>在公司的主机和网关路由器上均进行IP-MAC地址的静态绑定。</li>
-</ul>
-</li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>网络应用与实验</category>
-        <category>网络层协议</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>网络应用与实验</tag>
-        <tag>网络层协议</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux安装及管理程序</title>
-    <url>/2023/10/16/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/</url>
-    <content><![CDATA[<h1 id="安装及管理程序"><a href="#安装及管理程序" class="headerlink" title="安装及管理程序"></a>安装及管理程序</h1><h2 id="一、Linux应用程序基础"><a href="#一、Linux应用程序基础" class="headerlink" title="一、Linux应用程序基础"></a>一、Linux应用程序基础</h2><blockquote>
-<p>名称解释：应用程序，又称为软件，通过安装应用程序，提供一种服务供用户去访问或使用</p>
-</blockquote>
-<ul>
-<li><p>应用程序与系统命令之间的关系</p>
-<table>
-<thead>
-<tr>
-<th align="center">角色</th>
-<th align="center">系统命令</th>
-<th align="center">应用程序</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">文件位置</td>
-<td align="center">一般在&#x2F;bin和&#x2F;sbin目录中，或为Shell内部指令</td>
-<td align="center">通常在&#x2F;usr&#x2F;bin和&#x2F;usr&#x2F;sbin目录中</td>
-</tr>
-<tr>
-<td align="center">主要用途</td>
-<td align="center">一般只在字符操作界面中运行</td>
-<td align="center">根据实际需要，有些程序可在图形界面中运行</td>
-</tr>
-<tr>
-<td align="center">适用环境</td>
-<td align="center">一般只在字符操作界面中运行</td>
-<td align="center">根据实际需要，有些程序可在图形界面中运行</td>
-</tr>
-<tr>
-<td align="center">运行格式</td>
-<td align="center">一般包括命令字、命令选项和命令参数</td>
-<td align="center">通常没有固定的执行格式<span id="more"></span></td>
-</tr>
-</tbody></table>
-</li>
-<li><p>经典应用程序的目录结构</p>
-<table>
-<thead>
-<tr>
-<th align="center">文件类型</th>
-<th align="center">保存目录</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">普通执行程序文件</td>
-<td align="center">&#x2F;usr&#x2F;bin</td>
-</tr>
-<tr>
-<td align="center">服务器执行程序文件和管理程序文件</td>
-<td align="center">&#x2F;usr&#x2F;sbin</td>
-</tr>
-<tr>
-<td align="center">应用程序配置文件</td>
-<td align="center">&#x2F;etc</td>
-</tr>
-<tr>
-<td align="center">日志文件</td>
-<td align="center">&#x2F;var&#x2F;log</td>
-</tr>
-<tr>
-<td align="center">应用程序参考文档文件</td>
-<td align="center">&#x2F;usr&#x2F;share&#x2F;doc</td>
-</tr>
-<tr>
-<td align="center">应用程序手册页文件</td>
-<td align="center">&#x2F;usr&#x2F;share&#x2F;man</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>常见软件包的封装类型</p>
-<table>
-<thead>
-<tr>
-<th align="center">文件类型</th>
-<th align="center">保存目录</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">RPM软件包</td>
-<td align="center">扩展名为 “.rpm”</td>
-</tr>
-<tr>
-<td align="center">DEB软件包</td>
-<td align="center">扩展名为 “.deb”</td>
-</tr>
-<tr>
-<td align="center">源代码软件包</td>
-<td align="center">一般为 “.tar.gz”、“.tar.bz2” 等格式的压缩包，包含程序的原始代码</td>
-</tr>
-<tr>
-<td align="center">绿色免安装的软件包</td>
-<td align="center">软件包的扩展名不一，，以TarBall格式的居多<br>在压缩包内提供已编译好的执行程序文件<br>解开压缩包后的文件即可直接使用</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<hr>
-<h2 id="二、RPM包管理工具"><a href="#二、RPM包管理工具" class="headerlink" title="二、RPM包管理工具"></a>二、RPM包管理工具</h2><ul>
-<li>RPM软件包命名格式<ul>
-<li>软件名称-版本号-发布次数-硬件平台-后缀名.rpm</li>
-<li>获取rpm命令的详细帮助信息<ul>
-<li>man</li>
-<li>rpm</li>
-</ul>
-</li>
-<li>rpm命令可以实现几乎所有对rpm软件包的管理功能</li>
-</ul>
-</li>
-<li>rpm命令常见的功能<ul>
-<li>安装、卸载、查询、更新、验证、维护等功能</li>
-</ul>
-</li>
-<li>rpm命令使用<ul>
-<li>查询已安装的RPM软件包<ul>
-<li>rpm -qa查询linux系统中系统已安装的所有rpm软件包</li>
-<li>rpm -qa |wc-l 统计出linux系统中已安装的所有rpm包的总数</li>
-<li>rpm -ql openssh查看openssh软件包在当前系统中安装的所有目录和文件</li>
-<li>rpm -qi openssh查看openssh软件包的详细信息，包括名称、版本、发布次数等</li>
-<li>rpm -qc openssh查看openssh软件包在当前系统中安装的配置文件</li>
-<li>rpm -qf &#x2F;usr&#x2F;bin&#x2F;pwd查看pwd这个命令是由哪个软件包安装的</li>
-<li>rpm -qd openssh 查看openssh软件包在当前系统中安装的帮助文档</li>
-</ul>
-</li>
-<li>查询未安装的RPM包<ul>
-<li>rpm –qp lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （查看未安装的软件包）</li>
-<li>rpm –qpi lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （查看未安装软件包的详细信息）</li>
-<li>rpm –qpl lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成哪些目录和文件）</li>
-<li>rpm –qpc lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成的配置文件）</li>
-<li>pm –qpd lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成的帮助文档</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>安装RPM软件包<ul>
-<li>命令格式<ul>
-<li>rpm 选项 软件包名称</li>
-</ul>
-</li>
-<li>安装选项<ul>
-<li>-i在当前系统中，安装一个新的软件包</li>
-<li>-U检查并升级系统中的某个软件包，若该软件包未安装，则安装这个软件包，这时就相当于“-i”这个选项</li>
-<li>-F检查并更新系统中的某个软件包，若该软件未安装，则放弃更新升级安装操作。</li>
-<li>-e卸载已安装的软件包</li>
-<li>-v显示软件包安装过程中的详细信息</li>
-<li>-h在安装或升级软件包的过程中，以“#”的方式显示安装或升级的进度</li>
-<li>–force强制安装某个软件包，如安装一个比当前版本更低的一个版本时，会使用强制安装</li>
-<li>–nodeps可用于安装、升级、卸载一个软件包时，忽略软件包的依赖关系</li>
-</ul>
-</li>
-<li>举例<ul>
-<li>rpm -ivh lynx-2.8.8-0.3.dev15.el7.x86_64.rpm (安装全新的lynx软件包)</li>
-<li>rpm -e lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （卸载lynx软件包）</li>
-<li>rpm -q lynx （查看lynx软件包是否卸载）</li>
-<li>rpm -qpi elinks-0.12-0.37.pre6.el7.x86_64.rpm –nodeps （安装新的软件包，且忽略依赖关系）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>维护RPM数据库<ul>
-<li>重建RPM数据库<ul>
-<li>rpm –rebuilddb（执行效率低）</li>
-<li>rpm –initdb（执行效率高）</li>
-</ul>
-</li>
-<li>导入验证公钥<ul>
-<li>root@localhost~]# rpm –import&#x2F;media&#x2F;cdrom&#x2F;RPM-GPG-KEY-CentOS-7</li>
-<li>作用：导入公钥文件后，安装软件包时，不会提示警告信息，确保安装到系统的RPM包是安全的。</li>
-</ul>
-</li>
-<li>解决软件包依赖关系方法<ul>
-<li>安装有依赖关系的多软件包，被依赖的软件先安装，可以同时制定多个rpm包进行安装</li>
-<li>卸载有依赖关系的多个软件包时，被依赖的软件先卸载，可以同时制定多个rpm包进行卸载</li>
-<li>安装或卸载有依赖关系的软件包，不考虑其依赖关系进行安装或卸载使用“–nodeps”选项，忽略依赖关系，进行强制安装或卸载有依赖关系的软件包</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="三、源代码包编译安装程序"><a href="#三、源代码包编译安装程序" class="headerlink" title="三、源代码包编译安装程序"></a>三、源代码包编译安装程序</h2><ul>
-<li>源代码编译安装概述<ul>
-<li>使用源代码包安装软件的优点<ul>
-<li>获取较新软件版本，及时修改BUG</li>
-<li>根据用户需求，灵活定制软件功能模块</li>
-</ul>
-</li>
-<li>源代码使用场景<ul>
-<li>企业要求安装较新版本的软件包时</li>
-<li>企业业务需求无法及时满足时</li>
-<li>应用程序需要添加新的功能时</li>
-</ul>
-</li>
-<li>源代码包格式<ul>
-<li>源代码包，又称为“Tarball”</li>
-<li>格式 tar.gz。tar.bz2</li>
-</ul>
-</li>
-<li>校验源代码完整性的校验工具<ul>
-<li>md5sum https-2.4.50.tar.gz</li>
-</ul>
-</li>
-<li>确认源代码包编译环境<ul>
-<li>gcc编译工具</li>
-<li>验证gcc编译工具是否安装 gcc -version</li>
-<li>验证make编译工具是否安装 make –version</li>
-<li>提前安装apache的依赖包 yum install -y gcc gcc-c++ make apr apr-devel apr-until apr-until-devel pcre pcre-devel</li>
-</ul>
-</li>
-<li>源代码包编译安装的过程<ul>
-<li>下载源代码包并验证源代码包的安装性 md5sum httpd-2.4.50.tar.gz</li>
-<li>解包，使用tar tar zxvf httpd-2.4.50.tar.gz -C &#x2F;usr&#x2F;src</li>
-<li>配置，使用.&#x2F;configure脚本文件进行配置apache安装路径 cd &#x2F;usr&#x2F;src&#x2F;httpd-2.4.50 .&#x2F;configure –prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;apache</li>
-<li>编译，将源代码编译并生成二进制文件 make</li>
-<li>安装，将生成的二进制文件复制到系统对应的目录下 make install</li>
-<li>测试，应用及维护软件<ul>
-<li>修改apache配置文件&#x2F;usr&#x2F;local&#x2F;apache&#x2F;conf&#x2F; httpd.conf（194行的#去掉）</li>
-<li>启动apache服务命令&#x2F;usr&#x2F;local&#x2F;apache&#x2F;bin&#x2F;apachectl start</li>
-<li>验证apache服务是否启动 netstat -anpt |grep httpd</li>
-<li>yum insatll -y lynx elinks</li>
-<li>lynx 或lynx 127.0.0.1</li>
-<li>elinks 或elinks 127.0.0.1</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>linux系统管理</category>
-        <category>linux安装及管理程序</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>linux系统管理</tag>
-        <tag>linux安装及管理程序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网络布线与数制转换</title>
-    <url>/2023/09/20/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E5%B8%83%E7%BA%BF%E4%B8%8E%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2/</url>
-    <content><![CDATA[<h1 id="网络布线与数制转换"><a href="#网络布线与数制转换" class="headerlink" title="网络布线与数制转换"></a>网络布线与数制转换</h1><h2 id="一、信号与传输介质"><a href="#一、信号与传输介质" class="headerlink" title="一、信号与传输介质"></a>一、信号与传输介质</h2><ol>
-<li>信号的定义：是实现信息在网络中传输的一种媒介。</li>
-<li>信号相关概念：<ul>
-<li>信息：是人们对现实世界事物存在方式或运动状态的一种。例如：数字、文字、图片、声音、视频及动画等。</li>
-<li>数据：描述事物相关属性的具体内容。</li>
-</ul>
-</li>
-<li>信号实现的目的：实现数据的传输与信息共享。</li>
-<li>信号分类：<ul>
-<li>有线信号和无线信号</li>
-<li>数字信号和模拟信号</li>
-</ul>
-</li>
-<li>信号在传输过程中产生失真的因素：<ul>
-<li>传输距离——衰减</li>
-<li>噪声</li>
-<li>速度</li>
-<li>其他因素——电磁场等 <span id="more"></span></li>
-</ul>
-</li>
-<li>数字信号和模拟信号应用场景<ul>
-<li>数字信号——网络环境比较复杂及干扰比较强的场景<ul>
-<li>传输距离远</li>
-<li>抗干扰能力强</li>
-<li>网络传输质量高</li>
-</ul>
-</li>
-<li>模拟信号——网络环境较好及干扰比较弱的场景<ul>
-<li>传输距离短</li>
-<li>抗干扰能力差</li>
-<li>网络传输质量低</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="二、传输介质的连接与布线"><a href="#二、传输介质的连接与布线" class="headerlink" title="二、传输介质的连接与布线"></a>二、传输介质的连接与布线</h2><ol>
-<li><p>双绞线</p>
-<ul>
-<li>从屏蔽类型分类：<ul>
-<li>屏蔽双绞线</li>
-<li>非屏蔽双绞线</li>
-</ul>
-</li>
-<li>从传输速率分类<ul>
-<li>5类双绞线——100&#x2F;10MB 网络</li>
-<li>超5类双绞线——1000&#x2F;100MB 网络</li>
-<li>6类双绞线——1000&#x2F;100MB 网络</li>
-<li>7类双绞线——10000&#x2F;1000MB 网络</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>光纤</p>
-<ul>
-<li><p>光纤特点：</p>
-<ul>
-<li>传输宽带高（10GB&#x2F;s）</li>
-<li>传输距离远（100KM）</li>
-<li>抗干扰能力强</li>
-</ul>
-</li>
-<li><p>光纤分类：</p>
-<ul>
-<li>单模光纤</li>
-<li>多模光纤</li>
-</ul>
-</li>
-<li><p>单模光纤与多模光纤区别：</p>
-<table>
-<thead>
-<tr>
-<th align="center">单模光纤</th>
-<th align="center">多模光纤</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">用于高速度、长距离</td>
-<td align="center">用于低速度、短距离</td>
-</tr>
-<tr>
-<td align="center">成本高</td>
-<td align="center">成本低</td>
-</tr>
-<tr>
-<td align="center">端接较难</td>
-<td align="center">端接较易</td>
-</tr>
-<tr>
-<td align="center">窄芯线，需要激光源</td>
-<td align="center">宽芯线聚光好，光源可采用激光或发光二极管</td>
-</tr>
-<tr>
-<td align="center">耗散小，高效</td>
-<td align="center">耗散大，低效</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="三、以太网接口"><a href="#三、以太网接口" class="headerlink" title="三、以太网接口"></a>三、以太网接口</h2><ul>
-<li>RJ-45 接口（又称为水晶头）</li>
-<li>光纤接口：<ul>
-<li>FC</li>
-<li>ST</li>
-<li>SC</li>
-<li>LC</li>
-<li>MT-RJ</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="四、双绞线的连接规范"><a href="#四、双绞线的连接规范" class="headerlink" title="四、双绞线的连接规范"></a>四、双绞线的连接规范</h2><ul>
-<li>国际通用的双绞线的标准规范 T568A&#x2F;T568B（默认使用T568B线序）</li>
-<li>T568B 线序：橙白、橙、白绿、蓝、白蓝、绿、白棕、棕</li>
-<li>T568A 线序：1和3，2和6对调即可</li>
-</ul>
-<hr>
-<h2 id="五、双绞线（又称网线）的类型"><a href="#五、双绞线（又称网线）的类型" class="headerlink" title="五、双绞线（又称网线）的类型"></a>五、双绞线（又称网线）的类型</h2><ul>
-<li>标准网线——两端均是 <font color="red">T568B</font> 或两端均是 T568A（又称为直通线）</li>
-<li>交叉网线—— 一端用 T568A，另一端用 T568B</li>
-<li>全反线—— 一端是 1-8，另一端 8-1（T568A 或 T568B）（又称为配置线）</li>
-</ul>
-<hr>
-<h2 id="六、网络设备的连线规则（常见的网络设备：PC-交换机-路由器）"><a href="#六、网络设备的连线规则（常见的网络设备：PC-交换机-路由器）" class="headerlink" title="六、网络设备的连线规则（常见的网络设备：PC&#x2F;交换机&#x2F;路由器）"></a>六、网络设备的连线规则（常见的网络设备：PC&#x2F;交换机&#x2F;路由器）</h2><ul>
-<li>相同的设备，用交叉线</li>
-<li>不同的设备，用直通线</li>
-<li>PC和路由器相连，用交叉线</li>
-</ul>
-<p><img src="https://s2.loli.net/2023/09/20/uwpFJIfsPUqhVaT.png" alt="网络设备连线规则.png"></p>
-<hr>
-<h2 id="七、制作双绞线的步骤"><a href="#七、制作双绞线的步骤" class="headerlink" title="七、制作双绞线的步骤"></a>七、制作双绞线的步骤</h2><ul>
-<li>截取适当的长度的网线（0.5M）</li>
-<li>用压线钳的剪线口将双绞线的外皮剥去适当的长度</li>
-<li>按照线序进行排列，理顺，捋直</li>
-<li>用压线钳将线头剪齐，预留长度建议为 1.5厘米</li>
-<li>将剪齐的细线插入 RJ-45 接头（水晶头）</li>
-<li>用压线钳将其压紧</li>
-<li>用测线仪测试双绞线的连通性</li>
-</ul>
-<hr>
-<h2 id="八、传输介质"><a href="#八、传输介质" class="headerlink" title="八、传输介质"></a>八、传输介质</h2><ul>
-<li>有线传输介质（重点掌握）<ul>
-<li>双绞线</li>
-<li>光纤</li>
-</ul>
-</li>
-<li>无线传输介质（了解）<ul>
-<li>定义：利用电磁波充当传输媒体的传输介质，包括无线电波、微波、红外线、激光等。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="九、综合布线系统（PDS）"><a href="#九、综合布线系统（PDS）" class="headerlink" title="九、综合布线系统（PDS）"></a>九、综合布线系统（PDS）</h2><ul>
-<li>定义：用于传输语音、视频、数据、影像和其他信息标准化结构的综合布线系统。</li>
-<li>六大子系统<ol>
-<li>工作区子系统——连接公司内部网络到信息插座</li>
-<li>水平（配线）子系统——从信息插座到每层楼的管理间子系统的配线架</li>
-<li>管理间子系统——实现每层楼网络互通（网络设备、配线间等）</li>
-<li>垂直子系统——实现所有层网络互通，负责每层管理间和设备间的网络链接</li>
-<li>设备间子系统——主机房（包括：核心设备路由器、交换机、监控系统、电话系统、视频系统、网络系统、有限电视系统等公共系统）</li>
-<li>建筑群子系统——负责楼与楼之间网络信息传输</li>
-</ol>
-</li>
-<li>综合布线的优点：<ul>
-<li>结构清晰、便于维护和管理</li>
-<li>材料统一先进，便于今后的发展需求</li>
-<li>灵活性强，适用不同的发展技术</li>
-<li>成本低、可靠性高，便于扩展</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="十、数制转换"><a href="#十、数制转换" class="headerlink" title="十、数制转换"></a>十、数制转换</h2><ul>
-<li>计算机数制的相关概念：<ul>
-<li>数制</li>
-<li>数位</li>
-<li>基数</li>
-<li>位权</li>
-</ul>
-</li>
-<li>常见的进制：<ul>
-<li>十进制<ul>
-<li>由十个数字组成 0~9，基数为 10</li>
-</ul>
-</li>
-<li>二进制<ul>
-<li>由两个数字组成 0 和 1，基数为 2</li>
-</ul>
-</li>
-<li>八进制<ul>
-<li>由八个数字组成 0~7，基础为 8</li>
-</ul>
-</li>
-<li>十六进制<ul>
-<li>由十个数字 0<del>9 和六个字母 A</del>F 组成 （A 表示 10……F 表示 15），基础 16</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>数制的表示方法：<ul>
-<li>十进制数表示方法<ul>
-<li>(1010)₁₀</li>
-<li>1010</li>
-<li>1010<strong>D</strong></li>
-</ul>
-</li>
-<li>二进制数表示方法<ul>
-<li>(1010)₂</li>
-<li>1010<strong>B</strong></li>
-</ul>
-</li>
-<li>八进制数表示方法<ul>
-<li>(1010)₈</li>
-<li>1010<strong>O</strong></li>
-</ul>
-</li>
-<li>十六进制数表示方法<ul>
-<li>(1010)₁₆</li>
-<li>1010<strong>H</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>数制的计算：<ul>
-<li>二进制、八进制、十六进制转换成十进制<ul>
-<li>使用方法：求和法</li>
-</ul>
-</li>
-<li>十进制、八进制、十六进制转换成二级制<ul>
-<li>使用方法：顺除倒取余</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>二进制优点：<ul>
-<li>只有两种数字表示，容易实现</li>
-<li>运算规则比较简单</li>
-<li>二进制容易实现逻辑运算（真、假；对、错；yes、no）</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="十一、计算机存储常使用的容量单位"><a href="#十一、计算机存储常使用的容量单位" class="headerlink" title="十一、计算机存储常使用的容量单位"></a>十一、计算机存储常使用的容量单位</h2><ul>
-<li>理论计算机容量换算：<ul>
-<li>1汉字 &#x3D; 2 bytes（字节）</li>
-<li>1汉字 &#x3D; 16bit（比特位）</li>
-<li>1byte &#x3D; 8bit（比特位）</li>
-<li>1KB &#x3D; 1024bytes（字节）</li>
-<li>1024KB &#x3D; 1MB</li>
-<li>1024MB &#x3D; 1GB</li>
-<li>1024GB &#x3D; 1TB</li>
-<li>1024TB &#x3D; 1PB</li>
-<li>1024PB &#x3D; 1EB</li>
-</ul>
-</li>
-<li>实际生产厂商容量换算：<ul>
-<li>1KB &#x3D; 1000bytes（字节）</li>
-<li>1000KB &#x3D; 1MB</li>
-<li>1000MB &#x3D; 1GB</li>
-<li>1000GB &#x3D; 1TB</li>
-<li>。。。</li>
-</ul>
-</li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>网络应用与实验</category>
-        <category>网络布线与数制转换</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>网络应用与实验</tag>
-        <tag>网络布线与数制转换</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux常用命令</title>
-    <url>/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h1><h2 id="一、linux命令基础"><a href="#一、linux命令基础" class="headerlink" title="一、linux命令基础"></a>一、linux命令基础</h2><ul>
-<li><p>shell程序</p>
-<p><img src="https://s2.loli.net/2023/10/11/LClNcO62neoZ9kx.png" alt="shell程序.jpg"></p>
-<ul>
-<li>这是linux系统中运行的一种特殊程序，在用户与内核之间充当翻译官，当用户登陆系统时会自动加载一个shell程序。</li>
-<li>linux系统默认使用shell程序对应的文件时 &#x2F;bin&#x2F;bash<span id="more"></span></li>
-</ul>
-</li>
-<li><p>内部命令与外部命令的区别</p>
-<table>
-<thead>
-<tr>
-<th align="center">区分类型</th>
-<th align="center">内部命令</th>
-<th align="center">外部命令</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">定义</td>
-<td align="center">集成于Shell解释器程序内部的一些特殊指令，也称为内建（Buit-in）指令</td>
-<td align="center">在linux系统中，安装其他应用程序所生产的脚本文件或二进制文件</td>
-</tr>
-<tr>
-<td align="center">组成</td>
-<td align="center">属于shell解释器的一部分</td>
-<td align="center">属于shell解释器之外的部分</td>
-</tr>
-<tr>
-<td align="center">系统文件</td>
-<td align="center">没有单独对应的文件系统</td>
-<td align="center">每个外部命令在系统中都有一个对应的命令文件</td>
-</tr>
-<tr>
-<td align="center">自动加载</td>
-<td align="center">系统重启会自动加载如内存，直接使用</td>
-<td align="center">必须找到对应的外部文件所在的位置，再加载到shell中</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>linux系统通用命令格式</p>
-<ul>
-<li><p>命令字 选项 格式</p>
-</li>
-<li><p>严格区分大小写，即对大小写是敏感的</p>
-</li>
-<li><p>选项和参数是可以互换位置的</p>
-</li>
-<li><p>选项是多个，针对多个短格式选项可以合并使用</p>
-</li>
-<li><p>命令字后可以长格式+短格式混合使用</p>
-</li>
-<li><p>linux命令行的辅助操作</p>
-<table>
-<thead>
-<tr>
-<th align="center">按键</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Tab</td>
-<td align="center">自动补齐</td>
-</tr>
-<tr>
-<td align="center">\</td>
-<td align="center">强制换行</td>
-</tr>
-<tr>
-<td align="center">Ctrl+U</td>
-<td align="center">清空至行首</td>
-</tr>
-<tr>
-<td align="center">Ctrl+K</td>
-<td align="center">清空至行尾</td>
-</tr>
-<tr>
-<td align="center">Ctrl+L</td>
-<td align="center">清屏</td>
-</tr>
-<tr>
-<td align="center">Ctrl+C</td>
-<td align="center">取消本次命令编辑</td>
-</tr>
-<tr>
-<td align="center">Ctrl+a</td>
-<td align="center">快速将光标定位到行首</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="二、linux命令帮助"><a href="#二、linux命令帮助" class="headerlink" title="二、linux命令帮助"></a>二、linux命令帮助</h2><ul>
-<li>help（内部命令）</li>
-<li>–help（外部命令）</li>
-<li>man（可用于内部和外部命令）</li>
-</ul>
-<hr>
-<h2 id="三、目录与文件的基本操作"><a href="#三、目录与文件的基本操作" class="headerlink" title="三、目录与文件的基本操作"></a>三、目录与文件的基本操作</h2><table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">pwd</td>
-<td align="center">查看系统当前用户工作目录所在的位置</td>
-</tr>
-<tr>
-<td align="center">cd</td>
-<td align="center">切换用户当前的工作目录</td>
-</tr>
-<tr>
-<td align="center">cd ~</td>
-<td align="center">切换到当前用户的宿主目录或家目录</td>
-</tr>
-<tr>
-<td align="center">cd 目标位置</td>
-<td align="center">系统已存在目录</td>
-</tr>
-<tr>
-<td align="center">cd -</td>
-<td align="center">返回到上次执行cd命令之前所在的目录</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>相对路径与绝对路径的区别</p>
-<ul>
-<li><p>相对路径：</p>
-<table>
-<thead>
-<tr>
-<th align="center">表现形式</th>
-<th align="center">说明</th>
-<th align="center">示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">直接使用目录名或文件名</td>
-<td align="center">表示当前工作目录中的子目录、文件的位置</td>
-<td align="center">grub.conf</td>
-</tr>
-<tr>
-<td align="center">以一个点号”.”开头</td>
-<td align="center">表示以当前的工作目录作为起点</td>
-<td align="center">.&#x2F;grub.conf</td>
-</tr>
-<tr>
-<td align="center">以两个点号”..”开头</td>
-<td align="center">表示以当前目录的上一级目录（父目录）作为起点</td>
-<td align="center">..&#x2F;vmlinuz</td>
-</tr>
-<tr>
-<td align="center">以”~用户名”形式开头</td>
-<td align="center">表示以指定用户的宿主目录作为起点</td>
-<td align="center">~teacher</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>绝对路径：</p>
-<ul>
-<li>以根目录”&#x2F;“作为起点，进行文件的查询或创建</li>
-<li>以绝对路径表示文件路径时，比较繁琐，不够灵活</li>
-<li>比较稳定，指定路径比较精确，但不方便迁移</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息"><a href="#四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息" class="headerlink" title="四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息"></a>四、ls以列表方式显示目录内容，包括文件和子目录相关的属性信息</h2><ul>
-<li><p>使用的参数可以是目录名，也可以是文件名，允许在同一条命令中同时使用多个参数。ls命令选项种类非常多，这里只列出一些最常用的以供参考</p>
-<table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ls</td>
-<td align="center">显示当前目录中包含的子目录、文件列表信息（不包括隐藏目录、文件）</td>
-</tr>
-<tr>
-<td align="center">ls -l</td>
-<td align="center">以长格式（Long）显示文件和目录的列表，包括权限、大小、最后更新时间等</td>
-</tr>
-<tr>
-<td align="center">ls -a</td>
-<td align="center">显示所有（All）子目录和文件的信息，包括名称以点号“.”开头的隐藏目录和隐藏文件</td>
-</tr>
-<tr>
-<td align="center">ls -A</td>
-<td align="center">与-a 选项的作用基本类似，但有两个特殊隐藏目录不会显示，即表示当前目录的“.”和表示父目录的“..”</td>
-</tr>
-<tr>
-<td align="center">ls -d</td>
-<td align="center">显示目录（Directory）本身的属性，而不是显示目录中的内容</td>
-</tr>
-<tr>
-<td align="center">ls -h</td>
-<td align="center">以更人性化（Human）的方式显示目录或文件的大小，默认的大小单位为字节（B），使用-h 选项后将显示为 KB、MB 等单位。此选项需要结合-l 选项一起使用</td>
-</tr>
-<tr>
-<td align="center">ls -R</td>
-<td align="center">以递归（Recursive）的方式显示指定目录及其子目录中的所有内容</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>ls常用组合键</p>
-<table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ls -hl</td>
-<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息</td>
-</tr>
-<tr>
-<td align="center">ls -ahl</td>
-<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，包含隐藏的文件和目录</td>
-</tr>
-<tr>
-<td align="center">ls -Ahl</td>
-<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，包含隐藏的文件</td>
-</tr>
-<tr>
-<td align="center">ls -hl –color</td>
-<td align="center">以长格式、人性化的方式查看目录中文件及子目录的属性的详细信息，显示属性信息时显示不同的 颜色</td>
-</tr>
-<tr>
-<td align="center">ls -hl &#x2F;etc&#x2F;ns*.conf</td>
-<td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以ns开头任意多个字符且以.conf结尾的文件</td>
-</tr>
-<tr>
-<td align="center">ls -hl &#x2F;etc&#x2F;vi??</td>
-<td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以文件名vi开头任意两个字符的文件</td>
-</tr>
-<tr>
-<td align="center">ls -hl &#x2F;etc&#x2F;vi???</td>
-<td align="center">以长格式、人性化的方式查询&#x2F;etc目录中，以文件名vi开头任意三个字符的文件</td>
-</tr>
-</tbody></table>
-<ul>
-<li>“*”匹配任意的多个字符，”?”匹配任意一个字符</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="五、alias设置别名"><a href="#五、alias设置别名" class="headerlink" title="五、alias设置别名"></a>五、alias设置别名</h2><ul>
-<li>alias myls&#x3D;’ls -alh’</li>
-<li>命令myls相当于执行ls -alh命令。别名设置的作用：对经常使用的命令做别名设置，提高命令输入的速度和效率</li>
-<li>以命令的方式设置别名，是临时的，只在当前的字符终端生效，其他字符终端无法识别别名</li>
-</ul>
-<hr>
-<h2 id="六、du统计目录和文件占用磁盘空间的情况"><a href="#六、du统计目录和文件占用磁盘空间的情况" class="headerlink" title="六、du统计目录和文件占用磁盘空间的情况"></a>六、du统计目录和文件占用磁盘空间的情况</h2><ul>
-<li>du -sh &#x2F;boot (统计&#x2F;boot目录占用磁盘空间的总大小，不显示&#x2F;boot目录中文件和子文件占用磁盘空间的大小)</li>
-<li>du -ah &#x2F;boot（只统计&#x2F;boot目录占用磁盘空间的总大小，显示&#x2F;boot目录中文件和子文件占用磁盘空间的大小）</li>
-</ul>
-<hr>
-<h2 id="七、mkdir创建空目录"><a href="#七、mkdir创建空目录" class="headerlink" title="七、mkdir创建空目录"></a>七、mkdir创建空目录</h2><ul>
-<li>mkdir &#x2F;kgc(在&#x2F;目录下创建目录kgc)</li>
-<li>mkdir –p &#x2F;kgc&#x2F;kc32&#x2F;a1&#x2F;a2（在kgc下创建kc32，在kc32中创建目录a1,在a1下创建目录a2）</li>
-<li>mkdir –p &#x2F;beida&#x2F;kgc&#x2F;{a&#x2F;{a1,a2},b&#x2F;{b1,b2},c&#x2F;{c1,c2}} （递归创建&#x2F;beida&#x2F;目录创建的目录kgc，在kgc目录下创建了目录 a、b、c这三个目录，而目录a下创建了a1和a2，在目录b下创建b1、b2,在目录c下创建c1、c2）</li>
-</ul>
-<hr>
-<h2 id="八、touch创建空文件"><a href="#八、touch创建空文件" class="headerlink" title="八、touch创建空文件"></a>八、touch创建空文件</h2><ul>
-<li><p>touch命令的作用</p>
-<ul>
-<li>更新文件时间标记（针对已存在的文件）</li>
-<li>创建空文件（一次可以创建多个）</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">格式</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">touch a.txt</td>
-<td align="center">创建a.txt文件</td>
-</tr>
-<tr>
-<td align="center">touch a.txt b.txt</td>
-<td align="center">创建a.txt和b.txt两个文件</td>
-</tr>
-<tr>
-<td align="center">两次touch a.txt</td>
-<td align="center">更改a.txt文件的时间标记</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<hr>
-<h2 id="九、In创建链接文件"><a href="#九、In创建链接文件" class="headerlink" title="九、In创建链接文件"></a>九、In创建链接文件</h2><ul>
-<li><p>链接文件分类</p>
-<ul>
-<li>软连接文件，也称为“符号链接文件”</li>
-<li>硬链接文件</li>
-</ul>
-</li>
-<li><p>创建链接文件的命令格式</p>
-<ul>
-<li>In -s 源文件 目录位置（软链接）</li>
-<li>In 源文件 目录位置（硬链接）</li>
-</ul>
-</li>
-<li><p>例子</p>
-<ul>
-<li>软连接的创建：<ul>
-<li>In -s &#x2F;bin&#x2F;mkdir &#x2F;home</li>
-<li>In -s &#x2F;bin&#x2F; &#x2F;home</li>
-</ul>
-</li>
-<li>硬链接的创建<ul>
-<li>In &#x2F;bin&#x2F;mkdir &#x2F;home</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>软链接和硬链接的区别</p>
-<table>
-<thead>
-<tr>
-<th align="center">类别</th>
-<th align="center">软链接文件</th>
-<th align="center">硬链接文件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">语法格式</td>
-<td align="center">ln -s &#x2F;bin&#x2F;mkdir &#x2F;home <br>ln -s &#x2F;bin&#x2F; &#x2F;home</td>
-<td align="center">ln &#x2F;bin&#x2F;mkdir &#x2F;home</td>
-</tr>
-<tr>
-<td align="center">创建对象要求</td>
-<td align="center">可基于文件创建软链接文件 也可基于目录创建软链接文件</td>
-<td align="center">只能基于文件创建硬链接文件</td>
-</tr>
-<tr>
-<td align="center">文件系统要求</td>
-<td align="center">源文件和创建的软链接文件可在 同一个文件系统，也可不在同一 个文件系统</td>
-<td align="center">源文件和创建的硬链接文件必须 在同一个文件系统内</td>
-</tr>
-<tr>
-<td align="center">删除源文件产生后果</td>
-<td align="center">删除源文件后，创建的软链接文 件不可正常使用</td>
-<td align="center">删除源文件后，创建的硬链接文 件可正常使用</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<hr>
-<h2 id="十、cp复制文件或目录"><a href="#十、cp复制文件或目录" class="headerlink" title="十、cp复制文件或目录"></a>十、cp复制文件或目录</h2><ul>
-<li><p>cp 命令用于复制文件或目录，将需要复制的文件或目录（源）重建一份并保存为新的文件或目录（可保存到其他目录中）</p>
-</li>
-<li><p>cp 命令基本格式</p>
-<ul>
-<li>cp 源文件或目录 目标文件或目录</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">命令选项</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">cp -f</td>
-<td align="center">覆盖目标同名文件或目录时不进行提醒，直接强制复制</td>
-</tr>
-<tr>
-<td align="center">cp -i</td>
-<td align="center">覆盖目标同名文件或目录时提醒用户确认</td>
-</tr>
-<tr>
-<td align="center">cp -p</td>
-<td align="center">复制时保持源文件的权限、属主及时间标记等属性不变</td>
-</tr>
-<tr>
-<td align="center">cp -r</td>
-<td align="center">复制目录时必须使用此选项，表示递归复制所有文件及子目录</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>例子：</p>
-<ul>
-<li>cp -i a.txt &#x2F;kgc：复制的目标位置中与源文件重名的文件进行提示是否覆盖，其是默认选项 </li>
-<li>cp -p a.txt &#x2F;kgc：复制时保留源文件到目标位置的属性信息不变</li>
-<li>cp -rf &#x2F;kgc&#x2F;kc32 &#x2F;home：复制到目标位置时强制进行覆盖操作，而不进行提示</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="十一、rm删除目录或文件"><a href="#十一、rm删除目录或文件" class="headerlink" title="十一、rm删除目录或文件"></a>十一、rm删除目录或文件</h2><ul>
-<li>rm 命令用于删除指定的文件或目录，在 Linux 命令行界面中，删除的文件是难以恢复的，因此使用 rm 命令删除文件时需要格外小心。rm 命令使用要删除的文件或目录名作为参数。</li>
-<li>例子：<ul>
-<li>rm a.txt（提示是否删除a.txt）</li>
-<li>rm -i a.txt（提示是否删除a.txt）</li>
-<li>rm -rf &#x2F;kgc&#x2F;kc32（递归强制删除kc32目录，不进行提示）</li>
-<li>rm -r &#x2F;kgc（递归强制删除kgc目录，进行提示）</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="十二、mv移动文件或目录"><a href="#十二、mv移动文件或目录" class="headerlink" title="十二、mv移动文件或目录"></a>十二、mv移动文件或目录</h2><ul>
-<li>mv 命令用于将指定的文件或目录转移位置，如果目标位置与源位置相同，则效果相当于为文件或目录改名。mv命令的基本使用格式如下：<ul>
-<li>mv 源文件或目录 目标文件或目录<ul>
-<li>mv a.txt &#x2F;kgc</li>
-<li>mv &#x2F;kgc&#x2F; &#x2F;home</li>
-<li>mv a.txt aa.txt</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="十三、which查找命令或文件存放目录"><a href="#十三、which查找命令或文件存放目录" class="headerlink" title="十三、which查找命令或文件存放目录"></a>十三、which查找命令或文件存放目录</h2><ul>
-<li>which 命令用于查找 Linux 命令程序并显示所在的具体位置，其搜索范围主要由用户的环境变量 PATH 决定（可以执行“echo $PATH”命令查看），这个范围也是 Linux 操作系统在执行命令或程序时的默认搜索路径。</li>
-<li>环境变量的定义：<ul>
-<li>系统当前用户所拥有的工作环境，包括用户所有能执行的各种命令文件或脚本文件，即定义用户在系统中所拥有的权限<ul>
-<li>which cd</li>
-<li>which -a ls cd pwd</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="十四、find命令查找文件或目录"><a href="#十四、find命令查找文件或目录" class="headerlink" title="十四、find命令查找文件或目录"></a>十四、find命令查找文件或目录</h2><ul>
-<li><p>find根据不同查找类型（查找表达式）递归进行文件的精细化查找。功能更强大</p>
-<table>
-<thead>
-<tr>
-<th align="center">查找类型</th>
-<th align="center">关键字</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">按名称查找</td>
-<td align="center">-name</td>
-<td align="center">根据目标文件的名称进行查找，允许使用 ”*“ 及 ”?” 通配符</td>
-</tr>
-<tr>
-<td align="center">按文件大小查找</td>
-<td align="center">-size</td>
-<td align="center">根据目标文件的大小进行查找<br>一般使用 “+”、“-”号设置超过或小于指定的大小作为查找条件<br>常用的容量单位包括kB（注意k是小写）、MB、GB</td>
-</tr>
-<tr>
-<td align="center">按文件属主查找</td>
-<td align="center">-user</td>
-<td align="center">根据文件是否属于目标用户进行查找</td>
-</tr>
-<tr>
-<td align="center">按文件类型查找</td>
-<td align="center">-type</td>
-<td align="center">根据文件的类型进行查找<br>文件类型包括普通文件（f）、目录（d）、块设备文件（b）、字符设备文件（c）等</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>举例：</p>
-<ul>
-<li>find &#x2F;etc -name *.conf</li>
-<li>find &#x2F;etc -size +1024k</li>
-<li>find &#x2F;etc -user root</li>
-<li>find &#x2F;etc -type f</li>
-</ul>
-</li>
-<li><p>使用find命令实现多个条件的查找，需要使用逻辑运算符</p>
-<ul>
-<li>逻辑与（查找时条件要同时满足），表示方法“-a”</li>
-<li>逻辑或（查找时条件只有满足其一即可），表示方法”-o”</li>
-</ul>
-</li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>linux系统管理</category>
-        <category>linux常用命令</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>linux系统管理</tag>
-        <tag>linux常用命令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux文件和目录</title>
     <url>/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/</url>
     <content><![CDATA[<h1 id="目录和文件管理"><a href="#目录和文件管理" class="headerlink" title="目录和文件管理"></a>目录和文件管理</h1><h2 id="一、目录结构"><a href="#一、目录结构" class="headerlink" title="一、目录结构"></a>一、目录结构</h2><blockquote>
@@ -2404,6 +1921,1020 @@
         <tag>运维</tag>
         <tag>linux系统管理</tag>
         <tag>linux文件和目录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>传输层协议</title>
+    <url>/2023/10/06/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E4%BC%A0%E8%BE%93%E5%B1%82%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h1 id="传输层协议介绍"><a href="#传输层协议介绍" class="headerlink" title="传输层协议介绍"></a>传输层协议介绍</h1><ul>
+<li>在 TCP&#x2F;IP 协议栈中，传输层有两个协议：<ul>
+<li>TCP（传输控制协议）：<ul>
+<li>稳定可靠。如：Web、邮箱等对可靠性要求高的服务</li>
+<li>速度相对较慢</li>
+<li>数据通信前，发送端与接收端要先建立连接；等数据发送结束后，双方再断开连接。</li>
+</ul>
+</li>
+<li>UDP（用户数据报协议）：<ul>
+<li>速度块，效率高。如：即时通讯、DHCP等要求快速完成信息传递的服务</li>
+<li>安全可靠性较差</li>
+<li>数据发送不建立连接，直接由发送端发送，不管接收方有没有接收到</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<hr>
+<h2 id="一、TCP-协议"><a href="#一、TCP-协议" class="headerlink" title="一、TCP 协议"></a>一、TCP 协议</h2><blockquote>
+<p>前言：<strong>TCP 是面向连接的、可靠的进程到进程通信的协议。</strong>TCP 提供全双工服务，即数据可在同一时间双向传输，每一个 TCP 都有发送缓存和接收缓存，用来临时存储数据。</p>
+</blockquote>
+<h3 id="TCP-报文段"><a href="#TCP-报文段" class="headerlink" title="TCP 报文段"></a>TCP 报文段</h3><ul>
+<li><p>TCP 将若干个字节构成一个分组，称为报文段（Segment）。TCP 报文段封装在 IP 数据报中，如图所示。</p>
+<p><img src="https://s2.loli.net/2023/09/27/a5uLQAhZpgHrOGR.png" alt="TCP报文段的封装.jpg"></p>
+</li>
+<li><p>TCP 报文段的首部格式如图所示。</p>
+<p><img src="https://s2.loli.net/2023/09/27/oNb1HwdZxMB6yuF.png" alt="TCP报文段的首部格式.jpg"></p>
+</li>
+<li><p>首部长度为 20～60 字节，以下是各字段的含义。</p>
+<ul>
+<li>源端口号：它是 16 位字段，为发送方进程对应的端口号。</li>
+<li>目标端口号：它是 16 位字段，对应的是接收端的进程，接收端收到数据段后，根据这个端口号来确定把数据送给哪个应用程序的进程。</li>
+<li>序号：当 TCP 从进程接收数据字节时，就把它们存储在发送缓存中，并对每一个字节进行编号。编号的特点如下。<ul>
+<li>编号不一定从 0 开始，一般会产生一个随机数作为第一个字节的编号，称为初始序号（ISN），范围是 0～2<sup>32</sup>－1。</li>
+<li>TCP 每个方向的编号是互相独立的。</li>
+<li>当字节都被编上号后，TCP 就给每个报文段指派一个序号，序号就是该报文段中第一个字节的编号。</li>
+<li>当数据到达目的地后，接收端会按照这个序号把数据重新排列，保证数据的正确性。</li>
+</ul>
+</li>
+<li>确认号：对发送端的确认信息，用它来告诉发送端这个序号之前的数据段都已经收到，如确认号是 X，就是表示前 X-1 个数据段都已经收到。</li>
+<li>首部长度：用它可以确定首部数据结构的字节长度。一般情况下 TCP 首部是 20 字节，但首部长度最大可以扩展为 60 字节。</li>
+<li>保留：这部分保留位供今后扩展功能用，现在还没有使用到。</li>
+<li><strong>控制位</strong>：<font color="red">这六位有很重要的作用，TCP 的连接、传输和断开都受这六个控制位的指挥</font>。各位含义如下。<ul>
+<li>URG：紧急指针有效位。设置为1时，首部中的紧急指针有效；为0时，紧急指针没有意义。无法指定紧急数据的长度。</li>
+<li>ACK：确认字符，表示接收到的字符无错误。只有当 ACK＝1 时，确认序列号字段才有效；当 ACK＝0 时，确认号字段无效。</li>
+<li>PSH：表示DATA数据传输。标志位为 1 时，表示有真正的TCP数据包内容被传递，要求接收方尽快将数据段送达应用层。</li>
+<li>RST：一般是在FIN之后才会出现为1的情况，当 RST 值为 1 时通知重新建立 TCP 连接。</li>
+<li>SYN：同步序号位，TCP 需要建立连接时将这个值设为 1。</li>
+<li>FIN：发送端完成发送任务位，当 TCP 完成数据传输需要断开连接时，提出断开连接的一方将这个值设为 1。</li>
+</ul>
+</li>
+<li>窗口大小：说明本地可接收数据段的数目，这个值的大小是可变的，当网络通畅时将这个窗口值变大以加快传输速度，当网络不稳定时减小这个值可保证网络数据的可靠传输，TCP 中的流量控制机制就是依靠变化窗口的大小实现的。</li>
+<li>校验和：用来做差错控制，与 IP 的校验和不同，TCP 校验和的计算包括 TCP 首部、数据和其他填充字节。在发送 TCP 数据段时，由发送端计算校验和，当到达目的地时又进行一次校验和计算。若这两次的校验和一致，则说明数据基本是正确的，否则将认为该数据已被破坏，接收端将丢弃该数据。</li>
+<li>紧急指针：和 URG 配合使用，当 URG＝1 时有效。</li>
+<li>选项：在 TCP 首部可以有多达 40 字节的可选信息。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二、TCP-连接（三次握手，四次挥手）"><a href="#二、TCP-连接（三次握手，四次挥手）" class="headerlink" title="二、TCP 连接（三次握手，四次挥手）"></a>二、TCP 连接（三次握手，四次挥手）</h2><blockquote>
+<p>前言：TCP 是面向连接的协议，它在源点和终点之间建立一条虚连接，而不是物理连接。TCP 报文段封装成 IP 数据报后，每一个 IP 数据报可以走不同的路径到达终点，因此收到的 IP 数据报可能不按顺序到达，甚至可能丢失或损坏。如果一个报文段没有按顺序到达，那么 TCP 保留它，然后等待它之前的报文段到达；如果一个报文段丢失或损坏，那么 TCP 就要重传。总之，TCP 保证报文段是有序的。</p>
+</blockquote>
+<ol>
+<li><p>连接建立</p>
+<p>TCP 建立连接的过程称为三次握手，过程如下图所示。后面通过 Sniffer 抓包来分析三次握手的过程。</p>
+<p><img src="https://s2.loli.net/2023/09/27/BWmd4Pnhc39UfZX.png" alt="TCP三次握手示意图.jpg"></p>
+<p>Seq 表示请求序列号，Ack 表示确认序列号，SYN 和 ACK 为控制位。</p>
+<p>SYN 控制位只有在请求建立连接时才被置为 1。</p>
+<ul>
+<li><p>第一次握手</p>
+<ul>
+<li><p>PC1 使用一个随机的端口号向 PC2 的 80 端口发送建立连接的请求，此过程的典型标志就是 TCP 的 SYN 控制位为 1，其他五个控制位全为 0。</p>
+<p><img src="https://s2.loli.net/2023/09/27/ngRE5D1kslrqMNm.png" alt="TCP三次握手（1）.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>第二次握手（由两部分完成）</p>
+<ul>
+<li><p>PC2 收到了PC1的请求，向 PC1 回复一个确认信息，此过程的典型标志就是 TCP 的 ACK 控制位为 1，其他五个控制位全为 0 ，而且确认序列号是 PC1 的初始序列号加 1。</p>
+</li>
+<li><p>PC2 也向 PC1 发送建立连接的请求，此过程的典型标志和第一次握手一样，即 TCP 的 SYN 控制位为 1，其他五个控制位全为 0。</p>
+</li>
+<li><p>为了提高效率，一般将这两部分合并在一个数据包里实现。</p>
+<p><img src="https://s2.loli.net/2023/09/29/DSG8TVJECzcRK6r.png" alt="TCP三次握手（2）.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>第三次握手</p>
+<ul>
+<li><p>PC1 收到了 PC2 的回复（包含请求和确认），也要向 PC2 回复一个确认消息，此过程的典型标志就是 TCP 的 ACK 控制位为 1，其他五个控制位全为 0，而且确认序列号是PC2 的初始序列号加 1。</p>
+<p><img src="https://s2.loli.net/2023/09/29/zRpAqmgDTaesJI2.png" alt="TCP三次握手（3）.jpg"></p>
+</li>
+<li><p>这样就完成了三次握手，PC1 与 PC2 之间建立了 TCP 连接。在 PC2 上的 CMD 窗口中运行 netstat -na 命令，可看到以下信息</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">Proto	Local Address	Foreign Address		State</span><br><span class="line">TCP 	<span class="number">192</span>.<span class="number">168</span>.<span class="number">0</span>.<span class="number">2</span>:<span class="number">80</span> 	<span class="number">192</span>.<span class="number">168</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1276</span> 	ESTABLISHED</span><br><span class="line"></span><br><span class="line">其中，状态（State）是 ESTABLISHED，表明 TCP 连接已成功建立</span><br><span class="line"></span><br><span class="line">netstat 命令可以显示协议统计信息和当前的 TCP/IP 网络连接。 </span><br><span class="line">参数 -a 显示所有连接和监听端口，-n 以数字形式显示地址和端口号。</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>连接终止</p>
+<p>参加交换数据的双方中的任何一方（客户或服务器）都可以关闭连接。TCP 断开连接分四步，也称为四次挥手。如下图所示</p>
+<p><img src="https://s2.loli.net/2023/09/29/lSeXryUEMf5jtwJ.png" alt="TCP断开连接示意图.jpg"></p>
+<p>过程步骤：</p>
+<ul>
+<li>服务器向客户端发送 FIN 和 ACK 位置 1 的 TCP 报文段。</li>
+<li>客户端向服务器返回 ACK 位置 1 的 TCP 报文段。</li>
+<li>客户端向服务器发送 FIN 和 ACK 位置 1 的 TCP 报文段。</li>
+<li>服务器向客户端返回 ACK 位置 1 的 TCP 报文段。</li>
+</ul>
+<blockquote>
+<p>在 TCP 断开连接过程中，有一个半关闭的概念。TCP 一方（通常是客户端）可以终止发送数据，但仍然可以接收数据，称为半关闭。具体描述如下：</p>
+</blockquote>
+<ul>
+<li>客户端发送 FIN 报文段，半关闭了这个连接，服务器发送 ACK 报文段接受半关闭。</li>
+<li>服务器继续发送数据，而客户端只发送 ACK 确认，不再发送任何数据。</li>
+<li>当服务器已经把所有数据发送完毕时，就发送 FIN 报文段，客户再发送 ACK 报文段，这样就关闭了 TCP 连接。</li>
+</ul>
+</li>
+<li><p>常用的 TCP 端口及其说明</p>
+<table>
+<thead>
+<tr>
+<th align="center">端口</th>
+<th align="center">协议</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">21</td>
+<td align="center">FTP</td>
+<td align="center">FTP 服务器所开放的控制端口</td>
+</tr>
+<tr>
+<td align="center">23</td>
+<td align="center">TELNET</td>
+<td align="center">用于远程登陆，可以远程控制管理目标计算机</td>
+</tr>
+<tr>
+<td align="center">25</td>
+<td align="center">SMTP</td>
+<td align="center">SMTP 服务器开放的端口，用于发送邮件</td>
+</tr>
+<tr>
+<td align="center">80</td>
+<td align="center">HTTP</td>
+<td align="center">超文本传输协议</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<hr>
+<h2 id="三、UDP-协议"><a href="#三、UDP-协议" class="headerlink" title="三、UDP 协议"></a>三、UDP 协议</h2><blockquote>
+<p>前言：相比 TCP 协议而言，<strong>UDP 是一个无连接、不保证可靠性的传输层协议</strong>，也就是说发送端不关心发送的数据是否到达目标主机、数据是否出错等，收到数据的主机也不会告诉发送方是否收到了数据，它的可靠性由上层协议来保障。在数据传输时能实现最小的开销，发送端和接收端之间的交互要比使用 TCP 时少得多。相比 TCP 协议，<strong>UDP 传输数据速度更快，效率更高。</strong></p>
+</blockquote>
+<ol>
+<li><p>UDP 首部格式：</p>
+<p><img src="https://s2.loli.net/2023/09/29/R7TZhs4XCK532aO.png" alt="UDP首部格式.jpg"></p>
+</li>
+<li><p>各字段的含义：</p>
+<ul>
+<li>源端口号：用来标识数据发送端的进程，和 TCP 协议的端口号类似。</li>
+<li>目的端口号：用来标识数据接收端的进程，和 TCP 协议的端口号类似。</li>
+<li>UDP 长度：用来指出 UDP 的总长度，为首部加上数据。</li>
+<li>校验和：用来完成对 UDP 数据的差错检验，它的计算与 TCP 校验和类似。这是 UDP 提供的唯一可靠机制。</li>
+</ul>
+</li>
+<li><p>UDP 使用的一些常见端口</p>
+<table>
+<thead>
+<tr>
+<th align="center">端口</th>
+<th align="center">协议</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">69</td>
+<td align="center">TFTP</td>
+<td align="center">简单文件传输协议</td>
+</tr>
+<tr>
+<td align="center">111</td>
+<td align="center">RPC</td>
+<td align="center">远程过程调用</td>
+</tr>
+<tr>
+<td align="center">123</td>
+<td align="center">NTP</td>
+<td align="center">网络时间协议</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>网络应用与实验</category>
+        <category>传输层协议</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>网络应用与实验</tag>
+        <tag>传输层协议</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网络层协议</title>
+    <url>/2023/09/25/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E5%B1%82%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h1 id="网络层协议"><a href="#网络层协议" class="headerlink" title="网络层协议"></a>网络层协议</h1><h2 id="一、IP地址概述与应用"><a href="#一、IP地址概述与应用" class="headerlink" title="一、IP地址概述与应用"></a>一、IP地址概述与应用</h2><ol>
+<li><p>IP地址概述</p>
+<ul>
+<li>定义：是主机的唯一表示，也是一种网络编码，保证计算机在网络中能够正常通信。</li>
+<li>特点：<ul>
+<li>表示形式：点分十进制，例如：192.168.10.10</li>
+<li>IP地址组成：32位的二进制组成，分为两部分：其一，网络部分（network）；其二，主机部分 （host）。<span id="more"></span></li>
+</ul>
+</li>
+<li>IP地址分类：<ul>
+<li>A类、B类、C类、D类、E类。但常用有三类地址：A类、B类和C类。<ol>
+<li>A类地址：<ul>
+<li>范围：1~126（0 ~ 127，其中排除0，一般代表子网网段，127,一般代表本机地址）</li>
+<li>组成：ClassA &#x3D; 网络部分+主机部分+主机部分+主机部分</li>
+<li>应用场景：一般用于大型网络规划使用的IP地址</li>
+</ul>
+</li>
+<li>B类地址：<ul>
+<li>范围：128~191</li>
+<li>组成：ClassB &#x3D; 网络部分+网络部分+主机部分+主机部分</li>
+<li>应用场景：一般用于中型网络规划使用的IP地址</li>
+</ul>
+</li>
+<li>C类地址：<ul>
+<li>范围：192~223</li>
+<li>组成：ClassC &#x3D; 网络部分+网络部分+网络部分+主机部分</li>
+<li>应用场景：一般用于小型网络规划使用的IP地址</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>IP地址分类之二（企业应用的付费方式上划分）<ul>
+<li>公网地址（公有地址），企业付费使用，一般用于企业外网的互联网。属于A&#x2F;B&#x2F;C类</li>
+<li>私网地址（私有地址），企业免费使用，一般用于企业内部的局域网。<ol>
+<li>A类私网地址范围：10.0.0.0~10.255.255.255</li>
+<li>B类私网地址范围：172.16.0.0~172.31.255.255</li>
+<li>C类私网地址范围：192.168.0.0~192.168.255.255<ul>
+<li>C类私网地址可用主机IP地址的范围，例如：192.168.10.0</li>
+<li>总IP地址范围：192.168.10.0~192.168.10.255</li>
+<li>192.168.10.0代表网络地址，不能作为主机IP地址使用</li>
+<li>192.168.10.255代表广播地址，也不能作为主机IP地址使用</li>
+<li>可用主机IP地址范围：192.168.10.1~192.168.10.254</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>子网掩码</p>
+<ul>
+<li>子网掩码作用——用于确定IP地址的网络通讯（网络地址也称为“网段”）</li>
+<li>子网掩码：<ul>
+<li>32个二进制位组成</li>
+<li>IP地址的网络部分用1表示</li>
+<li>IP地址的主机部分用0表示</li>
+</ul>
+</li>
+<li>表示形式：点分十进制</li>
+<li>子网掩码分类<ul>
+<li>A类IP地址默认子网掩码：255.0.0.0</li>
+<li>B类IP地址默认子网掩码：255.255.0.0</li>
+<li>C类IP地址默认子网掩码：255.255.255.0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>IP地址应用</p>
+<ul>
+<li>配置网卡信息时，必须配置内容：IP地址和子网掩码。（网关地址和DNS服务器地址是可选项）</li>
+<li>查看windows主机网卡的地址信息<ul>
+<li>ipconfig (查看简要信息)</li>
+<li>ipconfig &#x2F;all（查看详细信息）</li>
+</ul>
+</li>
+<li>将IP地址和子网掩码，同时转换为二进制，且做与运算，可得到该IP地址所处的网络地址，也称“网段”。</li>
+<li>网络测试命令<ul>
+<li>ipconfig（用于windows操作系统）</li>
+<li>ifconfig （用于linux操作系统）</li>
+<li>ping （测试网络或主机的联通性）<ul>
+<li>ping 127.0.0.1 测试本机主机是否正确的配置了TCP&#x2F;IP信息。</li>
+<li>ping 192.168.10.10 测试与本地主机是否能正常通信</li>
+<li>ping 192.168.10.11 测试与其他主机是否能正常通信</li>
+<li>ping 192.168.10.1 测试与默认网关地址是否能正常通信</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>路由器基本配置</p>
+<ul>
+<li><p>路由器初始化配置-1（环境准备）</p>
+<p><img src="https://s2.loli.net/2023/09/25/TPgpD5fZndMiWU2.png" alt="路由器初始化配置1.jpg"></p>
+</li>
+<li><p>路由器初始化配置-2（环境准备）</p>
+<p><img src="https://s2.loli.net/2023/09/25/dzFW1f5ogJZ8wUL.png" alt="路由器初始化配置2.jpg"></p>
+</li>
+<li><p>路由器的接口配置（路由器默认情况下，接口是关闭状态）</p>
+<ul>
+<li>命令格式：<ul>
+<li>Router(config-if)# ip address 192.168.10.1 255.255.255.0</li>
+<li>Router(config-if)# no shutdown（激活接口）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>路由器的查询命令</p>
+<ul>
+<li>查看命令：<ul>
+<li>Router# show ip interface brief (查看路由器接口概要信息)</li>
+<li>Router# show interface f0&#x2F;1 (查看路由f0&#x2F;1接口的详细信息)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、IP数据包格式"><a href="#二、IP数据包格式" class="headerlink" title="二、IP数据包格式"></a>二、IP数据包格式</h2><ul>
+<li>TTL值——表示IP数据包在网络传输的生命周期，每经过一个路由器TTL值减1，若TTL&#x3D;0，则路由器直接丢 弃该数据包。</li>
+<li>TTL值——测试目标主机操作系统的类型<ul>
+<li>通过ping命令测试，若TTL&#x3D;128，代表目标主机为Windows操作系统；</li>
+<li>通过ping命令测试，若TTL&#x3D;64，代表目标主机为Linux操作系统；</li>
+<li>通过ping命令测试，若TTL&#x3D;255，代表目标为网络设备（路由器或三层交换机）；</li>
+</ul>
+</li>
+<li>源IP地址——标识数据包来源主机IP地址（逻辑地址）</li>
+<li>目标地址——标识数据包目标主机IP地址（逻辑地址）</li>
+</ul>
+<hr>
+<h2 id="三、ICMP协议介绍"><a href="#三、ICMP协议介绍" class="headerlink" title="三、ICMP协议介绍"></a>三、ICMP协议介绍</h2><ul>
+<li>ICMP协议定义：是一种错误侦测与回馈机制</li>
+<li>ICMP协议的对应的命令：基于windows操作系统的Ping命令用法如下：<ul>
+<li>ping -t 192.168.10.12 一直ping目标主机192.168.10.12</li>
+<li>ping -n 6 192.168.10.12 指定目标主机192.168.10.12回应次数</li>
+<li>ping -l 65500 192.168.10.12 指定目标主机每次ping包大小（字节）</li>
+<li>ping -a 192.168.10.12 显示目标主机192.168.10.12的主机名称</li>
+</ul>
+</li>
+<li>利用ICMP协议，发起攻击（Ping命令，发起泪滴攻击）<ul>
+<li>ping -a -t -l 65500 192.168.10.12</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、ARP协议介绍"><a href="#四、ARP协议介绍" class="headerlink" title="四、ARP协议介绍"></a>四、ARP协议介绍</h2><ul>
+<li>定义：arp：(地址解析协议)，将一个已知的IP地址解析为MAC地址</li>
+<li>arp协议应用——通过arp广播获取目标主机IP地址对应的MAC地址，并将其保存到源主机的arp缓存表里。 主机arp缓存表记录内容的老化时间为120秒。</li>
+</ul>
+<hr>
+<h2 id="五、ARP攻击原理"><a href="#五、ARP攻击原理" class="headerlink" title="五、ARP攻击原理"></a>五、ARP攻击原理</h2><ul>
+<li><p>arp攻击——导致网络无法正常通信，公司内部PC无法正常访问外网（Internet）。</p>
+</li>
+<li><p>arp欺骗：</p>
+<ul>
+<li>欺骗网关</li>
+<li>欺骗主机</li>
+</ul>
+</li>
+<li><p>arp欺骗——在不影响公司网络正常通信的前提，通过攻击主机获取公司网络内部信息，导致信息泄 密，造成严重损失。</p>
+</li>
+<li><p>arp攻击和arp欺骗实现提前及实现基础</p>
+<ul>
+<li>均是通过arp应答来实现的</li>
+<li>缺陷——无法对应答的主机提前进行合法身份验证</li>
+</ul>
+</li>
+<li><p>防御措施</p>
+<ul>
+<li>在公司主机上部署安装ARP防火墙软件。</li>
+<li>在公司的主机和网关路由器上均进行IP-MAC地址的静态绑定。</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>网络应用与实验</category>
+        <category>网络层协议</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>网络应用与实验</tag>
+        <tag>网络层协议</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网络布线与数制转换</title>
+    <url>/2023/09/20/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E5%B8%83%E7%BA%BF%E4%B8%8E%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<h1 id="网络布线与数制转换"><a href="#网络布线与数制转换" class="headerlink" title="网络布线与数制转换"></a>网络布线与数制转换</h1><h2 id="一、信号与传输介质"><a href="#一、信号与传输介质" class="headerlink" title="一、信号与传输介质"></a>一、信号与传输介质</h2><ol>
+<li>信号的定义：是实现信息在网络中传输的一种媒介。</li>
+<li>信号相关概念：<ul>
+<li>信息：是人们对现实世界事物存在方式或运动状态的一种。例如：数字、文字、图片、声音、视频及动画等。</li>
+<li>数据：描述事物相关属性的具体内容。</li>
+</ul>
+</li>
+<li>信号实现的目的：实现数据的传输与信息共享。</li>
+<li>信号分类：<ul>
+<li>有线信号和无线信号</li>
+<li>数字信号和模拟信号</li>
+</ul>
+</li>
+<li>信号在传输过程中产生失真的因素：<ul>
+<li>传输距离——衰减</li>
+<li>噪声</li>
+<li>速度</li>
+<li>其他因素——电磁场等 <span id="more"></span></li>
+</ul>
+</li>
+<li>数字信号和模拟信号应用场景<ul>
+<li>数字信号——网络环境比较复杂及干扰比较强的场景<ul>
+<li>传输距离远</li>
+<li>抗干扰能力强</li>
+<li>网络传输质量高</li>
+</ul>
+</li>
+<li>模拟信号——网络环境较好及干扰比较弱的场景<ul>
+<li>传输距离短</li>
+<li>抗干扰能力差</li>
+<li>网络传输质量低</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="二、传输介质的连接与布线"><a href="#二、传输介质的连接与布线" class="headerlink" title="二、传输介质的连接与布线"></a>二、传输介质的连接与布线</h2><ol>
+<li><p>双绞线</p>
+<ul>
+<li>从屏蔽类型分类：<ul>
+<li>屏蔽双绞线</li>
+<li>非屏蔽双绞线</li>
+</ul>
+</li>
+<li>从传输速率分类<ul>
+<li>5类双绞线——100&#x2F;10MB 网络</li>
+<li>超5类双绞线——1000&#x2F;100MB 网络</li>
+<li>6类双绞线——1000&#x2F;100MB 网络</li>
+<li>7类双绞线——10000&#x2F;1000MB 网络</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>光纤</p>
+<ul>
+<li><p>光纤特点：</p>
+<ul>
+<li>传输宽带高（10GB&#x2F;s）</li>
+<li>传输距离远（100KM）</li>
+<li>抗干扰能力强</li>
+</ul>
+</li>
+<li><p>光纤分类：</p>
+<ul>
+<li>单模光纤</li>
+<li>多模光纤</li>
+</ul>
+</li>
+<li><p>单模光纤与多模光纤区别：</p>
+<table>
+<thead>
+<tr>
+<th align="center">单模光纤</th>
+<th align="center">多模光纤</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">用于高速度、长距离</td>
+<td align="center">用于低速度、短距离</td>
+</tr>
+<tr>
+<td align="center">成本高</td>
+<td align="center">成本低</td>
+</tr>
+<tr>
+<td align="center">端接较难</td>
+<td align="center">端接较易</td>
+</tr>
+<tr>
+<td align="center">窄芯线，需要激光源</td>
+<td align="center">宽芯线聚光好，光源可采用激光或发光二极管</td>
+</tr>
+<tr>
+<td align="center">耗散小，高效</td>
+<td align="center">耗散大，低效</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="三、以太网接口"><a href="#三、以太网接口" class="headerlink" title="三、以太网接口"></a>三、以太网接口</h2><ul>
+<li>RJ-45 接口（又称为水晶头）</li>
+<li>光纤接口：<ul>
+<li>FC</li>
+<li>ST</li>
+<li>SC</li>
+<li>LC</li>
+<li>MT-RJ</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、双绞线的连接规范"><a href="#四、双绞线的连接规范" class="headerlink" title="四、双绞线的连接规范"></a>四、双绞线的连接规范</h2><ul>
+<li>国际通用的双绞线的标准规范 T568A&#x2F;T568B（默认使用T568B线序）</li>
+<li>T568B 线序：橙白、橙、白绿、蓝、白蓝、绿、白棕、棕</li>
+<li>T568A 线序：1和3，2和6对调即可</li>
+</ul>
+<hr>
+<h2 id="五、双绞线（又称网线）的类型"><a href="#五、双绞线（又称网线）的类型" class="headerlink" title="五、双绞线（又称网线）的类型"></a>五、双绞线（又称网线）的类型</h2><ul>
+<li>标准网线——两端均是 <font color="red">T568B</font> 或两端均是 T568A（又称为直通线）</li>
+<li>交叉网线—— 一端用 T568A，另一端用 T568B</li>
+<li>全反线—— 一端是 1-8，另一端 8-1（T568A 或 T568B）（又称为配置线）</li>
+</ul>
+<hr>
+<h2 id="六、网络设备的连线规则（常见的网络设备：PC-交换机-路由器）"><a href="#六、网络设备的连线规则（常见的网络设备：PC-交换机-路由器）" class="headerlink" title="六、网络设备的连线规则（常见的网络设备：PC&#x2F;交换机&#x2F;路由器）"></a>六、网络设备的连线规则（常见的网络设备：PC&#x2F;交换机&#x2F;路由器）</h2><ul>
+<li>相同的设备，用交叉线</li>
+<li>不同的设备，用直通线</li>
+<li>PC和路由器相连，用交叉线</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/09/20/uwpFJIfsPUqhVaT.png" alt="网络设备连线规则.png"></p>
+<hr>
+<h2 id="七、制作双绞线的步骤"><a href="#七、制作双绞线的步骤" class="headerlink" title="七、制作双绞线的步骤"></a>七、制作双绞线的步骤</h2><ul>
+<li>截取适当的长度的网线（0.5M）</li>
+<li>用压线钳的剪线口将双绞线的外皮剥去适当的长度</li>
+<li>按照线序进行排列，理顺，捋直</li>
+<li>用压线钳将线头剪齐，预留长度建议为 1.5厘米</li>
+<li>将剪齐的细线插入 RJ-45 接头（水晶头）</li>
+<li>用压线钳将其压紧</li>
+<li>用测线仪测试双绞线的连通性</li>
+</ul>
+<hr>
+<h2 id="八、传输介质"><a href="#八、传输介质" class="headerlink" title="八、传输介质"></a>八、传输介质</h2><ul>
+<li>有线传输介质（重点掌握）<ul>
+<li>双绞线</li>
+<li>光纤</li>
+</ul>
+</li>
+<li>无线传输介质（了解）<ul>
+<li>定义：利用电磁波充当传输媒体的传输介质，包括无线电波、微波、红外线、激光等。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="九、综合布线系统（PDS）"><a href="#九、综合布线系统（PDS）" class="headerlink" title="九、综合布线系统（PDS）"></a>九、综合布线系统（PDS）</h2><ul>
+<li>定义：用于传输语音、视频、数据、影像和其他信息标准化结构的综合布线系统。</li>
+<li>六大子系统<ol>
+<li>工作区子系统——连接公司内部网络到信息插座</li>
+<li>水平（配线）子系统——从信息插座到每层楼的管理间子系统的配线架</li>
+<li>管理间子系统——实现每层楼网络互通（网络设备、配线间等）</li>
+<li>垂直子系统——实现所有层网络互通，负责每层管理间和设备间的网络链接</li>
+<li>设备间子系统——主机房（包括：核心设备路由器、交换机、监控系统、电话系统、视频系统、网络系统、有限电视系统等公共系统）</li>
+<li>建筑群子系统——负责楼与楼之间网络信息传输</li>
+</ol>
+</li>
+<li>综合布线的优点：<ul>
+<li>结构清晰、便于维护和管理</li>
+<li>材料统一先进，便于今后的发展需求</li>
+<li>灵活性强，适用不同的发展技术</li>
+<li>成本低、可靠性高，便于扩展</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="十、数制转换"><a href="#十、数制转换" class="headerlink" title="十、数制转换"></a>十、数制转换</h2><ul>
+<li>计算机数制的相关概念：<ul>
+<li>数制</li>
+<li>数位</li>
+<li>基数</li>
+<li>位权</li>
+</ul>
+</li>
+<li>常见的进制：<ul>
+<li>十进制<ul>
+<li>由十个数字组成 0~9，基数为 10</li>
+</ul>
+</li>
+<li>二进制<ul>
+<li>由两个数字组成 0 和 1，基数为 2</li>
+</ul>
+</li>
+<li>八进制<ul>
+<li>由八个数字组成 0~7，基础为 8</li>
+</ul>
+</li>
+<li>十六进制<ul>
+<li>由十个数字 0<del>9 和六个字母 A</del>F 组成 （A 表示 10……F 表示 15），基础 16</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数制的表示方法：<ul>
+<li>十进制数表示方法<ul>
+<li>(1010)₁₀</li>
+<li>1010</li>
+<li>1010<strong>D</strong></li>
+</ul>
+</li>
+<li>二进制数表示方法<ul>
+<li>(1010)₂</li>
+<li>1010<strong>B</strong></li>
+</ul>
+</li>
+<li>八进制数表示方法<ul>
+<li>(1010)₈</li>
+<li>1010<strong>O</strong></li>
+</ul>
+</li>
+<li>十六进制数表示方法<ul>
+<li>(1010)₁₆</li>
+<li>1010<strong>H</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数制的计算：<ul>
+<li>二进制、八进制、十六进制转换成十进制<ul>
+<li>使用方法：求和法</li>
+</ul>
+</li>
+<li>十进制、八进制、十六进制转换成二级制<ul>
+<li>使用方法：顺除倒取余</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>二进制优点：<ul>
+<li>只有两种数字表示，容易实现</li>
+<li>运算规则比较简单</li>
+<li>二进制容易实现逻辑运算（真、假；对、错；yes、no）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="十一、计算机存储常使用的容量单位"><a href="#十一、计算机存储常使用的容量单位" class="headerlink" title="十一、计算机存储常使用的容量单位"></a>十一、计算机存储常使用的容量单位</h2><ul>
+<li>理论计算机容量换算：<ul>
+<li>1汉字 &#x3D; 2 bytes（字节）</li>
+<li>1汉字 &#x3D; 16bit（比特位）</li>
+<li>1byte &#x3D; 8bit（比特位）</li>
+<li>1KB &#x3D; 1024bytes（字节）</li>
+<li>1024KB &#x3D; 1MB</li>
+<li>1024MB &#x3D; 1GB</li>
+<li>1024GB &#x3D; 1TB</li>
+<li>1024TB &#x3D; 1PB</li>
+<li>1024PB &#x3D; 1EB</li>
+</ul>
+</li>
+<li>实际生产厂商容量换算：<ul>
+<li>1KB &#x3D; 1000bytes（字节）</li>
+<li>1000KB &#x3D; 1MB</li>
+<li>1000MB &#x3D; 1GB</li>
+<li>1000GB &#x3D; 1TB</li>
+<li>。。。</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>网络应用与实验</category>
+        <category>网络布线与数制转换</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>网络应用与实验</tag>
+        <tag>网络布线与数制转换</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络参考模型</title>
+    <url>/2023/09/19/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="计算机网络参考模型"><a href="#计算机网络参考模型" class="headerlink" title="计算机网络参考模型"></a>计算机网络参考模型</h1><h2 id="一、网络分类"><a href="#一、网络分类" class="headerlink" title="一、网络分类"></a>一、网络分类</h2><ol>
+<li>从地域的范围上划分<ul>
+<li>局域网</li>
+<li>广域网</li>
+</ul>
+</li>
+<li>从用户使用角度上划分<ul>
+<li>有线网络</li>
+<li>无线网络</li>
+</ul>
+</li>
+<li>从传输速率上划分<ul>
+<li>普通网络</li>
+<li>高速网络</li>
+</ul>
+</li>
+<li>从企业业务划分<ul>
+<li>内部网络——私有网络</li>
+<li>外部网络——公有网络（internet）</li>
+</ul>
+</li>
+</ol>
+<span id="more"></span>
+
+<hr>
+<h2 id="二、分层思想"><a href="#二、分层思想" class="headerlink" title="二、分层思想"></a>二、分层思想</h2><ol>
+<li>网络划分使用分层思想目的：<ul>
+<li>方便定位问题，进而高效解决问题</li>
+<li>降低分析问题的难度，便于维护管理网络</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）"><a href="#三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）" class="headerlink" title="三、如何对网络进行分层——OSI七层参考模型（下一层是为 上一层提供服务的）"></a>三、如何对网络进行分层——OSI七层参考模型（<font color="red">下一层是为 上一层提供服务的</font>）</h2><ol>
+<li>物理层（第一层，也称为最底层）<ul>
+<li>用于建立、断开、维护物理连接</li>
+<li>以比特流的方式进行数据传输，传输信号使用0和1表示</li>
+<li>可以数据双向传输（收发数据可以同时进行，即数据的双向传输）</li>
+<li>对应的设备——计算机、网卡、网线</li>
+</ul>
+</li>
+<li>数据链路层（第二层）<ul>
+<li>把传输的数据帧进行封装和解封装，数据链路层传输的数据称为数据帧</li>
+<li>数据帧的地址——源MAC地址、目标MAC地址</li>
+<li>数据校验的功能</li>
+<li>对应的设备——交换机</li>
+</ul>
+</li>
+<li>网络层（第三层）<ul>
+<li>把传输的数据包进行封装和解封装，网络层传输的数据为数据包</li>
+<li>数据包的地址——源IP地址、目标IP地址</li>
+<li>根据包头字段中的地址进行选路（路由器中的路由表进行数据包的转发）</li>
+<li>对应设备——路由器</li>
+</ul>
+</li>
+<li>传输层（第四层）<ul>
+<li>实现用户进程间通信（如：在计算机上安装QQ进程）</li>
+<li>承上启下（乘上——对应的会话层或应用，启下——对应的网络层）</li>
+<li>对应的设备——防火墙</li>
+</ul>
+</li>
+<li>会话层（第五层）<ul>
+<li>建立用户间的会话关系</li>
+</ul>
+</li>
+<li>表示层（第六层）<ul>
+<li>定义传输数据的标准格式（语法和定义）</li>
+<li>对传输的数据进行压缩解压缩、加密解密、编码解码</li>
+</ul>
+</li>
+<li>应用层（第七层，也称为最高层）<ul>
+<li>提供与用户的接口（定义两端使用统一程序接口）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="四、OSI七层参考模型与TCP-IP模型的关系"><a href="#四、OSI七层参考模型与TCP-IP模型的关系" class="headerlink" title="四、OSI七层参考模型与TCP&#x2F;IP模型的关系"></a>四、OSI七层参考模型与TCP&#x2F;IP模型的关系</h2><ol>
+<li>OSI七层参考模型，是一种理论参考模型，也成为“经典模型”。</li>
+<li>实际使用中，采用是TCP&#x2F;IP五层模型，即把会话层、表示层、应用层合并为一层“应用层”。</li>
+<li>OSI七层参考模型是由TCP&#x2F;IP五层模型演进而来的。</li>
+</ol>
+<hr>
+<h2 id="五、TCP-IP每层对应的协议"><a href="#五、TCP-IP每层对应的协议" class="headerlink" title="五、TCP&#x2F;IP每层对应的协议"></a>五、TCP&#x2F;IP每层对应的协议</h2><p><img src="https://s2.loli.net/2023/09/21/ibB8VS7kolNpaUT.png" alt="TCP每层协议.png"></p>
+<ol>
+<li>物理层<ul>
+<li>底层网络定义的协议均支持</li>
+</ul>
+</li>
+<li>数据链路层<ul>
+<li>标准网络定义的协议均支持</li>
+</ul>
+</li>
+<li>网络层<ul>
+<li>IP（ICMP&#x2F;IGMP&#x2F;ARP&#x2F;RARP）</li>
+</ul>
+</li>
+<li>传输层<ul>
+<li>TCP UDP</li>
+</ul>
+</li>
+<li>应用层<ul>
+<li>http&#x2F;https&#x2F;smtp&#x2F;<code>dns</code>&#x2F;ftp&#x2F;ssh&#x2F;tftp</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="六、数据封装与解封装过程（主机A向主机B发送数据）"><a href="#六、数据封装与解封装过程（主机A向主机B发送数据）" class="headerlink" title="六、数据封装与解封装过程（主机A向主机B发送数据）"></a>六、数据封装与解封装过程（主机A向主机B发送数据）</h2><p><img src="https://s2.loli.net/2023/09/21/BDJpTfwXKdOSIvo.png" alt="数据封装过程.jpg"></p>
+<blockquote>
+<p>发送方（主机A）向接收方（主机B）发送数据前，要进行封装过程如下：</p>
+</blockquote>
+<ol>
+<li>发送方（主机A）对数据进行封装时，从高层往底层进行逐层封装</li>
+<li>从应用层到传输层，在上层数据的基础上封装TCP头部</li>
+<li>从传输层到网络层，在“TCP头部+上层数据”基础上封装IP头 部</li>
+<li>从网络层到数据链路层，在“IP头部+TCP头部+上层数据”基 础上封装MAC头部</li>
+<li>到最后的物理层，转换成比特流在网络中传输。</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/09/21/GEzraBOVoRpidTk.png" alt="数据解封装过程.jpg"></p>
+<blockquote>
+<p>接收方（主机B）从发送方（主机A）接收数据前，要进行解封装的过程如下：</p>
+</blockquote>
+<ol>
+<li>接收方（主机B）对数据进行解封装时，从底层到高层逐层进行解封装</li>
+<li>通过物理层网络，传输比特流数据到数据链路层</li>
+<li>到数据链路层后去掉，MAC头部</li>
+<li>到网络层后去掉，IP头部</li>
+<li>到传输层后去掉，TCP头部</li>
+<li>到应用层后，还原上传数据。</li>
+</ol>
+<hr>
+<h2 id="七、PDU（协议数据单元）"><a href="#七、PDU（协议数据单元）" class="headerlink" title="七、PDU（协议数据单元）"></a>七、PDU（协议数据单元）</h2><ol>
+<li>名称解释：PDU是定义TCP&#x2F;IP的五层模型，每层传输数据的名称<ul>
+<li>物理层传输的数据：比特流</li>
+<li>数据链路层传输的数据：数据帧</li>
+<li>网络层传输的数据：数据包</li>
+<li>传输层传输的数据：数据段</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="八、TCP-IP五层模型每层对应的硬件设备"><a href="#八、TCP-IP五层模型每层对应的硬件设备" class="headerlink" title="八、TCP&#x2F;IP五层模型每层对应的硬件设备"></a>八、TCP&#x2F;IP五层模型每层对应的硬件设备</h2><ol>
+<li>物理层——网卡、传输介质（双绞线，也叫“网线”）</li>
+<li>数据链路层——交换机</li>
+<li>网络层——路由器</li>
+<li>传输层——防火墙</li>
+<li>应用层——计算机软件</li>
+</ol>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>网络应用与实验</category>
+        <category>计算机网络参考模型</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>网络应用与实验</tag>
+        <tag>计算机网络参考模型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>静态路由的原理与配置</title>
+    <url>/2023/10/06/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="静态路由的原理与配置"><a href="#静态路由的原理与配置" class="headerlink" title="静态路由的原理与配置"></a>静态路由的原理与配置</h1><h2 id="一、路由器的转发原理"><a href="#一、路由器的转发原理" class="headerlink" title="一、路由器的转发原理"></a>一、路由器的转发原理</h2><ul>
+<li><p>路由的定义：从源主机到目标主机转发数据包的过程为路由。</p>
+</li>
+<li><p>路由器的定义：将数据包正确转发到目的地，并选择最佳路由进行转发的网络设备称为路由器</p>
+</li>
+<li><p>路由器的工作原理（路由器转发数据包的过程）</p>
+<p><img src="https://s2.loli.net/2023/09/29/rtVinsK5vX8INPz.png" alt="路由器转发数据过程.jpg"><span id="more"></span></p>
+<ol>
+<li>主机1.1要发送数据包给主机4.1，因为IP地址不在同一网段，主机会将数据包发送给本网段的网关路由器A。</li>
+<li>路由器A接收到数据包，查看数据包IP首部中的目标IP地址，再查找自己的路由表。数据包的目标IP地址是4.1，属于4.0网段，路由器A在路由表中查到4.0网段转发的接口是S0接口。于是，路由器A将数据包从S0接口转发出去。</li>
+<li>网络中的每个路由器都是按这样的步骤取转发数据，直到到达了路由器B，用同样的方法，从E0口转发出去，4.1主机接收到这个数据包。</li>
+</ol>
+</li>
+<li><p><strong><font color="red">总结：</font>接收数据包→查看目的地址→与路由表进行匹配找到转发端口→转发到该端口。</strong></p>
+</li>
+</ul>
+<hr>
+<h2 id="二、路由表的形成"><a href="#二、路由表的形成" class="headerlink" title="二、路由表的形成"></a>二、路由表的形成</h2><ul>
+<li><p>路由表的作用</p>
+<ul>
+<li><p>路由器根据路由表做路径选择，路由表是各路由条目的集合。</p>
+</li>
+<li><p>路径选择——最佳路径（不等于最短路径）</p>
+</li>
+<li><p>路由条目包括：直连路由条目（直连网段），非直连路由条目（非直连网段），动态路由条目（RIP&#x2F;OSPF等动态路由协议产生目标网段）</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="三、静态路由和默认路由"><a href="#三、静态路由和默认路由" class="headerlink" title="三、静态路由和默认路由"></a>三、静态路由和默认路由</h2><ul>
+<li>静态路由<ul>
+<li>为什么配置静态路由<ul>
+<li>配置路由表中的非直连网段路由条目时，需要通过配置静态路由来实现</li>
+</ul>
+</li>
+<li>静态路由的特点<ul>
+<li>由管理员手工配置，是单向路由</li>
+<li>缺乏灵活性（例如：更新网络地址或IP地址时，需要重新配置静态路由）</li>
+</ul>
+</li>
+<li>默认路由<ul>
+<li>默认路由与静态路由的关系<ul>
+<li>默认路由是一种特殊的静态路由。</li>
+</ul>
+</li>
+<li>默认路由的配置场景<ul>
+<li>一般配置在末梢网络或末节网络，即只有唯一条路径（路由器）与外部网络进行通信。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、路由器转发数据包的封装过程"><a href="#四、路由器转发数据包的封装过程" class="headerlink" title="四、路由器转发数据包的封装过程"></a>四、路由器转发数据包的封装过程</h2><ul>
+<li>路由器在转发数据包的过程中，一直在进行封装与解封装。</li>
+<li>路由器在封装的过程中，MAC头部中的源MAC地址（SA）和目标MAC地址（DA）一直在变。</li>
+<li>路由器在封装的过程中，IP头部中的源IP地址（SA）和目标IP地址（DA）一直不变。</li>
+</ul>
+<hr>
+<h2 id="五、静态路由和默认路由的配置"><a href="#五、静态路由和默认路由的配置" class="headerlink" title="五、静态路由和默认路由的配置"></a>五、静态路由和默认路由的配置</h2><ul>
+<li><p>静态路由配置</p>
+<ul>
+<li><p>Route(config)# ip route network netmask address（静态路由命令格式）</p>
+</li>
+<li><p>Route(config)# ip route 192.168.30.0 255.255.255.0 192.168.20.2 （静态路由配置命令）</p>
+</li>
+<li><p>Route# show ip route（查看路由器的路由表命令）</p>
+</li>
+<li><p>详解路由表中的信息，如下图所示：</p>
+<p><img src="https://s2.loli.net/2023/09/29/TZRsYCaHjefBUdy.png" alt="详解路由表信息.jpg"></p>
+</li>
+<li><p>直连路由——表示字符是<strong>C</strong>；静态路由——表示字符是<strong>S</strong>；默认路由——表示字符是<strong>S<sup>*</sup></strong></p>
+</li>
+<li><p>动态路由——表示字符是R（表示的是 rip 动态路由）</p>
+</li>
+<li><p>动态路由——表示字符O（表示的是 ospf 动态路由）</p>
+</li>
+<li><p>Route# ping 192.168.20.2（在路由器上使用ping命令，Ping通的情况下会出现5个感叹号，Ping不通的情况下会出现5个英文实点）</p>
+</li>
+</ul>
+</li>
+<li><p>实验过程：</p>
+<iframe src="https://easylink.cc/xc6xwe" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
+</iframe>
+</li>
+<li><p>默认路由器</p>
+<ul>
+<li>Route(config)# ip route 0.0.0.0 0.0.0.0 address（默认路由命令格式）</li>
+<li>Route(config)# ip route 0.0.0.0 0.0.0.0 192.168.20.2</li>
+</ul>
+</li>
+<li><p>实验过程：（只看后面即可）</p>
+<iframe src="https://easylink.cc/mdj7j4" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
+</iframe>
+</li>
+<li><p>静态路由或默认路由配置错误的删除办法</p>
+<ul>
+<li><p>Route(config)# <font color="red">no</font> ip route 192.168.2.0 255.255.255.0 192.168.1.1（删除静态路由的命令）</p>
+<p><img src="https://s2.loli.net/2023/09/29/oAm7zSZRcMLe1Jw.png" alt="删除静态路由的配置.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>网络故障排查</p>
+<ul>
+<li>物理层排查<ul>
+<li>检查网络传输介质（双绞线–线缆问题、水晶头、光纤、光缆）</li>
+<li>检查PC网卡指示灯是否正常</li>
+</ul>
+</li>
+<li>数据链路层检查<ul>
+<li>查看交换机的接口指示灯是否正常</li>
+<li>使用查询命令检查交换机接口的状态<ol>
+<li>show running-config</li>
+<li>show ip interface brief</li>
+<li>show interface f0&#x2F;0</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>网络层检查<ul>
+<li>检查路由器接口IP地址是否配置正确<ol>
+<li>show ip interface brief</li>
+<li>show interface f0&#x2F;0</li>
+</ol>
+</li>
+<li>检查路由器的路由表是否配置正确<ol>
+<li>show ip route</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>网络应用与实验</category>
+        <category>静态路由原理与配置</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>网络应用与实验</tag>
+        <tag>静态路由原理与配置</tag>
       </tags>
   </entry>
   <entry>
@@ -3818,326 +4349,6 @@
       <tags>
         <tag>网页</tag>
         <tag>移动端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算机网络参考模型</title>
-    <url>/2023/09/19/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h1 id="计算机网络参考模型"><a href="#计算机网络参考模型" class="headerlink" title="计算机网络参考模型"></a>计算机网络参考模型</h1><h2 id="一、网络分类"><a href="#一、网络分类" class="headerlink" title="一、网络分类"></a>一、网络分类</h2><ol>
-<li>从地域的范围上划分<ul>
-<li>局域网</li>
-<li>广域网</li>
-</ul>
-</li>
-<li>从用户使用角度上划分<ul>
-<li>有线网络</li>
-<li>无线网络</li>
-</ul>
-</li>
-<li>从传输速率上划分<ul>
-<li>普通网络</li>
-<li>高速网络</li>
-</ul>
-</li>
-<li>从企业业务划分<ul>
-<li>内部网络——私有网络</li>
-<li>外部网络——公有网络（internet）</li>
-</ul>
-</li>
-</ol>
-<span id="more"></span>
-
-<hr>
-<h2 id="二、分层思想"><a href="#二、分层思想" class="headerlink" title="二、分层思想"></a>二、分层思想</h2><ol>
-<li>网络划分使用分层思想目的：<ul>
-<li>方便定位问题，进而高效解决问题</li>
-<li>降低分析问题的难度，便于维护管理网络</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）"><a href="#三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）" class="headerlink" title="三、如何对网络进行分层——OSI七层参考模型（下一层是为 上一层提供服务的）"></a>三、如何对网络进行分层——OSI七层参考模型（<font color="red">下一层是为 上一层提供服务的</font>）</h2><ol>
-<li>物理层（第一层，也称为最底层）<ul>
-<li>用于建立、断开、维护物理连接</li>
-<li>以比特流的方式进行数据传输，传输信号使用0和1表示</li>
-<li>可以数据双向传输（收发数据可以同时进行，即数据的双向传输）</li>
-<li>对应的设备——计算机、网卡、网线</li>
-</ul>
-</li>
-<li>数据链路层（第二层）<ul>
-<li>把传输的数据帧进行封装和解封装，数据链路层传输的数据称为数据帧</li>
-<li>数据帧的地址——源MAC地址、目标MAC地址</li>
-<li>数据校验的功能</li>
-<li>对应的设备——交换机</li>
-</ul>
-</li>
-<li>网络层（第三层）<ul>
-<li>把传输的数据包进行封装和解封装，网络层传输的数据为数据包</li>
-<li>数据包的地址——源IP地址、目标IP地址</li>
-<li>根据包头字段中的地址进行选路（路由器中的路由表进行数据包的转发）</li>
-<li>对应设备——路由器</li>
-</ul>
-</li>
-<li>传输层（第四层）<ul>
-<li>实现用户进程间通信（如：在计算机上安装QQ进程）</li>
-<li>承上启下（乘上——对应的会话层或应用，启下——对应的网络层）</li>
-<li>对应的设备——防火墙</li>
-</ul>
-</li>
-<li>会话层（第五层）<ul>
-<li>建立用户间的会话关系</li>
-</ul>
-</li>
-<li>表示层（第六层）<ul>
-<li>定义传输数据的标准格式（语法和定义）</li>
-<li>对传输的数据进行压缩解压缩、加密解密、编码解码</li>
-</ul>
-</li>
-<li>应用层（第七层，也称为最高层）<ul>
-<li>提供与用户的接口（定义两端使用统一程序接口）</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="四、OSI七层参考模型与TCP-IP模型的关系"><a href="#四、OSI七层参考模型与TCP-IP模型的关系" class="headerlink" title="四、OSI七层参考模型与TCP&#x2F;IP模型的关系"></a>四、OSI七层参考模型与TCP&#x2F;IP模型的关系</h2><ol>
-<li>OSI七层参考模型，是一种理论参考模型，也成为“经典模型”。</li>
-<li>实际使用中，采用是TCP&#x2F;IP五层模型，即把会话层、表示层、应用层合并为一层“应用层”。</li>
-<li>OSI七层参考模型是由TCP&#x2F;IP五层模型演进而来的。</li>
-</ol>
-<hr>
-<h2 id="五、TCP-IP每层对应的协议"><a href="#五、TCP-IP每层对应的协议" class="headerlink" title="五、TCP&#x2F;IP每层对应的协议"></a>五、TCP&#x2F;IP每层对应的协议</h2><p><img src="https://s2.loli.net/2023/09/21/ibB8VS7kolNpaUT.png" alt="TCP每层协议.png"></p>
-<ol>
-<li>物理层<ul>
-<li>底层网络定义的协议均支持</li>
-</ul>
-</li>
-<li>数据链路层<ul>
-<li>标准网络定义的协议均支持</li>
-</ul>
-</li>
-<li>网络层<ul>
-<li>IP（ICMP&#x2F;IGMP&#x2F;ARP&#x2F;RARP）</li>
-</ul>
-</li>
-<li>传输层<ul>
-<li>TCP UDP</li>
-</ul>
-</li>
-<li>应用层<ul>
-<li>http&#x2F;https&#x2F;smtp&#x2F;<code>dns</code>&#x2F;ftp&#x2F;ssh&#x2F;tftp</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="六、数据封装与解封装过程（主机A向主机B发送数据）"><a href="#六、数据封装与解封装过程（主机A向主机B发送数据）" class="headerlink" title="六、数据封装与解封装过程（主机A向主机B发送数据）"></a>六、数据封装与解封装过程（主机A向主机B发送数据）</h2><p><img src="https://s2.loli.net/2023/09/21/BDJpTfwXKdOSIvo.png" alt="数据封装过程.jpg"></p>
-<blockquote>
-<p>发送方（主机A）向接收方（主机B）发送数据前，要进行封装过程如下：</p>
-</blockquote>
-<ol>
-<li>发送方（主机A）对数据进行封装时，从高层往底层进行逐层封装</li>
-<li>从应用层到传输层，在上层数据的基础上封装TCP头部</li>
-<li>从传输层到网络层，在“TCP头部+上层数据”基础上封装IP头 部</li>
-<li>从网络层到数据链路层，在“IP头部+TCP头部+上层数据”基 础上封装MAC头部</li>
-<li>到最后的物理层，转换成比特流在网络中传输。</li>
-</ol>
-<p><img src="https://s2.loli.net/2023/09/21/GEzraBOVoRpidTk.png" alt="数据解封装过程.jpg"></p>
-<blockquote>
-<p>接收方（主机B）从发送方（主机A）接收数据前，要进行解封装的过程如下：</p>
-</blockquote>
-<ol>
-<li>接收方（主机B）对数据进行解封装时，从底层到高层逐层进行解封装</li>
-<li>通过物理层网络，传输比特流数据到数据链路层</li>
-<li>到数据链路层后去掉，MAC头部</li>
-<li>到网络层后去掉，IP头部</li>
-<li>到传输层后去掉，TCP头部</li>
-<li>到应用层后，还原上传数据。</li>
-</ol>
-<hr>
-<h2 id="七、PDU（协议数据单元）"><a href="#七、PDU（协议数据单元）" class="headerlink" title="七、PDU（协议数据单元）"></a>七、PDU（协议数据单元）</h2><ol>
-<li>名称解释：PDU是定义TCP&#x2F;IP的五层模型，每层传输数据的名称<ul>
-<li>物理层传输的数据：比特流</li>
-<li>数据链路层传输的数据：数据帧</li>
-<li>网络层传输的数据：数据包</li>
-<li>传输层传输的数据：数据段</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="八、TCP-IP五层模型每层对应的硬件设备"><a href="#八、TCP-IP五层模型每层对应的硬件设备" class="headerlink" title="八、TCP&#x2F;IP五层模型每层对应的硬件设备"></a>八、TCP&#x2F;IP五层模型每层对应的硬件设备</h2><ol>
-<li>物理层——网卡、传输介质（双绞线，也叫“网线”）</li>
-<li>数据链路层——交换机</li>
-<li>网络层——路由器</li>
-<li>传输层——防火墙</li>
-<li>应用层——计算机软件</li>
-</ol>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>网络应用与实验</category>
-        <category>计算机网络参考模型</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>网络应用与实验</tag>
-        <tag>计算机网络参考模型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>静态路由的原理与配置</title>
-    <url>/2023/10/06/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="静态路由的原理与配置"><a href="#静态路由的原理与配置" class="headerlink" title="静态路由的原理与配置"></a>静态路由的原理与配置</h1><h2 id="一、路由器的转发原理"><a href="#一、路由器的转发原理" class="headerlink" title="一、路由器的转发原理"></a>一、路由器的转发原理</h2><ul>
-<li><p>路由的定义：从源主机到目标主机转发数据包的过程为路由。</p>
-</li>
-<li><p>路由器的定义：将数据包正确转发到目的地，并选择最佳路由进行转发的网络设备称为路由器</p>
-</li>
-<li><p>路由器的工作原理（路由器转发数据包的过程）</p>
-<p><img src="https://s2.loli.net/2023/09/29/rtVinsK5vX8INPz.png" alt="路由器转发数据过程.jpg"><span id="more"></span></p>
-<ol>
-<li>主机1.1要发送数据包给主机4.1，因为IP地址不在同一网段，主机会将数据包发送给本网段的网关路由器A。</li>
-<li>路由器A接收到数据包，查看数据包IP首部中的目标IP地址，再查找自己的路由表。数据包的目标IP地址是4.1，属于4.0网段，路由器A在路由表中查到4.0网段转发的接口是S0接口。于是，路由器A将数据包从S0接口转发出去。</li>
-<li>网络中的每个路由器都是按这样的步骤取转发数据，直到到达了路由器B，用同样的方法，从E0口转发出去，4.1主机接收到这个数据包。</li>
-</ol>
-</li>
-<li><p><strong><font color="red">总结：</font>接收数据包→查看目的地址→与路由表进行匹配找到转发端口→转发到该端口。</strong></p>
-</li>
-</ul>
-<hr>
-<h2 id="二、路由表的形成"><a href="#二、路由表的形成" class="headerlink" title="二、路由表的形成"></a>二、路由表的形成</h2><ul>
-<li><p>路由表的作用</p>
-<ul>
-<li><p>路由器根据路由表做路径选择，路由表是各路由条目的集合。</p>
-</li>
-<li><p>路径选择——最佳路径（不等于最短路径）</p>
-</li>
-<li><p>路由条目包括：直连路由条目（直连网段），非直连路由条目（非直连网段），动态路由条目（RIP&#x2F;OSPF等动态路由协议产生目标网段）</p>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="三、静态路由和默认路由"><a href="#三、静态路由和默认路由" class="headerlink" title="三、静态路由和默认路由"></a>三、静态路由和默认路由</h2><ul>
-<li>静态路由<ul>
-<li>为什么配置静态路由<ul>
-<li>配置路由表中的非直连网段路由条目时，需要通过配置静态路由来实现</li>
-</ul>
-</li>
-<li>静态路由的特点<ul>
-<li>由管理员手工配置，是单向路由</li>
-<li>缺乏灵活性（例如：更新网络地址或IP地址时，需要重新配置静态路由）</li>
-</ul>
-</li>
-<li>默认路由<ul>
-<li>默认路由与静态路由的关系<ul>
-<li>默认路由是一种特殊的静态路由。</li>
-</ul>
-</li>
-<li>默认路由的配置场景<ul>
-<li>一般配置在末梢网络或末节网络，即只有唯一条路径（路由器）与外部网络进行通信。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="四、路由器转发数据包的封装过程"><a href="#四、路由器转发数据包的封装过程" class="headerlink" title="四、路由器转发数据包的封装过程"></a>四、路由器转发数据包的封装过程</h2><ul>
-<li>路由器在转发数据包的过程中，一直在进行封装与解封装。</li>
-<li>路由器在封装的过程中，MAC头部中的源MAC地址（SA）和目标MAC地址（DA）一直在变。</li>
-<li>路由器在封装的过程中，IP头部中的源IP地址（SA）和目标IP地址（DA）一直不变。</li>
-</ul>
-<hr>
-<h2 id="五、静态路由和默认路由的配置"><a href="#五、静态路由和默认路由的配置" class="headerlink" title="五、静态路由和默认路由的配置"></a>五、静态路由和默认路由的配置</h2><ul>
-<li><p>静态路由配置</p>
-<ul>
-<li><p>Route(config)# ip route network netmask address（静态路由命令格式）</p>
-</li>
-<li><p>Route(config)# ip route 192.168.30.0 255.255.255.0 192.168.20.2 （静态路由配置命令）</p>
-</li>
-<li><p>Route# show ip route（查看路由器的路由表命令）</p>
-</li>
-<li><p>详解路由表中的信息，如下图所示：</p>
-<p><img src="https://s2.loli.net/2023/09/29/TZRsYCaHjefBUdy.png" alt="详解路由表信息.jpg"></p>
-</li>
-<li><p>直连路由——表示字符是<strong>C</strong>；静态路由——表示字符是<strong>S</strong>；默认路由——表示字符是<strong>S<sup>*</sup></strong></p>
-</li>
-<li><p>动态路由——表示字符是R（表示的是 rip 动态路由）</p>
-</li>
-<li><p>动态路由——表示字符O（表示的是 ospf 动态路由）</p>
-</li>
-<li><p>Route# ping 192.168.20.2（在路由器上使用ping命令，Ping通的情况下会出现5个感叹号，Ping不通的情况下会出现5个英文实点）</p>
-</li>
-</ul>
-</li>
-<li><p>实验过程：</p>
-<iframe src="https://easylink.cc/xc6xwe" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
-</iframe>
-</li>
-<li><p>默认路由器</p>
-<ul>
-<li>Route(config)# ip route 0.0.0.0 0.0.0.0 address（默认路由命令格式）</li>
-<li>Route(config)# ip route 0.0.0.0 0.0.0.0 192.168.20.2</li>
-</ul>
-</li>
-<li><p>实验过程：（只看后面即可）</p>
-<iframe src="https://easylink.cc/mdj7j4" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
-</iframe>
-</li>
-<li><p>静态路由或默认路由配置错误的删除办法</p>
-<ul>
-<li><p>Route(config)# <font color="red">no</font> ip route 192.168.2.0 255.255.255.0 192.168.1.1（删除静态路由的命令）</p>
-<p><img src="https://s2.loli.net/2023/09/29/oAm7zSZRcMLe1Jw.png" alt="删除静态路由的配置.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p>网络故障排查</p>
-<ul>
-<li>物理层排查<ul>
-<li>检查网络传输介质（双绞线–线缆问题、水晶头、光纤、光缆）</li>
-<li>检查PC网卡指示灯是否正常</li>
-</ul>
-</li>
-<li>数据链路层检查<ul>
-<li>查看交换机的接口指示灯是否正常</li>
-<li>使用查询命令检查交换机接口的状态<ol>
-<li>show running-config</li>
-<li>show ip interface brief</li>
-<li>show interface f0&#x2F;0</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>网络层检查<ul>
-<li>检查路由器接口IP地址是否配置正确<ol>
-<li>show ip interface brief</li>
-<li>show interface f0&#x2F;0</li>
-</ol>
-</li>
-<li>检查路由器的路由表是否配置正确<ol>
-<li>show ip route</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>网络应用与实验</category>
-        <category>静态路由原理与配置</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>网络应用与实验</tag>
-        <tag>静态路由原理与配置</tag>
       </tags>
   </entry>
   <entry>
