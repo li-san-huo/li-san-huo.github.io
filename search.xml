@@ -1408,245 +1408,6 @@
       </tags>
   </entry>
   <entry>
-    <title>交换机工作原理与配置</title>
-    <url>/2023/09/25/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="交换机工作原理与配置"><a href="#交换机工作原理与配置" class="headerlink" title="交换机工作原理与配置"></a>交换机工作原理与配置</h1><h2 id="一、知识回顾"><a href="#一、知识回顾" class="headerlink" title="一、知识回顾"></a>一、知识回顾</h2><ul>
-<li><p>数据链路层的作用</p>
-</li>
-<li><p>以太网的发展史</p>
-<ul>
-<li>2.94M实验性以太网</li>
-<li>10M以太网</li>
-<li>100M以太网</li>
-<li>1000M以太网<span id="more"></span></li>
-</ul>
-</li>
-<li><p>以太网MAC地址组成</p>
-<ul>
-<li><p>定义：通过MAC地址识别以太网中的每个设备（PC）</p>
-</li>
-<li><p>以太网MAC地址是全球唯一</p>
-</li>
-<li><p>通过48个比特位表示（前24个比特位表示厂商；后24个比特位表示唯一编码）；其中前24个比特位中的第8位，若是0，表示单播地址；若是1，表示组播地址。</p>
-</li>
-<li><p>MAC地址，又称为“物理地址”。MAC地址焊接在网卡芯片上，用于以太网的数据传输，同时标识以太网中的每一台PC。</p>
-<p><img src="https://s2.loli.net/2023/09/22/CthNgxyXFj5mZDB.png" alt="MAC地址组成.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p>以太网的帧格式</p>
-<ul>
-<li><p>以太网帧格式部分组成——目的地址（目前主机MAC地址）；源地址（源主机MAC地址）；数据（46~1500字节）；类型（上层对应的协议，一般指IP协议，即四个支撑协议（icmp&#x2F;igmp&#x2F;arp&#x2F;rarp）；帧校验序列。</p>
-<p><img src="https://s2.loli.net/2023/09/22/FHoSiIfX3VypRnd.jpg" alt="以太网帧格式.jpg"></p>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="二、交换机"><a href="#二、交换机" class="headerlink" title="二、交换机"></a>二、交换机</h2><ol>
-<li><p>交换机产品系列</p>
-<ul>
-<li>CISCO 2960（入门级交换机）</li>
-<li>CISCO 3560（企业级交换机）</li>
-<li>CISCO 4500（企业模块级交换机）</li>
-<li>CISCO 6500（大型企业、电信级交换机）</li>
-</ul>
-</li>
-<li><p>交换机工作原理</p>
-<p><img src="https://s2.loli.net/2023/09/22/3dvcDLa5Vfo4hBC.png" alt="交换机工作原理.jpg"></p>
-<ul>
-<li>初始化（给交换机进行加电自检）</li>
-<li>学习MAC地址（A主机的源MAC地址）</li>
-<li>广播（广播B主机的MAC地址）</li>
-<li>再学习MAC地址（主机B回应的同时，交换机学习主机B的源MAC地址）</li>
-<li>单播（实现主机A到主机B的单播通信）</li>
-</ul>
-</li>
-<li><p>交换机工作原理总结</p>
-<ul>
-<li>交换机始终学习的是各主机的源MAC地址</li>
-<li>交换机把学习到的MAC地址记录到MAC地址表中，记录的具体信息：MAC地址＋对应接口</li>
-<li>交换机MAC地址表中的信息不是永久存在的，是临时的，老化时间是３００秒（５分钟）。</li>
-</ul>
-</li>
-<li><p>交换机以太网接口的工作模式</p>
-<ul>
-<li><p>单工——两个数据站之间只能进行单向数据传输（类似话筒与扬声器）</p>
-<p><img src="https://s2.loli.net/2023/09/23/bswMtKZi9gNPeDv.png" alt="单工数据传输.jpg"></p>
-</li>
-<li><p>半双工——两个数据站之间双向数据传输，但不能同时进行（类似于对讲机）</p>
-<p><img src="https://s2.loli.net/2023/09/23/BSJybgZNhXlfip7.png" alt="半双工数据传输.jpg"></p>
-</li>
-<li><p>全双工——两个数据站双向且同时进行数据传输（类似于电话或手机）</p>
-<p><img src="https://s2.loli.net/2023/09/23/r2FOEcGx8IXdRZs.png" alt="全双工数据传输.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p>交换机以太网的接口速率</p>
-<ul>
-<li>接口速率——自动协商、10M、100M、1000M</li>
-<li>接口速率设置时，两端接口必须保持一样</li>
-<li>接口速率协商失败，导致网络链路无法正常通信</li>
-</ul>
-</li>
-<li><p>交换机的配置方法</p>
-<ul>
-<li><p>通过Console配置线链接PC的COM口实现对交换机的配置（传统配置方法）</p>
-<p><img src="https://s2.loli.net/2023/09/23/lj7a4UYnt32dDy8.png" alt="通过 Console 接口配置交换机.jpg"></p>
-</li>
-<li><p>直接通过交换机的CLI(Command line interface)命令行接口对交换机进行配置</p>
-</li>
-</ul>
-</li>
-<li><p>交换机命令行的工作模式</p>
-<ul>
-<li>用户模式——查看交换机相关信息</li>
-<li>特权模式——查看或修改相关信息</li>
-<li>全局模式——主要用于对交换机全局配置信息的修改</li>
-<li>接口模式——主要用于对交换机接口进行相关的配置</li>
-</ul>
-<p><img src="https://s2.loli.net/2023/09/23/397FwypbisjYu4c.png" alt="Cisco 设备命令行模式关系图.jpg"></p>
-</li>
-<li><p>交换机命令行的帮助</p>
-<ul>
-<li>？显示当前工作模式下可以使用的命令列表及参数</li>
-<li>Tab 命令补齐或命令提示</li>
-<li>ctrl + A 将光标定位到命令行的开始位置</li>
-<li>ctrl + E 将光标定位到命令行的结束位置</li>
-</ul>
-</li>
-<li><p>交换机命令行工作模式的切换方式</p>
-<ul>
-<li><p>交换机的工作模式</p>
-<ul>
-<li>用户模式：Switch&gt;</li>
-<li>特权模式：Switch#</li>
-<li>全局模式：Switch(config)#</li>
-<li>接口模式：Switch(config-if)#</li>
-</ul>
-</li>
-<li><p>交换机工作模式的切换方式</p>
-<ul>
-<li><p>从用户模式进入或切换到特权模式的命令：enable可简写为en</p>
-</li>
-<li><p>从特权模式进入或切换到全局模式的命令：configure terminal可简写为 conf t</p>
-</li>
-<li><p>从全局模式进入或切换到接口模式的命令：interface fastEthernet 0&#x2F;1可简写为 int f0&#x2F;1，<font color="red">总结：从用户 模式进入到接口模式，必须一级一级的进行切换。</font></p>
-</li>
-<li><p>从接口模式退回到全局模式的命令：exit</p>
-</li>
-<li><p>从全局模式退回到特权模式的命令：exit 或 end 或 快捷方式：ctrl + z</p>
-</li>
-<li><p>从特权模式退回到用户模式的命令：exit（只适用于模拟器，真实交换机设备使用命令是disable）</p>
-</li>
-<li><p>从接口模式直接退回到特权模式的命令：end</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>CISCO模拟器的使用</p>
-<ul>
-<li>绘制网络拓扑图与应用各种网络设备<ul>
-<li>选择对应的网络设备（交换机、路由器、防火墙、服务器、PC）</li>
-<li>选择链接对应网络设备的线缆（配置线、直通线、交叉线等）</li>
-<li>对网络设备进行逐一配置（配置IP地址、接口地址等）</li>
-<li>测试并验证最终的结果</li>
-</ul>
-</li>
-<li>模拟器网络设备的分类<ol>
-<li>交换机<ul>
-<li>二层交换机：cisco 2960（入门级交换机）</li>
-<li>三层交换机：cisco 3560（企业级交换机）</li>
-</ul>
-</li>
-<li>路由器<ul>
-<li>路由器型号：cisco 2811、2911等</li>
-</ul>
-</li>
-<li>防火墙<ul>
-<li>防火墙系列：cisco 5055</li>
-</ul>
-</li>
-<li>终端设备<ul>
-<li>个人PC：台式机、笔记本</li>
-<li>服务器：Server-PT</li>
-</ul>
-</li>
-<li>线缆分类<ul>
-<li>配置线</li>
-<li>直通线</li>
-<li>交叉线</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>模拟器的辅助功能<ul>
-<li>网络设备添加标识——place note</li>
-<li>删除网络设备图标</li>
-<li>放大与缩小网络设备图标</li>
-<li>选择网络设备或绘制拓扑图，进行移动操作</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>以太网中网络设备常用命令</p>
-<ul>
-<li>ping 测试网络的连通性</li>
-<li>ipconfig 查看windows系统中，对应网卡配置的ip地址信息</li>
-<li>ifconfig 查看linux系统中，对应网卡配置的ip地址信息</li>
-<li>show mac-address-table dynamic 查看交换机中MAC地址表的信息（特权模式）</li>
-</ul>
-</li>
-<li><p>网络设备查询注意事项</p>
-<ul>
-<li>在特权模式使用show命令，例如：Switch# show mac-address-table dynamic</li>
-<li>在全局模式使用show命令，例如：Switch(config)# do show mac-address-table</li>
-<li>在接口模式使用show命令，例如：Switch(config-if)#do show mac-address-table</li>
-</ul>
-</li>
-<li><p>交换机双工模式配置与速率配置</p>
-<ul>
-<li>以太网接口双工模式配置<ul>
-<li>交换机双工模式在配置时，若交换机两端对应接口的双工模式不一样时，会造成严重的丢包现象，导致 网络无法正常通信。</li>
-<li>实际配置交换机接口双工模式采用全双工，交换机两端接口双工模式必须配置一样，使用的命令： duplex full</li>
-</ul>
-</li>
-<li>以太网接口速率配置<ul>
-<li>交换机速率配置时，若交换机两端对应接口的速率不一样时，直接导致网络无法正常通信。</li>
-<li>实际配置交换机接口速率采用100&#x2F;1000速率，交换机两端接口速率必须配置一样，使用命令：speed 100&#x2F;1000</li>
-</ul>
-</li>
-<li>查看交换机接口详细信息使用的查询命令<ul>
-<li>show interface f0&#x2F;24 或者 sh int f0&#x2F;24（在特权模式执行命令）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>交换网络播的类型</p>
-<ul>
-<li>单播：一对一，传输效率最高，延迟最小</li>
-<li>组播：一对多，传输效率其次，延迟较小</li>
-<li>广播：一对多，传输效率最低，延迟最大</li>
-</ul>
-</li>
-</ol>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>网络应用与实验</category>
-        <category>交换机原理与配置</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>网络应用与实验</tag>
-        <tag>交换机原理与配置</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VLAN与三层交换机</title>
     <url>/2023/10/09/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/VLAN%E4%B8%8E%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA/</url>
     <content><![CDATA[<h1 id="VLAN与三层交换机"><a href="#VLAN与三层交换机" class="headerlink" title="VLAN与三层交换机"></a>VLAN与三层交换机</h1><h2 id="一、VLAN概念"><a href="#一、VLAN概念" class="headerlink" title="一、VLAN概念"></a>一、VLAN概念</h2><ul>
@@ -1921,6 +1682,245 @@
         <tag>运维</tag>
         <tag>网络应用与实验</tag>
         <tag>VLAN与三层交换机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>交换机工作原理与配置</title>
+    <url>/2023/09/25/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="交换机工作原理与配置"><a href="#交换机工作原理与配置" class="headerlink" title="交换机工作原理与配置"></a>交换机工作原理与配置</h1><h2 id="一、知识回顾"><a href="#一、知识回顾" class="headerlink" title="一、知识回顾"></a>一、知识回顾</h2><ul>
+<li><p>数据链路层的作用</p>
+</li>
+<li><p>以太网的发展史</p>
+<ul>
+<li>2.94M实验性以太网</li>
+<li>10M以太网</li>
+<li>100M以太网</li>
+<li>1000M以太网<span id="more"></span></li>
+</ul>
+</li>
+<li><p>以太网MAC地址组成</p>
+<ul>
+<li><p>定义：通过MAC地址识别以太网中的每个设备（PC）</p>
+</li>
+<li><p>以太网MAC地址是全球唯一</p>
+</li>
+<li><p>通过48个比特位表示（前24个比特位表示厂商；后24个比特位表示唯一编码）；其中前24个比特位中的第8位，若是0，表示单播地址；若是1，表示组播地址。</p>
+</li>
+<li><p>MAC地址，又称为“物理地址”。MAC地址焊接在网卡芯片上，用于以太网的数据传输，同时标识以太网中的每一台PC。</p>
+<p><img src="https://s2.loli.net/2023/09/22/CthNgxyXFj5mZDB.png" alt="MAC地址组成.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>以太网的帧格式</p>
+<ul>
+<li><p>以太网帧格式部分组成——目的地址（目前主机MAC地址）；源地址（源主机MAC地址）；数据（46~1500字节）；类型（上层对应的协议，一般指IP协议，即四个支撑协议（icmp&#x2F;igmp&#x2F;arp&#x2F;rarp）；帧校验序列。</p>
+<p><img src="https://s2.loli.net/2023/09/22/FHoSiIfX3VypRnd.jpg" alt="以太网帧格式.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二、交换机"><a href="#二、交换机" class="headerlink" title="二、交换机"></a>二、交换机</h2><ol>
+<li><p>交换机产品系列</p>
+<ul>
+<li>CISCO 2960（入门级交换机）</li>
+<li>CISCO 3560（企业级交换机）</li>
+<li>CISCO 4500（企业模块级交换机）</li>
+<li>CISCO 6500（大型企业、电信级交换机）</li>
+</ul>
+</li>
+<li><p>交换机工作原理</p>
+<p><img src="https://s2.loli.net/2023/09/22/3dvcDLa5Vfo4hBC.png" alt="交换机工作原理.jpg"></p>
+<ul>
+<li>初始化（给交换机进行加电自检）</li>
+<li>学习MAC地址（A主机的源MAC地址）</li>
+<li>广播（广播B主机的MAC地址）</li>
+<li>再学习MAC地址（主机B回应的同时，交换机学习主机B的源MAC地址）</li>
+<li>单播（实现主机A到主机B的单播通信）</li>
+</ul>
+</li>
+<li><p>交换机工作原理总结</p>
+<ul>
+<li>交换机始终学习的是各主机的源MAC地址</li>
+<li>交换机把学习到的MAC地址记录到MAC地址表中，记录的具体信息：MAC地址＋对应接口</li>
+<li>交换机MAC地址表中的信息不是永久存在的，是临时的，老化时间是３００秒（５分钟）。</li>
+</ul>
+</li>
+<li><p>交换机以太网接口的工作模式</p>
+<ul>
+<li><p>单工——两个数据站之间只能进行单向数据传输（类似话筒与扬声器）</p>
+<p><img src="https://s2.loli.net/2023/09/23/bswMtKZi9gNPeDv.png" alt="单工数据传输.jpg"></p>
+</li>
+<li><p>半双工——两个数据站之间双向数据传输，但不能同时进行（类似于对讲机）</p>
+<p><img src="https://s2.loli.net/2023/09/23/BSJybgZNhXlfip7.png" alt="半双工数据传输.jpg"></p>
+</li>
+<li><p>全双工——两个数据站双向且同时进行数据传输（类似于电话或手机）</p>
+<p><img src="https://s2.loli.net/2023/09/23/r2FOEcGx8IXdRZs.png" alt="全双工数据传输.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>交换机以太网的接口速率</p>
+<ul>
+<li>接口速率——自动协商、10M、100M、1000M</li>
+<li>接口速率设置时，两端接口必须保持一样</li>
+<li>接口速率协商失败，导致网络链路无法正常通信</li>
+</ul>
+</li>
+<li><p>交换机的配置方法</p>
+<ul>
+<li><p>通过Console配置线链接PC的COM口实现对交换机的配置（传统配置方法）</p>
+<p><img src="https://s2.loli.net/2023/09/23/lj7a4UYnt32dDy8.png" alt="通过 Console 接口配置交换机.jpg"></p>
+</li>
+<li><p>直接通过交换机的CLI(Command line interface)命令行接口对交换机进行配置</p>
+</li>
+</ul>
+</li>
+<li><p>交换机命令行的工作模式</p>
+<ul>
+<li>用户模式——查看交换机相关信息</li>
+<li>特权模式——查看或修改相关信息</li>
+<li>全局模式——主要用于对交换机全局配置信息的修改</li>
+<li>接口模式——主要用于对交换机接口进行相关的配置</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/09/23/397FwypbisjYu4c.png" alt="Cisco 设备命令行模式关系图.jpg"></p>
+</li>
+<li><p>交换机命令行的帮助</p>
+<ul>
+<li>？显示当前工作模式下可以使用的命令列表及参数</li>
+<li>Tab 命令补齐或命令提示</li>
+<li>ctrl + A 将光标定位到命令行的开始位置</li>
+<li>ctrl + E 将光标定位到命令行的结束位置</li>
+</ul>
+</li>
+<li><p>交换机命令行工作模式的切换方式</p>
+<ul>
+<li><p>交换机的工作模式</p>
+<ul>
+<li>用户模式：Switch&gt;</li>
+<li>特权模式：Switch#</li>
+<li>全局模式：Switch(config)#</li>
+<li>接口模式：Switch(config-if)#</li>
+</ul>
+</li>
+<li><p>交换机工作模式的切换方式</p>
+<ul>
+<li><p>从用户模式进入或切换到特权模式的命令：enable可简写为en</p>
+</li>
+<li><p>从特权模式进入或切换到全局模式的命令：configure terminal可简写为 conf t</p>
+</li>
+<li><p>从全局模式进入或切换到接口模式的命令：interface fastEthernet 0&#x2F;1可简写为 int f0&#x2F;1，<font color="red">总结：从用户 模式进入到接口模式，必须一级一级的进行切换。</font></p>
+</li>
+<li><p>从接口模式退回到全局模式的命令：exit</p>
+</li>
+<li><p>从全局模式退回到特权模式的命令：exit 或 end 或 快捷方式：ctrl + z</p>
+</li>
+<li><p>从特权模式退回到用户模式的命令：exit（只适用于模拟器，真实交换机设备使用命令是disable）</p>
+</li>
+<li><p>从接口模式直接退回到特权模式的命令：end</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CISCO模拟器的使用</p>
+<ul>
+<li>绘制网络拓扑图与应用各种网络设备<ul>
+<li>选择对应的网络设备（交换机、路由器、防火墙、服务器、PC）</li>
+<li>选择链接对应网络设备的线缆（配置线、直通线、交叉线等）</li>
+<li>对网络设备进行逐一配置（配置IP地址、接口地址等）</li>
+<li>测试并验证最终的结果</li>
+</ul>
+</li>
+<li>模拟器网络设备的分类<ol>
+<li>交换机<ul>
+<li>二层交换机：cisco 2960（入门级交换机）</li>
+<li>三层交换机：cisco 3560（企业级交换机）</li>
+</ul>
+</li>
+<li>路由器<ul>
+<li>路由器型号：cisco 2811、2911等</li>
+</ul>
+</li>
+<li>防火墙<ul>
+<li>防火墙系列：cisco 5055</li>
+</ul>
+</li>
+<li>终端设备<ul>
+<li>个人PC：台式机、笔记本</li>
+<li>服务器：Server-PT</li>
+</ul>
+</li>
+<li>线缆分类<ul>
+<li>配置线</li>
+<li>直通线</li>
+<li>交叉线</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>模拟器的辅助功能<ul>
+<li>网络设备添加标识——place note</li>
+<li>删除网络设备图标</li>
+<li>放大与缩小网络设备图标</li>
+<li>选择网络设备或绘制拓扑图，进行移动操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>以太网中网络设备常用命令</p>
+<ul>
+<li>ping 测试网络的连通性</li>
+<li>ipconfig 查看windows系统中，对应网卡配置的ip地址信息</li>
+<li>ifconfig 查看linux系统中，对应网卡配置的ip地址信息</li>
+<li>show mac-address-table dynamic 查看交换机中MAC地址表的信息（特权模式）</li>
+</ul>
+</li>
+<li><p>网络设备查询注意事项</p>
+<ul>
+<li>在特权模式使用show命令，例如：Switch# show mac-address-table dynamic</li>
+<li>在全局模式使用show命令，例如：Switch(config)# do show mac-address-table</li>
+<li>在接口模式使用show命令，例如：Switch(config-if)#do show mac-address-table</li>
+</ul>
+</li>
+<li><p>交换机双工模式配置与速率配置</p>
+<ul>
+<li>以太网接口双工模式配置<ul>
+<li>交换机双工模式在配置时，若交换机两端对应接口的双工模式不一样时，会造成严重的丢包现象，导致 网络无法正常通信。</li>
+<li>实际配置交换机接口双工模式采用全双工，交换机两端接口双工模式必须配置一样，使用的命令： duplex full</li>
+</ul>
+</li>
+<li>以太网接口速率配置<ul>
+<li>交换机速率配置时，若交换机两端对应接口的速率不一样时，直接导致网络无法正常通信。</li>
+<li>实际配置交换机接口速率采用100&#x2F;1000速率，交换机两端接口速率必须配置一样，使用命令：speed 100&#x2F;1000</li>
+</ul>
+</li>
+<li>查看交换机接口详细信息使用的查询命令<ul>
+<li>show interface f0&#x2F;24 或者 sh int f0&#x2F;24（在特权模式执行命令）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>交换网络播的类型</p>
+<ul>
+<li>单播：一对一，传输效率最高，延迟最小</li>
+<li>组播：一对多，传输效率其次，延迟较小</li>
+<li>广播：一对多，传输效率最低，延迟最大</li>
+</ul>
+</li>
+</ol>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>网络应用与实验</category>
+        <category>交换机原理与配置</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>网络应用与实验</tag>
+        <tag>交换机原理与配置</tag>
       </tags>
   </entry>
   <entry>
@@ -2618,6 +2618,326 @@
       </tags>
   </entry>
   <entry>
+    <title>计算机网络参考模型</title>
+    <url>/2023/09/19/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="计算机网络参考模型"><a href="#计算机网络参考模型" class="headerlink" title="计算机网络参考模型"></a>计算机网络参考模型</h1><h2 id="一、网络分类"><a href="#一、网络分类" class="headerlink" title="一、网络分类"></a>一、网络分类</h2><ol>
+<li>从地域的范围上划分<ul>
+<li>局域网</li>
+<li>广域网</li>
+</ul>
+</li>
+<li>从用户使用角度上划分<ul>
+<li>有线网络</li>
+<li>无线网络</li>
+</ul>
+</li>
+<li>从传输速率上划分<ul>
+<li>普通网络</li>
+<li>高速网络</li>
+</ul>
+</li>
+<li>从企业业务划分<ul>
+<li>内部网络——私有网络</li>
+<li>外部网络——公有网络（internet）</li>
+</ul>
+</li>
+</ol>
+<span id="more"></span>
+
+<hr>
+<h2 id="二、分层思想"><a href="#二、分层思想" class="headerlink" title="二、分层思想"></a>二、分层思想</h2><ol>
+<li>网络划分使用分层思想目的：<ul>
+<li>方便定位问题，进而高效解决问题</li>
+<li>降低分析问题的难度，便于维护管理网络</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）"><a href="#三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）" class="headerlink" title="三、如何对网络进行分层——OSI七层参考模型（下一层是为 上一层提供服务的）"></a>三、如何对网络进行分层——OSI七层参考模型（<font color="red">下一层是为 上一层提供服务的</font>）</h2><ol>
+<li>物理层（第一层，也称为最底层）<ul>
+<li>用于建立、断开、维护物理连接</li>
+<li>以比特流的方式进行数据传输，传输信号使用0和1表示</li>
+<li>可以数据双向传输（收发数据可以同时进行，即数据的双向传输）</li>
+<li>对应的设备——计算机、网卡、网线</li>
+</ul>
+</li>
+<li>数据链路层（第二层）<ul>
+<li>把传输的数据帧进行封装和解封装，数据链路层传输的数据称为数据帧</li>
+<li>数据帧的地址——源MAC地址、目标MAC地址</li>
+<li>数据校验的功能</li>
+<li>对应的设备——交换机</li>
+</ul>
+</li>
+<li>网络层（第三层）<ul>
+<li>把传输的数据包进行封装和解封装，网络层传输的数据为数据包</li>
+<li>数据包的地址——源IP地址、目标IP地址</li>
+<li>根据包头字段中的地址进行选路（路由器中的路由表进行数据包的转发）</li>
+<li>对应设备——路由器</li>
+</ul>
+</li>
+<li>传输层（第四层）<ul>
+<li>实现用户进程间通信（如：在计算机上安装QQ进程）</li>
+<li>承上启下（乘上——对应的会话层或应用，启下——对应的网络层）</li>
+<li>对应的设备——防火墙</li>
+</ul>
+</li>
+<li>会话层（第五层）<ul>
+<li>建立用户间的会话关系</li>
+</ul>
+</li>
+<li>表示层（第六层）<ul>
+<li>定义传输数据的标准格式（语法和定义）</li>
+<li>对传输的数据进行压缩解压缩、加密解密、编码解码</li>
+</ul>
+</li>
+<li>应用层（第七层，也称为最高层）<ul>
+<li>提供与用户的接口（定义两端使用统一程序接口）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="四、OSI七层参考模型与TCP-IP模型的关系"><a href="#四、OSI七层参考模型与TCP-IP模型的关系" class="headerlink" title="四、OSI七层参考模型与TCP&#x2F;IP模型的关系"></a>四、OSI七层参考模型与TCP&#x2F;IP模型的关系</h2><ol>
+<li>OSI七层参考模型，是一种理论参考模型，也成为“经典模型”。</li>
+<li>实际使用中，采用是TCP&#x2F;IP五层模型，即把会话层、表示层、应用层合并为一层“应用层”。</li>
+<li>OSI七层参考模型是由TCP&#x2F;IP五层模型演进而来的。</li>
+</ol>
+<hr>
+<h2 id="五、TCP-IP每层对应的协议"><a href="#五、TCP-IP每层对应的协议" class="headerlink" title="五、TCP&#x2F;IP每层对应的协议"></a>五、TCP&#x2F;IP每层对应的协议</h2><p><img src="https://s2.loli.net/2023/09/21/ibB8VS7kolNpaUT.png" alt="TCP每层协议.png"></p>
+<ol>
+<li>物理层<ul>
+<li>底层网络定义的协议均支持</li>
+</ul>
+</li>
+<li>数据链路层<ul>
+<li>标准网络定义的协议均支持</li>
+</ul>
+</li>
+<li>网络层<ul>
+<li>IP（ICMP&#x2F;IGMP&#x2F;ARP&#x2F;RARP）</li>
+</ul>
+</li>
+<li>传输层<ul>
+<li>TCP UDP</li>
+</ul>
+</li>
+<li>应用层<ul>
+<li>http&#x2F;https&#x2F;smtp&#x2F;<code>dns</code>&#x2F;ftp&#x2F;ssh&#x2F;tftp</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="六、数据封装与解封装过程（主机A向主机B发送数据）"><a href="#六、数据封装与解封装过程（主机A向主机B发送数据）" class="headerlink" title="六、数据封装与解封装过程（主机A向主机B发送数据）"></a>六、数据封装与解封装过程（主机A向主机B发送数据）</h2><p><img src="https://s2.loli.net/2023/09/21/BDJpTfwXKdOSIvo.png" alt="数据封装过程.jpg"></p>
+<blockquote>
+<p>发送方（主机A）向接收方（主机B）发送数据前，要进行封装过程如下：</p>
+</blockquote>
+<ol>
+<li>发送方（主机A）对数据进行封装时，从高层往底层进行逐层封装</li>
+<li>从应用层到传输层，在上层数据的基础上封装TCP头部</li>
+<li>从传输层到网络层，在“TCP头部+上层数据”基础上封装IP头 部</li>
+<li>从网络层到数据链路层，在“IP头部+TCP头部+上层数据”基 础上封装MAC头部</li>
+<li>到最后的物理层，转换成比特流在网络中传输。</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/09/21/GEzraBOVoRpidTk.png" alt="数据解封装过程.jpg"></p>
+<blockquote>
+<p>接收方（主机B）从发送方（主机A）接收数据前，要进行解封装的过程如下：</p>
+</blockquote>
+<ol>
+<li>接收方（主机B）对数据进行解封装时，从底层到高层逐层进行解封装</li>
+<li>通过物理层网络，传输比特流数据到数据链路层</li>
+<li>到数据链路层后去掉，MAC头部</li>
+<li>到网络层后去掉，IP头部</li>
+<li>到传输层后去掉，TCP头部</li>
+<li>到应用层后，还原上传数据。</li>
+</ol>
+<hr>
+<h2 id="七、PDU（协议数据单元）"><a href="#七、PDU（协议数据单元）" class="headerlink" title="七、PDU（协议数据单元）"></a>七、PDU（协议数据单元）</h2><ol>
+<li>名称解释：PDU是定义TCP&#x2F;IP的五层模型，每层传输数据的名称<ul>
+<li>物理层传输的数据：比特流</li>
+<li>数据链路层传输的数据：数据帧</li>
+<li>网络层传输的数据：数据包</li>
+<li>传输层传输的数据：数据段</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="八、TCP-IP五层模型每层对应的硬件设备"><a href="#八、TCP-IP五层模型每层对应的硬件设备" class="headerlink" title="八、TCP&#x2F;IP五层模型每层对应的硬件设备"></a>八、TCP&#x2F;IP五层模型每层对应的硬件设备</h2><ol>
+<li>物理层——网卡、传输介质（双绞线，也叫“网线”）</li>
+<li>数据链路层——交换机</li>
+<li>网络层——路由器</li>
+<li>传输层——防火墙</li>
+<li>应用层——计算机软件</li>
+</ol>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>网络应用与实验</category>
+        <category>计算机网络参考模型</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>网络应用与实验</tag>
+        <tag>计算机网络参考模型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>静态路由的原理与配置</title>
+    <url>/2023/10/06/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="静态路由的原理与配置"><a href="#静态路由的原理与配置" class="headerlink" title="静态路由的原理与配置"></a>静态路由的原理与配置</h1><h2 id="一、路由器的转发原理"><a href="#一、路由器的转发原理" class="headerlink" title="一、路由器的转发原理"></a>一、路由器的转发原理</h2><ul>
+<li><p>路由的定义：从源主机到目标主机转发数据包的过程为路由。</p>
+</li>
+<li><p>路由器的定义：将数据包正确转发到目的地，并选择最佳路由进行转发的网络设备称为路由器</p>
+</li>
+<li><p>路由器的工作原理（路由器转发数据包的过程）</p>
+<p><img src="https://s2.loli.net/2023/09/29/rtVinsK5vX8INPz.png" alt="路由器转发数据过程.jpg"><span id="more"></span></p>
+<ol>
+<li>主机1.1要发送数据包给主机4.1，因为IP地址不在同一网段，主机会将数据包发送给本网段的网关路由器A。</li>
+<li>路由器A接收到数据包，查看数据包IP首部中的目标IP地址，再查找自己的路由表。数据包的目标IP地址是4.1，属于4.0网段，路由器A在路由表中查到4.0网段转发的接口是S0接口。于是，路由器A将数据包从S0接口转发出去。</li>
+<li>网络中的每个路由器都是按这样的步骤取转发数据，直到到达了路由器B，用同样的方法，从E0口转发出去，4.1主机接收到这个数据包。</li>
+</ol>
+</li>
+<li><p><strong><font color="red">总结：</font>接收数据包→查看目的地址→与路由表进行匹配找到转发端口→转发到该端口。</strong></p>
+</li>
+</ul>
+<hr>
+<h2 id="二、路由表的形成"><a href="#二、路由表的形成" class="headerlink" title="二、路由表的形成"></a>二、路由表的形成</h2><ul>
+<li><p>路由表的作用</p>
+<ul>
+<li><p>路由器根据路由表做路径选择，路由表是各路由条目的集合。</p>
+</li>
+<li><p>路径选择——最佳路径（不等于最短路径）</p>
+</li>
+<li><p>路由条目包括：直连路由条目（直连网段），非直连路由条目（非直连网段），动态路由条目（RIP&#x2F;OSPF等动态路由协议产生目标网段）</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="三、静态路由和默认路由"><a href="#三、静态路由和默认路由" class="headerlink" title="三、静态路由和默认路由"></a>三、静态路由和默认路由</h2><ul>
+<li>静态路由<ul>
+<li>为什么配置静态路由<ul>
+<li>配置路由表中的非直连网段路由条目时，需要通过配置静态路由来实现</li>
+</ul>
+</li>
+<li>静态路由的特点<ul>
+<li>由管理员手工配置，是单向路由</li>
+<li>缺乏灵活性（例如：更新网络地址或IP地址时，需要重新配置静态路由）</li>
+</ul>
+</li>
+<li>默认路由<ul>
+<li>默认路由与静态路由的关系<ul>
+<li>默认路由是一种特殊的静态路由。</li>
+</ul>
+</li>
+<li>默认路由的配置场景<ul>
+<li>一般配置在末梢网络或末节网络，即只有唯一条路径（路由器）与外部网络进行通信。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、路由器转发数据包的封装过程"><a href="#四、路由器转发数据包的封装过程" class="headerlink" title="四、路由器转发数据包的封装过程"></a>四、路由器转发数据包的封装过程</h2><ul>
+<li>路由器在转发数据包的过程中，一直在进行封装与解封装。</li>
+<li>路由器在封装的过程中，MAC头部中的源MAC地址（SA）和目标MAC地址（DA）一直在变。</li>
+<li>路由器在封装的过程中，IP头部中的源IP地址（SA）和目标IP地址（DA）一直不变。</li>
+</ul>
+<hr>
+<h2 id="五、静态路由和默认路由的配置"><a href="#五、静态路由和默认路由的配置" class="headerlink" title="五、静态路由和默认路由的配置"></a>五、静态路由和默认路由的配置</h2><ul>
+<li><p>静态路由配置</p>
+<ul>
+<li><p>Route(config)# ip route network netmask address（静态路由命令格式）</p>
+</li>
+<li><p>Route(config)# ip route 192.168.30.0 255.255.255.0 192.168.20.2 （静态路由配置命令）</p>
+</li>
+<li><p>Route# show ip route（查看路由器的路由表命令）</p>
+</li>
+<li><p>详解路由表中的信息，如下图所示：</p>
+<p><img src="https://s2.loli.net/2023/09/29/TZRsYCaHjefBUdy.png" alt="详解路由表信息.jpg"></p>
+</li>
+<li><p>直连路由——表示字符是<strong>C</strong>；静态路由——表示字符是<strong>S</strong>；默认路由——表示字符是<strong>S<sup>*</sup></strong></p>
+</li>
+<li><p>动态路由——表示字符是R（表示的是 rip 动态路由）</p>
+</li>
+<li><p>动态路由——表示字符O（表示的是 ospf 动态路由）</p>
+</li>
+<li><p>Route# ping 192.168.20.2（在路由器上使用ping命令，Ping通的情况下会出现5个感叹号，Ping不通的情况下会出现5个英文实点）</p>
+</li>
+</ul>
+</li>
+<li><p>实验过程：</p>
+<iframe src="https://easylink.cc/xc6xwe" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
+</iframe>
+</li>
+<li><p>默认路由器</p>
+<ul>
+<li>Route(config)# ip route 0.0.0.0 0.0.0.0 address（默认路由命令格式）</li>
+<li>Route(config)# ip route 0.0.0.0 0.0.0.0 192.168.20.2</li>
+</ul>
+</li>
+<li><p>实验过程：（只看后面即可）</p>
+<iframe src="https://easylink.cc/mdj7j4" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
+</iframe>
+</li>
+<li><p>静态路由或默认路由配置错误的删除办法</p>
+<ul>
+<li><p>Route(config)# <font color="red">no</font> ip route 192.168.2.0 255.255.255.0 192.168.1.1（删除静态路由的命令）</p>
+<p><img src="https://s2.loli.net/2023/09/29/oAm7zSZRcMLe1Jw.png" alt="删除静态路由的配置.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>网络故障排查</p>
+<ul>
+<li>物理层排查<ul>
+<li>检查网络传输介质（双绞线–线缆问题、水晶头、光纤、光缆）</li>
+<li>检查PC网卡指示灯是否正常</li>
+</ul>
+</li>
+<li>数据链路层检查<ul>
+<li>查看交换机的接口指示灯是否正常</li>
+<li>使用查询命令检查交换机接口的状态<ol>
+<li>show running-config</li>
+<li>show ip interface brief</li>
+<li>show interface f0&#x2F;0</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>网络层检查<ul>
+<li>检查路由器接口IP地址是否配置正确<ol>
+<li>show ip interface brief</li>
+<li>show interface f0&#x2F;0</li>
+</ol>
+</li>
+<li>检查路由器的路由表是否配置正确<ol>
+<li>show ip route</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>学习</category>
+        <category>运维</category>
+        <category>网络应用与实验</category>
+        <category>静态路由原理与配置</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>网络应用与实验</tag>
+        <tag>静态路由原理与配置</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS3</title>
     <url>/2023/09/18/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/CSS3/</url>
     <content><![CDATA[<h1 id="CSS3-这里3指第三代CSS"><a href="#CSS3-这里3指第三代CSS" class="headerlink" title="CSS3(这里3指第三代CSS)"></a>CSS3(这里3指第三代CSS)</h1><h2 id="一、css3属性选择器"><a href="#一、css3属性选择器" class="headerlink" title="一、css3属性选择器"></a>一、css3属性选择器</h2><ol>
@@ -3152,326 +3472,6 @@
       <tags>
         <tag>网页</tag>
         <tag>CSS3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算机网络参考模型</title>
-    <url>/2023/09/19/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h1 id="计算机网络参考模型"><a href="#计算机网络参考模型" class="headerlink" title="计算机网络参考模型"></a>计算机网络参考模型</h1><h2 id="一、网络分类"><a href="#一、网络分类" class="headerlink" title="一、网络分类"></a>一、网络分类</h2><ol>
-<li>从地域的范围上划分<ul>
-<li>局域网</li>
-<li>广域网</li>
-</ul>
-</li>
-<li>从用户使用角度上划分<ul>
-<li>有线网络</li>
-<li>无线网络</li>
-</ul>
-</li>
-<li>从传输速率上划分<ul>
-<li>普通网络</li>
-<li>高速网络</li>
-</ul>
-</li>
-<li>从企业业务划分<ul>
-<li>内部网络——私有网络</li>
-<li>外部网络——公有网络（internet）</li>
-</ul>
-</li>
-</ol>
-<span id="more"></span>
-
-<hr>
-<h2 id="二、分层思想"><a href="#二、分层思想" class="headerlink" title="二、分层思想"></a>二、分层思想</h2><ol>
-<li>网络划分使用分层思想目的：<ul>
-<li>方便定位问题，进而高效解决问题</li>
-<li>降低分析问题的难度，便于维护管理网络</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）"><a href="#三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）" class="headerlink" title="三、如何对网络进行分层——OSI七层参考模型（下一层是为 上一层提供服务的）"></a>三、如何对网络进行分层——OSI七层参考模型（<font color="red">下一层是为 上一层提供服务的</font>）</h2><ol>
-<li>物理层（第一层，也称为最底层）<ul>
-<li>用于建立、断开、维护物理连接</li>
-<li>以比特流的方式进行数据传输，传输信号使用0和1表示</li>
-<li>可以数据双向传输（收发数据可以同时进行，即数据的双向传输）</li>
-<li>对应的设备——计算机、网卡、网线</li>
-</ul>
-</li>
-<li>数据链路层（第二层）<ul>
-<li>把传输的数据帧进行封装和解封装，数据链路层传输的数据称为数据帧</li>
-<li>数据帧的地址——源MAC地址、目标MAC地址</li>
-<li>数据校验的功能</li>
-<li>对应的设备——交换机</li>
-</ul>
-</li>
-<li>网络层（第三层）<ul>
-<li>把传输的数据包进行封装和解封装，网络层传输的数据为数据包</li>
-<li>数据包的地址——源IP地址、目标IP地址</li>
-<li>根据包头字段中的地址进行选路（路由器中的路由表进行数据包的转发）</li>
-<li>对应设备——路由器</li>
-</ul>
-</li>
-<li>传输层（第四层）<ul>
-<li>实现用户进程间通信（如：在计算机上安装QQ进程）</li>
-<li>承上启下（乘上——对应的会话层或应用，启下——对应的网络层）</li>
-<li>对应的设备——防火墙</li>
-</ul>
-</li>
-<li>会话层（第五层）<ul>
-<li>建立用户间的会话关系</li>
-</ul>
-</li>
-<li>表示层（第六层）<ul>
-<li>定义传输数据的标准格式（语法和定义）</li>
-<li>对传输的数据进行压缩解压缩、加密解密、编码解码</li>
-</ul>
-</li>
-<li>应用层（第七层，也称为最高层）<ul>
-<li>提供与用户的接口（定义两端使用统一程序接口）</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="四、OSI七层参考模型与TCP-IP模型的关系"><a href="#四、OSI七层参考模型与TCP-IP模型的关系" class="headerlink" title="四、OSI七层参考模型与TCP&#x2F;IP模型的关系"></a>四、OSI七层参考模型与TCP&#x2F;IP模型的关系</h2><ol>
-<li>OSI七层参考模型，是一种理论参考模型，也成为“经典模型”。</li>
-<li>实际使用中，采用是TCP&#x2F;IP五层模型，即把会话层、表示层、应用层合并为一层“应用层”。</li>
-<li>OSI七层参考模型是由TCP&#x2F;IP五层模型演进而来的。</li>
-</ol>
-<hr>
-<h2 id="五、TCP-IP每层对应的协议"><a href="#五、TCP-IP每层对应的协议" class="headerlink" title="五、TCP&#x2F;IP每层对应的协议"></a>五、TCP&#x2F;IP每层对应的协议</h2><p><img src="https://s2.loli.net/2023/09/21/ibB8VS7kolNpaUT.png" alt="TCP每层协议.png"></p>
-<ol>
-<li>物理层<ul>
-<li>底层网络定义的协议均支持</li>
-</ul>
-</li>
-<li>数据链路层<ul>
-<li>标准网络定义的协议均支持</li>
-</ul>
-</li>
-<li>网络层<ul>
-<li>IP（ICMP&#x2F;IGMP&#x2F;ARP&#x2F;RARP）</li>
-</ul>
-</li>
-<li>传输层<ul>
-<li>TCP UDP</li>
-</ul>
-</li>
-<li>应用层<ul>
-<li>http&#x2F;https&#x2F;smtp&#x2F;<code>dns</code>&#x2F;ftp&#x2F;ssh&#x2F;tftp</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="六、数据封装与解封装过程（主机A向主机B发送数据）"><a href="#六、数据封装与解封装过程（主机A向主机B发送数据）" class="headerlink" title="六、数据封装与解封装过程（主机A向主机B发送数据）"></a>六、数据封装与解封装过程（主机A向主机B发送数据）</h2><p><img src="https://s2.loli.net/2023/09/21/BDJpTfwXKdOSIvo.png" alt="数据封装过程.jpg"></p>
-<blockquote>
-<p>发送方（主机A）向接收方（主机B）发送数据前，要进行封装过程如下：</p>
-</blockquote>
-<ol>
-<li>发送方（主机A）对数据进行封装时，从高层往底层进行逐层封装</li>
-<li>从应用层到传输层，在上层数据的基础上封装TCP头部</li>
-<li>从传输层到网络层，在“TCP头部+上层数据”基础上封装IP头 部</li>
-<li>从网络层到数据链路层，在“IP头部+TCP头部+上层数据”基 础上封装MAC头部</li>
-<li>到最后的物理层，转换成比特流在网络中传输。</li>
-</ol>
-<p><img src="https://s2.loli.net/2023/09/21/GEzraBOVoRpidTk.png" alt="数据解封装过程.jpg"></p>
-<blockquote>
-<p>接收方（主机B）从发送方（主机A）接收数据前，要进行解封装的过程如下：</p>
-</blockquote>
-<ol>
-<li>接收方（主机B）对数据进行解封装时，从底层到高层逐层进行解封装</li>
-<li>通过物理层网络，传输比特流数据到数据链路层</li>
-<li>到数据链路层后去掉，MAC头部</li>
-<li>到网络层后去掉，IP头部</li>
-<li>到传输层后去掉，TCP头部</li>
-<li>到应用层后，还原上传数据。</li>
-</ol>
-<hr>
-<h2 id="七、PDU（协议数据单元）"><a href="#七、PDU（协议数据单元）" class="headerlink" title="七、PDU（协议数据单元）"></a>七、PDU（协议数据单元）</h2><ol>
-<li>名称解释：PDU是定义TCP&#x2F;IP的五层模型，每层传输数据的名称<ul>
-<li>物理层传输的数据：比特流</li>
-<li>数据链路层传输的数据：数据帧</li>
-<li>网络层传输的数据：数据包</li>
-<li>传输层传输的数据：数据段</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="八、TCP-IP五层模型每层对应的硬件设备"><a href="#八、TCP-IP五层模型每层对应的硬件设备" class="headerlink" title="八、TCP&#x2F;IP五层模型每层对应的硬件设备"></a>八、TCP&#x2F;IP五层模型每层对应的硬件设备</h2><ol>
-<li>物理层——网卡、传输介质（双绞线，也叫“网线”）</li>
-<li>数据链路层——交换机</li>
-<li>网络层——路由器</li>
-<li>传输层——防火墙</li>
-<li>应用层——计算机软件</li>
-</ol>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>网络应用与实验</category>
-        <category>计算机网络参考模型</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>网络应用与实验</tag>
-        <tag>计算机网络参考模型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>静态路由的原理与配置</title>
-    <url>/2023/10/06/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="静态路由的原理与配置"><a href="#静态路由的原理与配置" class="headerlink" title="静态路由的原理与配置"></a>静态路由的原理与配置</h1><h2 id="一、路由器的转发原理"><a href="#一、路由器的转发原理" class="headerlink" title="一、路由器的转发原理"></a>一、路由器的转发原理</h2><ul>
-<li><p>路由的定义：从源主机到目标主机转发数据包的过程为路由。</p>
-</li>
-<li><p>路由器的定义：将数据包正确转发到目的地，并选择最佳路由进行转发的网络设备称为路由器</p>
-</li>
-<li><p>路由器的工作原理（路由器转发数据包的过程）</p>
-<p><img src="https://s2.loli.net/2023/09/29/rtVinsK5vX8INPz.png" alt="路由器转发数据过程.jpg"><span id="more"></span></p>
-<ol>
-<li>主机1.1要发送数据包给主机4.1，因为IP地址不在同一网段，主机会将数据包发送给本网段的网关路由器A。</li>
-<li>路由器A接收到数据包，查看数据包IP首部中的目标IP地址，再查找自己的路由表。数据包的目标IP地址是4.1，属于4.0网段，路由器A在路由表中查到4.0网段转发的接口是S0接口。于是，路由器A将数据包从S0接口转发出去。</li>
-<li>网络中的每个路由器都是按这样的步骤取转发数据，直到到达了路由器B，用同样的方法，从E0口转发出去，4.1主机接收到这个数据包。</li>
-</ol>
-</li>
-<li><p><strong><font color="red">总结：</font>接收数据包→查看目的地址→与路由表进行匹配找到转发端口→转发到该端口。</strong></p>
-</li>
-</ul>
-<hr>
-<h2 id="二、路由表的形成"><a href="#二、路由表的形成" class="headerlink" title="二、路由表的形成"></a>二、路由表的形成</h2><ul>
-<li><p>路由表的作用</p>
-<ul>
-<li><p>路由器根据路由表做路径选择，路由表是各路由条目的集合。</p>
-</li>
-<li><p>路径选择——最佳路径（不等于最短路径）</p>
-</li>
-<li><p>路由条目包括：直连路由条目（直连网段），非直连路由条目（非直连网段），动态路由条目（RIP&#x2F;OSPF等动态路由协议产生目标网段）</p>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="三、静态路由和默认路由"><a href="#三、静态路由和默认路由" class="headerlink" title="三、静态路由和默认路由"></a>三、静态路由和默认路由</h2><ul>
-<li>静态路由<ul>
-<li>为什么配置静态路由<ul>
-<li>配置路由表中的非直连网段路由条目时，需要通过配置静态路由来实现</li>
-</ul>
-</li>
-<li>静态路由的特点<ul>
-<li>由管理员手工配置，是单向路由</li>
-<li>缺乏灵活性（例如：更新网络地址或IP地址时，需要重新配置静态路由）</li>
-</ul>
-</li>
-<li>默认路由<ul>
-<li>默认路由与静态路由的关系<ul>
-<li>默认路由是一种特殊的静态路由。</li>
-</ul>
-</li>
-<li>默认路由的配置场景<ul>
-<li>一般配置在末梢网络或末节网络，即只有唯一条路径（路由器）与外部网络进行通信。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="四、路由器转发数据包的封装过程"><a href="#四、路由器转发数据包的封装过程" class="headerlink" title="四、路由器转发数据包的封装过程"></a>四、路由器转发数据包的封装过程</h2><ul>
-<li>路由器在转发数据包的过程中，一直在进行封装与解封装。</li>
-<li>路由器在封装的过程中，MAC头部中的源MAC地址（SA）和目标MAC地址（DA）一直在变。</li>
-<li>路由器在封装的过程中，IP头部中的源IP地址（SA）和目标IP地址（DA）一直不变。</li>
-</ul>
-<hr>
-<h2 id="五、静态路由和默认路由的配置"><a href="#五、静态路由和默认路由的配置" class="headerlink" title="五、静态路由和默认路由的配置"></a>五、静态路由和默认路由的配置</h2><ul>
-<li><p>静态路由配置</p>
-<ul>
-<li><p>Route(config)# ip route network netmask address（静态路由命令格式）</p>
-</li>
-<li><p>Route(config)# ip route 192.168.30.0 255.255.255.0 192.168.20.2 （静态路由配置命令）</p>
-</li>
-<li><p>Route# show ip route（查看路由器的路由表命令）</p>
-</li>
-<li><p>详解路由表中的信息，如下图所示：</p>
-<p><img src="https://s2.loli.net/2023/09/29/TZRsYCaHjefBUdy.png" alt="详解路由表信息.jpg"></p>
-</li>
-<li><p>直连路由——表示字符是<strong>C</strong>；静态路由——表示字符是<strong>S</strong>；默认路由——表示字符是<strong>S<sup>*</sup></strong></p>
-</li>
-<li><p>动态路由——表示字符是R（表示的是 rip 动态路由）</p>
-</li>
-<li><p>动态路由——表示字符O（表示的是 ospf 动态路由）</p>
-</li>
-<li><p>Route# ping 192.168.20.2（在路由器上使用ping命令，Ping通的情况下会出现5个感叹号，Ping不通的情况下会出现5个英文实点）</p>
-</li>
-</ul>
-</li>
-<li><p>实验过程：</p>
-<iframe src="https://easylink.cc/xc6xwe" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
-</iframe>
-</li>
-<li><p>默认路由器</p>
-<ul>
-<li>Route(config)# ip route 0.0.0.0 0.0.0.0 address（默认路由命令格式）</li>
-<li>Route(config)# ip route 0.0.0.0 0.0.0.0 192.168.20.2</li>
-</ul>
-</li>
-<li><p>实验过程：（只看后面即可）</p>
-<iframe src="https://easylink.cc/mdj7j4" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="600" width="800"> 
-</iframe>
-</li>
-<li><p>静态路由或默认路由配置错误的删除办法</p>
-<ul>
-<li><p>Route(config)# <font color="red">no</font> ip route 192.168.2.0 255.255.255.0 192.168.1.1（删除静态路由的命令）</p>
-<p><img src="https://s2.loli.net/2023/09/29/oAm7zSZRcMLe1Jw.png" alt="删除静态路由的配置.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p>网络故障排查</p>
-<ul>
-<li>物理层排查<ul>
-<li>检查网络传输介质（双绞线–线缆问题、水晶头、光纤、光缆）</li>
-<li>检查PC网卡指示灯是否正常</li>
-</ul>
-</li>
-<li>数据链路层检查<ul>
-<li>查看交换机的接口指示灯是否正常</li>
-<li>使用查询命令检查交换机接口的状态<ol>
-<li>show running-config</li>
-<li>show ip interface brief</li>
-<li>show interface f0&#x2F;0</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>网络层检查<ul>
-<li>检查路由器接口IP地址是否配置正确<ol>
-<li>show ip interface brief</li>
-<li>show interface f0&#x2F;0</li>
-</ol>
-</li>
-<li>检查路由器的路由表是否配置正确<ol>
-<li>show ip route</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>记录</category>
-        <category>学习</category>
-        <category>运维</category>
-        <category>网络应用与实验</category>
-        <category>静态路由原理与配置</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>网络应用与实验</tag>
-        <tag>静态路由原理与配置</tag>
       </tags>
   </entry>
   <entry>

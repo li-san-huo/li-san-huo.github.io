@@ -108,17 +108,25 @@
   
   
   
+
 <div class="notice" style="margin-top:50px">
     <i class="ri-heart-fill"></i>
-    <div class="notice-content">持续施工建造中。。。</div>
+    <div class="notice-content" id="broad"></div>
 </div>
-
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
 
 <style>
     .notice {
         padding: 20px;
-        border: 1px dashed #e6e6e6;
-        color: #969696;
+        border: 4px dashed #e6e6e6;
+        color: #6f6f6f;
         position: relative;
         display: inline-block;
         width: 100%;
@@ -128,7 +136,7 @@
 
     .notice i {
         float: left;
-        color: #999;
+        color: red;
         font-size: 16px;
         padding-right: 10px;
         vertical-align: middle;
@@ -851,8 +859,8 @@
     <ul>
       <li>
         Copyrights &copy;
-        
-              2023
+        2023-
+              2024
                 <i class="ri-heart-fill heart_icon"></i>
                 Yan
       </li>
