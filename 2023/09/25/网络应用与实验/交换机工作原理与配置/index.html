@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>交换机工作原理与配置 |  焱</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-网络应用与实验/交换机工作原理与配置"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  交换机工作原理与配置
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/09/25/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2023-09-25T04:19:28.000Z" itemprop="datePublished">2023-09-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/">运维</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/">网络应用与实验</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/">交换机原理与配置</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.8k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">6 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="交换机工作原理与配置"><a href="#交换机工作原理与配置" class="headerlink" title="交换机工作原理与配置"></a>交换机工作原理与配置</h1><h2 id="一、知识回顾"><a href="#一、知识回顾" class="headerlink" title="一、知识回顾"></a>一、知识回顾</h2><ul>
+<li><p>数据链路层的作用</p>
+</li>
+<li><p>以太网的发展史</p>
+<ul>
+<li>2.94M实验性以太网</li>
+<li>10M以太网</li>
+<li>100M以太网</li>
+<li>1000M以太网<span id="more"></span></li>
+</ul>
+</li>
+<li><p>以太网MAC地址组成</p>
+<ul>
+<li><p>定义：通过MAC地址识别以太网中的每个设备（PC）</p>
+</li>
+<li><p>以太网MAC地址是全球唯一</p>
+</li>
+<li><p>通过48个比特位表示（前24个比特位表示厂商；后24个比特位表示唯一编码）；其中前24个比特位中的第8位，若是0，表示单播地址；若是1，表示组播地址。</p>
+</li>
+<li><p>MAC地址，又称为“物理地址”。MAC地址焊接在网卡芯片上，用于以太网的数据传输，同时标识以太网中的每一台PC。</p>
+<p><img src="https://s2.loli.net/2023/09/22/CthNgxyXFj5mZDB.png" alt="MAC地址组成.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>以太网的帧格式</p>
+<ul>
+<li><p>以太网帧格式部分组成——目的地址（目前主机MAC地址）；源地址（源主机MAC地址）；数据（46~1500字节）；类型（上层对应的协议，一般指IP协议，即四个支撑协议（icmp&#x2F;igmp&#x2F;arp&#x2F;rarp）；帧校验序列。</p>
+<p><img src="https://s2.loli.net/2023/09/22/FHoSiIfX3VypRnd.jpg" alt="以太网帧格式.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二、交换机"><a href="#二、交换机" class="headerlink" title="二、交换机"></a>二、交换机</h2><ol>
+<li><p>交换机产品系列</p>
+<ul>
+<li>CISCO 2960（入门级交换机）</li>
+<li>CISCO 3560（企业级交换机）</li>
+<li>CISCO 4500（企业模块级交换机）</li>
+<li>CISCO 6500（大型企业、电信级交换机）</li>
+</ul>
+</li>
+<li><p>交换机工作原理</p>
+<p><img src="https://s2.loli.net/2023/09/22/3dvcDLa5Vfo4hBC.png" alt="交换机工作原理.jpg"></p>
+<ul>
+<li>初始化（给交换机进行加电自检）</li>
+<li>学习MAC地址（A主机的源MAC地址）</li>
+<li>广播（广播B主机的MAC地址）</li>
+<li>再学习MAC地址（主机B回应的同时，交换机学习主机B的源MAC地址）</li>
+<li>单播（实现主机A到主机B的单播通信）</li>
+</ul>
+</li>
+<li><p>交换机工作原理总结</p>
+<ul>
+<li>交换机始终学习的是各主机的源MAC地址</li>
+<li>交换机把学习到的MAC地址记录到MAC地址表中，记录的具体信息：MAC地址＋对应接口</li>
+<li>交换机MAC地址表中的信息不是永久存在的，是临时的，老化时间是３００秒（５分钟）。</li>
+</ul>
+</li>
+<li><p>交换机以太网接口的工作模式</p>
+<ul>
+<li><p>单工——两个数据站之间只能进行单向数据传输（类似话筒与扬声器）</p>
+<p><img src="https://s2.loli.net/2023/09/23/bswMtKZi9gNPeDv.png" alt="单工数据传输.jpg"></p>
+</li>
+<li><p>半双工——两个数据站之间双向数据传输，但不能同时进行（类似于对讲机）</p>
+<p><img src="https://s2.loli.net/2023/09/23/BSJybgZNhXlfip7.png" alt="半双工数据传输.jpg"></p>
+</li>
+<li><p>全双工——两个数据站双向且同时进行数据传输（类似于电话或手机）</p>
+<p><img src="https://s2.loli.net/2023/09/23/r2FOEcGx8IXdRZs.png" alt="全双工数据传输.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>交换机以太网的接口速率</p>
+<ul>
+<li>接口速率——自动协商、10M、100M、1000M</li>
+<li>接口速率设置时，两端接口必须保持一样</li>
+<li>接口速率协商失败，导致网络链路无法正常通信</li>
+</ul>
+</li>
+<li><p>交换机的配置方法</p>
+<ul>
+<li><p>通过Console配置线链接PC的COM口实现对交换机的配置（传统配置方法）</p>
+<p><img src="https://s2.loli.net/2023/09/23/lj7a4UYnt32dDy8.png" alt="通过 Console 接口配置交换机.jpg"></p>
+</li>
+<li><p>直接通过交换机的CLI(Command line interface)命令行接口对交换机进行配置</p>
+</li>
+</ul>
+</li>
+<li><p>交换机命令行的工作模式</p>
+<ul>
+<li>用户模式——查看交换机相关信息</li>
+<li>特权模式——查看或修改相关信息</li>
+<li>全局模式——主要用于对交换机全局配置信息的修改</li>
+<li>接口模式——主要用于对交换机接口进行相关的配置</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/09/23/397FwypbisjYu4c.png" alt="Cisco 设备命令行模式关系图.jpg"></p>
+</li>
+<li><p>交换机命令行的帮助</p>
+<ul>
+<li>？显示当前工作模式下可以使用的命令列表及参数</li>
+<li>Tab 命令补齐或命令提示</li>
+<li>ctrl + A 将光标定位到命令行的开始位置</li>
+<li>ctrl + E 将光标定位到命令行的结束位置</li>
+</ul>
+</li>
+<li><p>交换机命令行工作模式的切换方式</p>
+<ul>
+<li><p>交换机的工作模式</p>
+<ul>
+<li>用户模式：Switch&gt;</li>
+<li>特权模式：Switch#</li>
+<li>全局模式：Switch(config)#</li>
+<li>接口模式：Switch(config-if)#</li>
+</ul>
+</li>
+<li><p>交换机工作模式的切换方式</p>
+<ul>
+<li><p>从用户模式进入或切换到特权模式的命令：enable可简写为en</p>
+</li>
+<li><p>从特权模式进入或切换到全局模式的命令：configure terminal可简写为 conf t</p>
+</li>
+<li><p>从全局模式进入或切换到接口模式的命令：interface fastEthernet 0&#x2F;1可简写为 int f0&#x2F;1，<font color='red'>总结：从用户 模式进入到接口模式，必须一级一级的进行切换。</font></p>
+</li>
+<li><p>从接口模式退回到全局模式的命令：exit</p>
+</li>
+<li><p>从全局模式退回到特权模式的命令：exit 或 end 或 快捷方式：ctrl + z</p>
+</li>
+<li><p>从特权模式退回到用户模式的命令：exit（只适用于模拟器，真实交换机设备使用命令是disable）</p>
+</li>
+<li><p>从接口模式直接退回到特权模式的命令：end</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CISCO模拟器的使用</p>
+<ul>
+<li>绘制网络拓扑图与应用各种网络设备<ul>
+<li>选择对应的网络设备（交换机、路由器、防火墙、服务器、PC）</li>
+<li>选择链接对应网络设备的线缆（配置线、直通线、交叉线等）</li>
+<li>对网络设备进行逐一配置（配置IP地址、接口地址等）</li>
+<li>测试并验证最终的结果</li>
+</ul>
+</li>
+<li>模拟器网络设备的分类<ol>
+<li>交换机<ul>
+<li>二层交换机：cisco 2960（入门级交换机）</li>
+<li>三层交换机：cisco 3560（企业级交换机）</li>
+</ul>
+</li>
+<li>路由器<ul>
+<li>路由器型号：cisco 2811、2911等</li>
+</ul>
+</li>
+<li>防火墙<ul>
+<li>防火墙系列：cisco 5055</li>
+</ul>
+</li>
+<li>终端设备<ul>
+<li>个人PC：台式机、笔记本</li>
+<li>服务器：Server-PT</li>
+</ul>
+</li>
+<li>线缆分类<ul>
+<li>配置线</li>
+<li>直通线</li>
+<li>交叉线</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>模拟器的辅助功能<ul>
+<li>网络设备添加标识——place note</li>
+<li>删除网络设备图标</li>
+<li>放大与缩小网络设备图标</li>
+<li>选择网络设备或绘制拓扑图，进行移动操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>以太网中网络设备常用命令</p>
+<ul>
+<li>ping 测试网络的连通性</li>
+<li>ipconfig 查看windows系统中，对应网卡配置的ip地址信息</li>
+<li>ifconfig 查看linux系统中，对应网卡配置的ip地址信息</li>
+<li>show mac-address-table dynamic 查看交换机中MAC地址表的信息（特权模式）</li>
+</ul>
+</li>
+<li><p>网络设备查询注意事项</p>
+<ul>
+<li>在特权模式使用show命令，例如：Switch# show mac-address-table dynamic</li>
+<li>在全局模式使用show命令，例如：Switch(config)# do show mac-address-table</li>
+<li>在接口模式使用show命令，例如：Switch(config-if)#do show mac-address-table</li>
+</ul>
+</li>
+<li><p>交换机双工模式配置与速率配置</p>
+<ul>
+<li>以太网接口双工模式配置<ul>
+<li>交换机双工模式在配置时，若交换机两端对应接口的双工模式不一样时，会造成严重的丢包现象，导致 网络无法正常通信。</li>
+<li>实际配置交换机接口双工模式采用全双工，交换机两端接口双工模式必须配置一样，使用的命令： duplex full</li>
+</ul>
+</li>
+<li>以太网接口速率配置<ul>
+<li>交换机速率配置时，若交换机两端对应接口的速率不一样时，直接导致网络无法正常通信。</li>
+<li>实际配置交换机接口速率采用100&#x2F;1000速率，交换机两端接口速率必须配置一样，使用命令：speed 100&#x2F;1000</li>
+</ul>
+</li>
+<li>查看交换机接口详细信息使用的查询命令<ul>
+<li>show interface f0&#x2F;24 或者 sh int f0&#x2F;24（在特权模式执行命令）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>交换网络播的类型</p>
+<ul>
+<li>单播：一对一，传输效率最高，延迟最小</li>
+<li>组播：一对多，传输效率其次，延迟较小</li>
+<li>广播：一对多，传输效率最低，延迟最大</li>
+</ul>
+</li>
+</ol>
+<hr>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/09/25/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/" rel="tag">交换机原理与配置</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/" rel="tag">网络应用与实验</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2023/09/25/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E5%B1%82%E5%8D%8F%E8%AE%AE/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            网络层协议
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2023/09/21/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">移动端网页</div>
+      </a>
+    
+  </nav>
+
+  
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2023-2025
+        <i class="ri-heart-fill heart_icon"></i> Yan
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="焱"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/update">更新日志</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯茶吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
+        src="//music.163.com/outchain/player?type=2&id=2992037665&auto=0&height=66"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

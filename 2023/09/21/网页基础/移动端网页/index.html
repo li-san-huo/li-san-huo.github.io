@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>移动端网页 |  焱</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-网页基础/移动端网页"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  移动端网页
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/09/21/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5/" class="article-date">
+  <time datetime="2023-09-21T11:02:06.000Z" itemprop="datePublished">2023-09-21</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/">网页</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">移动端</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">3.6k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">13 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="流式布局"><a href="#流式布局" class="headerlink" title="流式布局"></a>流式布局</h1><h2 id="一、移动端基础"><a href="#一、移动端基础" class="headerlink" title="一、移动端基础"></a>一、移动端基础</h2><h3 id="1-1常见移动端屏幕尺寸"><a href="#1-1常见移动端屏幕尺寸" class="headerlink" title="1.1常见移动端屏幕尺寸"></a>1.1常见移动端屏幕尺寸</h3><p><img src="https://s2.loli.net/2023/09/20/cNya9w5TdqEj3fp.png" alt="常见移动端屏幕尺寸.jpg"></p>
+<h3 id="1-2移动端调试方法"><a href="#1-2移动端调试方法" class="headerlink" title="1.2移动端调试方法"></a>1.2移动端调试方法</h3><ul>
+<li>Chrome DevTools（谷歌浏览器）的模拟手机调试<span id="more"></span></li>
+</ul>
+<hr>
+<h2 id="二、视口"><a href="#二、视口" class="headerlink" title="二、视口"></a>二、视口</h2><ul>
+<li>视口（viewport）就是浏览器显示页面内容的屏幕区域。</li>
+<li>视口可以分为布局视口、视觉视口和理想视口</li>
+</ul>
+<h3 id="2-1布局视口-layout-viewport"><a href="#2-1布局视口-layout-viewport" class="headerlink" title="2.1布局视口 layout viewport"></a>2.1布局视口 layout viewport</h3><ul>
+<li>一般移动设备的浏览器都默认设置了一个布局视口，用于解决早期的PC端页面在手机上显示的问题。</li>
+<li>IOS，Android基本都将这个视口分辨率设置为 980px，所以PC上的网页大多都能在手机上呈现，只不过元素看上去很小，一般默认可以通过手动缩放网页。</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/09/20/bx6JqwicTU2MvjV.png" alt="布局视口.jpg"></p>
+<h3 id="2-2视觉视口-visual-viewport"><a href="#2-2视觉视口-visual-viewport" class="headerlink" title="2.2视觉视口 visual viewport"></a>2.2视觉视口 visual viewport</h3><ul>
+<li>字面意思，它是用户正在看到的网站的区域。注意：是网站的区域。</li>
+<li>我们可以通过缩放去操作视觉视口，但不会影响布局视口，布局视口仍保持原来的宽度。</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/09/20/aeIzGJmHPbhMKOQ.png" alt="视觉视口.jpg"></p>
+<h3 id="2-3理想视口-ideal-viewport"><a href="#2-3理想视口-ideal-viewport" class="headerlink" title="2.3理想视口 ideal viewport"></a>2.3理想视口 ideal viewport</h3><ul>
+<li>为了使网站在移动端有最理想的浏览和阅读宽度而设定</li>
+<li>理想视口，对设备来讲，是最理想的视口尺寸</li>
+<li>需要手动添加meta视口标签通知浏览器操作</li>
+<li>meta视口标签的主要目的：网页宽度和设备宽度（分辨率）相同，简单理解就是设备有多宽，我们的布局的视口就多宽</li>
+</ul>
+<p><strong>总结：我们开发最终会用理想视口，而理想视口就是将布局视口的宽度修改为视觉视口</strong></p>
+<h3 id="2-4视口标签"><a href="#2-4视口标签" class="headerlink" title="2.4视口标签"></a>2.4视口标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">解释说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">width</td>
+<td align="center">宽度设置的是viewport宽度，可以设置device-width特殊值</td>
+</tr>
+<tr>
+<td align="center">initial-scale</td>
+<td align="center">初始缩放比，大于0的数字</td>
+</tr>
+<tr>
+<td align="center">maximum-scale</td>
+<td align="center">最大缩放比，大于0的数字</td>
+</tr>
+<tr>
+<td align="center">minimum-scale</td>
+<td align="center">最小缩放比，大于0的数字</td>
+</tr>
+<tr>
+<td align="center">user-scalable</td>
+<td align="center">用户是否可以缩放，yes或no（1或0）</td>
+</tr>
+</tbody></table>
+<ul>
+<li>最标准的viewport设置<ul>
+<li>视口宽度和设备保持一致</li>
+<li>视口的默认缩放比例1.0</li>
+<li>不允许用户自行缩放</li>
+<li>最大允许的缩放比例1.0</li>
+<li>最小允许的缩放比例1.0</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="三、二倍图"><a href="#三、二倍图" class="headerlink" title="三、二倍图"></a>三、二倍图</h2><h3 id="3-1物理分辨率-逻辑分辨率-物理像素比"><a href="#3-1物理分辨率-逻辑分辨率-物理像素比" class="headerlink" title="3.1物理分辨率&amp;逻辑分辨率&amp;物理像素比"></a>3.1物理分辨率&amp;逻辑分辨率&amp;物理像素比</h3><ul>
+<li>物理分辨率是生产屏幕时就固定的，它是不可改变的</li>
+<li>逻辑分辨率石油软件（驱动）决定的</li>
+<li>一个px的能显示的物理像素点的个数，称为物理像素比或屏幕像素比</li>
+</ul>
+<h3 id="3-2背景缩放background-size"><a href="#3-2背景缩放background-size" class="headerlink" title="3.2背景缩放background-size"></a>3.2背景缩放background-size</h3><ul>
+<li><p>background-size 属性规定背景图像的尺寸</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-size</span>: 背景图片宽度 背景图片高度;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>单位：长度|百分比|cover|contain;</p>
+</li>
+<li><p>cover把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。</p>
+</li>
+<li><p>contain把背景图像扩展至最大尺寸，以使其宽度和高度完全适应内容区域</p>
+</li>
+</ul>
+<hr>
+<h2 id="四、移动开发选择和技术解决方案"><a href="#四、移动开发选择和技术解决方案" class="headerlink" title="四、移动开发选择和技术解决方案"></a>四、移动开发选择和技术解决方案</h2><h3 id="4-1移动端主流方案"><a href="#4-1移动端主流方案" class="headerlink" title="4.1移动端主流方案"></a>4.1移动端主流方案</h3><ul>
+<li>单独制作移动端页面（主流）<ul>
+<li>通常情况下，网址域名前面加 m(mobile)</li>
+<li>可以打开移动端。通过判断设备，如果是移动设备打开，则跳到移动端页面。</li>
+<li>PC端和移动端为两套网站，PC端是PC端的样式，移动端再写一套，专门针对移动端适配的一套网站</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2移动端技术解决方案"><a href="#4-2移动端技术解决方案" class="headerlink" title="4.2移动端技术解决方案"></a>4.2移动端技术解决方案</h3><ul>
+<li>移动端浏览器兼容问题<ul>
+<li>移动端浏览器基本以 webkit 内核为主，因此我们就考虑 webkit 兼容性问题。</li>
+<li>我们可以放心使用 H5 标签和 CSS3 样式。</li>
+<li>同时我们浏览器的私有前缀我们只需要考虑添加 webkit 即可</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="五、移动端常见布局-流式布局"><a href="#五、移动端常见布局-流式布局" class="headerlink" title="五、移动端常见布局-流式布局"></a>五、移动端常见布局-流式布局</h2><ul>
+<li>流式布局：<ul>
+<li>流式布局就是百分比布局，也称非固定像素布局。</li>
+<li>通过盒子的宽度设置成百分比来根据屏幕的宽度来进行伸缩，不受固定像素的限制，内容向两侧填充。</li>
+<li>流式布局方式是移动web开发使用的比较常见的布局方式。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="flex-布局"><a href="#flex-布局" class="headerlink" title="flex 布局"></a>flex 布局</h1><h2 id="一、flex-布局原理"><a href="#一、flex-布局原理" class="headerlink" title="一、flex 布局原理"></a>一、flex 布局原理</h2><ul>
+<li>flex 是 flexible Box 的缩写，意为“弹性布局”。</li>
+<li>当我们为父盒子设为 flex 布局以后，子元素的 float、clear 和 vertical-align 属性将失效。</li>
+<li>flex布局又叫伸缩布局、弹性布局、伸缩盒布局、弹性盒布局</li>
+<li>采用 Flex 布局的元素，称为 Flex 容器（flex container），简称“容器”。它的所有子元素称为 Fleitem），简称”项目”。</li>
+</ul>
+<p><strong>总结：就是通过给父盒子添加flex属性，来控制子盒子的位置和排列方式</strong></p>
+<hr>
+<h2 id="二、父项常见属性"><a href="#二、父项常见属性" class="headerlink" title="二、父项常见属性"></a>二、父项常见属性</h2><ul>
+<li>flex-direction：设置主轴的方向</li>
+<li>justify-content：设置主轴上的子元素排列方式</li>
+<li>flex-wrap：设置子元素是否换行</li>
+<li>align-content：设置恻轴上的子元素的排列方式（多行）</li>
+<li>align-items：设置恻轴上的子元素排列方式（单行）</li>
+<li>flex-flow：复合属性，相当于同时设置了 flex-direction 和 flex-wrap</li>
+</ul>
+<h3 id="2-1-flex-direction-设置主轴的方向"><a href="#2-1-flex-direction-设置主轴的方向" class="headerlink" title="2.1 flex-direction 设置主轴的方向"></a>2.1 flex-direction 设置主轴的方向</h3><ul>
+<li>在 flex 布局中，是分为主轴和恻轴两个方向，同样的叫法有：行和列、x 轴和 y 轴</li>
+<li>默认主轴方向就是 x 轴方向，水平向右</li>
+<li>默认恻轴方向就是 y 轴方向，水平向下</li>
+</ul>
+<p><img src="https://s2.loli.net/2023/09/20/wrpV1GYRCjPo4ef.png" alt="默认主轴方向.jpg"></p>
+<ul>
+<li><p>注意：主轴和恻轴是会变化的，就看 flex-direction 设置谁为主轴，剩下的就是恻轴。而我们的子元素是跟着主轴来排列的</p>
+<table>
+<thead>
+<tr>
+<th align="center"><font color='red'>row</font></th>
+<th align="center"><font color='red'>默认值从左到右</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">row-reverse</td>
+<td align="center">从右到左</td>
+</tr>
+<tr>
+<td align="center"><font color='red'>column</font></td>
+<td align="center"><font color='red'>从上到下</font></td>
+</tr>
+<tr>
+<td align="center">column-reverse</td>
+<td align="center">从下到上</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="2-2-justify-content-设置主轴上的子元素排列方式"><a href="#2-2-justify-content-设置主轴上的子元素排列方式" class="headerlink" title="2.2 justify-content 设置主轴上的子元素排列方式"></a>2.2 justify-content 设置主轴上的子元素排列方式</h3><table>
+<thead>
+<tr>
+<th align="center"><font color='red'>flex-start</font></th>
+<th align="center"><font color='red'>默认值从头部开始 如果主轴是x轴，则从左到右</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">flex-end</td>
+<td align="center">从尾部开始排列</td>
+</tr>
+<tr>
+<td align="center"><font color='red'>center</font></td>
+<td align="center"><font color='red'>在主轴居中对齐（如果主轴是x轴则 水平居中）</font></td>
+</tr>
+<tr>
+<td align="center"><font color='red'>space-around</font></td>
+<td align="center"><font color='red'>平分剩余空间</font></td>
+</tr>
+<tr>
+<td align="center"><font color='red'>space-between</font></td>
+<td align="center"><font color='red'>先两边贴边 再平分剩余空间（重要）</font></td>
+</tr>
+</tbody></table>
+<h3 id="2-3-flex-wrap-设置是否换行"><a href="#2-3-flex-wrap-设置是否换行" class="headerlink" title="2.3 flex-wrap 设置是否换行"></a>2.3 flex-wrap 设置是否换行</h3><ul>
+<li>默认情况下，项目都排在一条线（又称“轴线”）上。flex-wrap属性定义，flex布局中默认是不换行的。</li>
+<li>nowrap 不换行</li>
+<li>wrap 换行</li>
+</ul>
+<h3 id="2-4-align-items-设置恻轴上的子元素排列方式（单行）"><a href="#2-4-align-items-设置恻轴上的子元素排列方式（单行）" class="headerlink" title="2.4 align-items 设置恻轴上的子元素排列方式（单行）"></a>2.4 align-items 设置恻轴上的子元素排列方式（单行）</h3><ul>
+<li>该属性是控制子项在恻轴（默认是y轴）上的排列方式，在子项为单项（单行）的时候使用</li>
+<li>flex-start 从头部开始</li>
+<li>flex-end 从尾部开始</li>
+<li>center 居中显示</li>
+<li>stretch 拉伸</li>
+</ul>
+<h3 id="2-5-align-content-设置恻轴上的子元素的排列方式（多行）"><a href="#2-5-align-content-设置恻轴上的子元素的排列方式（多行）" class="headerlink" title="2.5 align-content 设置恻轴上的子元素的排列方式（多行）"></a>2.5 align-content 设置恻轴上的子元素的排列方式（多行）</h3><ul>
+<li><p>设置子项在恻轴上的排列方式，并且只能用于子项出现换行的情况（多行），在单行下是没有效果的</p>
+<table>
+<thead>
+<tr>
+<th align="center"><font color='red'>flex-start</font></th>
+<th align="center"><font color='red'>在恻轴的头部开始排列</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">flex-end</td>
+<td align="center">在恻轴的尾部开始排列</td>
+</tr>
+<tr>
+<td align="center"><font color='red'> center</font></td>
+<td align="center"><font color='red'>在主轴居中对齐（如果主轴是x轴则水平居中</font></td>
+</tr>
+<tr>
+<td align="center"><font color='red'>space-around</font></td>
+<td align="center"><font color='red'>平分剩余空间</font></td>
+</tr>
+<tr>
+<td align="center"><font color='red'> space-between</font></td>
+<td align="center"><font color='red'>先两边贴边 在平分剩余空间（重要）</font></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="2-3-flex-wrap-设置是否换行-1"><a href="#2-3-flex-wrap-设置是否换行-1" class="headerlink" title="2.3 flex-wrap 设置是否换行"></a>2.3 flex-wrap 设置是否换行</h3><ul>
+<li>默认情况下，项目都排在一条线（又称“轴线”）上。flex-wrap 属性定义，flex 布局中默认是不换行的。</li>
+<li>nowrap 不换行</li>
+<li>wrap 换行</li>
+</ul>
+<h3 id="2-4-align-items-设置恻轴上的子元素排列方式（单行）-1"><a href="#2-4-align-items-设置恻轴上的子元素排列方式（单行）-1" class="headerlink" title="2.4 align-items 设置恻轴上的子元素排列方式（单行）"></a>2.4 align-items 设置恻轴上的子元素排列方式（单行）</h3><ul>
+<li>该属性是控制子项在恻轴（默认是y轴）上的排列方式，在子项为单项（单行）的时候使用</li>
+<li>flex-start 从头部开始</li>
+<li>flex-end 从尾部开始</li>
+<li>center 居中显示</li>
+<li>stretch 拉伸</li>
+</ul>
+<h3 id="2-5-align-content-设置恻轴上的子元素的排列方式（多行）-1"><a href="#2-5-align-content-设置恻轴上的子元素的排列方式（多行）-1" class="headerlink" title="2.5 align-content 设置恻轴上的子元素的排列方式（多行）"></a>2.5 align-content 设置恻轴上的子元素的排列方式（多行）</h3><ul>
+<li><p>设置子项在恻轴上的排列方式并且只能用于子项出现换行的情况（多行），在单行下是没有效果的。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><font color='red'>flex-start</font></th>
+<th align="center"><font color='red'>在恻轴的头部开始排列</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">flex-end</td>
+<td align="center">在恻轴的尾部开始排列</td>
+</tr>
+<tr>
+<td align="center"><font color='red'>center</font></td>
+<td align="center"><font color='red'>在恻轴中间显示</font></td>
+</tr>
+<tr>
+<td align="center"><font color='red'>space-around</font></td>
+<td align="center"><font color='red'>子项在恻轴平分剩余空间</font></td>
+</tr>
+<tr>
+<td align="center"><font color='red'>space-between</font></td>
+<td align="center"><font color='red'>子项在恻轴先分部在两头，再平分剩余空间</font></td>
+</tr>
+<tr>
+<td align="center"><font color='red'>stretch</font></td>
+<td align="center"><font color='red'>设置子项元素高度平分父元素高度默认值</font></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="2-6-align-content-和-align-items-区别"><a href="#2-6-align-content-和-align-items-区别" class="headerlink" title="2.6 align-content 和 align-items 区别"></a>2.6 align-content 和 align-items 区别</h3><ul>
+<li>align-items 适用于单行情况下，只有上对齐、下对齐、居中和拉伸</li>
+<li>align-content 适用于换行（多行）的情况下（单行情况下无效），可以设置上对齐、下对齐、居中、拉伸以及平均分配剩余空间等属性值。</li>
+<li><strong>总结：</strong>就是单行找 align-items 多行找 align-content</li>
+</ul>
+<h3 id="2-7-flex-flow-属性是-flex-direction-和-flex-wrap-属性的复合属性"><a href="#2-7-flex-flow-属性是-flex-direction-和-flex-wrap-属性的复合属性" class="headerlink" title="2.7 flex-flow 属性是 flex-direction 和 flex-wrap 属性的复合属性"></a>2.7 flex-flow 属性是 flex-direction 和 flex-wrap 属性的复合属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex-flow</span>: row wrap;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="三、flex-布局子项常见属性"><a href="#三、flex-布局子项常见属性" class="headerlink" title="三、flex 布局子项常见属性"></a>三、flex 布局子项常见属性</h2><ul>
+<li>flex 子项目占的份数</li>
+<li>align-self 控制子项自己在恻轴的排列方式</li>
+<li>order 属性定义子项的排列顺序（前后顺序）</li>
+</ul>
+<h3 id="3-1-flex-属性"><a href="#3-1-flex-属性" class="headerlink" title="3.1 flex 属性"></a>3.1 flex 属性</h3><ul>
+<li><p>flex 属性定义子项目分配剩余空间，用 flex 来表示占多少份数。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">    <span class="attribute">flex</span>: &lt;number&gt;; <span class="comment">/* 默认值 0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-2-align-self-控制子项自己在恻轴上的排列方式"><a href="#3-2-align-self-控制子项自己在恻轴上的排列方式" class="headerlink" title="3.2 align-self 控制子项自己在恻轴上的排列方式"></a>3.2 align-self 控制子项自己在恻轴上的排列方式</h3><ul>
+<li><p>align-self 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖 align-items 属性。</p>
+</li>
+<li><p>默认值为auto，表示继承父元素的 align-items 属性，如果没有父元素，则等同于 stretch。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">span</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span><br><span class="line">    <span class="comment">/* 设置自己在恻轴上的排列方式 */</span></span><br><span class="line">    <span class="attribute">align-self</span>: flex-end;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-3-order-属性定义项目的排列顺序"><a href="#3-3-order-属性定义项目的排列顺序" class="headerlink" title="3.3 order 属性定义项目的排列顺序"></a>3.3 order 属性定义项目的排列顺序</h3><ul>
+<li><p>数值越小，排列越靠前，默认为0。</p>
+</li>
+<li><p>注意：和 z-index 不一样。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">    <span class="attribute">order</span>: &lt;number&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h1 id="rem-布局"><a href="#rem-布局" class="headerlink" title="rem 布局"></a>rem 布局</h1><h2 id="一、rem-基础"><a href="#一、rem-基础" class="headerlink" title="一、rem 基础"></a>一、rem 基础</h2><p><strong>rem单位</strong></p>
+<ul>
+<li><p>rem 是一个相对单位</p>
+</li>
+<li><p>rem 的基准是相对于 html 元素的字体大小。</p>
+</li>
+<li><p>如：根元素（html）设置 font-size&#x3D;12px; 非根元素设置 width:2rem; 则转换成 px 表示就是 24px。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 根html为12px */</span></span><br><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 此时 div 的字体大小就是 24px */</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">2rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rem 的优势：父元素文字大小可能不一致，但是整个页面只有一个html，可以很好的控制整个页面的元素大小。</p>
+</li>
+</ul>
+<hr>
+<h2 id="二、媒体查询"><a href="#二、媒体查询" class="headerlink" title="二、媒体查询"></a>二、媒体查询</h2><p><strong>什么是媒体查询</strong></p>
+<ul>
+<li>媒体查询（Media Query）是CSS3新语法。<ul>
+<li>媒体查询能够检测视口的宽度，然后编写差异化的 CSS 样式</li>
+<li>当某个条件成立，执行对应的CSS样式</li>
+</ul>
+</li>
+</ul>
+<p><strong>媒体查询语法规范</strong></p>
+<ul>
+<li><p>用 @media 开头，注意@符号</p>
+</li>
+<li><p>media feature 媒体特性必须有小括号包含</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (媒体特性) &#123;</span><br><span class="line">    CSS-<span class="selector-tag">Code</span>;</span><br><span class="line">&#125;</span><br><span class="line">例如：</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">width</span>:<span class="number">320px</span>) &#123;</span><br><span class="line">    <span class="selector-tag">html</span>&#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">32px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="三、rem-移动适配"><a href="#三、rem-移动适配" class="headerlink" title="三、rem 移动适配"></a>三、rem 移动适配</h2><ol>
+<li>手机屏幕大小不同，分辨率不同，如何设置不同的HTML标签字号？<ul>
+<li>媒体查询</li>
+</ul>
+</li>
+<li>设备宽度不同，HTML标签字号设置多少合适？<ul>
+<li>目前 rem 布局方案中，将网页等分成10份，HTML标签的字号为视口宽度的 1&#x2F;10</li>
+</ul>
+</li>
+<li>rem 布局流程<ul>
+<li>确定设计稿对应的设备的HTML标签字号<ul>
+<li>查看设计稿宽度 → 确定参考设备宽度（视口宽度）→ 确定基准根字号（1&#x2F;10视口宽度）</li>
+</ul>
+</li>
+<li>rem 单位的尺寸<ul>
+<li>rem 单位的尺寸 &#x3D; px 单位数值 &#x2F; 基准根字号</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="四、flexible-js"><a href="#四、flexible-js" class="headerlink" title="四、flexible.js"></a>四、flexible.js</h2><ul>
+<li>flexible.js 是手淘开发出的一个用来适配移动端的 js 框架。</li>
+<li>核心原理就是根据不同的视口宽度给网页中 html 根节点设置不同的 font-size。</li>
+</ul>
+<hr>
+<h2 id="五、less-基础"><a href="#五、less-基础" class="headerlink" title="五、less 基础"></a>五、less 基础</h2><ol>
+<li><p>less 介绍</p>
+<ul>
+<li>Less 是一个CSS预处理器，Less 文件后缀是 .less。</li>
+<li>扩充了CSS语言，使CSS具备一定的逻辑性、计算能力。</li>
+</ul>
+</li>
+<li><p>less 注释</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">单行注释：</span><br><span class="line">语法：<span class="comment">// 注释内容</span></span><br><span class="line">快捷键：<span class="selector-tag">ctrl</span> + /</span><br><span class="line"></span><br><span class="line">多行注释：</span><br><span class="line">语法：<span class="comment">/* 注释内容 */</span></span><br><span class="line">快捷键：<span class="selector-tag">shift</span> + <span class="selector-tag">alt</span> + <span class="selector-tag">A</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>less 运算</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">任何数字、颜色或者变量都可以参与运算。就是<span class="selector-tag">Less</span>提供了加（+）、减（<span class="selector-tag">-</span>）、乘（*）、除（/）算数运算。</span><br><span class="line"></span><br><span class="line">运算：</span><br><span class="line">加、减、乘直接书写计算表达式</span><br><span class="line">除法需要添加 小括号 或 .</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">对于两个不同的单位的值之间的运算，运算结果的值取第一个值的单位</span><br><span class="line">如果两个值之间只有一个值有单位，则运算结果就取该单位</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>less 嵌套</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">less</span>嵌套写法生成后代选择器</span><br><span class="line"></span><br><span class="line">.父级选择器 &#123;</span><br><span class="line">    <span class="comment">// 父级样式</span></span><br><span class="line">    .子级选择器 &#123;</span><br><span class="line">        <span class="comment">// 子级样式</span></span><br><span class="line">        <span class="attribute">color</span>:red;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.father</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">    <span class="selector-class">.son</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>:pink;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">注意：<span class="selector-tag">&amp;</span>不生成后代选择器，表示当前选择器，通常配合伪类或伪元素使用</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="selector-tag">&amp;</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>:red;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>less 变量</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">变量是指没有固定的值，可以改变的。因为我们<span class="selector-tag">CSS</span>中的一些颜色和数值等经常使用。</span><br><span class="line"></span><br><span class="line">定义变量：@变量名: 值;</span><br><span class="line">使用变量：<span class="selector-tag">CSS</span>属性: @变量名;</span><br><span class="line"></span><br><span class="line">定义变量：</span><br><span class="line"><span class="number">1</span>、必须有@为前缀</span><br><span class="line"><span class="number">2</span>、不能包含特殊字符</span><br><span class="line"><span class="number">3</span>、不能以数字开头</span><br><span class="line"><span class="number">4</span>、大小写敏感</span><br><span class="line"></span><br><span class="line">例如:</span><br><span class="line">@<span class="selector-tag">color</span>: <span class="selector-tag">red</span>;</span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">@color</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>less 导入</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">导入: @<span class="selector-tag">import</span> &quot;文件路径&quot;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果是less文件，可以省略后缀 .less</span></span><br><span class="line"><span class="keyword">@import</span> <span class="string">&#x27;base.less&#x27;</span>;</span><br><span class="line"><span class="keyword">@import</span> <span class="string">&#x27;bass&#x27;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>less 导出</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">设置<span class="selector-tag">Less</span>文件导出的<span class="selector-tag">CSS</span>文件位置</span><br><span class="line"></span><br><span class="line">方法一：配置<span class="selector-tag">EasyLess</span>插件，实现所有<span class="selector-tag">Less</span>有相同的导出路径</span><br><span class="line">配置插件：设置 → 搜索<span class="selector-tag">EasyLess</span> → 在<span class="selector-tag">setting</span><span class="selector-class">.json</span>中编辑 → 添加代码（注意：必须是双引号）→ 保存 &quot;<span class="selector-tag">out</span>&quot;:&quot;../<span class="selector-tag">css</span>&quot;</span><br><span class="line"></span><br><span class="line">方法二：控制当前<span class="selector-tag">Less</span>文件导出路径</span><br><span class="line"><span class="selector-tag">Less</span>文件第一行添加如下代码，注意文件夹名称后面添加 /</span><br><span class="line"><span class="comment">// out: ./css/</span></span><br><span class="line"><span class="comment">// out: ./css/index.css</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>禁止导出</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在<span class="selector-tag">less</span>文件第一行添加: <span class="comment">// out: false</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="六、rem-适配方案"><a href="#六、rem-适配方案" class="headerlink" title="六、rem 适配方案"></a>六、rem 适配方案</h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">让一些不能等比自适应的元素，达到当设备尺寸发生改变的时候，等比例适配当前设备。</span><br><span class="line"></span><br><span class="line">原理：使用媒体查询根据不同设备按比例设置<span class="selector-tag">html</span>的字体大小，然后页面元素使用<span class="selector-tag">rem</span>做尺寸单位，当<span class="selector-tag">html</span>字体大小变化，元素尺寸也会发生变化，从而达到等比缩放的适配。</span><br><span class="line"></span><br><span class="line">技术方案：<span class="selector-tag">rem</span> + <span class="selector-tag">less</span> + <span class="selector-tag">flexible</span><span class="selector-class">.js</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/09/21/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%BD%91%E9%A1%B5/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" rel="tag">移动端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E9%A1%B5/" rel="tag">网页</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2023/09/25/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            交换机工作原理与配置
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2023/09/20/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E5%B8%83%E7%BA%BF%E4%B8%8E%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">网络布线与数制转换</div>
+      </a>
+    
+  </nav>
+
+  
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2023-2025
+        <i class="ri-heart-fill heart_icon"></i> Yan
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="焱"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/update">更新日志</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯茶吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
+        src="//music.163.com/outchain/player?type=2&id=2992037665&auto=0&height=66"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Linux文件和目录 |  焱</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Linux系统管理/Linux文件和目录"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Linux文件和目录
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/" class="article-date">
+  <time datetime="2023-10-15T08:43:24.000Z" itemprop="datePublished">2023-10-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/">运维</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">linux系统管理</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/">linux文件和目录</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">3.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">11 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="目录和文件管理"><a href="#目录和文件管理" class="headerlink" title="目录和文件管理"></a>目录和文件管理</h1><h2 id="一、目录结构"><a href="#一、目录结构" class="headerlink" title="一、目录结构"></a>一、目录结构</h2><blockquote>
+<p>Linux操作系统中的目录和文件数据被组织为一个树形目录结构，所有分区、目录、文件等都具有一个相同的位置起点—-根目录</p>
+</blockquote>
+<ul>
+<li><p>根目录</p>
+<ul>
+<li>所有分区、目录、文件等的位置起点</li>
+<li>整个树形目录结构中，使用独立的一个“&#x2F;”表示</li>
+</ul>
+</li>
+<li><p>常见的子目录及其作用</p>
+<table>
+<thead>
+<tr>
+<th align="center">目录</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&#x2F;boot</td>
+<td align="center">此目录是系统内核存放的目录，同时也是系统启动时所需文件的存放目录</td>
+</tr>
+<tr>
+<td align="center">&#x2F;bin</td>
+<td align="center">这一目录存放了所有用户都可执行的且经常使用的命令，如 cp、ls 等。</td>
+</tr>
+<tr>
+<td align="center">&#x2F;etc</td>
+<td align="center">系统主要的和服务产生的配置文件几乎都放置到这个目录内,例如人员的账号密码文件、各种服务的起始文件等。</td>
+</tr>
+<tr>
+<td align="center">&#x2F;home</td>
+<td align="center">存放所有普通系统用户的默认工作文件夹（即宿主目录、家目录）</td>
+</tr>
+<tr>
+<td align="center">&#x2F;root</td>
+<td align="center">该目录是管理员（超级用户）root 的宿主目录，默认情况下只有 root 用户的宿主目录在根目录下而不是在“&#x2F;home”目录下</td>
+</tr>
+<tr>
+<td align="center">&#x2F;sbin</td>
+<td align="center">存放 Linux 操作系统中最基本的管理命令，一般管理员用户才有权限执行。</td>
+</tr>
+<tr>
+<td align="center">&#x2F;usr</td>
+<td align="center">存放其他的用户应用程序，通常还被划分成很多子目录，用于存放不同类型的应用程序</td>
+</tr>
+<tr>
+<td align="center">&#x2F;var</td>
+<td align="center">存放系统中经常需要变化的一些文件，如系统日志文件、用户邮箱目录等</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<hr>
+<span id="more"></span>
+
+<h2 id="二、查看及检索文件"><a href="#二、查看及检索文件" class="headerlink" title="二、查看及检索文件"></a>二、查看及检索文件</h2><h3 id="cat-显示文件内容"><a href="#cat-显示文件内容" class="headerlink" title="cat 显示文件内容"></a>cat 显示文件内容</h3><blockquote>
+<p>cat 命令本来用于连接（Concatenate）多个文件的内容，但在实际使用中更多地用于查看文件内容。cat 命令是应用最为广泛的文件内容查看命令。使用该命令时，只需要把要查看的文件路径作为参数即可。</p>
+</blockquote>
+<ul>
+<li>cat 显示并连接文件的内容，输出文件的所有内容到屏幕</li>
+<li>例子：<ul>
+<li>cat &#x2F;etc&#x2F;hosts (hosts文件是linux主机中映射的文件)</li>
+<li>cat &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33（网卡对应的配置文件）</li>
+<li>cat &#x2F;etc&#x2F;redhat-release （liunx当前系统版本对应的配置文件）</li>
+</ul>
+</li>
+</ul>
+<h3 id="more-和-less-分页查看文件内容"><a href="#more-和-less-分页查看文件内容" class="headerlink" title="more 和 less 分页查看文件内容"></a>more 和 less 分页查看文件内容</h3><blockquote>
+<p>使用 cat 命令可以非常简单地直接显示整个文件的内容，但是当文件中的内容较多时，很可能只能看到最后一部分信息，文件前面的大部分内容都来不及看到。而 more 和 less命令通过采用全屏的方式分页显示文件，便于我们从头到尾仔细地阅读文件内容。</p>
+</blockquote>
+<ol>
+<li><p>more</p>
+<blockquote>
+<p>more 命令是较早出现的分页显示命令，表示文件内容还有更多（more）的意思，less命令是较晚出现的分页显示命令，提供了比早期 more 命令更多的一些扩展功能。两个命令的用法基本相同。</p>
+</blockquote>
+<ul>
+<li>more查看文件内容，进入全屏模式，使用快捷键如下：<ul>
+<li>Enter键，逐行滚动查看</li>
+<li>Space键，向下翻屏键</li>
+<li>字母b键，向上翻屏键</li>
+<li>字母q建，退出全屏模式，返回命令行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>less</p>
+<blockquote>
+<p>less 命令使用方法与 more 命令基本类似，但是比 more 更好的是，less 命令结合管道符号“|”分屏查看执行命令时输出的信息时，既可以向下翻页，也可以向上翻页。而 more 命令只能向下翻页，不能向上翻页。</p>
+</blockquote>
+<ul>
+<li>less查看文件内容，进入全屏模式，使用快捷键如下：<ul>
+<li>Enter键，逐行滚动查看</li>
+<li>Space键，向下翻屏键</li>
+<li>字母b键，向上翻屏键</li>
+<li>字母q建，退出全屏模式，返回命令行</li>
+<li>Page up键，向上翻屏键</li>
+<li>Page down键，向下翻屏键</li>
+<li>上下方向键，向上、向下逐行滚动查看</li>
+<li>查找键“&#x2F;”</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="head-和-tail-查看文件开头或末尾的部分内容"><a href="#head-和-tail-查看文件开头或末尾的部分内容" class="headerlink" title="head 和 tail 查看文件开头或末尾的部分内容"></a>head 和 tail 查看文件开头或末尾的部分内容</h3><blockquote>
+<p>head 和 tail 是一对作用相反的命令，前者用于显示文件开头的一部分内容，后者用于显示文件末尾的一部分内容。可以使用“-n”选项（n 为具体的行数）指定需要显示多少行的内容，若不指定行数，默认只显示十行。</p>
+</blockquote>
+<ol>
+<li>head查看文件开头的内容<ul>
+<li>head &#x2F;etc&#x2F;passwd （默认查看文件的前10行内容）</li>
+<li>head -n 3 &#x2F;etc&#x2F;passwd （查看文件的前三行内容）</li>
+<li>head -3 &#x2F;etc&#x2F;passwd （查看文件的前三行内容）</li>
+</ul>
+</li>
+<li>tail命令的用法<ul>
+<li>查看文件结尾的部分文件<ul>
+<li>tail &#x2F;etc&#x2F;passwd （默认查看文件的后10行内容）</li>
+<li>tail -n 3 &#x2F;etc&#x2F;passwd （查看文件的最后三行内容）</li>
+<li>tail -3 &#x2F;etc&#x2F;passwd （查看文件的最后三行内容）</li>
+</ul>
+</li>
+<li>跟踪文件尾部内容追加或更新的信息<ul>
+<li>tail -f &#x2F;var&#x2F;log&#x2F;messages（跟踪linux系统日志文件结尾追加信息）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="wc-和-grep-统计和检索文件内容"><a href="#wc-和-grep-统计和检索文件内容" class="headerlink" title="wc 和 grep 统计和检索文件内容"></a>wc 和 grep 统计和检索文件内容</h3><ol>
+<li><p>wc统计文件内容（行数、单词、字节）</p>
+<blockquote>
+<p>wc 命令用于统计文件内容中包含的行数、单词数、字节数等信息，使用文件名作为参数，可以同时统计多个文件。较常用的选项如下:</p>
+</blockquote>
+<ul>
+<li>wc &#x2F;etc&#x2F;passwd (统计出&#x2F;etc&#x2F;passwd文件的行数、单词总结、字节数)</li>
+<li>wc -l &#x2F;etc&#x2F;passwd（单独统计出文件的行数）</li>
+<li>wc -w &#x2F;etc&#x2F;passwd（单独统计出文件的单词数）（以空格或制表位作为分隔）</li>
+<li>wc -c &#x2F;etc&#x2F;passwd（单独统计出文件的字节数）</li>
+</ul>
+</li>
+<li><p>grep检索和过滤文件内容</p>
+<blockquote>
+<p>grep 命令用于在文件中查找并显示包含指定字符串的行，可以直接指定关键字符串作为查找条件，也可以使用复杂的条件表达式（例如,“^word”表示以 word 开头，“word<code>$</code>”表示以 word 结尾，“^<code>$</code>”表示空行）。</p>
+</blockquote>
+<ul>
+<li>grep命令常用的选项<ul>
+<li>-i查找时忽略大小写</li>
+<li>-v翻转查找，输出与查找条件不相符的行</li>
+</ul>
+</li>
+<li>grep 命令查找条件设置<ul>
+<li>“”，使用双引号表示查找的字符串</li>
+<li>“^…..”，表示以什么开头</li>
+<li>“…..$”，表示以什么结尾</li>
+<li>“^$”，表示空行</li>
+</ul>
+</li>
+<li>举例<ul>
+<li>grep“root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，包含root的行）</li>
+<li>grep–v “root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，不包含root字符串的行）</li>
+<li>grep–i“Root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，包含root字符串的行，不区分大小写）</li>
+<li>grep“^root” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，以root字符串开头的行）</li>
+<li>grep“bash$” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，以bash字符串结尾的行）</li>
+<li>grep“^$” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，包含空行）</li>
+<li>grep -v “^$” &#x2F;etc&#x2F;passwd（过滤筛选出&#x2F;etc&#x2F;passwd文件中，除空行以外的所有行）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="三、备份及恢复文档"><a href="#三、备份及恢复文档" class="headerlink" title="三、备份及恢复文档"></a>三、备份及恢复文档</h2><ul>
+<li>linux系统中常用的压缩文件<ul>
+<li>gzip<ul>
+<li>gzip -9 &#x2F;etc&#x2F;passwd（使用gzip高压缩比率压缩passwd文件，产生passwd.gz压缩文件，原文件会消失）</li>
+<li>gzip -d passwd.gz（使用gzip -d选项解压passwd.gz文件，还原原文件）</li>
+<li>gunzip passwd.gz（使用gunzip 解压passwd.gz文件）</li>
+</ul>
+</li>
+<li>bzip2<ul>
+<li>bzip -9 &#x2F;etc&#x2F;passwd（使用gzip高压缩比率压缩passwd文件，产生passwd.bz2压缩文件，原文件会消失）</li>
+<li>bzip -d passwd.bz2（使用bzip -d选项解压passwd.bz2文件，还原原文件）</li>
+<li>bunzip passwd.bz2（使用bunzip -d选项解压passwd.bz2文件）</li>
+</ul>
+</li>
+<li>gzip与bzip2压缩工具比较<ul>
+<li>gzip压缩比例更高，即压缩出的文件更小</li>
+<li>两种压缩工具只能对文件进行压缩，不能对目录进行压缩</li>
+<li>实际使用中，常使用gzip压缩工具</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>tar命令（可以对文件和目录进行归档压缩和归档解压缩）<ul>
+<li>制作归档文件—–制作压缩文件</li>
+<li>释放归档文件—-解压已归档的压缩文件</li>
+<li>tar命令的选项<ul>
+<li>-c创建以.tar结尾的压缩文件</li>
+<li>-C解压时指定释放的目标位置（已存在目录）</li>
+<li>-f表示使用归档文件</li>
+<li>-j调用bzip2程序进行压缩或解压</li>
+<li>-z调用gzip程序进行压缩或解压</li>
+<li>-p打包时保留文件及目录的权限</li>
+<li>-P打包时保留文件及目录的绝对路径</li>
+<li>-t列表查看包内的文件</li>
+<li>-v输出解压或压缩过程中的详细信息</li>
+<li>-x解开.tar的压缩包</li>
+</ul>
+</li>
+<li>举例<ul>
+<li>制作归档文件（归档压缩tar格式的包文件）进行备份操作<ul>
+<li>tar zvcf passwd.tar.gz &#x2F;etc&#x2F;passwd</li>
+<li>tar jvcf passwd.tar.bz2 &#x2F;etc&#x2F;passwd</li>
+</ul>
+</li>
+<li>释放归档文件（解压已打包tar格式的包文件）进行还原操作<ul>
+<li>tar zvxf passwd.tar.gz</li>
+<li>tar jvxf passwd.tar.bz2</li>
+</ul>
+</li>
+<li>在不解压的情况下，查看归压缩.tar格式包文件的内容<ul>
+<li>tar -tvf passwd.tar.gz</li>
+<li>tar -tvf passwd.tar.bz2</li>
+</ul>
+</li>
+<li>同时对多个目录进行归档压缩<ul>
+<li>tar zvcf passwd.tar.gz &#x2F;etc&#x2F; &#x2F;boot</li>
+<li>tar jvcf passwd.tar.gz &#x2F;etc&#x2F; &#x2F;boot</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="四、VI文本编辑器使用"><a href="#四、VI文本编辑器使用" class="headerlink" title="四、VI文本编辑器使用"></a>四、VI文本编辑器使用</h2><ul>
+<li><p>vi是类Unix操作系统默认的文本编辑，其拥有强大的全屏编辑功能，多用于修改配置文件</p>
+</li>
+<li><p>vim是vi文本编辑器的增强版本，其也简称为vi编辑器</p>
+</li>
+<li><p>vim工作模式</p>
+<ul>
+<li>命令模式</li>
+<li>未行模式</li>
+<li>输入模式，也称为编辑模式</li>
+</ul>
+</li>
+<li><p>工作模式之间的切换</p>
+<p><img src="https://s2.loli.net/2023/10/15/TJOQpwU7sCNnuzF.png" alt="vi工作模式之间的切换.jpg"></p>
+</li>
+<li><p>命令模式基本模式</p>
+<ul>
+<li><h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><table>
+<thead>
+<tr>
+<th align="center">操作类型</th>
+<th align="center">操作键</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">方向移动</td>
+<td align="center">↑、↓、←、→</td>
+<td align="center">上、下、左、右</td>
+</tr>
+<tr>
+<td align="center">翻页</td>
+<td align="center">Page Down或Ctrl+F<br />Page Up或Ctrl+B</td>
+<td align="center">向下翻动一整页内容<br />向上翻动一整夜内容</td>
+</tr>
+<tr>
+<td align="center">行内快速跳转</td>
+<td align="center">Home键或”^”、数字”0“<br />End键或”$“键</td>
+<td align="center">跳转至行首<br />跳转到行尾</td>
+</tr>
+<tr>
+<td align="center">行间快速跳转</td>
+<td align="center">1G或者gg<br />G<br />#G</td>
+<td align="center">跳转到文件的首行<br />跳转到文件的末尾行<br />跳转到文件中的第#行</td>
+</tr>
+<tr>
+<td align="center">行号显示</td>
+<td align="center">:set nu<br />:set nonu</td>
+<td align="center">在编辑器中显示行号<br />取消编辑器中的行号显示</td>
+</tr>
+</tbody></table>
+</li>
+<li><h3 id="复制、粘贴、删除"><a href="#复制、粘贴、删除" class="headerlink" title="复制、粘贴、删除"></a>复制、粘贴、删除</h3><table>
+<thead>
+<tr>
+<th align="center">操作类型</th>
+<th align="center">操作键</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">删除</td>
+<td align="center">x或Del<br />dd<br />#dd<br />d^<br />d$</td>
+<td align="center">删除光标处的单个字符<br />删除当前光标所在行<br />删除从光标所在行开始的#行内容<br />删除当前光标之前到行首的所有字符<br />删除当前光标处到行尾的所有字符</td>
+</tr>
+<tr>
+<td align="center">复制</td>
+<td align="center">yy<br />#yy</td>
+<td align="center">复制当前行整行的内容到剪切板<br />复制从光标所在行开始的#行内容</td>
+</tr>
+<tr>
+<td align="center">粘贴</td>
+<td align="center">P（大写）<br />p（小写）</td>
+<td align="center">将缓冲区中的内容粘贴到光标位置处之后<br />粘贴到光标位置处之前</td>
+</tr>
+</tbody></table>
+</li>
+<li><h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><table>
+<thead>
+<tr>
+<th align="center">操作键</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&#x2F;word</td>
+<td align="center">从上而下在文件中查找字符串”word“</td>
+</tr>
+<tr>
+<td align="center">?word</td>
+<td align="center">从下而上在文件中查找字符串”word“</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">定位下一个匹配的被查找字符串</td>
+</tr>
+<tr>
+<td align="center">N</td>
+<td align="center">定位上一个匹配的被查找字符串</td>
+</tr>
+</tbody></table>
+</li>
+<li><h3 id="撤销和退出"><a href="#撤销和退出" class="headerlink" title="撤销和退出"></a>撤销和退出</h3><table>
+<thead>
+<tr>
+<th align="center">操作键</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">u</td>
+<td align="center">按一次取消最近的一次操作；重复u键，恢复多部操作</td>
+</tr>
+<tr>
+<td align="center">U</td>
+<td align="center">用于取消对当前行所做的所有编辑</td>
+</tr>
+<tr>
+<td align="center">ZZ</td>
+<td align="center">保存当前的文件内容并退出vi编辑器</td>
+</tr>
+</tbody></table>
+</li>
+<li><h3 id="保存及退出vi编辑器"><a href="#保存及退出vi编辑器" class="headerlink" title="保存及退出vi编辑器"></a>保存及退出vi编辑器</h3><table>
+<thead>
+<tr>
+<th align="center">功能</th>
+<th align="center">命令</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">保存文件</td>
+<td align="center">:w<br />:w &#x2F;root&#x2F;newfile</td>
+<td align="center">保存修改的内容<br />另存为其他文件</td>
+</tr>
+<tr>
+<td align="center">退出vi</td>
+<td align="center">:q<br />:q!</td>
+<td align="center">未修改退出<br />放弃对文件内容的修改，并退出vi</td>
+</tr>
+<tr>
+<td align="center">保存文件退出vi</td>
+<td align="center">:wq或x</td>
+<td align="center">保存修改的内容并退出</td>
+</tr>
+</tbody></table>
+</li>
+<li><h3 id="打开新文件或读入其他文件内容"><a href="#打开新文件或读入其他文件内容" class="headerlink" title="打开新文件或读入其他文件内容"></a>打开新文件或读入其他文件内容</h3><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">:e ~&#x2F;install.log</td>
+<td align="center">打开新的文件进行编辑</td>
+</tr>
+<tr>
+<td align="center">:r &#x2F;etc&#x2F;filesystems</td>
+<td align="center">在当前文件中读入其他文件内容</td>
+</tr>
+</tbody></table>
+</li>
+<li><h3 id="文件内容替换"><a href="#文件内容替换" class="headerlink" title="文件内容替换"></a>文件内容替换</h3><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">:s &#x2F;old&#x2F;new</td>
+<td align="center">将当前行中查找到的第一个字符 “old” 串替换为 “new”</td>
+</tr>
+<tr>
+<td align="center">:s &#x2F;old&#x2F;new&#x2F;g</td>
+<td align="center">将当前行中查找到的所有字符串 “old” 替换为 “new”</td>
+</tr>
+<tr>
+<td align="center">:#,# s&#x2F;old&#x2F;new&#x2F;g</td>
+<td align="center">在行号 “#,#” 范围内替换所有的字符串 “old” 为 “new”</td>
+</tr>
+<tr>
+<td align="center">:% s&#x2F;old&#x2F;new&#x2F;g</td>
+<td align="center">在整个文件范围内替换所有的字符串 “old” 为 “new”</td>
+</tr>
+<tr>
+<td align="center">:s &#x2F;old&#x2F;new&#x2F;c</td>
+<td align="center">在替换命令末尾加入c命令，将对每个替换动作提示用户进行确认</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/" rel="tag">linux文件和目录</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" rel="tag">linux系统管理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2023/10/16/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Linux安装及管理程序
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Linux常用命令</div>
+      </a>
+    
+  </nav>
+
+  
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2023-2025
+        <i class="ri-heart-fill heart_icon"></i> Yan
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="焱"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/update">更新日志</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯茶吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
+        src="//music.163.com/outchain/player?type=2&id=2992037665&auto=0&height=66"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

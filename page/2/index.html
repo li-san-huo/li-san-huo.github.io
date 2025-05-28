@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> 焱</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover6.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">焱</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.staticfile.org/typed.js/2.0.12/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['面朝大海，春暖花开—致·海子', '愿你温柔善良且有力量', '在这里，相约一起～'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  
+
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-网络应用与实验/网络布线与数制转换"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/09/20/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E5%B8%83%E7%BA%BF%E4%B8%8E%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2/"
+    >网络布线与数制转换</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/09/20/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E5%B8%83%E7%BA%BF%E4%B8%8E%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2/" class="article-date">
+  <time datetime="2023-09-20T13:47:16.000Z" itemprop="datePublished">2023-09-20</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/">运维</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/">网络应用与实验</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E5%B8%83%E7%BA%BF%E4%B8%8E%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2/">网络布线与数制转换</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="网络布线与数制转换"><a href="#网络布线与数制转换" class="headerlink" title="网络布线与数制转换"></a>网络布线与数制转换</h1><h2 id="一、信号与传输介质"><a href="#一、信号与传输介质" class="headerlink" title="一、信号与传输介质"></a>一、信号与传输介质</h2><ol>
+<li>信号的定义：是实现信息在网络中传输的一种媒介。</li>
+<li>信号相关概念：<ul>
+<li>信息：是人们对现实世界事物存在方式或运动状态的一种。例如：数字、文字、图片、声音、视频及动画等。</li>
+<li>数据：描述事物相关属性的具体内容。</li>
+</ul>
+</li>
+<li>信号实现的目的：实现数据的传输与信息共享。</li>
+<li>信号分类：<ul>
+<li>有线信号和无线信号</li>
+<li>数字信号和模拟信号</li>
+</ul>
+</li>
+<li>信号在传输过程中产生失真的因素：<ul>
+<li>传输距离——衰减</li>
+<li>噪声</li>
+<li>速度</li>
+<li>其他因素——电磁场等 
+      <a class="article-more-link" href="/2023/09/20/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E5%B8%83%E7%BA%BF%E4%B8%8E%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%B8%83%E7%BA%BF%E4%B8%8E%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2/" rel="tag">网络布线与数制转换</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/" rel="tag">网络应用与实验</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
+  id="post-网络应用与实验/计算机网络参考模型"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/09/19/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/"
+    >计算机网络参考模型</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/09/19/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/" class="article-date">
+  <time datetime="2023-09-19T07:59:46.000Z" itemprop="datePublished">2023-09-19</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/">运维</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/">网络应用与实验</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/">计算机网络参考模型</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="计算机网络参考模型"><a href="#计算机网络参考模型" class="headerlink" title="计算机网络参考模型"></a>计算机网络参考模型</h1><h2 id="一、网络分类"><a href="#一、网络分类" class="headerlink" title="一、网络分类"></a>一、网络分类</h2><ol>
+<li>从地域的范围上划分<ul>
+<li>局域网</li>
+<li>广域网</li>
+</ul>
+</li>
+<li>从用户使用角度上划分<ul>
+<li>有线网络</li>
+<li>无线网络</li>
+</ul>
+</li>
+<li>从传输速率上划分<ul>
+<li>普通网络</li>
+<li>高速网络</li>
+</ul>
+</li>
+<li>从企业业务划分<ul>
+<li>内部网络——私有网络</li>
+<li>外部网络——公有网络（internet）</li>
+</ul>
+</li>
+</ol> 
+      <a class="article-more-link" href="/2023/09/19/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/" rel="tag">网络应用与实验</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/" rel="tag">计算机网络参考模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
+  id="post-网页基础/CSS3"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/09/18/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/CSS3/"
+    >CSS3</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/09/18/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/CSS3/" class="article-date">
+  <time datetime="2023-09-18T02:12:38.000Z" itemprop="datePublished">2023-09-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/">网页</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/CSS3/">CSS3</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="CSS3-这里3指第三代CSS"><a href="#CSS3-这里3指第三代CSS" class="headerlink" title="CSS3(这里3指第三代CSS)"></a>CSS3(这里3指第三代CSS)</h1><h2 id="一、css3属性选择器"><a href="#一、css3属性选择器" class="headerlink" title="一、css3属性选择器"></a>一、css3属性选择器</h2><ol>
+<li><p>什么是css3</p>
+<ul>
+<li>在css2的基础上拓展、新增的样式</li>
+</ul>
+</li>
+<li><p>css3发展现状</p>
+<ul>
+<li>移动端支持优于pc端</li>
+<li>css3目前还在不断改进中</li>
+<li>css3相对H5，应用非常广泛</li>
+</ul>
+</li>
+<li><p>属性选择器列表</p>
+<table>
+<thead>
+<tr>
+<th align="center">选择符</th>
+<th align="center">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">E[att]</td>
+<td align="center">选择具有att属性的E元素</td>
+</tr>
+<tr>
+<td align="center">E[att&#x3D;“val”]</td>
+<td align="center">选择具有att属性且属性值等于val的E元素</td>
+</tr>
+<tr>
+<td align="center">E[att^&#x3D;“val”]</td>
+<td align="center">匹配具有att属性、且值以val开头的E元素</td>
+</tr>
+<tr>
+<td align="center">E[att$&#x3D;“val”]</td>
+<td align="center">匹配具有att属性、且值以val结尾的E元素</td>
+</tr>
+<tr>
+<td align="center">E[att*&#x3D;“val”]</td>
+<td align="center">匹配具有att属性、且值中含有val的E元素</td>
+</tr>
+</tbody></table> 
+      <a class="article-more-link" href="/2023/09/18/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/CSS3/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E9%A1%B5/" rel="tag">网页</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
+  id="post-网页基础/初识CSS"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/09/11/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E5%88%9D%E8%AF%86CSS/"
+    >初识CSS</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/09/11/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E5%88%9D%E8%AF%86CSS/" class="article-date">
+  <time datetime="2023-09-11T04:00:29.000Z" itemprop="datePublished">2023-09-11</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/">网页</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/%E5%88%9D%E8%AF%86CSS/">初识CSS</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="初识CSS"><a href="#初识CSS" class="headerlink" title="初识CSS"></a>初识CSS</h1><ul>
+<li>CSS:层叠样式表， Cascading style sheet.</li>
+<li>作用:控制网页的外观(修饰和美化html)</li>
+<li>语法：选择器{属性1：属性值1；属性值2；属性值3；…}</li>
+</ul> 
+      <a class="article-more-link" href="/2023/09/11/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E5%88%9D%E8%AF%86CSS/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%9D%E8%AF%86CSS/" rel="tag">初识CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E9%A1%B5/" rel="tag">网页</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
+  id="post-网页基础/网页基础"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/08/10/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/"
+    >网页基础</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/08/10/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2023-08-10T07:04:01.000Z" itemprop="datePublished">2023-08-10</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/">网页</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/HTML/">HTML</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="html基本语法"><a href="#html基本语法" class="headerlink" title="html基本语法"></a>html基本语法</h1><h2 id="VScode的使用"><a href="#VScode的使用" class="headerlink" title="VScode的使用"></a>VScode的使用</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">网页开发工具有很多，比如记事本、DW、sublime、webStorm、Hbuiler、vscode等</span><br><span class="line">主流使用的是VScode,使用详细介绍：</span><br><span class="line">1.在桌面上新建一个根目录（文件夹），在vscode中打开</span><br><span class="line">2.安装插件</span><br><span class="line">3.新建文件及文件夹</span><br><span class="line">4.快速生成网页的基本结构！回车</span><br><span class="line">5.自动保存	文件-自动保存</span><br><span class="line">6.打开浏览器Alt+b</span><br><span class="line"></span><br><span class="line">快捷键：</span><br><span class="line">ctrl+c复制	+v粘贴	+s保存	+z撤销	+y恢复</span><br><span class="line">其他浏览器打开：shift+alt+b</span><br><span class="line">侧边栏的显示隐藏：Ctrl+b</span><br><span class="line">代码格式化：	Shift+Alt+F</span><br><span class="line">放大缩小视图	ctrl +加号/减号</span><br><span class="line">向下复制一行：	Shift+Alt+Down</span><br><span class="line">在当前行下方插入一行：	Ctrl+Enter</span><br><span class="line">多行编辑：	Alt+Shift+鼠标左键</span><br><span class="line">下一个匹配的也被选中：	Ctrl+D</span><br><span class="line">折叠	Ctrl+Shift+[ 展开 Ctrl+Shift+]</span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2023/08/10/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" rel="tag">html基本语法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E9%A1%B5/" rel="tag">网页</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2023-2025
+        <i class="ri-heart-fill heart_icon"></i> Yan
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="焱"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/update">更新日志</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯茶吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
+        src="//music.163.com/outchain/player?type=2&id=2992037665&auto=0&height=66"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>计算机网络参考模型 |  焱</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-网络应用与实验/计算机网络参考模型"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  计算机网络参考模型
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/09/19/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/" class="article-date">
+  <time datetime="2023-09-19T07:59:46.000Z" itemprop="datePublished">2023-09-19</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/">运维</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/">网络应用与实验</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/">计算机网络参考模型</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">4 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="计算机网络参考模型"><a href="#计算机网络参考模型" class="headerlink" title="计算机网络参考模型"></a>计算机网络参考模型</h1><h2 id="一、网络分类"><a href="#一、网络分类" class="headerlink" title="一、网络分类"></a>一、网络分类</h2><ol>
+<li>从地域的范围上划分<ul>
+<li>局域网</li>
+<li>广域网</li>
+</ul>
+</li>
+<li>从用户使用角度上划分<ul>
+<li>有线网络</li>
+<li>无线网络</li>
+</ul>
+</li>
+<li>从传输速率上划分<ul>
+<li>普通网络</li>
+<li>高速网络</li>
+</ul>
+</li>
+<li>从企业业务划分<ul>
+<li>内部网络——私有网络</li>
+<li>外部网络——公有网络（internet）</li>
+</ul>
+</li>
+</ol>
+<span id="more"></span>
+
+<hr>
+<h2 id="二、分层思想"><a href="#二、分层思想" class="headerlink" title="二、分层思想"></a>二、分层思想</h2><ol>
+<li>网络划分使用分层思想目的：<ul>
+<li>方便定位问题，进而高效解决问题</li>
+<li>降低分析问题的难度，便于维护管理网络</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）"><a href="#三、如何对网络进行分层——OSI七层参考模型（下一层是为-上一层提供服务的）" class="headerlink" title="三、如何对网络进行分层——OSI七层参考模型（下一层是为 上一层提供服务的）"></a>三、如何对网络进行分层——OSI七层参考模型（<font color='red'>下一层是为 上一层提供服务的</font>）</h2><ol>
+<li>物理层（第一层，也称为最底层）<ul>
+<li>用于建立、断开、维护物理连接</li>
+<li>以比特流的方式进行数据传输，传输信号使用0和1表示</li>
+<li>可以数据双向传输（收发数据可以同时进行，即数据的双向传输）</li>
+<li>对应的设备——计算机、网卡、网线</li>
+</ul>
+</li>
+<li>数据链路层（第二层）<ul>
+<li>把传输的数据帧进行封装和解封装，数据链路层传输的数据称为数据帧</li>
+<li>数据帧的地址——源MAC地址、目标MAC地址</li>
+<li>数据校验的功能</li>
+<li>对应的设备——交换机</li>
+</ul>
+</li>
+<li>网络层（第三层）<ul>
+<li>把传输的数据包进行封装和解封装，网络层传输的数据为数据包</li>
+<li>数据包的地址——源IP地址、目标IP地址</li>
+<li>根据包头字段中的地址进行选路（路由器中的路由表进行数据包的转发）</li>
+<li>对应设备——路由器</li>
+</ul>
+</li>
+<li>传输层（第四层）<ul>
+<li>实现用户进程间通信（如：在计算机上安装QQ进程）</li>
+<li>承上启下（乘上——对应的会话层或应用，启下——对应的网络层）</li>
+<li>对应的设备——防火墙</li>
+</ul>
+</li>
+<li>会话层（第五层）<ul>
+<li>建立用户间的会话关系</li>
+</ul>
+</li>
+<li>表示层（第六层）<ul>
+<li>定义传输数据的标准格式（语法和定义）</li>
+<li>对传输的数据进行压缩解压缩、加密解密、编码解码</li>
+</ul>
+</li>
+<li>应用层（第七层，也称为最高层）<ul>
+<li>提供与用户的接口（定义两端使用统一程序接口）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="四、OSI七层参考模型与TCP-IP模型的关系"><a href="#四、OSI七层参考模型与TCP-IP模型的关系" class="headerlink" title="四、OSI七层参考模型与TCP&#x2F;IP模型的关系"></a>四、OSI七层参考模型与TCP&#x2F;IP模型的关系</h2><ol>
+<li>OSI七层参考模型，是一种理论参考模型，也成为“经典模型”。</li>
+<li>实际使用中，采用是TCP&#x2F;IP五层模型，即把会话层、表示层、应用层合并为一层“应用层”。</li>
+<li>OSI七层参考模型是由TCP&#x2F;IP五层模型演进而来的。</li>
+</ol>
+<hr>
+<h2 id="五、TCP-IP每层对应的协议"><a href="#五、TCP-IP每层对应的协议" class="headerlink" title="五、TCP&#x2F;IP每层对应的协议"></a>五、TCP&#x2F;IP每层对应的协议</h2><p><img src="https://s2.loli.net/2023/09/21/ibB8VS7kolNpaUT.png" alt="TCP每层协议.png"></p>
+<ol>
+<li>物理层<ul>
+<li>底层网络定义的协议均支持</li>
+</ul>
+</li>
+<li>数据链路层<ul>
+<li>标准网络定义的协议均支持</li>
+</ul>
+</li>
+<li>网络层<ul>
+<li>IP（ICMP&#x2F;IGMP&#x2F;ARP&#x2F;RARP）</li>
+</ul>
+</li>
+<li>传输层<ul>
+<li>TCP UDP</li>
+</ul>
+</li>
+<li>应用层<ul>
+<li>http&#x2F;https&#x2F;smtp&#x2F;<code>dns</code>&#x2F;ftp&#x2F;ssh&#x2F;tftp</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="六、数据封装与解封装过程（主机A向主机B发送数据）"><a href="#六、数据封装与解封装过程（主机A向主机B发送数据）" class="headerlink" title="六、数据封装与解封装过程（主机A向主机B发送数据）"></a>六、数据封装与解封装过程（主机A向主机B发送数据）</h2><p><img src="https://s2.loli.net/2023/09/21/BDJpTfwXKdOSIvo.png" alt="数据封装过程.jpg"></p>
+<blockquote>
+<p>发送方（主机A）向接收方（主机B）发送数据前，要进行封装过程如下：</p>
+</blockquote>
+<ol>
+<li>发送方（主机A）对数据进行封装时，从高层往底层进行逐层封装</li>
+<li>从应用层到传输层，在上层数据的基础上封装TCP头部</li>
+<li>从传输层到网络层，在“TCP头部+上层数据”基础上封装IP头 部</li>
+<li>从网络层到数据链路层，在“IP头部+TCP头部+上层数据”基 础上封装MAC头部</li>
+<li>到最后的物理层，转换成比特流在网络中传输。</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/09/21/GEzraBOVoRpidTk.png" alt="数据解封装过程.jpg"></p>
+<blockquote>
+<p>接收方（主机B）从发送方（主机A）接收数据前，要进行解封装的过程如下：</p>
+</blockquote>
+<ol>
+<li>接收方（主机B）对数据进行解封装时，从底层到高层逐层进行解封装</li>
+<li>通过物理层网络，传输比特流数据到数据链路层</li>
+<li>到数据链路层后去掉，MAC头部</li>
+<li>到网络层后去掉，IP头部</li>
+<li>到传输层后去掉，TCP头部</li>
+<li>到应用层后，还原上传数据。</li>
+</ol>
+<hr>
+<h2 id="七、PDU（协议数据单元）"><a href="#七、PDU（协议数据单元）" class="headerlink" title="七、PDU（协议数据单元）"></a>七、PDU（协议数据单元）</h2><ol>
+<li>名称解释：PDU是定义TCP&#x2F;IP的五层模型，每层传输数据的名称<ul>
+<li>物理层传输的数据：比特流</li>
+<li>数据链路层传输的数据：数据帧</li>
+<li>网络层传输的数据：数据包</li>
+<li>传输层传输的数据：数据段</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="八、TCP-IP五层模型每层对应的硬件设备"><a href="#八、TCP-IP五层模型每层对应的硬件设备" class="headerlink" title="八、TCP&#x2F;IP五层模型每层对应的硬件设备"></a>八、TCP&#x2F;IP五层模型每层对应的硬件设备</h2><ol>
+<li>物理层——网卡、传输介质（双绞线，也叫“网线”）</li>
+<li>数据链路层——交换机</li>
+<li>网络层——路由器</li>
+<li>传输层——防火墙</li>
+<li>应用层——计算机软件</li>
+</ol>
+<hr>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/09/19/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/" rel="tag">网络应用与实验</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/" rel="tag">计算机网络参考模型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2023/09/20/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E7%BD%91%E7%BB%9C%E5%B8%83%E7%BA%BF%E4%B8%8E%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            网络布线与数制转换
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2023/09/18/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/CSS3/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">CSS3</div>
+      </a>
+    
+  </nav>
+
+  
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2023-2025
+        <i class="ri-heart-fill heart_icon"></i> Yan
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="焱"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/update">更新日志</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯茶吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
+        src="//music.163.com/outchain/player?type=2&id=2992037665&auto=0&height=66"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

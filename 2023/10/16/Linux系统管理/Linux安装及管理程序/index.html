@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Linux安装及管理程序 |  焱</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Linux系统管理/Linux安装及管理程序"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Linux安装及管理程序
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/10/16/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/" class="article-date">
+  <time datetime="2023-10-16T10:34:35.000Z" itemprop="datePublished">2023-10-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/">运维</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">linux系统管理</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/">linux安装及管理程序</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.8k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">7 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="安装及管理程序"><a href="#安装及管理程序" class="headerlink" title="安装及管理程序"></a>安装及管理程序</h1><h2 id="一、Linux应用程序基础"><a href="#一、Linux应用程序基础" class="headerlink" title="一、Linux应用程序基础"></a>一、Linux应用程序基础</h2><blockquote>
+<p>名称解释：应用程序，又称为软件，通过安装应用程序，提供一种服务供用户去访问或使用</p>
+</blockquote>
+<ul>
+<li><p>应用程序与系统命令之间的关系</p>
+<table>
+<thead>
+<tr>
+<th align="center">角色</th>
+<th align="center">系统命令</th>
+<th align="center">应用程序</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">文件位置</td>
+<td align="center">一般在&#x2F;bin和&#x2F;sbin目录中，或为Shell内部指令</td>
+<td align="center">通常在&#x2F;usr&#x2F;bin和&#x2F;usr&#x2F;sbin目录中</td>
+</tr>
+<tr>
+<td align="center">主要用途</td>
+<td align="center">一般只在字符操作界面中运行</td>
+<td align="center">根据实际需要，有些程序可在图形界面中运行</td>
+</tr>
+<tr>
+<td align="center">适用环境</td>
+<td align="center">一般只在字符操作界面中运行</td>
+<td align="center">根据实际需要，有些程序可在图形界面中运行</td>
+</tr>
+<tr>
+<td align="center">运行格式</td>
+<td align="center">一般包括命令字、命令选项和命令参数</td>
+<td align="center">通常没有固定的执行格式</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+</li>
+<li><p>经典应用程序的目录结构</p>
+<table>
+<thead>
+<tr>
+<th align="center">文件类型</th>
+<th align="center">保存目录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">普通执行程序文件</td>
+<td align="center">&#x2F;usr&#x2F;bin</td>
+</tr>
+<tr>
+<td align="center">服务器执行程序文件和管理程序文件</td>
+<td align="center">&#x2F;usr&#x2F;sbin</td>
+</tr>
+<tr>
+<td align="center">应用程序配置文件</td>
+<td align="center">&#x2F;etc</td>
+</tr>
+<tr>
+<td align="center">日志文件</td>
+<td align="center">&#x2F;var&#x2F;log</td>
+</tr>
+<tr>
+<td align="center">应用程序参考文档文件</td>
+<td align="center">&#x2F;usr&#x2F;share&#x2F;doc</td>
+</tr>
+<tr>
+<td align="center">应用程序手册页文件</td>
+<td align="center">&#x2F;usr&#x2F;share&#x2F;man</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>常见软件包的封装类型</p>
+<table>
+<thead>
+<tr>
+<th align="center">文件类型</th>
+<th align="center">保存目录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">RPM软件包</td>
+<td align="center">扩展名为 “.rpm”</td>
+</tr>
+<tr>
+<td align="center">DEB软件包</td>
+<td align="center">扩展名为 “.deb”</td>
+</tr>
+<tr>
+<td align="center">源代码软件包</td>
+<td align="center">一般为 “.tar.gz”、“.tar.bz2” 等格式的压缩包，包含程序的原始代码</td>
+</tr>
+<tr>
+<td align="center">绿色免安装的软件包</td>
+<td align="center">软件包的扩展名不一，，以TarBall格式的居多<br />在压缩包内提供已编译好的执行程序文件<br />解开压缩包后的文件即可直接使用</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<hr>
+<h2 id="二、RPM包管理工具"><a href="#二、RPM包管理工具" class="headerlink" title="二、RPM包管理工具"></a>二、RPM包管理工具</h2><ul>
+<li>RPM软件包命名格式<ul>
+<li>软件名称-版本号-发布次数-硬件平台-后缀名.rpm</li>
+<li>获取rpm命令的详细帮助信息<ul>
+<li>man</li>
+<li>rpm</li>
+</ul>
+</li>
+<li>rpm命令可以实现几乎所有对rpm软件包的管理功能</li>
+</ul>
+</li>
+<li>rpm命令常见的功能<ul>
+<li>安装、卸载、查询、更新、验证、维护等功能</li>
+</ul>
+</li>
+<li>rpm命令使用<ul>
+<li>查询已安装的RPM软件包<ul>
+<li>rpm -qa查询linux系统中系统已安装的所有rpm软件包</li>
+<li>rpm -qa |wc-l 统计出linux系统中已安装的所有rpm包的总数</li>
+<li>rpm -ql openssh查看openssh软件包在当前系统中安装的所有目录和文件</li>
+<li>rpm -qi openssh查看openssh软件包的详细信息，包括名称、版本、发布次数等</li>
+<li>rpm -qc openssh查看openssh软件包在当前系统中安装的配置文件</li>
+<li>rpm -qf &#x2F;usr&#x2F;bin&#x2F;pwd查看pwd这个命令是由哪个软件包安装的</li>
+<li>rpm -qd openssh 查看openssh软件包在当前系统中安装的帮助文档</li>
+</ul>
+</li>
+<li>查询未安装的RPM包<ul>
+<li>rpm –qp lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （查看未安装的软件包）</li>
+<li>rpm –qpi lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （查看未安装软件包的详细信息）</li>
+<li>rpm –qpl lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成哪些目录和文件）</li>
+<li>rpm –qpc lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成的配置文件）</li>
+<li>pm –qpd lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （预先查看这个包安装将要生成的帮助文档</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>安装RPM软件包<ul>
+<li>命令格式<ul>
+<li>rpm 选项 软件包名称</li>
+</ul>
+</li>
+<li>安装选项<ul>
+<li>-i在当前系统中，安装一个新的软件包</li>
+<li>-U检查并升级系统中的某个软件包，若该软件包未安装，则安装这个软件包，这时就相当于“-i”这个选项</li>
+<li>-F检查并更新系统中的某个软件包，若该软件未安装，则放弃更新升级安装操作。</li>
+<li>-e卸载已安装的软件包</li>
+<li>-v显示软件包安装过程中的详细信息</li>
+<li>-h在安装或升级软件包的过程中，以“#”的方式显示安装或升级的进度</li>
+<li>–force强制安装某个软件包，如安装一个比当前版本更低的一个版本时，会使用强制安装</li>
+<li>–nodeps可用于安装、升级、卸载一个软件包时，忽略软件包的依赖关系</li>
+</ul>
+</li>
+<li>举例<ul>
+<li>rpm -ivh lynx-2.8.8-0.3.dev15.el7.x86_64.rpm (安装全新的lynx软件包)</li>
+<li>rpm -e lynx-2.8.8-0.3.dev15.el7.x86_64.rpm （卸载lynx软件包）</li>
+<li>rpm -q lynx （查看lynx软件包是否卸载）</li>
+<li>rpm -qpi elinks-0.12-0.37.pre6.el7.x86_64.rpm –nodeps （安装新的软件包，且忽略依赖关系）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>维护RPM数据库<ul>
+<li>重建RPM数据库<ul>
+<li>rpm –rebuilddb（执行效率低）</li>
+<li>rpm –initdb（执行效率高）</li>
+</ul>
+</li>
+<li>导入验证公钥<ul>
+<li>root@localhost~]# rpm –import&#x2F;media&#x2F;cdrom&#x2F;RPM-GPG-KEY-CentOS-7</li>
+<li>作用：导入公钥文件后，安装软件包时，不会提示警告信息，确保安装到系统的RPM包是安全的。</li>
+</ul>
+</li>
+<li>解决软件包依赖关系方法<ul>
+<li>安装有依赖关系的多软件包，被依赖的软件先安装，可以同时制定多个rpm包进行安装</li>
+<li>卸载有依赖关系的多个软件包时，被依赖的软件先卸载，可以同时制定多个rpm包进行卸载</li>
+<li>安装或卸载有依赖关系的软件包，不考虑其依赖关系进行安装或卸载使用“–nodeps”选项，忽略依赖关系，进行强制安装或卸载有依赖关系的软件包</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="三、源代码包编译安装程序"><a href="#三、源代码包编译安装程序" class="headerlink" title="三、源代码包编译安装程序"></a>三、源代码包编译安装程序</h2><ul>
+<li>源代码编译安装概述<ul>
+<li>使用源代码包安装软件的优点<ul>
+<li>获取较新软件版本，及时修改BUG</li>
+<li>根据用户需求，灵活定制软件功能模块</li>
+</ul>
+</li>
+<li>源代码使用场景<ul>
+<li>企业要求安装较新版本的软件包时</li>
+<li>企业业务需求无法及时满足时</li>
+<li>应用程序需要添加新的功能时</li>
+</ul>
+</li>
+<li>源代码包格式<ul>
+<li>源代码包，又称为“Tarball”</li>
+<li>格式 tar.gz。tar.bz2</li>
+</ul>
+</li>
+<li>校验源代码完整性的校验工具<ul>
+<li>md5sum https-2.4.50.tar.gz</li>
+</ul>
+</li>
+<li>确认源代码包编译环境<ul>
+<li>gcc编译工具</li>
+<li>验证gcc编译工具是否安装 gcc -version</li>
+<li>验证make编译工具是否安装 make –version</li>
+<li>提前安装apache的依赖包 yum install -y gcc gcc-c++ make apr apr-devel apr-until apr-until-devel pcre pcre-devel</li>
+</ul>
+</li>
+<li>源代码包编译安装的过程<ul>
+<li>下载源代码包并验证源代码包的安装性 md5sum httpd-2.4.50.tar.gz</li>
+<li>解包，使用tar tar zxvf httpd-2.4.50.tar.gz -C &#x2F;usr&#x2F;src</li>
+<li>配置，使用.&#x2F;configure脚本文件进行配置apache安装路径 cd &#x2F;usr&#x2F;src&#x2F;httpd-2.4.50 .&#x2F;configure –prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;apache</li>
+<li>编译，将源代码编译并生成二进制文件 make</li>
+<li>安装，将生成的二进制文件复制到系统对应的目录下 make install</li>
+<li>测试，应用及维护软件<ul>
+<li>修改apache配置文件&#x2F;usr&#x2F;local&#x2F;apache&#x2F;conf&#x2F; httpd.conf（194行的#去掉）</li>
+<li>启动apache服务命令&#x2F;usr&#x2F;local&#x2F;apache&#x2F;bin&#x2F;apachectl start</li>
+<li>验证apache服务是否启动 netstat -anpt |grep httpd</li>
+<li>yum insatll -y lynx elinks</li>
+<li>lynx 或lynx 127.0.0.1</li>
+<li>elinks 或elinks 127.0.0.1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/10/16/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/" rel="tag">linux安装及管理程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" rel="tag">linux系统管理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2023/10/17/Linux%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/Linux%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Linux用户账户和权限管理
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2023/10/15/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Linux文件和目录</div>
+      </a>
+    
+  </nav>
+
+  
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2023-2025
+        <i class="ri-heart-fill heart_icon"></i> Yan
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="焱"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/update">更新日志</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯茶吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
+        src="//music.163.com/outchain/player?type=2&id=2992037665&auto=0&height=66"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

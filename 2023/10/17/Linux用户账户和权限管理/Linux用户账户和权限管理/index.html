@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Linux用户账户和权限管理 |  焱</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Linux用户账户和权限管理/Linux用户账户和权限管理"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Linux用户账户和权限管理
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/10/17/Linux%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/Linux%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" class="article-date">
+  <time datetime="2023-10-17T10:10:01.000Z" itemprop="datePublished">2023-10-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/">运维</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">linux系统管理</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E8%BF%90%E7%BB%B4/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/linux%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">linux用户账户和权限管理</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.9k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">7 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="用户账户和权限管理"><a href="#用户账户和权限管理" class="headerlink" title="用户账户和权限管理"></a>用户账户和权限管理</h1><h2 id="一、管理用户账号和组账号"><a href="#一、管理用户账号和组账号" class="headerlink" title="一、管理用户账号和组账号"></a>一、管理用户账号和组账号</h2><ul>
+<li>linux系统是基于用户身份资源访问进行控制</li>
+</ul>
+<h3 id="用户账户"><a href="#用户账户" class="headerlink" title="用户账户"></a>用户账户</h3><ul>
+<li>超级用户，root用户账号，在系统中拥有最高权限，是linux系统的超级管理员</li>
+<li>普通用户，由管理员用户创建的，拥有一定的权限对系统资源进行访问控制</li>
+<li>程序用户，确保系统对应程序的正常运行，该类用户账号不允许登录系统<span id="more"></span></li>
+</ul>
+<h3 id="组账号"><a href="#组账号" class="headerlink" title="组账号"></a>组账号</h3><ul>
+<li>基本组（私有组）<ul>
+<li>定义，创建用户账号的同时，默认也会创建该用户账号对应的基本组（私有组），基本组的名字和 用户账号名字是一样的。</li>
+<li>每个用户账号有且只有一个基本组</li>
+<li>附加组（公共组）<ul>
+<li>定义，一个用户账号除了拥有一个基本组外，还可以加入其他组，加入的其他组对于该用户账号来 说，就称为附加组或公共组</li>
+<li>每个用户账号可以有多个附加组</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="用户标识号和组标识号"><a href="#用户标识号和组标识号" class="headerlink" title="用户标识号和组标识号"></a>用户标识号和组标识号</h3><ul>
+<li>UID（User IDentity，用户标识号)用于唯一区分每一个用户账号<ul>
+<li>基于centos7系统，创建普通用户默认分配的uid范围从1000~60000</li>
+</ul>
+</li>
+<li>GID（Group IDentify，组标识号)用于唯一区分每一个组账号<ul>
+<li>基于centos7系统，创建组账号默认分配的uid范围从1000~60000</li>
+</ul>
+</li>
+<li>root用户账号和组账号，uid和gid始终为0</li>
+</ul>
+<h3 id="用户账号的管理"><a href="#用户账号的管理" class="headerlink" title="用户账号的管理"></a>用户账号的管理</h3><ul>
+<li>用户账号文件</li>
+<li>添加、删除、修改用户账号</li>
+</ul>
+<h3 id="组账号管理"><a href="#组账号管理" class="headerlink" title="组账号管理"></a>组账号管理</h3><ul>
+<li>组账号文件</li>
+<li>添加、删除、修改组账号</li>
+</ul>
+<h3 id="查询账号信息"><a href="#查询账号信息" class="headerlink" title="查询账号信息"></a>查询账号信息</h3><ul>
+<li>用户账号对应的配置文件&#x2F;etc&#x2F;passwd</li>
+<li>用户配置文件中的每一行都表示一个用户账号的属性信息<ul>
+<li>字段1：用户帐号的名称</li>
+<li>字段2：用户密码字串或者密码占位符“<font color='red'>x</font>”</li>
+<li>字段3：用户帐号的UID号</li>
+<li>所属基本组帐号的GID号</li>
+<li>用户全名</li>
+<li>宿主目录</li>
+<li>登录Shell环境</li>
+</ul>
+</li>
+<li>用户账号对应的密码信息配置文件<ul>
+<li>密码信息对应的配置文件，也叫“影子文件”，也称为shadow文件&#x2F;etc&#x2F;shadow</li>
+<li>shadow文件每一行对应一个用户账号的密码信息</li>
+<li>字段1：用户帐号的名称</li>
+<li>字段2：使用哈希加密算法生产的加密字符串</li>
+<li>字段3：上次修改密码的时间，从1970.1.1算起到最近一次修改密码时间的间隔天数</li>
+<li>字段4：密码的最短有效天数，默认值为0，表示不限制</li>
+<li>字段5：密码的最长有效天数，默认值为99999，表示不限制</li>
+<li>字段6：提前多少天警告用户密码将过期，默认值为7</li>
+<li>字段7：在密码过期之后多少天内禁用此用户</li>
+<li>字段8：帐号失效时间，默认值0表示用户账号永不失效</li>
+<li>字段9：保留字段（目前未使用）</li>
+</ul>
+</li>
+<li>添加、删除、修改用户账号<ul>
+<li>useradd命令：添加用户账号<ul>
+<li>useradd zhangsan （添加用户张三）</li>
+<li>useradd -u 1006 -s &#x2F;bin&#x2F;sh -e 2022-4-30 lisi（创建用户lisi给他指定uid是1006，有效时间是2022-4-30 登录的 shell）</li>
+<li>useradd -M xiaoming （添加小明这个用户时不创建他的家目录或属主目录）</li>
+<li>useradd -G zahngsan xiaoming（添加用户小明时指定该用户账号的附加组为张三）</li>
+</ul>
+</li>
+<li>passwd命令<ul>
+<li>passwd zhangsan （设置张三的密码）</li>
+<li>passwd -d zhangsan（清空或删除张三的密码，实现用户免密登录）</li>
+<li>passwd -l zhangsan（锁定张三用户，使其无法登录系统）</li>
+<li>passwd -u zhangsan（解锁张三用户，使其正常登录系统）</li>
+<li>passwd -S zhangsan （查看用户张三锁定解锁的状态）</li>
+</ul>
+</li>
+<li>usermod命令<ul>
+<li>usermod -l lisi zhangsan （把张三修改为李四）</li>
+<li>usermod -L zhangsan（锁定张三用户，使其无法登录系统）</li>
+<li>usermod -U zhangsan（解锁张三用户，使其正常登录系统）</li>
+<li>passwd -S zhangsan （查看用户张三锁定解锁的状态）</li>
+</ul>
+</li>
+<li>userdel命令<ul>
+<li>userdel zhangsan（删除用户张三）</li>
+<li>userdel -r zhangsan（删除用户张三并把其家目录一起删除）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>添加、删除组账号<ul>
+<li>groupadd命令<ul>
+<li>groupadd kc32（创建组账号kc32）</li>
+<li>cat &#x2F;etc&#x2F;group （查看组账号信息）</li>
+</ul>
+</li>
+<li>gpasswd命令<ul>
+<li>gpasswd -a zhangsan kc32（把用户张三添加到组kc32中）</li>
+<li>gpasswd -d zhangsan kc32（把用户张三组kc32中删除）</li>
+<li>gpasswd -M zhangsan,lisi,wangwu kc32（把用户张三、李四、王五添加到组kc32中，且会覆盖原有的用户）</li>
+</ul>
+</li>
+<li>groupdel命令<ul>
+<li>groupdel kc32（删除组kc32）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>查询账户<ul>
+<li>groups命令<ul>
+<li>groups （查看当前登录系统的用户的属组）</li>
+<li>groups zhangsan（查看张三用户的属组）</li>
+</ul>
+</li>
+<li>id命令<ul>
+<li>id （查看当前登录系统用户的身份标识）</li>
+<li>id zhangsan （查看张三的uid，gid以及组账号）</li>
+</ul>
+</li>
+<li>finger命令<ul>
+<li>finger（查询当前登录账号的详细信息）</li>
+<li>finger zhangsan（查询张三用户的详细信息）</li>
+</ul>
+</li>
+<li>w命令<ul>
+<li>w （查询当前登录账号的详细信息，包括负载，如CPU、内存等）</li>
+</ul>
+</li>
+<li>who命令<ul>
+<li>who（只显示用户名、终端、登录时间）</li>
+</ul>
+</li>
+<li>users命令<ul>
+<li>users（只显示用户名）</li>
+</ul>
+</li>
+<li>whoami命令<ul>
+<li>whoami（查询当前是哪个用户登录的）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、权限管理"><a href="#二、权限管理" class="headerlink" title="二、权限管理"></a>二、权限管理</h2><ul>
+<li><p>linux系统中文件和目录的权限分为：访问权和归属权</p>
+<ul>
+<li><p>访问权</p>
+<ul>
+<li>读取 r：允许查看文件内容、显示目录列表</li>
+<li>写入 w：允许修改文件内容，允许在目录中新建、移动、删除文件或子目录</li>
+<li>可执行 x：允许运行程序、切换目录</li>
+</ul>
+</li>
+<li><p>归属权</p>
+<ul>
+<li>定义：就是文件或目录是由哪个用户创建，所有者就是谁</li>
+<li>归属权分为属主,拥有该文件或目录的用户帐号（创建文件或目录的用户）、属组,拥有该文件或目录的组帐号（创 建文件或目录的用户的主账号）</li>
+</ul>
+</li>
+<li><p>权限的格式和含义</p>
+<p><img src="https://s2.loli.net/2023/10/17/OxM5FbtVA26grPm.png" alt="1697534815343.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="权限设置"><a href="#权限设置" class="headerlink" title="权限设置"></a>权限设置</h3><ul>
+<li>linux系统下普通文件的默认权限是666，普通目录默认的权限是777</li>
+<li>chmod命令<ul>
+<li>chmod u+x，g+x，o+x passwd （给文件passwd设置权限，给属主执行的权限，给属组设置执行的权限，给其他 用户设置执行的权限）</li>
+<li>chmod u-x，g-x，o-x passwd （给文件passwd设置权限，把属主的执行权限去掉，给属组设置的执行权限去掉， 给其他用户的执行权限也去掉）</li>
+<li>chmod a&#x3D;rwx passwd （给文件passwd的所有用户的属主、属组赋予读写执行的权限）</li>
+<li>chmod -R 777 &#x2F;kgc （给目录kgc以及其子目录和文件均赋予777的权限）</li>
+</ul>
+</li>
+<li>chown命令<ul>
+<li>chown zhangsan &#x2F;root&#x2F;passwd (把&#x2F;root&#x2F;passwd文件的属主改为张三)</li>
+<li>chown :zhangsan &#x2F;root&#x2F;passwd(把&#x2F;root&#x2F;passwd文件的属组改为张三)</li>
+<li>chown zhangsan:zhangsan &#x2F;root&#x2F;passwd(把&#x2F;root&#x2F;passwd文件的属主和属组均改为张三)</li>
+<li>chown -R zhangsan:zhangsan &#x2F;kgc (把&#x2F;kgc目录以及其子目录和文件的属主和属组均改为张三)</li>
+</ul>
+</li>
+<li>umask权限掩码<ul>
+<li>作用：控制新建的文件或者目录的权限、默认权限去除umask的权限为新建的文件或者目录的权限</li>
+<li>权限掩码的默认值：root用户的umask&#x3D;022、普通用户的umask&#x3D;002</li>
+<li>普通用户创建的文件为644&#x3D;linux系统中文件的默认权限是666-普通用户的umask是022</li>
+<li>普通用户创建的目录为755&#x3D;linux系统中目录的默认权限是777-普通用户的umask是022</li>
+</ul>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/10/17/Linux%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/Linux%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" rel="tag">linux用户账户和权限管理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" rel="tag">linux系统管理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2023/10/16/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/Linux%E5%AE%89%E8%A3%85%E5%8F%8A%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Linux安装及管理程序</div>
+      </a>
+    
+  </nav>
+
+  
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2023-2025
+        <i class="ri-heart-fill heart_icon"></i> Yan
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="焱"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/update">更新日志</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯茶吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
+        src="//music.163.com/outchain/player?type=2&id=2992037665&auto=0&height=66"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

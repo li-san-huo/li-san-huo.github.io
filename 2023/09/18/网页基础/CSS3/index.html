@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>CSS3 |  焱</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-网页基础/CSS3"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  CSS3
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/09/18/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/CSS3/" class="article-date">
+  <time datetime="2023-09-18T02:12:38.000Z" itemprop="datePublished">2023-09-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/">学习</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/">网页</a> / <a class="article-category-link" href="/categories/%E8%AE%B0%E5%BD%95/%E5%AD%A6%E4%B9%A0/%E7%BD%91%E9%A1%B5/CSS3/">CSS3</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">3.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">13 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="CSS3-这里3指第三代CSS"><a href="#CSS3-这里3指第三代CSS" class="headerlink" title="CSS3(这里3指第三代CSS)"></a>CSS3(这里3指第三代CSS)</h1><h2 id="一、css3属性选择器"><a href="#一、css3属性选择器" class="headerlink" title="一、css3属性选择器"></a>一、css3属性选择器</h2><ol>
+<li><p>什么是css3</p>
+<ul>
+<li>在css2的基础上拓展、新增的样式</li>
+</ul>
+</li>
+<li><p>css3发展现状</p>
+<ul>
+<li>移动端支持优于pc端</li>
+<li>css3目前还在不断改进中</li>
+<li>css3相对H5，应用非常广泛</li>
+</ul>
+</li>
+<li><p>属性选择器列表</p>
+<table>
+<thead>
+<tr>
+<th align="center">选择符</th>
+<th align="center">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">E[att]</td>
+<td align="center">选择具有att属性的E元素</td>
+</tr>
+<tr>
+<td align="center">E[att&#x3D;“val”]</td>
+<td align="center">选择具有att属性且属性值等于val的E元素</td>
+</tr>
+<tr>
+<td align="center">E[att^&#x3D;“val”]</td>
+<td align="center">匹配具有att属性、且值以val开头的E元素</td>
+</tr>
+<tr>
+<td align="center">E[att$&#x3D;“val”]</td>
+<td align="center">匹配具有att属性、且值以val结尾的E元素</td>
+</tr>
+<tr>
+<td align="center">E[att*&#x3D;“val”]</td>
+<td align="center">匹配具有att属性、且值中含有val的E元素</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+</li>
+<li><p>代码演示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=text]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span><span class="selector-attr">[class^=img]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span><span class="selector-attr">[class$=data]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">img</span><span class="selector-attr">[class*=img1]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="二、结构伪类选择器"><a href="#二、结构伪类选择器" class="headerlink" title="二、结构伪类选择器"></a>二、结构伪类选择器</h2><ol>
+<li><p>结构伪类选择器列表</p>
+<table>
+<thead>
+<tr>
+<th align="center">选择符</th>
+<th align="center">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">E:first-child</td>
+<td align="center">匹配父元素中的第一个子元素E</td>
+</tr>
+<tr>
+<td align="center">E:last-child</td>
+<td align="center">匹配父元素中最后一个E元素</td>
+</tr>
+<tr>
+<td align="center">E:nth-child(n)</td>
+<td align="center">匹配父元素中的第n个子元素E</td>
+</tr>
+<tr>
+<td align="center">E:first-of-type</td>
+<td align="center">指定类型E的第一个</td>
+</tr>
+<tr>
+<td align="center">E:last-of-type</td>
+<td align="center">指定类型E的最后一个</td>
+</tr>
+<tr>
+<td align="center">E:nth-of-type(n)</td>
+<td align="center">指定类型E的第n个</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>代码演示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>:red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span><br><span class="line">    <span class="attribute">background-color</span>:pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>nth-child 详解</p>
+<ul>
+<li><p>注意：本质上就是选中第几个子元素</p>
+</li>
+<li><p>n可以是数字、关键字、公式</p>
+</li>
+<li><p>n如果是数字，就是选中第几个</p>
+</li>
+<li><p>常见的关键字有even偶数、odd奇数</p>
+</li>
+<li><p>常见的公式如下（如果n是公式，则从0开始计算）</p>
+</li>
+<li><p>但是第0个元素或者超出了元素的个数会被忽略</p>
+<table>
+<thead>
+<tr>
+<th align="center">公式</th>
+<th align="center">取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2n</td>
+<td align="center">偶数</td>
+</tr>
+<tr>
+<td align="center">2n+1</td>
+<td align="center">奇数</td>
+</tr>
+<tr>
+<td align="center">5n</td>
+<td align="center">5 10 15…</td>
+</tr>
+<tr>
+<td align="center">n+5</td>
+<td align="center">从第5个开始（包含第五个）到最后</td>
+</tr>
+<tr>
+<td align="center">-n+5</td>
+<td align="center">前5个（包含第5个）…</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li><p>nth-child 和 nt-of-type 的区别</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. nth-child 对父元素里面所有孩子排序选择（序号是固定的）先找到第n个孩子，然后看看是否和E匹配</span><br><span class="line"><span class="number">2</span>. nth-of-fype 对父元素里面指定子元素进行排序选择。先去匹配E，然后再根据E 找第n个孩子</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="三、伪元素选择器"><a href="#三、伪元素选择器" class="headerlink" title="三、伪元素选择器"></a>三、伪元素选择器</h2><ol>
+<li><p>伪类选择器</p>
+<table>
+<thead>
+<tr>
+<th align="center">选择符</th>
+<th align="center">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">::before</td>
+<td align="center">在元素内部的前面插入内容</td>
+</tr>
+<tr>
+<td align="center">::after</td>
+<td align="center">在元素内部的后面插入内容</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>伪类选择器注意事项</p>
+<ul>
+<li>before 和 after 必须有 content 属性</li>
+<li>before 在内容前面，after在内容后面</li>
+<li>before 和 after 创建的是一个元素，但是属于行内元素</li>
+<li>创建出来的元素在 Dom 中查找不到，所以称为伪元素</li>
+<li>伪元素和标签选择器一样，权重为 1</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="四、伪元素的案例"><a href="#四、伪元素的案例" class="headerlink" title="四、伪元素的案例"></a>四、伪元素的案例</h2><ol>
+<li><p>添加字体图标</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid lightseagreen;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&#x27;\e665&#x27;</span>;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&#x27;iconfont&#x27;</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="五、其他特性"><a href="#五、其他特性" class="headerlink" title="五、其他特性"></a>五、其他特性</h2><ol>
+<li><p>滤镜：filter CSS属性将模糊或颜色偏移等图形效果应用于元素。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">10px</span>);</span><br><span class="line">设置图片模糊</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>calc() 此CSS函数让你在声明CSS属性值时执行一些计算。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">calc(<span class="number">50%</span> + <span class="number">30px</span>);</span><br><span class="line">可以进行+ - * / 计算，符号两边加空格</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>css过渡属性</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transition</span>: 要过渡的属性	花费时间 运动曲线 何时开始；</span><br><span class="line"><span class="number">1</span>.属性：想要变化的 css 属性，宽度高度	背景颜色 内外边距都可以。如果想要所有的属性都变化过渡，写一个all就可以。</span><br><span class="line"><span class="number">2</span>.花费时间：单位是 秒（必须写单位）比如 <span class="number">0.5s</span></span><br><span class="line"><span class="number">3</span>.运动曲线：默认是 ease（可以省略）</span><br><span class="line"><span class="number">4</span>.何时开始：单位是 秒（必须写单位）可以设置延迟触发时间 默认是 <span class="number">0s</span>（可以省略）</span><br><span class="line"></span><br><span class="line">记住过渡的使用口诀：谁做过渡给谁加</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h1 id="CSS3-2D转换"><a href="#CSS3-2D转换" class="headerlink" title="CSS3(2D转换)"></a>CSS3(2D转换)</h1><h2 id="一、2D转换之translate"><a href="#一、2D转换之translate" class="headerlink" title="一、2D转换之translate"></a>一、2D转换之translate</h2><ol>
+<li><p>2D转换</p>
+<ul>
+<li>2D转换是改变标签在二维平面上的位置和形状</li>
+<li>移动：translate</li>
+<li>旋转：rotate</li>
+<li>缩放：scale</li>
+</ul>
+</li>
+<li><p>translate 语法</p>
+<ul>
+<li>x就是x轴上水平移动</li>
+<li>y就是y轴上水平移动</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">translate</span>(x,y);</span><br><span class="line"><span class="attribute">transform</span>: <span class="built_in">translateX</span>(n);</span><br><span class="line"><span class="attribute">transform</span>: <span class="built_in">translateY</span>(n);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重点知识点</p>
+<ul>
+<li>2D的移动主要是指水平、垂直方向上的移动</li>
+<li>translate 最大的优点就是不影响其他元素的位置</li>
+<li>translate 中的100%单位，是相对于本身的宽度和高度来进行计算</li>
+<li>行内标签没有效果</li>
+</ul>
+</li>
+<li><p>代码演示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>:lightseagreen;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line"><span class="comment">/* 平移 */</span></span><br><span class="line"><span class="comment">/* 水平垂直移动 100px */</span></span><br><span class="line"><span class="comment">/* transform: translate(100px,100px); */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 水平移动 100px */</span></span><br><span class="line"><span class="comment">/* transform: translate(100px,0) */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*垂直移动 100px */</span></span><br><span class="line"><span class="comment">/* transform: translate(0, 100px) */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 水平移动 100px */</span></span><br><span class="line"><span class="comment">/* transform: translateX(100px) */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*垂直移动 100px */</span></span><br><span class="line"><span class="comment">/* transform: translateY(100px) */</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="二、2D转换之rotate"><a href="#二、2D转换之rotate" class="headerlink" title="二、2D转换之rotate"></a>二、2D转换之rotate</h2><ol>
+<li><p>rotate 旋转</p>
+<ul>
+<li>2D 旋转指的是让元素在二维平面内顺时针或者逆时针旋转</li>
+</ul>
+</li>
+<li><p>rotate 语法</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 单位是: deg */</span></span><br><span class="line"><span class="attribute">transform</span>: <span class="built_in">rotate</span>(度数)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重点知识点</p>
+<ul>
+<li>rotate 里面跟度数，单位是 deg</li>
+<li>角度为正时，顺时针，角度为负时，逆时针</li>
+<li>默认旋转的中心点是元素的中心点</li>
+</ul>
+</li>
+<li><p>代码演示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">360deg</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="三、设置元素旋转中心点-transform-origin"><a href="#三、设置元素旋转中心点-transform-origin" class="headerlink" title="三、设置元素旋转中心点(transform-origin)"></a>三、设置元素旋转中心点(transform-origin)</h2><ol>
+<li><p>transform-origin 基础语法</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform-origin</span>: x y;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重要知识点</p>
+<ul>
+<li>注意后面的参数 x 和 y 用空格隔开</li>
+<li>x y 默认旋转的中心点是元素的中心（50% 50%），等价于 center center</li>
+<li>还可以给 x y 设置像素或者方位名词（top、bottom、left、right、center）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="四、2D转换之scale"><a href="#四、2D转换之scale" class="headerlink" title="四、2D转换之scale"></a>四、2D转换之scale</h2><ol>
+<li><p>scale 的作用</p>
+<ul>
+<li>用来控制元素的放大与缩小</li>
+</ul>
+</li>
+<li><p>语法</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">scale</span>(x,y)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>知识要点</p>
+<ul>
+<li>注意，x 与 y 之间使用逗号进行分隔</li>
+<li>transform: scale(1,1)：宽高都放大一倍，相当于没有放大</li>
+<li>transform: scale(2,2)：宽和高都放大了二倍</li>
+<li>transform: scale(2)：如果只写了一个参数，第二个参数就和第一个参数一致</li>
+<li>transform: scale(0.5,0.5)：缩小</li>
+<li>scale 最大的优势：可以设置转换中心点缩放，默认以中心点缩放，而且不影响其他盒子</li>
+</ul>
+</li>
+<li><p>代码演示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="comment">/* 注意，数字是倍数的含义，所以不需要加单位 */</span></span><br><span class="line">    <span class="comment">/* transform; scale(2,2) */</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* 实现等比缩放，同时修改宽与高 */</span></span><br><span class="line">    <span class="comment">/* transform: scale(2) */</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* 小于 1 就等于缩放 */</span></span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">0.5</span>,<span class="number">0.5</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="五、2D转换综合写法以及顺序问题"><a href="#五、2D转换综合写法以及顺序问题" class="headerlink" title="五、2D转换综合写法以及顺序问题"></a>五、2D转换综合写法以及顺序问题</h2><ol>
+<li><p>知识要点</p>
+<ul>
+<li>同时使用多个转换，其格式为 transform: translate() rotate()</li>
+<li>顺序会影响到转换的效果（先旋转会改变坐标轴方向）</li>
+<li>但我们同时有位置或者其他属性的时候，要将位移放到最前面</li>
+</ul>
+</li>
+<li><p>代码演示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">200px</span>,<span class="number">0</span>) <span class="built_in">rotate</span>(<span class="number">360deg</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h1 id="CSS3-3D转换"><a href="#CSS3-3D转换" class="headerlink" title="CSS3(3D转换)"></a>CSS3(3D转换)</h1><h2 id="一、认识3D转换"><a href="#一、认识3D转换" class="headerlink" title="一、认识3D转换"></a>一、认识3D转换</h2><ol>
+<li>3D的特点<ul>
+<li>近大远小</li>
+</ul>
+</li>
+<li>三维坐标系<ul>
+<li>x 轴：水平向右 –<strong>注意：x 轴右边是正值，左边是负值</strong></li>
+<li>y 轴：垂直向下 –<strong>注意：y 轴下面是正值，上面是负值</strong></li>
+<li>z 轴：垂直屏幕 –<strong>注意：往外边的是正值，往里面的是负值</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/09/18/CSvGTqLbMQkt8WK.png" alt="1695009024194.jpg"></p>
+<hr>
+<h2 id="二、3D位移"><a href="#二、3D位移" class="headerlink" title="二、3D位移"></a>二、3D位移</h2><ol>
+<li><p>3D移动translate3d</p>
+<ul>
+<li>3D 移动就是在2D移动的基础上多加了一个可以移动的方向，就是 z 轴方向</li>
+<li>transform: translateX(100px)：仅仅是在 x 轴上移动</li>
+<li>transform: translateY(100px)：仅仅是在 y 轴上移动</li>
+<li>transform: translateZ(100px)：仅仅是在 z 轴上移动</li>
+<li>transform: translate3d(x, y, z)：其中x、y、z 分别指要移动的轴的方向的距离</li>
+<li><strong>注意：x,y,z 对应的值不能省略，不需要填写用 0 进行填充</strong></li>
+</ul>
+</li>
+<li><p>语法</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">translate3d</span>(x, y, z)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码演示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">translate3d</span>(<span class="number">100px</span>, <span class="number">100px</span>, <span class="number">100px</span>)</span><br><span class="line"><span class="comment">/* 注意：x, y, z 对应的值不能省略，不需要填写用 0 进行填充 */</span></span><br><span class="line">transform: <span class="built_in">translate3d</span>(<span class="number">100px</span>, <span class="number">100px</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="三、透视-perspective"><a href="#三、透视-perspective" class="headerlink" title="三、透视 perspective"></a>三、透视 perspective</h2><ol>
+<li>知识点讲解<ul>
+<li>如果想要网页产生3D效果需要透视（理解成3D物体投影的2D平面上）</li>
+<li>透视也称为视距，所谓的视距就是人的眼睛到屏幕的距离</li>
+<li>透视的单位是像素</li>
+</ul>
+</li>
+<li>知识要点<ul>
+<li><strong>透视需要写在被视察元素的父盒子上面</strong></li>
+<li>注意下方图片<ul>
+<li>d：就是视距，视距就是指人的眼睛到屏幕的距离</li>
+<li>z：就是 z 轴，z 轴越大（正值），我们看到的物体就越大</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/09/18/mbo5KXOtaRZ97Vv.png" alt="1695009893252.jpg"></p>
+<hr>
+<h2 id="四、translateZ"><a href="#四、translateZ" class="headerlink" title="四、translateZ"></a>四、translateZ</h2><ol>
+<li>translateZ 与 perspective 的区别<ul>
+<li>perspective 给父级进行设置，translateZ 给子元素进行设置不同的大小</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="五、3D旋转-rotateX"><a href="#五、3D旋转-rotateX" class="headerlink" title="五、3D旋转 rotateX"></a>五、3D旋转 rotateX</h2><blockquote>
+<p>3D 旋转指可以让元素在三维平面内沿着 x 轴、y 轴、z 轴 或者自定义轴进行旋转</p>
+</blockquote>
+<ol>
+<li>语法<ul>
+<li>transform：rotateX(45deg) —-沿着 x 轴正方向旋转 45 度</li>
+<li>transform：rotateY(45deg) —-沿着 Y 轴正方向旋转 45 度</li>
+<li>transform：rotateZ(45deg) —-沿着 Z 轴正方向旋转 45 度</li>
+<li>transform：rotate3d(x, y, z, 45deg) —-沿着自定义轴旋转 45 度</li>
+</ul>
+</li>
+<li>左手准则<ul>
+<li>左手的拇指指向 x 轴的正方向</li>
+<li>其余手指的弯曲方向就是该元素沿着 x 轴旋转的方向</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="六、3D旋转-rotateY"><a href="#六、3D旋转-rotateY" class="headerlink" title="六、3D旋转 rotateY"></a>六、3D旋转 rotateY</h2><ol>
+<li><p>代码演示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">perspective</span>: <span class="number">500px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">100px</span> auto;</span><br><span class="line">    <span class="attribute">transition</span>: all <span class="number">1s</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">180deg</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>左手准则</p>
+<ul>
+<li>左手的拇指指向 y 轴的正方向</li>
+<li>其余的手指弯曲方向就是该元素沿着 y 轴旋转的方向（正值）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="七、3D-旋转-rotateZ"><a href="#七、3D-旋转-rotateZ" class="headerlink" title="七、3D 旋转 rotateZ"></a>七、3D 旋转 rotateZ</h2><ol>
+<li><p>代码演示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">perspective</span>: <span class="number">500px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">100px</span> auto;</span><br><span class="line">    <span class="attribute">transition</span>: all <span class="number">1s</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotateZ</span>(<span class="number">180deg</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rotate3d</p>
+<ul>
+<li>transform: rotate3d(x, y, z, deg) —- 沿着自定义轴旋转 deg 为角度</li>
+<li>x, y, z 表示旋转轴的矢量，是标识你是否希望沿着该轴进行旋转，最后一个标识旋转的角度<ul>
+<li>transform: rotate3d(1, 1, 0, 180deg) —- 沿着对角线旋转 45deg</li>
+<li>transform: rotate3d(1, 0, 0, 180deg) —- 沿着 x 轴旋转 45deg</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="八、3D呈现transform-style"><a href="#八、3D呈现transform-style" class="headerlink" title="八、3D呈现transform-style"></a>八、3D呈现transform-style</h2><ol>
+<li>transform-style<ul>
+<li>控制子元素是否开启三维立体环境</li>
+<li>transform-style: flat 代表子元素不开启3D立体空间，默认的</li>
+<li>transform-style: preserve-3d 子元素开启立体空间</li>
+<li>代码写给父级，但是影响的是子盒子</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="CSS3-动画"><a href="#CSS3-动画" class="headerlink" title="CSS3(动画)"></a>CSS3(动画)</h1><h2 id="一、动画-animation"><a href="#一、动画-animation" class="headerlink" title="一、动画(animation)"></a>一、动画(animation)</h2><ol>
+<li><p>什么是动画</p>
+<ul>
+<li>动画是css3中最具颠覆性的特征之一，可通过设置多个节点来精确的控制一个或者一组动画，从而实现复杂的动画效果</li>
+</ul>
+</li>
+<li><p>动画的基本使用</p>
+<ul>
+<li>先定义动画</li>
+<li>再调用定义好的动画</li>
+</ul>
+</li>
+<li><p>语法格式（定义动画）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> 动画名称 &#123;</span><br><span class="line">    <span class="selector-tag">from</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">to</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">200px</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> 动画名称 &#123;</span><br><span class="line">    <span class="number">0%</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="number">50%</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">150px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="number">100%</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">200px</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">动画序列</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>.	<span class="number">0%</span> 是动画的开始，<span class="number">100%</span> 是动画的完成，这样的规则就是动画序列</span><br><span class="line"><span class="number">2</span>.	在 <span class="keyword">@keyframs</span> 中规定某项 css 样式，就由创建当前样式逐渐改为新样式的动画效果</span><br><span class="line"><span class="number">3</span>.	动画是使元素从一个样式逐渐变化为另一个样式的效果，可以改变任意多的样式任意多的次数</span><br><span class="line"><span class="number">4</span>.	用百分比来规定变化发生的时间，或用 `from`和`to`，等同于 <span class="number">0%</span> 和 <span class="number">100%</span></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用动画</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">animation</span>: 动画名称 持续时间;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="二、动画常见属性"><a href="#二、动画常见属性" class="headerlink" title="二、动画常见属性"></a>二、动画常见属性</h2><ol>
+<li><p>常见的属性</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">@keyframes</td>
+<td align="center">规定动画。</td>
+</tr>
+<tr>
+<td align="center">animation</td>
+<td align="center">所有动画属性的简写属性，除了animation-play-state属性。</td>
+</tr>
+<tr>
+<td align="center">animation-name</td>
+<td align="center">规定@keyframes动画的名称。（必须的）</td>
+</tr>
+<tr>
+<td align="center">animation-duration</td>
+<td align="center">规定动画完成一个周期所花费的秒或毫秒，默认是0.（必须的）</td>
+</tr>
+<tr>
+<td align="center">animation-timing-function</td>
+<td align="center">规定动画的速度曲线，默认是”ease”。</td>
+</tr>
+<tr>
+<td align="center">animation-delay</td>
+<td align="center">规定动画何时开始，默认是0.</td>
+</tr>
+<tr>
+<td align="center">animation-iteration-count</td>
+<td align="center">规定动画被播放的次数，默认是1，还有infinite</td>
+</tr>
+<tr>
+<td align="center">animation-direction</td>
+<td align="center">规定动画是否在下一周期逆向播放，默认是”normal”，alternate逆播放</td>
+</tr>
+<tr>
+<td align="center">animation-play-state</td>
+<td align="center">规定动画是否正在运行或暂停。默认是”running”，还有”paused”。</td>
+</tr>
+<tr>
+<td align="center">animation-fill-mode</td>
+<td align="center">规定动画结束后状态，保持forwards回到起始backwards</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>代码演示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: aquamarine;</span><br><span class="line">    <span class="comment">/* 动画名称 */</span></span><br><span class="line">    <span class="attribute">animation-name</span>: move;</span><br><span class="line">    <span class="comment">/* 动画花费时长 */</span></span><br><span class="line">    <span class="attribute">animation-duration</span>: <span class="number">2s</span>;</span><br><span class="line">    <span class="comment">/* 动画速度曲线 */</span></span><br><span class="line">    <span class="attribute">animation-timing-function</span>: ease-in-out;</span><br><span class="line">    <span class="comment">/* 动画等待多长时间执行 */</span></span><br><span class="line">    <span class="attribute">animation-delay</span>: <span class="number">2s</span>;</span><br><span class="line">    <span class="comment">/* 规定动画播放次数 infinite: 无限循环 */</span></span><br><span class="line">    <span class="attribute">animation-iteration-count</span>: infinite;</span><br><span class="line">    <span class="comment">/* 是否逆行播放 */</span></span><br><span class="line">    <span class="attribute">animation-direction</span>: alternate;</span><br><span class="line">    <span class="comment">/* 动画结束之后的状态 */</span></span><br><span class="line">    <span class="attribute">animation-fill-mode</span>: forwards;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="comment">/* 规定动画是否暂停或者播放 */</span></span><br><span class="line">    <span class="attribute">animation-play-state</span>: paused;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="三、动画复合属性（简写方式）"><a href="#三、动画复合属性（简写方式）" class="headerlink" title="三、动画复合属性（简写方式）"></a>三、动画复合属性（简写方式）</h2><ol>
+<li><p>动画简写方式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* animation: 动画名称 持续时间 运动曲线 何时开始 播放次数 是否反方向 起始与结束状态 */</span></span><br><span class="line"><span class="attribute">animation</span>: name duration timing-function delay iteration-count direction fill-mode</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>知识要点</p>
+<ul>
+<li>简写属性里面不包含animation-play-state</li>
+<li>暂停动画 animation-play-state: paused; 经常和鼠标经过等其他配合使用</li>
+<li>要想动画走回来，而不是直接调回来：animation-direction: alternate</li>
+<li>盒子动画结束后，停在结束位置：animation-fill-mode: forwards</li>
+</ul>
+</li>
+<li><p>代码演示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">animation</span>: move <span class="number">2s</span> linear <span class="number">1s</span> infinite alternate forwards;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="四、速度曲线细节"><a href="#四、速度曲线细节" class="headerlink" title="四、速度曲线细节"></a>四、速度曲线细节</h2><ol>
+<li><p>速度曲线细节</p>
+<ul>
+<li>animation-timing-function: 规定动画的速度曲线，默认是ease</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">linear</td>
+<td align="center">动画从头到尾的速度是相同的，匀速</td>
+</tr>
+<tr>
+<td align="center">ease</td>
+<td align="center">默认。动画以低速开始，然后加快，在结束前变慢。</td>
+</tr>
+<tr>
+<td align="center">ease-in</td>
+<td align="center">动画以低速开始。</td>
+</tr>
+<tr>
+<td align="center">ease-out</td>
+<td align="center">动画以低速结束。</td>
+</tr>
+<tr>
+<td align="center">ease-in-out</td>
+<td align="center">动画以低速开始和结束。</td>
+</tr>
+<tr>
+<td align="center">steps()</td>
+<td align="center">指定了时间函数中的间隔数量（步长）</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>代码演示</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">50px</span></span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">background-color</span>: aquamarine;</span><br><span class="line">    <span class="attribute">animation</span>: move <span class="number">4s</span> <span class="built_in">steps</span>(<span class="number">24</span>) forwards;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> move &#123;</span><br><span class="line">    <span class="number">0%</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="number">100%</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">480px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://li-san-huo.gitee.io/2023/09/18/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/CSS3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS3/" rel="tag">CSS3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E9%A1%B5/" rel="tag">网页</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2023/09/19/%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E9%AA%8C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            计算机网络参考模型
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2023/09/11/%E7%BD%91%E9%A1%B5%E5%9F%BA%E7%A1%80/%E5%88%9D%E8%AF%86CSS/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">初识CSS</div>
+      </a>
+    
+  </nav>
+
+  
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2023-2025
+        <i class="ri-heart-fill heart_icon"></i> Yan
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="焱"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/update">更新日志</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯茶吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
+        src="//music.163.com/outchain/player?type=2&id=2992037665&auto=0&height=66"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>
