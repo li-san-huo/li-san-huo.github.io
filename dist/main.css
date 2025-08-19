@@ -191,6 +191,7 @@ template {
 :after,
 :before {
     box-sizing: border-box
+    
 }
 
 body,
@@ -444,21 +445,25 @@ button {
     width: 100%;
     max-width: 70rem;
     border: 1px solid #dedede;
-    margin: 15px auto;
+    margin: 15px auto%;
     border-collapse: collapse;
     empty-cells: show
 }
 
 .article-entry table td,
 .article-entry table th {
-    border: 1px solid #dedede;
-    padding: 5px 10px
+    border: 4px dashed #a8a8a8;
+    padding: 5px 10px;
+    background-color: #dcdcdc8c;
+    font-size: 16px;
+    color: #000;
 }
 
 .article-entry table th {
     font-weight: 700;
+    font-size: 18px;
     text-align: center !important;
-    background: rgba(158, 188, 226, .2);
+    background: rgb(0 241 255 / 21%);
     white-space: nowrap
 }
 
@@ -859,7 +864,7 @@ button {
 
 .float_btns {
     position: sticky;
-    bottom: 10rem;
+    bottom: 11rem;
     right: 50px;
     z-index: 9996;
     text-align: center;
@@ -1036,8 +1041,15 @@ button {
 }
 
 .article {
-    padding: 5rem 0 3rem;
-    font-size: 110%
+    padding: 5rem 1rem 3rem;
+    font-size: 110%;
+    border: 3px solid #aaaaaa;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    border-bottom: .4rem dashed #aaaaaa;
+    border-right: .4rem dashed #aaaaaa;
+    box-shadow: 10px 5px 5px #aaaaaa;
+    border-radius: 15px;
 }
 
 .article .sea-center {
@@ -1102,7 +1114,9 @@ button {
     font-size: 103%;
     margin-top: .5rem;
     line-height: 1.6;
-    color: #403e3e
+    color: #403e3e;
+    margin: 0 auto;
+    width: fit-content;
 }
 
 .article-entry:after,
@@ -1684,11 +1698,18 @@ a.toc-link {
 }
 
 .articles .article {
-    padding: 4.5rem 0
+    padding-left: 1rem;
+    
 }
 
 .articles .article:not(:last-child) {
-    border-bottom: .1rem solid #ddd
+    border: 3px solid #aaaaaa;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    border-bottom: .4rem dashed #aaaaaa;
+    border-right: .4rem dashed #aaaaaa;
+    box-shadow: 10px 5px 5px #aaaaaa;
+    border-radius: 15px;
 }
 
 .articles .article-entry {
@@ -2772,7 +2793,7 @@ pre .id {
 
 .logo {
     text-align: center;
-    margin-bottom: 2rem
+    margin-bottom: 2rem;
 }
 
 .logo img {
@@ -2782,6 +2803,7 @@ pre .id {
 .todark,
 .totop {
     position: relative;
+    border: 1px solid #8d8d8d;
     display: block;
     overflow: hidden;
     cursor: pointer;
